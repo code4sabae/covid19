@@ -10,7 +10,10 @@
 window.onload = async function() {
   const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/development/data/data.json"
   const data = await (await fetch(url)).json()
+  console.log(data)
 
+  const calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  /*
   const calcSum = function(data) {
     let sum = 0
     for (const d of data) {
@@ -18,6 +21,7 @@ window.onload = async function() {
     }
     return sum
   }
+  */
   const ncontacts = calcSum(data.contacts.data)
   const nquerents = calcSum(data.querents.data)
   const npatiants = data.patients.data.length
@@ -25,19 +29,26 @@ window.onload = async function() {
   const ndischarges = data.discharges.data.length
   const ndischarges2 = calcSum(data.discharges_summary.data) // to check
   
+  const ninspections = data.main_summary.value // new!
+  
   main.innerHTML = `
     <table>
-      <tr><td>cnt of patiants / 陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
-      <tr><td>cnt of contacts / 新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
-      <tr><td>cnt of querents / 帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
+      <tr><td>陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
+      <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
+      <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatiants * 100 / ninspections, 2)}%</td></tr>
+      <tr><td>死亡数</td><td>${addComma(data.main_summary.children[0].children[2].value)}人</td></tr>
+      <tr><td>重症（入院中）</td><td>${addComma(data.main_summary.children[0].children[0].children[1].value)}人</td></tr>
+      <tr><td>軽症・中等症（入院中）</td><td>${addComma(data.main_summary.children[0].children[0].children[0].value)}人</td></tr>
+      <tr><td>退院数</td><td>${addComma(data.main_summary.children[0].children[1].value)}人</td></tr>
+      <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
+      <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
       <tr><td>cnt of discharges</td><td>${addComma(ndischarges)}人</td></tr>
-      <tr><td>last update / 最終更新日時</td><td>${data.lastUpdate}</td></tr>
+      <tr><td>最終更新日時</td><td>${data.lastUpdate}</td></tr>
     </table>
   `
 
   console.log(ncontacts, nquerents, npatiants, npatiants2, ndischarges, ndischarges2)
   dump(data) 
-  console.log(data)
 }
 </script>
 <style>
