@@ -40,10 +40,10 @@ window.onload = async function() {
       <tr><td>陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
       <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
       <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatiants * 100 / ninspections, 2)}%</td></tr>
-      <tr><td>死亡数</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / ninspections, 2)}%)</td></tr>
-      <tr><td>重症（入院中）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / ninspections, 2)}%)</td></tr>
-      <tr><td>軽症・中等症（入院中）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / ninspections, 2)}%)</td></tr>
-      <tr><td>退院数</td><td>${addComma(nexit)}人(${fixfloat(nexit * 100 / ninspections, 2)}%)</td></tr>
+      <tr><td>死亡数（死亡数/陽性患者数）</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / npatiants, 2)}%)</td></tr>
+      <tr><td>重症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatiants, 2)}%)</td></tr>
+      <tr><td>軽症・中等症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatiants, 2)}%)</td></tr>
+      <tr><td>退院数（死亡数/陽性患者数）</td><td>${addComma(nexit)}人(${fixfloat(nexit * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
       <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
       <tr><td>cnt of discharges</td><td>${addComma(ndischarges)}人</td></tr>
