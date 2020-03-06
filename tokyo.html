@@ -8,7 +8,8 @@
 <script>"use strict"
 
 window.onload = async function() {
-  const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/development/data/data.json"
+//  const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/development/data/data.json"
+  const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/update-data-0305/data/data.json"
   const data = await (await fetch(url)).json()
   console.log(data)
 
