@@ -51,7 +51,7 @@ window.onload = async function() {
   `
 
   console.log(ncontacts, nquerents, npatiants, npatiants2, ndischarges, ndischarges2)
-  dump(data) 
+  //dump(data)
 }
 </script>
 <style>
@@ -112,11 +112,13 @@ a {
 
 <h1 id=title>COVID-19 Tokyo</h1><div class=subtitle>東京都 新型コロナウイルスオープンデータサマリー</div>
 <div id="main"></div>
-<div id="link">→詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>
-<div id="debug"></div>
+<div id="link">
+  <!--
+    →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
+<!--<div id="debug"></div>-->
 
 <div id="src">
-DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/development/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
+DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src on GitHub</a> より<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2780'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
 </div>
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
