@@ -1,8 +1,19 @@
-# covid19
+# COVID-19 Tokyo
+data.json を使ったシンプルなwebアプリ  
 https://code4sabae.github.io/covid19/tokyo.html  
 
 <img src=https://code4sabae.github.io/covid19/tokyo.png style='width:100%'>
 
 
-DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/development/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
+DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2779'>fukuno.jig.jp</a><br>
+
+# VR-Patients COVID-19 Tokyo
+data.json を使ったシンプルなVR webアプリで陽性患者数を等身大アイコン表示  
+https://code4sabae.github.io/covid19/vrpatients.html  
+
+<img src=https://code4sabae.github.io/covid19/vrpatients.png style='width:100%'>
+
+
+DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
+APP：CC BY <a href='https://fukuno.jig.jp/2782'>fukuno.jig.jp</a><br>
