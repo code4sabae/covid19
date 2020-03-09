@@ -14,10 +14,10 @@
 const addText = function(s) {
 	const scene = document.querySelector('a-scene')
 	const title = document.createElement('a-text')
-	title.setAttribute('position', { x: -1.4, y: 2.2, z: -1.4 })
+	title.setAttribute('position', { x: -1.5, y: 2.2, z: -2.5 })
 	title.setAttribute('value', s)
-	title.setAttribute('scale', "1.2 1.2 1")
-	title.setAttribute('rotation', "0 0 0")
+	title.setAttribute('scale', "1.5 1.5 1.5")
+	title.setAttribute('rotation', "0 90 0")
 	title.setAttribute('align', 'left')
 	title.setAttribute('color', '#FFF')
 	scene.appendChild(title)
@@ -72,17 +72,18 @@ window.onload = async function() {
 	//console.log(days)
 	
 	const pw = .8
-	const offx = -days.length / 2 * pw
+	const py = -3
+	const offx = -days.length * pw - 1
 	for (let i = 0; i < days.length; i++) {
 		const ps = days[i]
 		const x = offx + i * pw
 		for (let j = 0; j < ps.length; j++) {
 			const female = ps[j]['性別'] == '女性'
 			const hfix = female ? 1 : 1
-			addPerson(x, -2 - j * pw, ps[j]['年代'].indexOf('10') >= 0 ? 1.3 : 1.7 * hfix, female ? 'red' : 'blue')
+			addPerson(x, py - j * pw, ps[j]['年代'].indexOf('10') >= 0 ? 1.3 : 1.7 * hfix, female ? 'red' : 'blue')
 		}
 		const day = ps[0]['リリース日'].substring(0, 10)
-		addCaption(day, x, -.5)
+		addCaption(day, x, py + 1.5)
 	}
 }
 
