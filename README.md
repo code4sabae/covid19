@@ -1,3 +1,8 @@
+# COVID-19 Japan
+<img src=https://code4sabae.github.io/covid19/japan-header.png style='width:100%'>
+https://code4sabae.github.io/covid19/japan.html  
+iframeで、まとめたアプリ  
+
 # COVID-19 Tokyo
 data.json を使ったシンプルなwebアプリ  
 https://code4sabae.github.io/covid19/tokyo.html  
@@ -9,6 +14,12 @@ APP：CC BY <a href='https://fukuno.jig.jp/2779'>fukuno.jig.jp</a><br>
 https://code4sabae.github.io/covid19/fukui.html  
 <img src=https://code4sabae.github.io/covid19/fukui.png style='width:100%'>
 https://fukuno.jig.jp/2784  
+
+# COVID-19 Aichi
+https://code4sabae.github.io/covid19/aichi.html  
+<img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%;height:200px'>
+https://fukuno.jig.jp/2785  
+
 
 # COVID-19 Hokkaido
 https://code4sabae.github.io/covid19/hokkaido.html  
