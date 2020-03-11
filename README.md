@@ -1,3 +1,8 @@
+# COVID-19 Japan
+<img src=https://code4sabae.github.io/covid19/japan-header.png style='width:100%'>
+https://code4sabae.github.io/covid19/japan.html  
+iframeで、まとめたアプリ  
+
 # COVID-19 Tokyo
 data.json を使ったシンプルなwebアプリ  
 https://code4sabae.github.io/covid19/tokyo.html  
