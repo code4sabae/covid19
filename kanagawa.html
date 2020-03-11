@@ -41,8 +41,10 @@ window.onload = async function() {
 
   main.innerHTML = `
     <table>
+      <!--
       <tr><td>陽性患者数</td><td>${addComma(npatients)}人</td></tr>
       <tr><td>最終更新日時</td><td>${data.lastUpdate}</td></tr>
+      -->
     </table>
   `
   /*
@@ -108,7 +110,8 @@ td:nth-child(2) {
   font-size: 70%;
 }
 #src {
-	margin: .5em;
+  margin: .5em;
+  text-align: center;
 }
 a {
 	color: gray !important;
@@ -120,17 +123,19 @@ a {
 <h1 id=title>COVID-19 Kanagawa</h1><div class=subtitle>神奈川県 新型コロナウイルスオープンデータサマリー</div>
 <div id="main"></div>
 <div id="link">
-  <!--
-    →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
+  
+    →詳細「<a href=https://www.pref.kanagawa.jp/osirase/1369/>県内の最新感染動向 | 神奈川県 新型コロナウイルス感染症対策サイト</a>」</div>
 <!--<div id="debug"></div>-->
 
 <div id="src">
-DATA: CC BY 「<a href=https://www.pref.kanagawa.jp/docs/ga4/bukanshi/occurrence.html>新型コロナウイルスに感染した患者の発生状況 - 神奈川県ホームページ</a>」「<a href=https://stopcovid19.kanagawa.work/>神奈川県内の最新感染動向 | 神奈川県 新型コロナウイルス感染症対策サイト</a>」 <a href=https://raw.githubusercontent.com/openkawasaki/covid19/dev-kanagawa/data/data.json>data.json</a> (<a href=https://github.com/openkawasaki/covid19>src on GitHub</a>)<br>
+<!--
+  DATA: CC BY 「<a href=https://www.pref.kanagawa.jp/docs/ga4/bukanshi/occurrence.html>新型コロナウイルスに感染した患者の発生状況 - 神奈川県ホームページ</a>」「<a href=https://stopcovid19.kanagawa.work/>神奈川県内の最新感染動向 | 神奈川県 新型コロナウイルス感染症対策サイト</a>」 <a href=https://raw.githubusercontent.com/openkawasaki/covid19/dev-kanagawa/data/data.json>data.json</a> (<a href=https://github.com/openkawasaki/covid19>src on GitHub</a>)<br>
+-->
 APP：CC BY <a href='https://fukuno.jig.jp/2784'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
-</div>
-<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 
+<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 </div>
+
 
 </body>
 </html>
