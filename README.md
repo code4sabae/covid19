@@ -7,12 +7,14 @@ APP：CC BY <a href='https://fukuno.jig.jp/2779'>fukuno.jig.jp</a><br>
 
 # COVID-19 Fukui
 https://code4sabae.github.io/covid19/fukui.html  
+<iframe src=https://code4sabae.github.io/covid19/fukui.html style='width:100%' scrolling=no>
 <img src=https://code4sabae.github.io/covid19/fukui.png style='width:100%'>
+</iframe>
 https://fukuno.jig.jp/2784  
 
 # COVID-19 Aichi
 https://code4sabae.github.io/covid19/aichi.html  
-<img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%'>
+<img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%;height:200px'>
 https://fukuno.jig.jp/2785  
 
 
