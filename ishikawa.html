@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="apple-touch-icon" href="ishikawa.png"/>
+<meta property="og:image" content="ishikawa.png"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>COVID-19 Ishikawa - 石川県 新型コロナウイルスオープンデータサマリー</title>
+<script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
+<script>"use strict"
+
+window.onload = async function() {
+  const url = "https://app.sabae.cc/api/covid19ishikawa.json"
+  const data = await (await fetch(url)).json()
+  console.log(data)
+  dump(data)
+  
+  const ncontacts = 0 // data.summary.ncontacts
+  const nquerents = 0 // data.summary.nquerents
+  const npatients = data.summary.npatients
+  const ninspections = 0 // data.summary.ninspections
+  const ndeath = 0 // data.main_summary.children[0].children[2].value
+  const nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  const nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  const nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+
+  main.innerHTML = `
+    <table>
+      <tr><td>陽性患者数</td><td>${addComma(npatients)}人</td></tr>
+      <!--
+      <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
+      <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatients * 100 / ninspections, 2)}%</td></tr>
+      <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
+      <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
+      <tr><td>死亡数（死亡数/陽性患者数）</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / npatients, 2)}%)</td></tr>
+      <tr><td>重症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatients, 2)}%)</td></tr>
+      <tr><td>軽症・中等症（入院中）（軽症・中等症数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatients, 2)}%)</td></tr>
+      <tr><td>退院数（退院数/陽性患者数）</td><td>${addComma(nexit)}人(${fixfloat(nexit * 100 / npatients, 2)}%)</td></tr>
+      -->
+      <tr><td>最終更新日時</td><td>${data.lastUpdate}</td></tr>
+    </table>
+  `
+
+  //console.log(ncontacts, nquerents, npatients, npatients2, ndischarges, ndischarges2)
+  console.log(ncontacts, nquerents, npatients, npatients2)
+}
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	margin: 0;
+  word-wrap: break-word;
+  --main-color: #A8943A;
+}
+h1 {
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 8vw;
+	text-align: center;
+}
+.subtitle {
+	text-align: center;
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 3vw;
+}
+#main, #link {
+  text-align: center;
+}
+table {
+  margin: .5em;
+  display: inline-block;
+  border-collapse: collapse;
+}
+td {
+  border: 4px solid var(--main-color);
+  padding: .2em .5em;
+}
+td:first-child {
+  text-align: left;
+}
+td:nth-child(2) {
+  text-align: right;
+}
+#debug {
+  border: 1px solid black;
+  margin: 1em;
+  padding: 0.5em;
+  font-size: 70%;
+}
+#src {
+	margin: .5em;
+}
+a {
+	color: gray !important;
+}
+</style>
+</head>
+<body>
+
+<h1 id=title>COVID-19 Ishikawa</h1><div class=subtitle>石川県 新型コロナウイルスオープンデータサマリー</div>
+<div id="main"></div>
+<div id="link">
+
+<div id="src">
+DATA: CC BY 「<a href=https://www.pref.ishikawa.lg.jp/kansen/coronakennai.html>石川県／新型コロナウイルス感染症の県内の患者発生状況</a>」を <a href=https://app.sabae.cc/api/covid19ishikawa.json>JSON形式</a>に加工<br>
+APP：CC BY <a href='https://fukuno.jig.jp/2787'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
+</div>
+<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+
+</div>
+
+</body>
+</html>
