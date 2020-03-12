@@ -13,7 +13,7 @@ window.onload = async function() {
   for (const pref of prefs) {
     const appurl = "https://code4sabae.github.io/covid19/" + pref + ".html"
     const div = create('div')
-    div.innerHTML = `<iframe src="${appurl}" scrolling=no></iframe><a href="${appurl}">${appurl}</a>`
+    div.innerHTML = `<iframe src="${appurl}" scrolling=no></iframe><br><a href="${appurl}">${appurl}</a>`
     main.appendChild(div)
   }
 }
