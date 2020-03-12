@@ -38,7 +38,7 @@ window.onload = async function() {
 
   main.innerHTML = `
     <table>
-      <tr><td>現在の患者数（入院中）</td><td>${addComma(nheavy + nlight)}人</td></tr>
+      <tr><td>現在患者数（入院中）</td><td>${addComma(nheavy + nlight)}人</td></tr>
       <tr><td>陽性患者数</td><td>${addComma(npatients)}人</td></tr>
       <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
       <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatients * 100 / ninspections, 2)}%</td></tr>
