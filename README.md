@@ -15,11 +15,14 @@ https://code4sabae.github.io/covid19/fukui.html
 <img src=https://code4sabae.github.io/covid19/fukui.png style='width:100%'>
 https://fukuno.jig.jp/2784  
 
+# COVID-19 Tokushima
+https://code4sabae.github.io/covid19/tokushima.html  
+<img src=https://code4sabae.github.io/covid19/tokushima.png style='width:100%'>
+
 # COVID-19 Aichi
 https://code4sabae.github.io/covid19/aichi.html  
 <img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%;height:200px'>
 https://fukuno.jig.jp/2785  
-
 
 # COVID-19 Hokkaido
 https://code4sabae.github.io/covid19/hokkaido.html  
