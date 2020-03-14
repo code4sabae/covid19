@@ -2,8 +2,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>COVID-19 JAPAN - 都道府県別 新型コロナウイルス陽性患者数 （カラム地図7x7、厚生労働省データ）</title>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 <link rel="apple-touch-icon" href="japan7x7.png"/>
 <meta property="og:image" content="japan7x7.png">
 <meta name="format-detection" content="telephone=no"/>
@@ -23,13 +22,14 @@ const showSummary = async function() {
 			div.textContent = n
 		}
 	}
+	imgurl.innerHTML = `<a href=${json.srcurl_img}>画像</a> → `
 }
 window.onload = async function() {
 	await showSummary()
 
 	get("japan").innerHTML += makeJapanHTML()
 
-	const url = 'https://app.sabae.cc/api/covid19japan.json'
+	const url = 'https://app.sabae.cc/api/covid19japan.json?type=withpcr'
 	const json = await (await fetch(url)).json()
 	console.log(json)
 	init(json)
@@ -39,31 +39,12 @@ window.onload = async function() {
 	}
 	datasrc.innerHTML = 'データ出展：' + link('https://www.mhlw.go.jp/index.html', '厚生労働省') + " " + link(json.srcurl_web, 'web') + '&nbsp;' + link(json.srcurl_pdf, 'PDF') + "&nbsp;" + link(url, 'JSON(独自にAPI化)')
 }
+const calcRatio = function(cnt, base) {
+	if (isNaN(cnt) || isNaN(base))
+		return "-"
+	return fixfloat(cnt / base * 100, 1) + "%"
+}
 const init = function(data) {
-
-	const countPref = function(pref) {
-		let cnt = 0
-		for (let i = 0; i < data.length; i++) {
-			const p = data[i].pref
-			if (p.startsWith(pref)) {
-				const c = data[i].city
-				cnt++
-			}
-		}
-		return cnt
-	}
-	const countPrefSSL = function(pref) {
-		let cnt = 0
-		for (let i = 0; i < data.length; i++) {
-			const p = data[i].pref
-			if (p.startsWith(pref)) {
-				const c = data[i].url
-				if (c.startsWith("https://"))
-					cnt++
-			}
-		}
-		return cnt
-	}
 //	dump(data);
 	let max = 0
 	for (let i = 0; i < data.area.length; i++) {
@@ -71,7 +52,6 @@ const init = function(data) {
 			max = data.area[i].npatients
 	}
 	let sum = 0
-	let njapan = data.npatients
 	for (let i = 1; i <= 47; i++) {
 		const c = get("jp" + i)
 		c.num = i - 1
@@ -79,9 +59,10 @@ const init = function(data) {
 			this.sel()
 		}
 		const cnt = data.area[i - 1].npatients
+		const cnti = data.area[i - 1].ninspections
 		sum += cnt
 		const r = cnt / max
-		c.innerHTML += "<br>" + cnt + "人"
+		c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
 		if (cnt == 0) {
 		} else {
 			// AD232F
@@ -99,8 +80,8 @@ const init = function(data) {
 	s += "区市町村AOSSL取組率 " + fixfloat(sumodc / sum * 100, 1) + "% （" + sumodc + "都市 / 都道府県含めると " + (sumodc + 47) + "サイト）<br>"
 	s += "日本の都市数：" + sum + " （都道府県を含まず）<br>"
 	*/
-	jpall.innerHTML = sum + "人"
-	jpall.style.fontSize = "5vw"
+	jpall.innerHTML = `${sum}人<div class=pcrsum>(${addComma(data.ninspections)}, ${calcRatio(sum, data.ninspections)})</div>`
+	jpall.style.fontSize = "160%"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 	//jpall.style.background = "rgba(0,20,130," + r + ")"
@@ -207,8 +188,28 @@ h1 {
 	font-size: 3vw;
 }
 
+#summary {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 500px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+@media screen and (min-width: 1126px) {
+	#summary {
+		margin-top: 100px;
+	}
+}
+#cmap {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 600px;
+}
+
 #summarytable {
 	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 	border-collapse: collapse;
 	margin-bottom: 0.5vh;
 }
@@ -239,9 +240,15 @@ h1 {
 
 #description {
 	margin: 1em;
-	font-size: 80%;
+	font-size: 70%;
 }
 
+.pcr {
+	font-size: 65%;
+}
+.pcrsum {
+	font-size: 40%;
+}
 a {
 	color: gray !important;
 }
@@ -261,7 +268,7 @@ a {
 /* japan */
 #japan {
 	display: inline-block;
-	width: 90vw;
+	width: 100%; /*90vw; */
 	max-width: 800px;
 	x-height: 80vw;
 	x-background: red;
@@ -270,11 +277,12 @@ a {
 #jp0 {
 	border-spacing: 1vw;
 	border-collapse: separate;
+	margin: auto;
 }
 #jp0 td {
-	width: calc(90vw / 7);
+	width: 14%; /*calc(90vw / 7); */
 	x-height: calc(60vw / 7);
-	font-size: 2vw;
+	font-size: 80%; /*2vw; */
 	vertical-align: middle;
 	text-align: center;
 	border-radius: .5vw;
@@ -289,17 +297,22 @@ a {
 <h1 id=title>COVID-19 Japan</h1><div class=subtitle>新型コロナウイルス対策ダッシュボード</div>
 
 <div class="content">
+
+<div id=summary>
 <table id=summarytable>
 	<tr><th>現在患者数</th><th>退院者数</th><th>死亡者数</th></tr>
 	<tr><td id=ncurrentpatients></td><td id=nexits></td><td id=ndeaths></td></tr>
 	<tr><th colspan=3>PCR検査陽性者数 <span id=npatients></span></th></tr>
 </table>
-<div id=summarydesc>出展: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span></div>
+<div id=summarydesc>出展: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <span id=imgurl></span><a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span></div>
+</div>
 
+<div id=cmap>
 <div id="japan"></div>
 <div id=description></div>
-
 <div id='datasrc'></div>
+</div>
+
 </div>
 
 <div class="credit">
