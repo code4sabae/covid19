@@ -10,10 +10,23 @@
 <script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script>"use strict"
 
-const getLocalGovCity = function(callback) {
-	callback(LOCALGOV_JP)
+const showSummary = async function() {
+	const url = 'https://app.sabae.cc/api/covid19japan_summary.json'
+	const json = await (await fetch(url)).json()
+	console.log(json)
+	for (const name in json) {
+		const div = document.getElementById(name)
+		if (div) {
+			let n = json[name]
+			if (parseInt(n) == n)
+				n = addComma(n)
+			div.textContent = n
+		}
+	}
 }
 window.onload = async function() {
+	await showSummary()
+
 	get("japan").innerHTML += makeJapanHTML()
 
 	const url = 'https://app.sabae.cc/api/covid19japan.json'
@@ -194,6 +207,30 @@ h1 {
 	font-size: 3vw;
 }
 
+#summarytable {
+	display: inline-block;
+	border-collapse: collapse;
+	margin-bottom: 0.5vh;
+}
+#summarytable td, th {
+	border: 3px solid var(--main-color);
+	padding: .2vh .5vw;
+	width: 20vw;
+	font-size: 2vw;
+	text-align: center;
+}
+#summarytable td {
+	background-color: var(--main-color);
+	color: white;
+	font-size: 5vw;
+}
+#summarydesc {
+	font-size: 80%;
+	margin-bottom: 1em;
+}
+#lastupdatebox {
+	margin-left: 1em;
+}
 
 .content {
 	position: relative;
@@ -249,9 +286,16 @@ a {
 </head>
 <body>
 
-<h1 id=title>COVID-19 Japan</h1><div class=subtitle>都道府県別 新型コロナウイルス陽性患者数</div>
+<h1 id=title>COVID-19 Japan</h1><div class=subtitle>新型コロナウイルス対策ダッシュボード</div>
 
 <div class="content">
+<table id=summarytable>
+	<tr><th>現在患者数</th><th>退院者数</th><th>死亡者数</th></tr>
+	<tr><td id=ncurrentpatients></td><td id=nexits></td><td id=ndeaths></td></tr>
+	<tr><th colspan=3>PCR検査陽性者数 <span id=npatients></span></th></tr>
+</table>
+<div id=summarydesc>出展: 入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span></div>
+
 <div id="japan"></div>
 <div id=description></div>
 
