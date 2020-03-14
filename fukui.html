@@ -6,15 +6,15 @@
 <title>COVID-19 Fukui - 福井県 新型コロナウイルスオープンデータサマリー</title>
 <script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
 <script>"use strict"
+const url = 'https://app.sabae.cc/api/covid19fukui.json'
 
-window.onload = async function() {
+async function update() {
   //const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json" // Tokyo
   //const url = 'https://raw.githubusercontent.com/codeforsapporo/covid19/master/data/data.json' // Hokkaido
-  const url = 'https://app.sabae.cc/api/covid19fukui.json'
-  const data = await (await fetch(url)).json()
+  var data = await (await fetch(url)).json()
   console.log(data)
 
-  const calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  var calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
@@ -24,16 +24,16 @@ window.onload = async function() {
     return sum
   }
   */
-  const ncontacts = 0 // calcSum(data.contacts.data)
-  const nquerents = 0 // calcSum(data.querents.data)
-  const npatiants = data.summary.n_patients
-  const ndischarges = 0 // data.discharges.data.length
-  
-  const ninspections = data.summary.n_inspections // new!
-  const ndeath = 0 // data.main_summary.children[0].children[2].value
-  const nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  const nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  const nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  var ncontacts = 0 // calcSum(data.contacts.data)
+  var nquerents = 0 // calcSum(data.querents.data)
+  var npatiants = data.summary.n_patients
+  var ndischarges = 0 // data.discharges.data.length
+
+  var ninspections = data.summary.n_inspections // new!
+  var ndeath = 0 // data.main_summary.children[0].children[2].value
+  var nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  var nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  var nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>
@@ -55,6 +55,9 @@ window.onload = async function() {
 //  console.log(ncontacts, nquerents, npatiants, npatiants2, ndischarges, ndischarges2)
   dump(data)
 }
+
+window.onload = update();
+setInterval(update, 600000)
 </script>
 <style>
 body {
@@ -108,12 +111,18 @@ td:nth-child(2) {
 a {
 	color: gray !important;
 }
+.buttons{
+  text-align: center;
+}
 </style>
 </head>
 <body>
 
 <h1 id=title>COVID-19 Fukui</h1><div class=subtitle>福井県 新型コロナウイルスオープンデータサマリー</div>
 <div id="main"></div>
+<div class="buttons">
+  <button type="button" onclick="update()">更新</button>
+</div>
 <div id="link">
   <!--
     →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
