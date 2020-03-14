@@ -1,21 +1,174 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="apple-touch-icon" href="japan.png"/>
-<meta property="og:image" content="japan.png"/>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>COVID-19 JAPAN - 都道府県別 新型コロナウイルス陽性患者数 （カラム地図7x7、厚生労働省データ）</title>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<link rel="apple-touch-icon" href="japan7x7.png"/>
+<meta property="og:image" content="japan7x7.png">
 <meta name="format-detection" content="telephone=no"/>
-<title>COVID-19 Japan - 日本 新型コロナウイルスオープンデータサマリー</title>
-<script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
+<script src="https://fukuno.jig.jp/fukuno.js"></script>
+<script src="https://code4fukui.github.io/localgovjp/localgovjp.js"></script>
 <script>"use strict"
 
+const getLocalGovCity = function(callback) {
+	callback(LOCALGOV_JP)
+}
 window.onload = async function() {
-  const prefs = [ "tokyo", "aichi", "tokushima", "fukui", "ishikawa" ] // , "hokkaido", "kanagawa" ]
-  
-  for (const pref of prefs) {
-    const appurl = "https://code4sabae.github.io/covid19/" + pref + ".html"
-    const div = create('div')
-    div.innerHTML = `<iframe src="${appurl}" scrolling=no></iframe><br><a href="${appurl}">${appurl}</a>`
-    main.appendChild(div)
-  }
+	get("japan").innerHTML += makeJapanHTML()
+
+	const url = 'http://app.sabae.cc/api/covid19japan.json'
+	const json = await (await fetch(url)).json()
+	console.log(json)
+	init(json)
+	description.textContent = json.description
+	const link = function(url, name) {
+		return `<a href="${url}">${name}</a>`
+	}
+	datasrc.innerHTML = 'データ出展：' + link('https://www.mhlw.go.jp/index.html', '厚生労働省') + " " + link(json.srcurl_web, 'web') + '&nbsp;' + link(json.srcurl_pdf, 'PDF') + "&nbsp;" + link(url, 'JSON(独自にAPI化)')
+}
+const init = function(data) {
+
+	const countPref = function(pref) {
+		let cnt = 0
+		for (let i = 0; i < data.length; i++) {
+			const p = data[i].pref
+			if (p.startsWith(pref)) {
+				const c = data[i].city
+				cnt++
+			}
+		}
+		return cnt
+	}
+	const countPrefSSL = function(pref) {
+		let cnt = 0
+		for (let i = 0; i < data.length; i++) {
+			const p = data[i].pref
+			if (p.startsWith(pref)) {
+				const c = data[i].url
+				if (c.startsWith("https://"))
+					cnt++
+			}
+		}
+		return cnt
+	}
+//	dump(data);
+	let max = 0
+	for (let i = 0; i < data.area.length; i++) {
+		if (data.area[i].npatients > max)
+			max = data.area[i].npatients
+	}
+	let sum = 0
+	let njapan = data.npatients
+	for (let i = 1; i <= 47; i++) {
+		const c = get("jp" + i)
+		c.num = i - 1
+		c.onclick = function() {
+			this.sel()
+		}
+		const cnt = data.area[i - 1].npatients
+		sum += cnt
+		const r = cnt / max
+		c.innerHTML += "<br>" + cnt + "人"
+		if (cnt == 0) {
+		} else {
+			// AD232F
+			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + .2) / .8) + ")"
+		}
+		c.style.color = r < .5 ? "black" : "white"
+		c.cnt = cnt
+		
+		c.sel = function() {
+		}
+	}
+	
+	let s = ''
+	/*
+	s += "区市町村AOSSL取組率 " + fixfloat(sumodc / sum * 100, 1) + "% （" + sumodc + "都市 / 都道府県含めると " + (sumodc + 47) + "サイト）<br>"
+	s += "日本の都市数：" + sum + " （都道府県を含まず）<br>"
+	*/
+	jpall.innerHTML = sum + "人"
+	jpall.style.fontSize = "5vw"
+	jpall.style.background = 'var(--main-color)'
+	jpall.style.color = 'white'
+	//jpall.style.background = "rgba(0,20,130," + r + ")"
+	//jpall.style.color = r < .5 ? "black" : "white"
+};
+
+// --
+var PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ];
+
+
+// from CC0 カラム地図
+// https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ
+/*
+const JAPAN = `
+山口	島根	鳥取	石川	新潟	青森	北海道
+広島	岡山	兵庫	福井	富山	秋田	岩手
+長崎		大阪	京都	長野	山形	宮城
+佐賀	福岡		滋賀	山梨	群馬	福島
+熊本	宮崎	大分	三重	静岡	埼玉	栃木
+鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+
+/*
+const JAPAN = `
+山口	島根	鳥取	石川	新潟	青森	北海道
+広島	岡山	兵庫	福井	富山	秋田	岩手
+長崎	福岡	大阪	京都	長野	山形	宮城
+佐賀	宮崎	滋賀	日本	山梨	群馬	福島
+熊本	大分	奈良	日本	静岡	埼玉	栃木
+鹿児島	愛媛	香川	三重	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+/*
+const JAPAN = `
+日本	日本	鳥取	石川	新潟	青森	北海道
+山口	島根	兵庫	福井	富山	秋田	岩手
+長崎	岡山	大阪	京都	長野	山形	宮城
+佐賀	福岡	広島	滋賀	山梨	群馬	福島
+熊本	宮崎	大分	三重	静岡	埼玉	栃木
+鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+const JAPAN = `
+日本	日本	鳥取	石川	富山	青森	北海道
+山口	島根	岡山	福井	新潟	秋田	岩手
+長崎	福岡	広島	滋賀	長野	山形	宮城
+佐賀	大分	兵庫	京都	山梨	群馬	福島
+熊本	宮崎	大阪	奈良	岐阜	埼玉	栃木
+鹿児島	愛媛	香川	和歌山	静岡	東京	茨城
+沖縄	高知	徳島	三重	愛知	神奈川	千葉`
+
+const PREF_S = [ '北海道', '青森', '岩手', '宮城', '秋田', '山形', '福島', '茨城', '栃木', '群馬', '埼玉', '千葉', '東京', '神奈川', '新潟', '富山', '石川', '福井', '山梨', '長野', '岐阜', '静岡', '愛知', '三重', '滋賀', '京都', '大阪', '兵庫', '奈良', '和歌山', '鳥取', '島根', '岡山', '広島', '山口', '徳島', '香川', '愛媛', '高知', '福岡', '佐賀', '長崎', '熊本', '大分', '宮崎', '鹿児島', '沖縄' ]
+
+const makeJapanHTML = function() {
+	let japan = []
+	const japans = JAPAN.trim().split('\n')
+	for (let j of japans) {
+		japan.push(j.split('\t'))
+	}
+	let s = []
+	s.push('<table id=jp0>')
+	let flg = false
+	for (let jpn of japan) {
+		s.push('<tr>')
+		for (let pref of jpn) {
+			const n = PREF_S.indexOf(pref)
+			if (n < 0) {
+				if (!flg) {
+					s.push('<td class=pref id=jpall colspan=2>' + pref + '</td>')
+					flg = true
+				}
+			} else {
+				s.push('<td class=pref id=jp' + (n + 1) + '>' + pref + '</td>')
+			}
+		}
+		s.push('</tr>')
+	}
+	s.push('</table>')
+	return s.join('')
 }
 </script>
 <style>
@@ -35,50 +188,85 @@ h1 {
 }
 .subtitle {
 	text-align: center;
-	margin: 0;
+	margin: 0 0 .5em 0;
 	padding: .3em;
 	background-color: var(--main-color);
 	color: white;
 	font-size: 3vw;
 }
-#main, #link {
-  text-align: center;
+
+
+.content {
+	position: relative;
+	text-align: center;
 }
-iframe {
-  display: inline-block;
-  width: 70%;
-  height: 300px;
-  margin-top: 1em;
+
+#description {
+	margin: 1em;
+	font-size: 80%;
 }
-#debug {
-  border: 1px solid black;
-  margin: 1em;
-  padding: 0.5em;
-  font-size: 70%;
-}
-#src {
-	margin: .5em;
-}
+
 a {
 	color: gray !important;
 }
+
+#debug {
+	text-align: left;
+}
+
+/* credit */
+.credit {
+	margin: 20px;
+	text-align: center;
+	font-size: 80%;
+}
+
+
+/* japan */
+#japan {
+	display: inline-block;
+	width: 90vw;
+	max-width: 800px;
+	x-height: 80vw;
+	x-background: red;
+	position: relative;
+}
+#jp0 {
+	border-spacing: 1vw;
+	border-collapse: separate;
+}
+#jp0 td {
+	width: calc(90vw / 7);
+	x-height: calc(60vw / 7);
+	font-size: 2vw;
+	vertical-align: middle;
+	text-align: center;
+	border-radius: .5vw;
+	border: 1px solid #333;
+	margin: 20px;
+}
+
 </style>
 </head>
 <body>
 
-<h1 id=title>COVID-19 Japan</h1><div class=subtitle>日本 新型コロナウイルスオープンデータサマリー</div>
-<div id="main"></div>
-<div id="link">
-  <!--
-    →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
-<!--<div id="debug"></div>-->
+<h1 id=title>COVID-19 Japan</h1><div class=subtitle>都道府県別 新型コロナウイルス陽性患者数</div>
 
-<div id="src">
-APP：CC BY <a href='https://fukuno.jig.jp/2786'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
+<div class="content">
+<div id="japan"></div>
+<div id=description></div>
+
+<div id='datasrc'></div>
 </div>
+
+<div class="credit">
+APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
+DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用<br>
+LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
+
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
-
 </div>
+
 
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="apple-touch-icon" href="japan.png"/>
+<meta property="og:image" content="japan.png"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>COVID-19 Japan - 日本 新型コロナウイルスオープンデータサマリー</title>
+<script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
+<script>"use strict"
+
+window.onload = async function() {
+  const prefs = [ "tokyo", "aichi", "tokushima", "fukui", "ishikawa" ] // , "hokkaido", "kanagawa" ]
+  
+  for (const pref of prefs) {
+    const appurl = "https://code4sabae.github.io/covid19/" + pref + ".html"
+    const div = create('div')
+    div.innerHTML = `<iframe src="${appurl}" scrolling=no></iframe><br><a href="${appurl}">${appurl}</a>`
+    main.appendChild(div)
+  }
+}
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	margin: 0;
+  word-wrap: break-word;
+  --main-color: #AD232F;
+}
+h1 {
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 8vw;
+	text-align: center;
+}
+.subtitle {
+	text-align: center;
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 3vw;
+}
+#main, #link {
+  text-align: center;
+}
+iframe {
+  display: inline-block;
+  width: 70%;
+  height: 300px;
+  margin-top: 1em;
+}
+#debug {
+  border: 1px solid black;
+  margin: 1em;
+  padding: 0.5em;
+  font-size: 70%;
+}
+#src {
+	margin: .5em;
+}
+a {
+	color: gray !important;
+}
+</style>
+</head>
+<body>
+
+<h1 id=title>COVID-19 Japan</h1><div class=subtitle>日本 新型コロナウイルスオープンデータサマリー</div>
+<div id="main"></div>
+<div id="link">
+  <!--
+    →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
+<!--<div id="debug"></div>-->
+
+<div id="src">
+APP：CC BY <a href='https://fukuno.jig.jp/2786'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
+</div>
+<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+
+</div>
+
+</body>
+</html>
