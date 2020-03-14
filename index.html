@@ -8,7 +8,6 @@
 <meta property="og:image" content="japan7x7.png">
 <meta name="format-detection" content="telephone=no"/>
 <script src="https://fukuno.jig.jp/fukuno.js"></script>
-<script src="https://code4fukui.github.io/localgovjp/localgovjp.js"></script>
 <script>"use strict"
 
 const getLocalGovCity = function(callback) {
@@ -17,7 +16,7 @@ const getLocalGovCity = function(callback) {
 window.onload = async function() {
 	get("japan").innerHTML += makeJapanHTML()
 
-	const url = 'http://app.sabae.cc/api/covid19japan.json'
+	const url = 'https://app.sabae.cc/api/covid19japan.json'
 	const json = await (await fetch(url)).json()
 	console.log(json)
 	init(json)
