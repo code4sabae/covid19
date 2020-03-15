@@ -37,7 +37,7 @@ window.onload = async function() {
 	const link = function(url, name) {
 		return `<a href="${url}">${name}</a>`
 	}
-	datasrc.innerHTML = 'データ出展：' + link('https://www.mhlw.go.jp/index.html', '厚生労働省') + " " + link(json.srcurl_web, 'web') + '&nbsp;' + link(json.srcurl_pdf, 'PDF') + "&nbsp;" + link(url, 'JSON(独自にAPI化)')
+	datasrc.innerHTML = 'データ出典：' + link('https://www.mhlw.go.jp/index.html', '厚生労働省') + " " + link(json.srcurl_web, 'web') + '&nbsp;' + link(json.srcurl_pdf, 'PDF') + "&nbsp;" + link(url, 'JSON(独自にAPI化)')
 }
 const calcRatio = function(cnt, base) {
 	if (isNaN(cnt) || isNaN(base))
@@ -304,7 +304,7 @@ a {
 	<tr><td id=ncurrentpatients></td><td id=nexits></td><td id=ndeaths></td></tr>
 	<tr><th colspan=3>PCR検査陽性者数 <span id=npatients></span></th></tr>
 </table>
-<div id=summarydesc>出展: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <span id=imgurl></span><a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span></div>
+<div id=summarydesc>出典: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <span id=imgurl></span><a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span></div>
 </div>
 
 <div id=cmap>
