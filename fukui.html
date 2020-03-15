@@ -11,10 +11,10 @@ const url = 'https://app.sabae.cc/api/covid19fukui.json'
 async function update() {
   //const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json" // Tokyo
   //const url = 'https://raw.githubusercontent.com/codeforsapporo/covid19/master/data/data.json' // Hokkaido
-  var data = await (await fetch(url)).json()
+  let data = await (await fetch(url)).json()
   console.log(data)
 
-  var calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  let calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
@@ -24,16 +24,16 @@ async function update() {
     return sum
   }
   */
-  var ncontacts = 0 // calcSum(data.contacts.data)
-  var nquerents = 0 // calcSum(data.querents.data)
-  var npatiants = data.summary.n_patients
-  var ndischarges = 0 // data.discharges.data.length
+  let ncontacts = 0 // calcSum(data.contacts.data)
+  let nquerents = 0 // calcSum(data.querents.data)
+  let npatiants = data.summary.n_patients
+  let ndischarges = 0 // data.discharges.data.length
 
-  var ninspections = data.summary.n_inspections // new!
-  var ndeath = 0 // data.main_summary.children[0].children[2].value
-  var nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  var nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  var nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  let ninspections = data.summary.n_inspections // new!
+  let ndeath = 0 // data.main_summary.children[0].children[2].value
+  let nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  let nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  let nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>

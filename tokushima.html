@@ -9,18 +9,18 @@
 
 const url = "https://app.sabae.cc/api/covid19tokushima.json"
 async function update() {
-  var data = await (await fetch(url)).json()
+  let data = await (await fetch(url)).json()
   console.log(data)
   dump(data)
 
-  var ncontacts = data.summary.ncontacts
-  var nquerents = data.summary.nquerents
-  var npatients = data.summary.npatients
-  var ninspections = data.summary.ninspections
-  var ndeath = 0 // data.main_summary.children[0].children[2].value
-  var nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  var nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  var nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  let ncontacts = data.summary.ncontacts
+  let nquerents = data.summary.nquerents
+  let npatients = data.summary.npatients
+  let ninspections = data.summary.ninspections
+  let ndeath = 0 // data.main_summary.children[0].children[2].value
+  let nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  let nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  let nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>
