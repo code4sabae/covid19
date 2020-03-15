@@ -80,7 +80,7 @@ const init = function(data) {
 	s += "区市町村AOSSL取組率 " + fixfloat(sumodc / sum * 100, 1) + "% （" + sumodc + "都市 / 都道府県含めると " + (sumodc + 47) + "サイト）<br>"
 	s += "日本の都市数：" + sum + " （都道府県を含まず）<br>"
 	*/
-	jpall.innerHTML = `${sum}人<div class=pcrsum>(${addComma(data.ninspections)}, ${calcRatio(sum, data.ninspections)})</div>`
+	jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
 	jpall.style.fontSize = "160%"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
@@ -247,7 +247,7 @@ h1 {
 	font-size: 65%;
 }
 .pcrsum {
-	font-size: 40%;
+	font-size: 35%;
 }
 a {
 	color: gray !important;
