@@ -10,10 +10,10 @@ const url = 'https://raw.githubusercontent.com/codeforsapporo/covid19/master/dat
 
 async function update() {
   //const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json" // Tokyo
-  var data = await (await fetch(url)).json()
+  let data = await (await fetch(url)).json()
   console.log(data)
 
-  var calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  let calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
@@ -23,18 +23,18 @@ async function update() {
     return sum
   }
   */
-  var ncontacts = calcSum(data.contacts.data)
-  var nquerents = calcSum(data.querents.data)
-  var npatiants = data.patients.data.length
-  var npatiants2 = calcSum(data.patients_summary.data) // to check
-  var ndischarges = 0 // data.discharges.data.length
-  var ndischarges2 = 0 // calcSum(data.discharges_summary.data) // to check
+  let ncontacts = calcSum(data.contacts.data)
+  let nquerents = calcSum(data.querents.data)
+  let npatiants = data.patients.data.length
+  let npatiants2 = calcSum(data.patients_summary.data) // to check
+  let ndischarges = 0 // data.discharges.data.length
+  let ndischarges2 = 0 // calcSum(data.discharges_summary.data) // to check
 
-  var ninspections = data.main_summary.value // new!
-  var ndeath = 0 // data.main_summary.children[0].children[2].value
-  var nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  var nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  var nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  let ninspections = data.main_summary.value // new!
+  let ndeath = 0 // data.main_summary.children[0].children[2].value
+  let nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  let nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  let nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>
@@ -64,11 +64,12 @@ body {
 	font-family: sans-serif;
 	margin: 0;
   word-wrap: break-word;
+  --main-color: #62A9F9;
 }
 h1 {
 	margin: 0;
 	padding: .3em;
-	background-color: #62A9F9;
+	background-color: var(--main-color);
 	color: white;
 	font-size: 8vw;
 	text-align: center;
@@ -77,7 +78,7 @@ h1 {
 	text-align: center;
 	margin: 0;
 	padding: .3em;
-	background-color: #62A9F9;
+	background-color: var(--main-color);
 	color: white;
 	font-size: 3vw;
 }
@@ -90,7 +91,7 @@ table {
   border-collapse: collapse;
 }
 td {
-  border: 4px solid #62A9F9;
+  border: 4px solid var(--main-color);
   padding: .2em .5em;
 }
 td:first-child {

@@ -12,10 +12,10 @@
 //const url = 'https://app.sabae.cc/api/covid19fukui.json'
 const url = 'https://raw.githubusercontent.com/openkawasaki/covid19/dev-kanagawa/data/data.json'
 async function update() {
-  var data = await (await fetch(url)).json()
+  let data = await (await fetch(url)).json()
   console.log(data)
 
-  var calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  let calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
@@ -25,10 +25,10 @@ async function update() {
     return sum
   }
   */
-  var ncontacts = 0 // calcSum(data.contacts.data)
-  var nquerents = 0 // calcSum(data.querents.data)
-  var ndischarges = 0 // data.discharges.data.length
-  var npatients = data.patients.data.length
+  let ncontacts = 0 // calcSum(data.contacts.data)
+  let nquerents = 0 // calcSum(data.querents.data)
+  let ndischarges = 0 // data.discharges.data.length
+  let npatients = data.patients.data.length
   /*
   // 反映されていない
   const ninspections = data.main_summary.value

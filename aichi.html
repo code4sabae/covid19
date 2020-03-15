@@ -9,32 +9,32 @@
 const url = "https://raw.githubusercontent.com/code4nagoya/covid19/master/data/data.json"
 
 async function update() {
-  var data = await (await fetch(url)).json()
+  let data = await (await fetch(url)).json()
   console.log(data)
   dump(data)
 
-  var calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  let calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
-    for (var d of data) {
+    for (let d of data) {
       sum += d['小計']
     }
     return sum
   }
   */
-  var ncontacts = 0 // calcSum(data.contacts.data)
-  var nquerents = 0 // calcSum(data.querents.data)
-  var npatients = data.patients.data.length
-  var npatients2 = 0 // calcSum(data.patients_summary.data) // to check
+  let ncontacts = 0 // calcSum(data.contacts.data)
+  let nquerents = 0 // calcSum(data.querents.data)
+  let npatients = data.patients.data.length
+  let npatients2 = 0 // calcSum(data.patients_summary.data) // to check
   //const ndischarges = data.discharges.data.length
   //const ndischarges2 = calcSum(data.discharges_summary.data) // to check
 
-  var ninspections = 0 // data.main_summary.value // new!
-  var ndeath = 0 // data.main_summary.children[0].children[2].value
-  var nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  var nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  var nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  let ninspections = 0 // data.main_summary.value // new!
+  let ndeath = 0 // data.main_summary.children[0].children[2].value
+  let nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  let nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  let nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>
