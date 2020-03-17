@@ -24,6 +24,8 @@ const showSummary = async function() {
 	}
 	if (json.srcurl_img)
 		imgurl.innerHTML = `<a href=${json.srcurl_img}>画像</a> → `
+	if (json.srcurl_pdf)
+		imgurl.innerHTML = `<a href=${json.srcurl_pdf}>PDF</a> → `
 }
 window.onload = async function() {
 	showSummary()
