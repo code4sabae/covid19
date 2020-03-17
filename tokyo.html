@@ -9,11 +9,11 @@
 
 const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json"
 async function update() {
-  let data = await (await fetch(url)).json()
+  const data = await (await fetch(url)).json()
   console.log(data)
   dump(data)
 
-  let calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
+  const calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
   const calcSum = function(data) {
     let sum = 0
@@ -23,18 +23,18 @@ async function update() {
     return sum
   }
   */
-  let ncontacts = calcSum(data.contacts.data)
-  let nquerents = calcSum(data.querents.data)
-  let npatients = data.patients.data.length
-  let npatients2 = calcSum(data.patients_summary.data) // to check
+  const ncontacts = calcSum(data.contacts.data)
+  const nquerents = calcSum(data.querents.data)
+  const npatients = data.patients.data.length
+  const npatients2 = calcSum(data.patients_summary.data) // to check
   //const ndischarges = data.discharges.data.length
   //const ndischarges2 = calcSum(data.discharges_summary.data) // to check
 
-  let ninspections = data.main_summary.value // new!
-  let ndeath = data.main_summary.children[0].children[2].value
-  let nlight = data.main_summary.children[0].children[0].children[0].value
-  let nheavy = data.main_summary.children[0].children[0].children[1].value
-  let nexit = data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  const ninspections = data.main_summary.value // new!
+  const ndeath = data.main_summary.children[0].children[2].value
+  const nlight = data.main_summary.children[0].children[0].children[0].value
+  const nheavy = data.main_summary.children[0].children[0].children[1].value
+  const nexit = data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
   main.innerHTML = `
     <table>
