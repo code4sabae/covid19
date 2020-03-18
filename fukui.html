@@ -35,11 +35,16 @@ async function update() {
   const nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
   const nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
 
+  const npcrperday = data.summary.n_capacity_pcr_per_day
+  const nbed = data.summary.n_capacity_bed
+
   main.innerHTML = `
     <table>
       <tr><td>陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
       <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
       <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatiants * 100 / ninspections, 2)}%</td></tr>
+      <tr><td>１日当たりPCR検査可能件数</td><td>${npcrperday}件</td></tr>
+      <tr><td>感染症病床</td><td>${nbed}床</td></tr>
       <!--
       <tr><td>死亡数（死亡数/陽性患者数）</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>重症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatiants, 2)}%)</td></tr>
@@ -130,7 +135,7 @@ a {
 <!--<div id="debug"></div>-->
 
 <div id="src">
-DATA: CC BY 「<a href=https://www.pref.fukui.lg.jp/doc/kenkou/kansensyo-yobousessyu/bukan-haien.html>新型コロナウイルス感染症について | 福井県ホームページ</a>」を <a href=https://app.sabae.cc/api/covid19fukui.json>JSON形式</a>に加工<br>
+DATA: CC BY 「<a href=https://www.pref.fukui.lg.jp/doc/kenkou/kansensyo-yobousessyu/corona.html>新型コロナウイルス感染症について | 福井県ホームページ</a>」を <a href=https://app.sabae.cc/api/covid19fukui.json>JSON形式</a>に加工<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2784'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
 </div>
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
