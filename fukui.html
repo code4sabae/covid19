@@ -5,10 +5,11 @@
 <meta name="format-detection" content="telephone=no"/>
 <title>COVID-19 Fukui - 福井県 新型コロナウイルスオープンデータサマリー</title>
 <script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <script>"use strict"
 const url = 'https://app.sabae.cc/api/covid19fukui.json'
 
-async function update() {
+const update = async function() {
   //const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json" // Tokyo
   //const url = 'https://raw.githubusercontent.com/codeforsapporo/covid19/master/data/data.json' // Hokkaido
   const data = await (await fetch(url)).json()
@@ -29,40 +30,57 @@ async function update() {
   const npatiants = data.summary.n_patients
   const ndischarges = 0 // data.discharges.data.length
 
-  const ninspections = data.summary.n_inspections // new!
-  const ndeath = 0 // data.main_summary.children[0].children[2].value
-  const nlight = 0 // data.main_summary.children[0].children[0].children[0].value
-  const nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
-  const nexit = 0 // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  const ninspections = data.summary.n_inspections
+  const ndeath = data.summary.n_death
+  const nlight = data.summary.n_light
+  const nheavy = data.summary.n_heavy
+  const nexit = data.summary.n_exit
+  const npatients_c = nlight + nheavy
 
   const npcrperday = data.summary.n_capacity_pcr_per_day
   const nbed = data.summary.n_capacity_bed
-
-  main.innerHTML = `
+  
+  table_c.innerHTML = `
     <table>
+      <tr><td>現在患者数（入院中）</td><td>${addComma(npatients_c)}人</td></tr>
+      <tr><td>感染症病床数</td><td>${nbed}床</td></tr>
+      <tr><td>感染症病床使用率（現在患者数/感染症病床数）</td><td>${fixfloat(npatients_c * 100 / nbed, 2)}%</td></tr>
       <tr><td>陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
       <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
       <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatiants * 100 / ninspections, 2)}%</td></tr>
       <tr><td>１日当たりPCR検査可能件数</td><td>${npcrperday}件</td></tr>
-      <tr><td>感染症病床</td><td>${nbed}床</td></tr>
-      <!--
       <tr><td>死亡数（死亡数/陽性患者数）</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / npatiants, 2)}%)</td></tr>
-      <tr><td>重症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatiants, 2)}%)</td></tr>
-      <tr><td>軽症・中等症（入院中）（軽症・中等症数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatiants, 2)}%)</td></tr>
+      <tr><td>重症（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatiants, 2)}%)</td></tr>
+      <tr><td>軽症・中等症（軽症・中等症数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>退院数（退院数/陽性患者数）</td><td>${addComma(nexit)}人(${fixfloat(nexit * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
       <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
-    -->
       <tr><td>最終更新日時</td><td>${data.lastUpdate}</td></tr>
     </table>
   `
 
 //  console.log(ncontacts, nquerents, npatiants, npatiants2, ndischarges, ndischarges2)
   dump(data)
-}
 
-window.onload = update();
-setInterval(update, 600000)
+  new Chart(chart, {
+    type: 'pie',
+    data: {
+      labels: [ "現在患者数", "空き病床数(推測)" ],
+      datasets: [{
+          backgroundColor: [ 'red', '#ccc' ],
+          data: [ npatients_c, nbed - npatients_c ],
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '感染症病床使用率（参考）'
+      }
+    }
+  })
+}
+window.onload = update
+setInterval(update, 10 * 60 * 1000) // 10min
 </script>
 <style>
 body {
@@ -70,6 +88,7 @@ body {
 	margin: 0;
   word-wrap: break-word;
   --main-color: #152876;
+  text-align: center;
 }
 h1 {
 	margin: 0;
@@ -87,12 +106,18 @@ h1 {
 	color: white;
 	font-size: 3vw;
 }
-#main, #link {
+#main {
+  text-align: center;
+}
+#table_c {
+  display: inline-block;
+}
+#table_c, #link {
   text-align: center;
 }
 table {
-  margin: .5em;
   display: inline-block;
+  margin: .5em;
   border-collapse: collapse;
 }
 td {
@@ -106,10 +131,22 @@ td:nth-child(2) {
   text-align: right;
 }
 #debug {
+  text-align: left;
   border: 1px solid black;
   margin: 1em;
   padding: 0.5em;
   font-size: 70%;
+}
+#chart_c {
+  vertical-align: top;
+  display: inline-block;
+  width: 500px;
+  height: 255px;
+}
+@media screen and (min-width: 1046px) {
+  #chart_c {
+		margin-top: 100px;
+	}
 }
 #src {
 	margin: .5em;
@@ -125,14 +162,15 @@ a {
 <body>
 
 <h1 id=title>COVID-19 Fukui</h1><div class=subtitle>福井県 新型コロナウイルスオープンデータサマリー</div>
-<div id="main"></div>
+
+<div id="main">
+  <div id="chart_c"><canvas id="chart"></canvas></div>
+  <div id="table_c"></div>
+</div>
 <div class="buttons">
   <button type="button" onclick="update()">更新</button>
 </div>
-<div id="link">
-  <!--
-    →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
-<!--<div id="debug"></div>-->
+<div id="link"></div>
 
 <div id="src">
 DATA: CC BY 「<a href=https://www.pref.fukui.lg.jp/doc/kenkou/kansensyo-yobousessyu/corona.html>新型コロナウイルス感染症について | 福井県ホームページ</a>」「<a href=https://www.pref.fukui.lg.jp/doc/kenkou/kansensyo-yobousessyu/corona_d/fil/200319-1.pdf>新型コロナウイルス感染症の患者の発生について</a>」を <a href=https://app.sabae.cc/api/covid19fukui.json>JSON形式</a>に加工<br>
