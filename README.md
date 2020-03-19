@@ -1,7 +1,10 @@
 # COVID-19 Japan
 <img src=https://stopcovid19.jp/japan.png style='width:100%'>
-https://stopcovid19.jp/   
-COVID-19 Japan 新型コロナウイルス対策ダッシュボード  
+https://stopcovid19.jp/     
+COVID-19 Japan 新型コロナウイルス対策ダッシュボード    
+
+DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
+DATA: CC BY 「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
 
 # COVID-19 Tokyo
 data.json を使ったシンプルなwebアプリ  
@@ -29,10 +32,6 @@ https://code4sabae.github.io/covid19/tokushima.html
 https://code4sabae.github.io/covid19/aichi.html  
 <img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%;height:200px'>
 https://fukuno.jig.jp/2785  
-
-DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
-DATA: CC BY 「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
-
 
 # COVID-19 Hokkaido
 https://code4sabae.github.io/covid19/hokkaido.html  
