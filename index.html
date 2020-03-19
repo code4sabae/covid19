@@ -50,7 +50,7 @@ const showAreas = async function() {
 	console.log(json)
 	json.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
 	json.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
-	//json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
+	json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
 	for (let i = 0; i < json.area.length; i++) {
 		const a = json.area[i]
 		const n = PREF.indexOf(a.name_jp)
@@ -64,7 +64,7 @@ const showAreas = async function() {
 			}
 		}
 	}
-	datasrc.innerHTML += '、' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + '→' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井")
+	datasrc.innerHTML += '、' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + '→' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都')
 }
 const calcRatio = function(cnt, base) {
 	if (isNaN(cnt) || isNaN(base))
