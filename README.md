@@ -1,12 +1,13 @@
 # COVID-19 Japan
-<img src=https://code4sabae.github.io/covid19/japan-header.png style='width:100%'>
-https://code4sabae.github.io/covid19/   
-iframeでまとめたアプリ
+<img src=https://stopcovid19.jp/japan.png style='width:100%'>
+https://stopcovid19.jp/   
+COVID-19 Japan 新型コロナウイルス対策ダッシュボード  
 
 # COVID-19 Tokyo
 data.json を使ったシンプルなwebアプリ  
 https://code4sabae.github.io/covid19/tokyo.html  
-<img src=https://code4sabae.github.io/covid19/tokyo.png style='width:100%'>
+<img src=https://code4sabae.github.io/covid19/tokyo.png style='width:100%'>  
+
 DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2779'>fukuno.jig.jp</a><br>
 
@@ -29,6 +30,10 @@ https://code4sabae.github.io/covid19/aichi.html
 <img src=https://code4sabae.github.io/covid19/aichi.png style='width:100%;height:200px'>
 https://fukuno.jig.jp/2785  
 
+DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
+DATA: CC BY 「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)  
+
+
 # COVID-19 Hokkaido
 https://code4sabae.github.io/covid19/hokkaido.html  
 <img src=https://code4sabae.github.io/covid19/hokkaido.png style='width:100%'>
@@ -44,7 +49,6 @@ data.json を使ったシンプルなVR webアプリで陽性患者数を等身�
 https://code4sabae.github.io/covid19/vrpatients.html  
 
 <img src=https://code4sabae.github.io/covid19/vrpatients.png style='width:100%'>
-
 
 DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src</a> より<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2782'>fukuno.jig.jp</a><br>
