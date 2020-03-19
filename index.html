@@ -27,6 +27,9 @@ const showSummary = async function() {
 	if (json.srcurl_pdf)
 		imgurl.innerHTML = `<a href=${json.srcurl_pdf}>PDF</a> → `
 }
+const link = function(url, name) {
+	return `<a href="${url}">${name}</a>`
+}
 window.onload = async function() {
 	showSummary()
 
@@ -37,10 +40,31 @@ window.onload = async function() {
 	console.log(json)
 	init(json)
 	description.textContent = json.description
-	const link = function(url, name) {
-		return `<a href="${url}">${name}</a>`
+	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
+
+	showAreas()
+}
+const showAreas = async function() {
+	const url = 'https://app.sabae.cc/api/covid19cio.json'
+	const json = await (await fetch(url)).json()
+	console.log(json)
+	json.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
+	json.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
+	//json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
+	for (let i = 0; i < json.area.length; i++) {
+		const a = json.area[i]
+		const n = PREF.indexOf(a.name_jp)
+		if (n >= 0) {
+			const div = get('jp' + (n + 1))
+			div.url = a.url
+			div.style.cursor = "pointer"
+			div.style.borderWidth = "2px"
+			div.onclick = function() {
+				window.open(this.url)
+			}
+		}
 	}
-	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON-API')
+	datasrc.innerHTML += '、' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + '→' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井")
 }
 const calcRatio = function(cnt, base) {
 	if (isNaN(cnt) || isNaN(base))
@@ -260,6 +284,9 @@ a {
 	text-align: left;
 }
 
+#datasrc {
+	font-size: 80%;
+}
 /* credit */
 .credit {
 	margin: 20px;
@@ -324,6 +351,7 @@ a {
 <div class="credit">
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+DATA: CC BY 「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
 
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
