@@ -53,8 +53,10 @@ const update = async function() {
       <tr><td>重症（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>軽症・中等症（軽症・中等症数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatiants, 2)}%)</td></tr>
       <tr><td>退院数（退院数/陽性患者数）</td><td>${addComma(nexit)}人(${fixfloat(nexit * 100 / npatiants, 2)}%)</td></tr>
+      <!--
       <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
       <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
+      -->
       <tr><td>最終更新日時</td><td>${data.lastUpdate}</td></tr>
     </table>
   `
