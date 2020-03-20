@@ -4,20 +4,32 @@
 <title>COVID-19 JAPAN - 都道府県別 新型コロナウイルス陽性患者数 （カラム地図7x7、厚生労働省データ）</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
-<meta property="og:image" content="japan7x7.png">
+<meta property="og:image" content="japan7x7_ogp.png">
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@taisukef"/>
 <meta name="format-detection" content="telephone=no"/>
 <script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script>"use strict"
 
-const showSummary = async function(json) {
-	const show = [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ]
-	for (const name of show) {
-		const div = document.getElementById(name)
-		if (div) {
-			let n = json[name]
-			if (parseInt(n) == n)
-				n = addComma(n)
-			div.textContent = n
+const calcRatio = function(cnt, base) {
+	if (isNaN(cnt) || isNaN(base))
+		return "-"
+	return fixfloat(cnt / base * 100, 1) + "%"
+}
+const showSummary = async function(json, json_bed) {
+	json_bed.total.useratio = calcRatio(json.ncurrentpatients, json_bed.total.sumi)
+	const data = [ json, json_bed.total ]
+	const show = [ [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ], [ 'useratio', 'sumi' ] ]
+	for (let i = 0; i < data.length; i++) {
+		const d = data[i]
+		for (const name of show[i]) {
+			const div = document.getElementById(name)
+			if (div) {
+				let n = d[name]
+				if (parseInt(n) == n)
+					n = addComma(n)
+				div.textContent = n
+			}
 		}
 	}
 }
@@ -27,17 +39,22 @@ const link = function(url, name) {
 window.onload = async function() {
 	get("japan").innerHTML += makeJapanHTML()
 
-	//const url = 'https://app.sabae.cc/api/covid19japan.json?type=withpcr'
 	const url = 'https://app.sabae.cc/api/covid19japan.json'
 	const json = await (await fetch(url)).json()
 	console.log(json)
 
-	init(json)
-	//description.textContent = json.description
-	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
-	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
+	const url_bed = 'https://app.sabae.cc/api/bedforinfection_summary.json'
+	const json_bed = await(await fetch(url_bed)).json()
+	console.log(json_bed)
 
-	showSummary(json)
+	init(json, json_bed)
+	showSummary(json, json_bed)
+
+	//description.textContent = json.description
+	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
+
+	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
+	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
 
 	showAreas()
 }
@@ -63,14 +80,9 @@ const showAreas = async function() {
 			}
 		}
 	}
-	datasrc.innerHTML += '、' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + '→' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪')
+	datasrc.innerHTML += ', ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪')
 }
-const calcRatio = function(cnt, base) {
-	if (isNaN(cnt) || isNaN(base))
-		return "-"
-	return fixfloat(cnt / base * 100, 1) + "%"
-}
-const init = function(data) {
+const init = function(data, data_bed) {
 //	dump(data);
 	let max = 0
 	for (let i = 0; i < data.area.length; i++) {
@@ -81,33 +93,30 @@ const init = function(data) {
 	for (let i = 1; i <= 47; i++) {
 		const c = get("jp" + i)
 		c.num = i - 1
-		c.onclick = function() {
-			this.sel()
-		}
 		const a = data.area[i - 1]
 		const cnt = a.ncurrentpatients
 		const cntt = a.npatients
+		const nbed = data_bed.area[i - 1].sumi
 		//const cnti = a.ninspections
 		sum += cnt
-		const r = cnt / max
+		//const r = cnt / max
+		const r = cnt / nbed > 1 ? 1 : cnt / nbed
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cntt)}, ${a.nexits}, ${a.ndeaths})</div>`
-		if (cnt == 0) {
-		} else {
-			// AD232F
-			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + .2) / .8) + ")"
+		c.innerHTML += `<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
+		// AD232F
+		if (r) {
+			const off = .1
+			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
 		}
 		c.style.color = r < .5 ? "black" : "white"
 		c.cnt = cnt
 		
-		c.sel = function() {
-		}
 	}
 	
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = `${sum}人<div class=pcrsum>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
-	jpall.style.fontSize = "160%"
+	jpall.innerHTML = `${sum} / ${data_bed.total.sumi}<div class=pcrsum>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
+	jpall.style.fontSize = "140%"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 };
@@ -216,12 +225,13 @@ h1 {
 	display: inline-block;
 	vertical-align: middle;
 	max-width: 500px;
+	margin-top: 10px;
 	margin-right: 20px;
 	margin-left: 20px;
 }
 @media screen and (min-width: 1032px) {
 	#summary {
-		margin-top: 100px;
+		x-margin-top: 20px;
 	}
 }
 #cmap {
@@ -267,6 +277,12 @@ h1 {
 	font-size: 70%;
 }
 
+.npatients {
+	font-weight: bold;
+}
+.nbed {
+	font-size: 80%;
+}
 .pcr {
 	font-size: 65%;
 }
@@ -327,9 +343,12 @@ a {
 
 <div id=summary>
 	<table id=summarytable>
-		<tr><th>現在患者数</th><th>退院者数</th><th>死亡者数</th></tr>
-		<tr><td id=ncurrentpatients></td><td id=nexits></td><td id=ndeaths></td></tr>
-		<tr><th colspan=3>PCR検査陽性者数 <span id=npatients></span></th></tr>
+		<tr><th>感染病床使用率</th><th>現在患者数</th></tr>
+		<tr><td><span id=useratio></span></thd><td><span id=ncurrentpatients>-</span>人</td></tr>
+		<tr><th>累積退院者</th><th>死亡者</th></tr>
+		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
+		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
+		<tr><th colspan=2>感染病床数 <span id=sumi>-</span>床</th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
 	<!--
@@ -350,8 +369,10 @@ a {
 
 <div class="credit">
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
-DATA: CC BY 「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
-DATA: CC BY 「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+DATA: CC BY
+	「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSON-APIに加工、 
+	「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSON-APIに加工、
+	「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSON-APIに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
 
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
