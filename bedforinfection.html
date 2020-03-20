@@ -1,0 +1,349 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>COVID-19 JAPAN - 都道府県別 感染症病床数（カラム地図7x7、厚生労働省データ）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="apple-touch-icon" href="bedforinfection.png"/>
+<meta property="og:image" content="bedforinfection.png">
+<meta name="format-detection" content="telephone=no"/>
+<script src="https://fukuno.jig.jp/fukuno.js"></script>
+<script>"use strict"
+
+const link = function(url, name) {
+	return `<a href="${url}">${name}</a>`
+}
+window.onload = async function() {
+	get("japan").innerHTML += makeJapanHTML()
+
+	const url = 'https://app.sabae.cc/api/bedforinfection.json'
+	const json = await (await fetch(url)).json()
+	console.log(json)
+
+	init(json)
+	description.textContent = json.description
+	datasrc.innerHTML = 'データ出典：' + link(json.srcurl, '厚生労働省') + " → " + link(url, 'JSON')
+
+	const show = [ 'sumi', 'sumt', 'sum1', 'sum2', 'sumk' ]
+	for (const name of show) {
+		const c = document.getElementById(name)
+		if (c)
+			c.textContent = addComma(json.summary.total[name])
+		else
+			console.log(name)
+	}
+	lastUpdate.textContent = json.lastUpdate
+}
+const calcRatio = function(cnt, base) {
+	if (isNaN(cnt) || isNaN(base))
+		return "-"
+	return fixfloat(cnt / base * 100, 1) + "%"
+}
+const init = function(data) {
+//	dump(data);
+const area = data.summary.area
+	let max = 0
+	for (let i = 0; i < area.length; i++) {
+		if (area[i].sumi > max)
+			max = area[i].sumi
+	}
+	let sum = 0
+	for (let i = 1; i <= 47; i++) {
+		const c = get("jp" + i)
+		c.num = i - 1
+		const a = area[i - 1]
+		sum += a.sumi
+		const r = a.sumi / max
+		c.innerHTML += `<br>${addComma(a.sumi)}床<div class=pcr>(${addComma(a.sumt)}, ${addComma(a.sum1)}, ${addComma(a.sum2)}, ${addComma(a.sumk)})</div>`
+		const off = .05
+		// 224FC4
+		c.style.background = `rgba(${0x22}, ${0x4f}, ${0xfc},` + ((r + off) / (1 - off)) + ")"
+		c.style.color = r < .5 ? "black" : "white"
+
+		c.onclick = function() {
+			const pref = PREF[this.num]
+			const hosp = data.hospitals
+			const res = []
+			for (const name in hosp) {
+				for (const d of hosp[name]) {
+					if (d['所在地'] == pref) {
+						d['種別'] = name
+						res.push(d)
+					}
+				}
+			}
+			dump(res)
+		}
+	}
+	
+	const t = data.summary.total
+	jpall.innerHTML = `${addComma(t.sumi)}床` // <div class=pcrsum>(特定${addComma(t.sumt)} 一種${addComma(t.sum1)} 二種${addComma(t.sum2)} 結核${addComma(t.sumk)})</div>`
+	jpall.style.fontSize = "150%"
+	jpall.style.background = 'var(--main-color)'
+	jpall.style.color = 'white'
+	jpall.onclick = function() {
+		//dump(data.summary.total)
+		dump(null)
+	}
+}
+
+// --
+var PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ];
+
+
+// from CC0 カラム地図
+// https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ
+/*
+const JAPAN = `
+山口	島根	鳥取	石川	新潟	青森	北海道
+広島	岡山	兵庫	福井	富山	秋田	岩手
+長崎		大阪	京都	長野	山形	宮城
+佐賀	福岡		滋賀	山梨	群馬	福島
+熊本	宮崎	大分	三重	静岡	埼玉	栃木
+鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+
+/*
+const JAPAN = `
+山口	島根	鳥取	石川	新潟	青森	北海道
+広島	岡山	兵庫	福井	富山	秋田	岩手
+長崎	福岡	大阪	京都	長野	山形	宮城
+佐賀	宮崎	滋賀	日本	山梨	群馬	福島
+熊本	大分	奈良	日本	静岡	埼玉	栃木
+鹿児島	愛媛	香川	三重	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+/*
+const JAPAN = `
+日本	日本	鳥取	石川	新潟	青森	北海道
+山口	島根	兵庫	福井	富山	秋田	岩手
+長崎	岡山	大阪	京都	長野	山形	宮城
+佐賀	福岡	広島	滋賀	山梨	群馬	福島
+熊本	宮崎	大分	三重	静岡	埼玉	栃木
+鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
+沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
+*/
+const JAPAN = `
+日本	日本	鳥取	石川	富山	青森	北海道
+山口	島根	岡山	福井	新潟	秋田	岩手
+長崎	福岡	広島	滋賀	長野	山形	宮城
+佐賀	大分	兵庫	京都	山梨	群馬	福島
+熊本	宮崎	大阪	奈良	岐阜	埼玉	栃木
+鹿児島	愛媛	香川	和歌山	静岡	東京	茨城
+沖縄	高知	徳島	三重	愛知	神奈川	千葉`
+
+const PREF_S = [ '北海道', '青森', '岩手', '宮城', '秋田', '山形', '福島', '茨城', '栃木', '群馬', '埼玉', '千葉', '東京', '神奈川', '新潟', '富山', '石川', '福井', '山梨', '長野', '岐阜', '静岡', '愛知', '三重', '滋賀', '京都', '大阪', '兵庫', '奈良', '和歌山', '鳥取', '島根', '岡山', '広島', '山口', '徳島', '香川', '愛媛', '高知', '福岡', '佐賀', '長崎', '熊本', '大分', '宮崎', '鹿児島', '沖縄' ]
+
+const makeJapanHTML = function() {
+	let japan = []
+	const japans = JAPAN.trim().split('\n')
+	for (let j of japans) {
+		japan.push(j.split('\t'))
+	}
+	let s = []
+	s.push('<table id=jp0>')
+	let flg = false
+	for (let jpn of japan) {
+		s.push('<tr>')
+		for (let pref of jpn) {
+			const n = PREF_S.indexOf(pref)
+			if (n < 0) {
+				if (!flg) {
+					s.push('<td class=pref id=jpall colspan=2>' + pref + '</td>')
+					flg = true
+				}
+			} else {
+				s.push('<td class=pref id=jp' + (n + 1) + '>' + pref + '</td>')
+			}
+		}
+		s.push('</tr>')
+	}
+	s.push('</table>')
+	return s.join('')
+}
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	margin: 0;
+  word-wrap: break-word;
+	--main-color: #224FC4;
+	text-align: center;
+}
+h1 {
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 8vw;
+	text-align: center;
+}
+.subtitle {
+	text-align: center;
+	margin: 0 0 .5em 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 3vw;
+}
+
+#summary {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 500px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+@media screen and (min-width: 1119px) {
+	#summary {
+		margin-top: 100px;
+	}
+}
+#cmap {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 600px;
+}
+
+#summarytable {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	margin-bottom: 0.5vh;
+}
+#summarytable td, th {
+	border: 3px solid var(--main-color);
+	padding: .2vh .5vw;
+	width: 20vw;
+	font-size: 2vw;
+	text-align: center;
+}
+#summarytable th {
+	background-color: var(--main-color);
+	color: white;
+}
+#summarytable .sumi {
+	color: black;
+	background-color: white;
+	font-size: 4vw;
+}
+#summarydesc {
+	font-size: 80%;
+	margin-bottom: 1em;
+}
+#lastupdatebox {
+	margin-left: 1em;
+}
+
+.content {
+	position: relative;
+	text-align: center;
+}
+
+#description {
+	margin: 1em;
+	font-size: 70%;
+}
+
+.pcr {
+	font-size: 65%;
+}
+.pcrsum {
+	font-size: 35%;
+}
+a {
+	color: gray !important;
+}
+
+#debug {
+	text-align: left;
+	font-size: 80%;
+	padding: .5em;
+	margin: 1em;
+	border: 1px solid black;
+}
+
+#datasrc {
+	font-size: 80%;
+}
+
+#link {
+  margin: 1em;
+  font-size: 90%;
+}
+#link img {
+  width: 80vw;
+  max-width: 300px;
+}
+
+/* credit */
+.credit {
+	margin: 20px;
+	text-align: center;
+	font-size: 80%;
+}
+
+
+/* japan */
+#japan {
+	display: inline-block;
+	width: 100%; /*90vw; */
+	max-width: 800px;
+	x-height: 80vw;
+	x-background: red;
+	position: relative;
+}
+#jp0 {
+	border-spacing: 1vw;
+	border-collapse: separate;
+	margin: auto;
+}
+#jp0 td {
+	width: 14%; /*calc(90vw / 7); */
+	x-height: calc(60vw / 7);
+	font-size: 80%; /*2vw; */
+	vertical-align: middle;
+	text-align: center;
+	border-radius: .5vw;
+	border: 1px solid #333;
+	margin: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<h1 id=title>COVID-19 Japan</h1><div class=subtitle>都道府県別 感染症病床数</div>
+
+<div class="content">
+
+<div id=summary>
+	<table id=summarytable>
+		<tr><th colspan=4 class=sumi>感染症病床数 <span id=sumi></span></th></tr>
+		<tr><th>特定</th><th>一種</th><th>二種</th><th>結核</th></tr>
+		<tr><td id=sumt></td><td id=sum1></td><td id=sum2></td><td id=sumk></td></tr>
+	</table>
+	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
+</div>
+
+<div id=cmap>
+	<div id="japan"></div>
+</div>
+<div id="description"></div>
+<div id='debug'></div>
+<div id='datasrc'></div>
+</div>
+
+<div id="link"><a href=https://www.stopcovid19.jp/><img alt="COVID-19 JAPAN" src="covid19japan.png"/></a></div>
+
+<div class="credit">
+APP: CC BY <a href=https://fukuno.jig.jp/2794>福野泰介 - 厚生労働省提供 都道府県別 感染症病床数を<a href=https://app.sabae.cc/api/bedforinfection.json>JSON-API</a>化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
+DATA: CC BY 「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」公開データをJSON-APIに加工して使用 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
+
+<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+</div>
+
+</body>
+</html>
