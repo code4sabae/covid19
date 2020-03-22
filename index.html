@@ -10,7 +10,142 @@
 <meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200321.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
-<script src="https://fukuno.jig.jp/fukuno.js"></script>
+<style>
+body {
+	--main-color: #AD232F;
+	color: black;
+	font-family: sans-serif;
+	word-wrap: break-word;
+	margin: 0;
+	font-size: 1vmax;
+}
+a {
+	color: gray !important;
+}
+h1 {
+	background-color: var(--main-color);
+	color: white;
+	text-align: center;
+	margin: 0;
+	padding: .3em;
+	font-size: 8vmin;
+}
+.subtitle {
+	background-color: var(--main-color);
+	color: white;
+	text-align: center;
+	margin: 0 0 .5em 0;
+	padding: .3em;
+	font-size: 3vmin;
+}
+
+#summary {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 50vw;
+	margin-top: 1vw;
+	margin-right: 2vw;
+	margin-left: 2vw;
+}
+#cmap {
+	display: inline-block;
+	vertical-align: top;
+	x-max-width: 60vw;
+}
+
+#summarytable {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	margin-bottom: 0.5vh;
+}
+#summarytable td, th {
+	border: .3vw solid var(--main-color);
+	padding: .2vh .5vw;
+	width: 20vw;
+	font-size: 1.7vw;
+	text-align: center;
+}
+#summarytable td {
+	background-color: var(--main-color);
+	color: white;
+	font-size: 4.5vw;
+}
+#summarydesc {
+	margin-bottom: 1em;
+}
+#lastupdatebox {
+	margin-left: 1em;
+}
+
+.content {
+	position: relative;
+	text-align: center;
+}
+
+#description {
+	margin: 1em;
+}
+
+.npatients {
+	font-weight: bold;
+}
+.nbed {
+	font-size: 80%;
+}
+.pcr {
+	font-size: 65%;
+}
+.jpalllabel {
+	font-size: 80%;
+}
+.pcrsum {
+	font-size: 45%;
+}
+
+#datasrc {
+	x-font-size: 80%;
+}
+
+/* japan map */
+#japan {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+}
+#jp0 {
+	border-spacing: .4vw;
+	border-collapse: separate;
+	margin: auto;
+}
+#jp0 td {
+	font-size: 1.4vw;
+	vertical-align: middle;
+	text-align: center;
+	x-border-radius: .5vw;
+	x-padding: vmin 0vw;
+	border: .1vmin solid #333;
+}
+
+/* credit */
+.credit {
+	margin: 2vw;
+	text-align: center;
+}
+
+/* aspect */
+@media (max-aspect-ratio: 3/4) {
+	#jp0 td {
+		font-size: 3.8vw;
+	}
+}
+/* debug */
+#debug {
+	text-align: left;
+}
+</style>
+	<script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script>"use strict"
 
 const calcRatio = function(cnt, base) {
@@ -200,147 +335,6 @@ const makeJapanHTML = function() {
 	return s.join('')
 }
 </script>
-<style>
-body {
-	font-family: sans-serif;
-	font-size: 1vmax;
-	margin: 0;
-  word-wrap: break-word;
-  --main-color: #AD232F;
-}
-h1 {
-	margin: 0;
-	padding: .3em;
-	background-color: var(--main-color);
-	color: white;
-	font-size: 8vmin;
-	text-align: center;
-}
-.subtitle {
-	text-align: center;
-	margin: 0 0 .5em 0;
-	padding: .3em;
-	background-color: var(--main-color);
-	color: white;
-	font-size: 3vmin;
-}
-
-#summary {
-	display: inline-block;
-	vertical-align: middle;
-	max-width: 50vw;
-	margin-top: 1vw;
-	margin-right: 2vw;
-	margin-left: 2vw;
-}
-#cmap {
-	display: inline-block;
-	vertical-align: top;
-	x-max-width: 60vw;
-}
-
-#summarytable {
-	display: inline-block;
-	margin-left: auto;
-	margin-right: auto;
-	border-collapse: collapse;
-	margin-bottom: 0.5vh;
-}
-#summarytable td, th {
-	border: .3vw solid var(--main-color);
-	padding: .2vh .5vw;
-	width: 20vw;
-	font-size: 1.7vw;
-	text-align: center;
-}
-#summarytable td {
-	background-color: var(--main-color);
-	color: white;
-	font-size: 4.5vw;
-}
-#summarydesc {
-	x-font-size: 80%;
-	margin-bottom: 1em;
-}
-#lastupdatebox {
-	margin-left: 1em;
-}
-
-.content {
-	position: relative;
-	text-align: center;
-}
-
-#description {
-	margin: 1em;
-	x-font-size: 70%;
-}
-
-.npatients {
-	font-weight: bold;
-}
-.nbed {
-	font-size: 80%;
-}
-.pcr {
-	font-size: 65%;
-}
-.jpalllabel {
-	font-size: 80%;
-}
-.pcrsum {
-	font-size: 45%;
-}
-a {
-	color: gray !important;
-}
-
-#debug {
-	text-align: left;
-}
-
-#datasrc {
-	x-font-size: 80%;
-}
-/* credit */
-.credit {
-	margin: 2vw;
-	text-align: center;
-	x-font-size: 80%;
-}
-
-
-/* japan */
-#japan {
-	display: inline-block;
-	width: 100%; /*90vw; */
-	x-max-width: 800px;
-	x-height: 80vw;
-	x-background: red;
-	position: relative;
-}
-#jp0 {
-	border-spacing: .4vw;
-	border-collapse: separate;
-	margin: auto;
-}
-#jp0 td {
-	font-size: 1.4vw;
-	vertical-align: middle;
-	text-align: center;
-	x-border-radius: .5vw;
-	x-padding: vmin 0vw;
-	border: .1vmin solid #333;
-}
-
-/* aspect */
-@media (max-aspect-ratio: 3/4) {
-	#jp0 td {
-		font-size: 3.8vw;
-	}
-}
-
-</style>
 </head>
 <body>
 
