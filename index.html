@@ -203,7 +203,7 @@ const makeJapanHTML = function() {
 <style>
 body {
 	font-family: sans-serif;
-	font-size: .8vmax;
+	font-size: 1vmax;
 	margin: 0;
   word-wrap: break-word;
   --main-color: #AD232F;
@@ -259,7 +259,7 @@ h1 {
 	font-size: 4.5vw;
 }
 #summarydesc {
-	font-size: 80%;
+	x-font-size: 80%;
 	margin-bottom: 1em;
 }
 #lastupdatebox {
@@ -273,7 +273,7 @@ h1 {
 
 #description {
 	margin: 1em;
-	font-size: 70%;
+	x-font-size: 70%;
 }
 
 .npatients {
@@ -300,13 +300,13 @@ a {
 }
 
 #datasrc {
-	font-size: 80%;
+	x-font-size: 80%;
 }
 /* credit */
 .credit {
 	margin: 2vw;
 	text-align: center;
-	font-size: 80%;
+	x-font-size: 80%;
 }
 
 
@@ -325,19 +325,18 @@ a {
 	margin: auto;
 }
 #jp0 td {
-	font-size: 1.5vw;
+	font-size: 1.4vw;
 	vertical-align: middle;
 	text-align: center;
 	x-border-radius: .5vw;
-	padding: .3vmin 0vw;
+	x-padding: vmin 0vw;
 	border: .1vmin solid #333;
-	margin: 2vmin;
 }
 
 /* aspect */
 @media (max-aspect-ratio: 3/4) {
 	#jp0 td {
-		font-size: 4vw;
+		font-size: 3.8vw;
 	}
 }
 
