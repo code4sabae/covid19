@@ -77,7 +77,7 @@ const showAreas = async function() {
 			const div = get('jp' + (n + 1))
 			div.url = a.url
 			div.style.cursor = "pointer"
-			div.style.borderWidth = "2px"
+			div.style.borderWidth = ".2vw"
 			div.onclick = function() {
 				window.open(this.url)
 			}
@@ -118,8 +118,8 @@ const init = function(data, data_bed) {
 	
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = `${sum} / ${data_bed.total.sumi}<div class=pcrsum>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
-	jpall.style.fontSize = "130%"
+	jpall.innerHTML = `<div class=jpalllabel>全国</div>${sum} / ${data_bed.total.sumi}<div class=pcrsum>現在患者数 / 感染病床数<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
+	//jpall.style.fontSize = "1.5vw"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 };
@@ -203,6 +203,7 @@ const makeJapanHTML = function() {
 <style>
 body {
 	font-family: sans-serif;
+	font-size: .8vmax;
 	margin: 0;
   word-wrap: break-word;
   --main-color: #AD232F;
@@ -284,8 +285,11 @@ h1 {
 .pcr {
 	font-size: 65%;
 }
+.jpalllabel {
+	font-size: 80%;
+}
 .pcrsum {
-	font-size: 10%;
+	font-size: 45%;
 }
 a {
 	color: gray !important;
@@ -316,20 +320,25 @@ a {
 	position: relative;
 }
 #jp0 {
-	border-spacing: 1vw;
+	border-spacing: .4vw;
 	border-collapse: separate;
 	margin: auto;
 }
 #jp0 td {
-	width: 14%; /*calc(90vw / 7); */
-	x-height: calc(60vw / 7);
-	font-size: 80%; /*2vw; */
+	font-size: 1.5vw;
 	vertical-align: middle;
 	text-align: center;
-	border-radius: .5vw;
-	padding: .3vw 0vw;
-	border: .1vw solid #333;
-	margin: 2vw;
+	x-border-radius: .5vw;
+	padding: .3vmin 0vw;
+	border: .1vmin solid #333;
+	margin: 2vmin;
+}
+
+/* aspect */
+@media (max-aspect-ratio: 3/4) {
+	#jp0 td {
+		font-size: 4vw;
+	}
 }
 
 </style>
