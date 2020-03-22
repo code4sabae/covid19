@@ -119,7 +119,7 @@ const init = function(data, data_bed) {
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
 	jpall.innerHTML = `${sum} / ${data_bed.total.sumi}<div class=pcrsum>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
-	jpall.style.fontSize = "120%"
+	jpall.style.fontSize = "130%"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 };
