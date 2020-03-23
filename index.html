@@ -6,8 +6,8 @@
 <meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と政府CIOポータルのオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322.png"/>
+<meta property="og:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -79,7 +79,7 @@ h1 {
 	margin-left: 1em;
 }
 #bedtypes {
-	margin-top: 1em;
+	margin: 1em 0 .5em 0;
 }
 
 .content {
@@ -124,24 +124,24 @@ h1 {
 }
 #jp0 td {
 	font-size: 1.4vw;
+	width: 6vw;
 	vertical-align: middle;
 	text-align: center;
 	x-border-radius: .5vw;
 	x-padding: vmin 0vw;
 	border: .1vmin solid #333;
 }
-
+/* aspect */
+@media (max-aspect-ratio: 3/4) {
+	#jp0 td {
+		font-size: 2.6vw;
+		width: 13.0vw;
+	}
+}
 /* credit */
 .credit {
 	margin: 2vw;
 	text-align: center;
-}
-
-/* aspect */
-@media (max-aspect-ratio: 3/4) {
-	#jp0 td {
-		font-size: 3.8vw;
-	}
 }
 /* debug */
 #debug {
@@ -179,7 +179,7 @@ window.onload = async function() {
 	}
 
 	const calcRatio = function(cnt, base) {
-		if (isNaN(cnt) || isNaN(base))
+		if (base == 0 || isNaN(cnt) || isNaN(base))
 			return "-"
 		return fixfloat(cnt / base * 100, 1) + "%"
 	}
@@ -262,15 +262,21 @@ const init = function(data, data_bed, getBedCount) {
 		//const cnti = a.ninspections
 		sum += cnt
 		//const r = cnt / max
-		const r = cnt / nbed > 1 ? 1 : cnt / nbed
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
 		c.innerHTML = `${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
 		// AD232F
-		if (r) {
+		const r = nbed ? cnt / nbed : 0
+		if (r > 1) {
+			c.style.background = 'black'
+			c.style.color = 'white'
+		} else if (r > 0) {
 			const off = .1
 			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
+			c.style.color = r < .5 ? "black" : "white"
+		} else {
+			c.style.background = 'white'
+			c.style.color = 'black'
 		}
-		c.style.color = r < .5 ? "black" : "white"
 		c.cnt = cnt
 		
 	}
@@ -376,12 +382,17 @@ const makeJapanHTML = function() {
 		<tr><th colspan=2>感染病床数 <span id=sumbed>-</span>床</th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
-	<div id=bedtypes>
-		<label><input type=checkbox id='bedt' checked>特定</label>
-		<label><input type=checkbox id='bed1' checked>一種</label>
-		<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
-		<label><input type=checkbox id='bedk' checked>二種（結核）</label>
-		<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+	<div id=bedtypesbox>
+		<div id=bedtypes>
+			<label><input type=checkbox id='bedt' checked>特定</label>
+			<label><input type=checkbox id='bed1' checked>一種</label>
+			<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
+			<label><input type=checkbox id='bedk'>二種（結核）</label>
+			<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+		</div>
+		<div id=beddescription>
+			※<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況｜厚生労働省</a>（<a href=bedforinfection.html>都道府県別</a>）
+		</div>
 	</div>
 	<!--
 	<div id=summarydesc>
