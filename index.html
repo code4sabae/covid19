@@ -78,6 +78,9 @@ h1 {
 #lastupdatebox {
 	margin-left: 1em;
 }
+#bedtypes {
+	margin-top: 1em;
+}
 
 .content {
 	position: relative;
@@ -148,28 +151,6 @@ h1 {
 	<script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script>"use strict"
 
-const calcRatio = function(cnt, base) {
-	if (isNaN(cnt) || isNaN(base))
-		return "-"
-	return fixfloat(cnt / base * 100, 1) + "%"
-}
-const showSummary = async function(json, json_bed) {
-	json_bed.total.useratio = calcRatio(json.ncurrentpatients, json_bed.total.sumi)
-	const data = [ json, json_bed.total ]
-	const show = [ [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ], [ 'useratio', 'sumi' ] ]
-	for (let i = 0; i < data.length; i++) {
-		const d = data[i]
-		for (const name of show[i]) {
-			const div = document.getElementById(name)
-			if (div) {
-				let n = d[name]
-				if (parseInt(n) == n)
-					n = addComma(n)
-				div.textContent = n
-			}
-		}
-	}
-}
 const link = function(url, name) {
 	return `<a href="${url}">${name}</a>`
 }
@@ -184,16 +165,59 @@ window.onload = async function() {
 	const json_bed = await(await fetch(url_bed)).json()
 	console.log(json_bed)
 
-	init(json, json_bed)
-	showSummary(json, json_bed)
+	const chkbed = [ bedt, bed1, bed2, bedk, beds ]
+	const namebed = [ 'sumt', 'sum1', 'sum2', 'sumk', 'sums' ]
+	const getBedCount = function(json) {
+		let cnt = 0
+		for (let i = 0; i < chkbed.length; i++) {
+			const chk = chkbed[i]
+			if (chk.checked) {
+				cnt += json[namebed[i]]
+			}
+		}
+		return cnt
+	}
 
-	//description.textContent = json.description
-	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
+	const calcRatio = function(cnt, base) {
+		if (isNaN(cnt) || isNaN(base))
+			return "-"
+		return fixfloat(cnt / base * 100, 1) + "%"
+	}
+	const showSummary = async function(json, json_bed) {
+		const sumbed = getBedCount(json_bed.total)
+		json_bed.total.useratio = calcRatio(json.ncurrentpatients, sumbed)
+		json_bed.total.sumbed = sumbed
+		const data = [ json, json_bed.total ]
+		const show = [ [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ], [ 'useratio', 'sumbed' ] ]
+		for (let i = 0; i < data.length; i++) {
+			const d = data[i]
+			for (const name of show[i]) {
+				const div = document.getElementById(name)
+				if (div) {
+					let n = d[name]
+					if (parseInt(n) == n)
+						n = addComma(n)
+					div.textContent = n
+				}
+			}
+		}
+	}
 
-	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
-	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
+	const update = function() {
+		init(json, json_bed, getBedCount)
+		showSummary(json, json_bed)
+
+	}
+	update()
+	for (const chk of chkbed) {
+		chk.onclick = update
+	}
 
 	showAreas()
+	//description.textContent = json.description
+	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
+	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
+	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
 }
 const showAreas = async function() {
 	const url = 'https://app.sabae.cc/api/covid19cio.json'
@@ -220,7 +244,7 @@ const showAreas = async function() {
 	}
 	datasrc.innerHTML += ', ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
 }
-const init = function(data, data_bed) {
+const init = function(data, data_bed, getBedCount) {
 //	dump(data);
 	let max = 0
 	for (let i = 0; i < data.area.length; i++) {
@@ -234,13 +258,13 @@ const init = function(data, data_bed) {
 		const a = data.area[i - 1]
 		const cnt = a.ncurrentpatients
 		const cntt = a.npatients
-		const nbed = data_bed.area[i - 1].sumi
+		const nbed = getBedCount(data_bed.area[i - 1]) // .sumi
 		//const cnti = a.ninspections
 		sum += cnt
 		//const r = cnt / max
 		const r = cnt / nbed > 1 ? 1 : cnt / nbed
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML += `<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
+		c.innerHTML = `${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
 		// AD232F
 		if (r) {
 			const off = .1
@@ -349,9 +373,16 @@ const makeJapanHTML = function() {
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
-		<tr><th colspan=2>感染病床数 <span id=sumi>-</span>床</th></tr>
+		<tr><th colspan=2>感染病床数 <span id=sumbed>-</span>床</th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
+	<div id=bedtypes>
+		<label><input type=checkbox id='bedt' checked>特定</label>
+		<label><input type=checkbox id='bed1' checked>一種</label>
+		<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
+		<label><input type=checkbox id='bedk' checked>二種（結核）</label>
+		<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+	</div>
 	<!--
 	<div id=summarydesc>
 		出典: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <span id=imgurl></span><a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><br>
