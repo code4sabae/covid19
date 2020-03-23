@@ -6,7 +6,7 @@
 <meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と政府CIOポータルのオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
 <meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -143,6 +143,13 @@ h1 {
 	margin: 1em;
 	font-size: 180%;
 }
+#share {
+	text-align: center;
+}
+#fb-share-button {
+	display: inline-block;
+	margin: .5em;
+}
 /* credit */
 .credit {
 	margin: 2vw;
@@ -223,6 +230,7 @@ window.onload = async function() {
 	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
 	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
 	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
+
 }
 const showAreas = async function() {
 	const url = 'https://app.sabae.cc/api/covid19cio.json'
@@ -417,6 +425,13 @@ const makeJapanHTML = function() {
 
 <div id='pr'>
 	「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
+</div>
+<div id='share'>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0&appId=214172318638956&autoLogAppEvents=1"></script>
+	<div class="fb-share-button" data-href="https://www.stopcovid19.jp/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.stopcovid19.jp%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<a href="https://b.hatena.ne.jp/entry/s/www.stopcovid19.jp/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 </div>
 
 <div class="credit">
