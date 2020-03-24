@@ -160,21 +160,29 @@ h1 {
 	text-align: left;
 }
 </style>
-	<script src="https://fukuno.jig.jp/fukuno.js"></script>
+<script src="fukuno.js"></script>
 <script>"use strict"
 
 const link = function(url, name) {
 	return `<a href="${url}">${name}</a>`
 }
+const fetchJSON = async function(url) {
+	return await (await fetch(url)).json()
+}
+const makeURL = function(path) {
+	//const base = 'http://localhost:8003/api/'
+	const base = 'data/'
+	return base + path
+}
 window.onload = async function() {
 	get("japan").innerHTML += makeJapanHTML()
 
-	const url = 'https://app.sabae.cc/api/covid19japan.json'
-	const json = await (await fetch(url)).json()
+	const url = makeURL('covid19japan.json')
+	const json = await fetchJSON(url)
 	console.log(json)
 
-	const url_bed = 'https://app.sabae.cc/api/bedforinfection_summary.json'
-	const json_bed = await(await fetch(url_bed)).json()
+	const url_bed = makeURL('bedforinfection_summary.json')
+	const json_bed = await fetchJSON(url_bed)
 	console.log(json_bed)
 
 	const chkbed = [ bedt, bed1, bed2, bedk, beds ]
@@ -225,17 +233,17 @@ window.onload = async function() {
 		chk.onclick = update
 	}
 
-	showAreas()
+	const url_link = makeURL('covid19cio.json')
+	const json_link = await fetchJSON(url_link)
+	console.log(json_link)
+	showAreas(json_link, url_link)
 	//description.textContent = json.description
 	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
 	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
 	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
 
 }
-const showAreas = async function() {
-	const url = 'https://app.sabae.cc/api/covid19cio.json'
-	const json = await (await fetch(url)).json()
-	console.log(json)
+const showAreas = async function(json, url) {
 	json.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
 	json.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
 	json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
