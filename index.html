@@ -6,8 +6,8 @@
 <meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と政府CIOポータルのオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200322-a.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200323.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200323.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -132,6 +132,50 @@ h1 {
 	border: .25vmin solid #333;
 	cursor: pointer;
 }
+#detail {
+	display: none;
+	position: fixed;
+	z-index: 2;
+	background-color: white;
+	border: 4px solid black;
+	left: 5vw;
+	top: 5vh;
+	width: 90vw;
+	max-height: 90vh;
+	padding: 1vh 1vw;
+	box-sizing: border-box;
+}
+#detailtitle {
+	font-size: 3.5vmin;
+	text-align: center;
+	margin: .5vmin;
+}
+#detaildesc {
+	font-size: 2vmin;
+	text-align: center;
+	margin: .5vmin;
+}
+#chart {
+	width: 100%;
+	vertical-align: middle;
+}
+#detailbtns {
+	text-align: center;
+	margin: 2vmin;
+}
+#detailbtns > button {
+	margin: 1vmin;
+	font-size: 2.5vmin;
+	padding: 1vmin;
+}
+@keyframes fadein {
+	0% { opacity: 0 }
+	100% { opacity: 1 }
+}
+@keyframes fadeout {
+	0% { opacity: 1 }
+	100% { opacity: 0 }
+}
 /* aspect */
 @media (max-aspect-ratio: 3/4) {
 	#jp0 td {
@@ -162,6 +206,7 @@ h1 {
 }
 </style>
 <script src="fukuno.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <script>"use strict"
 
 const link = function(url, name) {
@@ -174,6 +219,11 @@ const makeURL = function(path) {
 	//const base = 'http://localhost:8003/api/'
 	const base = 'data/'
 	return base + path
+}
+const calcRatio = function(cnt, base) {
+	if (base == 0 || isNaN(cnt) || isNaN(base))
+		return "-"
+	return fixfloat(cnt / base * 100, 1) + "%"
 }
 window.onload = async function() {
 	get("japan").innerHTML += makeJapanHTML()
@@ -199,11 +249,6 @@ window.onload = async function() {
 		return cnt
 	}
 
-	const calcRatio = function(cnt, base) {
-		if (base == 0 || isNaN(cnt) || isNaN(base))
-			return "-"
-		return fixfloat(cnt / base * 100, 1) + "%"
-	}
 	const showSummary = async function(json, json_bed) {
 		const sumbed = getBedCount(json_bed.total)
 		json_bed.total.useratio = calcRatio(json.ncurrentpatients, sumbed)
@@ -240,39 +285,89 @@ window.onload = async function() {
 
 	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
-	console.log(json_link)
-	showAreas(json_link, url_link)
+	showAreas(json_link, url_link, {}, json, json_bed.total, getBedCount)
 	//description.textContent = json.description
 
 }
-const showAreas = function(json, url) {
-	/*
-	json.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
-	json.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
-	json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
-	json.area.push({ name_jp: "千葉県", url: 'https://covid19.civictech.chiba.jp/' })
-	json.area.push({ name_jp: "大阪府", url: 'https://covid19-osaka.info/' })
-	json.area.push({ name_jp: '山口県', url: 'https://yamaguchi.stopcovid19.jp/' })
-	*/
+const showChart = function(data) {
+	console.log(data.data)
+	const npatients_c = data.data.ncurrentpatients
+	const nbed = data.getBedCount()
+	if (detail.chart) {
+		detail.chart.destroy()
+	}
+	detail.chart = new Chart(chart, {
+		type: 'pie',
+		data: {
+			labels: [ "現在患者数(" + npatients_c + ")", "推定病床残数(" + (nbed - npatients_c) + ")" ],
+			datasets: [{
+					backgroundColor: [ 'red', '#ccc' ],
+					data: [ npatients_c, nbed - npatients_c < 0 ? 0 : nbed - npatients_c ],
+			}]
+		}
+	})
+	detailtitle.innerHTML = (data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)"
+	detaildesc.innerHTML = `累積陽性者${data.data.npatients}人 累積退院${data.data.nexits}人 累積死亡${data.data.ndeaths}人 病床数${nbed}床`
+
+	detail.style.display = "block"
+	detail.style.animation = "fadein .3s ease 0s 1 normal"
+
+	btnclose.onclick = function() {
+		detail.style.animation = "fadeout .3s ease 0s 1 normal"
+		setTimeout(function() {
+			detail.style.display = "none"
+		}, 300)
+	}
+	if (data.appurl) {
+		btnapp.style.display = "inline"
+		btnapp.onclick = function() {
+			window.open(data.appurl)
+		}
+	} else {
+		btnapp.style.display = "none"
+	}
+	btnweb.onclick = function() {
+		window.open(data.url)
+	}
+}
+const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedCount) {
+	console.log(bed_total)
+	jsonapp = { area: [] }
+	
+	//jsonapp.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
+	jsonapp.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
+	jsonapp.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
+	jsonapp.area.push({ name_jp: "千葉県", url: 'https://covid19.civictech.chiba.jp/' })
+	jsonapp.area.push({ name_jp: "大阪府", url: 'https://covid19-osaka.info/' })
+	jsonapp.area.push({ name_jp: '山口県', url: 'https://yamaguchi.stopcovid19.jp/' })
+	jsonapp.area.push({ name_jp: '青森県', url: 'https://covid19.codeforaomori.org/' })
+
 	for (let i = 0; i < json.length; i++) {
+		const div = get('jp' + (i + 1))
 		const a = json[i]
-		//const n = PREF.indexOf(a.name_jp)
-		//const n = PREF.indexOf(a.name_jp)
-		//if (n >= 0) {
-		{
-			const div = get('jp' + (i + 1))
-			div.url = a.url
-			//div.style.borderWidth = ".2vw"
-			div.onclick = function() {
-				window.open(this.url)
+		for (let j = 0; j < jsonapp.area.length; j++) {
+			if (jsonapp.area[j].name_jp == a.pref_ja) {
+				div.appurl = jsonapp.area[j].url
 			}
 		}
+		div.url = a.url
+		div.onclick = function() {
+			//window.open(this.url)
+			showChart(this)
+		}
+	}
+	jpall.url = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
+	jpall.data = data_patients
+	//jpall.name_jp: '全国', ncurrentpatients: total.ncurrentpatients }
+	jpall.getBedCount = function() {
+		return getBedCount(bed_total)
 	}
 	jpall.onclick = function() {
-		window.open('https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html')
+		showChart(this)
 	}
-//	datasrc.innerHTML += ', ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
-	datasrc.innerHTML += ', ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON")
+	datasrc.innerHTML += ' /  ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON")
+	// + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
+	datasrc.innerHTML += ' /  ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON")
 }
 const init = function(data, data_bed, getBedCount) {
 //	dump(data);
@@ -288,7 +383,11 @@ const init = function(data, data_bed, getBedCount) {
 		const a = data.area[i - 1]
 		const cnt = a.ncurrentpatients
 		const cntt = a.npatients
-		const nbed = getBedCount(data_bed.area[i - 1]) // .sumi
+		c.data_bed = data_bed.area[i - 1]
+		c.getBedCount = function() {
+			return getBedCount(this.data_bed)
+		}
+		const nbed = c.getBedCount()
 		//const cnti = a.ninspections
 		sum += cnt
 		//const r = cnt / max
@@ -307,13 +406,13 @@ const init = function(data, data_bed, getBedCount) {
 			c.style.background = 'white'
 			c.style.color = 'black'
 		}
-		c.cnt = cnt
+		c.data = a
 		
 	}
 	
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = `<div class=jpalllabel>全国</div>${sum} / ${data_bed.total.sumi}<div class=pcrsum>現在患者数 / 感染病床数<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
+	jpall.innerHTML = `<div class=jpalllabel>全国</div>${sum} / ${getBedCount(data_bed.total)}<div class=pcrsum>現在患者数 / 感染病床数<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
 	//jpall.style.fontSize = "1.5vw"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
@@ -367,6 +466,17 @@ const makeJapanHTML = function() {
 </script>
 </head>
 <body>
+
+<div id="detail">
+	<div id="detailtitle"></div>
+	<canvas id='chart'></canvas>
+	<div id="detaildesc"></div>
+	<div id='detailbtns'>
+		<button id='btnclose'>とじる</button>
+		<button id='btnapp'>アプリへ</button>
+		<button id='btnweb'>公式サイトへ</button>
+	</div>
+</div>
 
 <h1 id=title>COVID-19 Japan</h1><div class=subtitle>新型コロナウイルス対策ダッシュボード</div>
 
