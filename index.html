@@ -129,7 +129,8 @@ h1 {
 	text-align: center;
 	x-border-radius: .5vw;
 	x-padding: vmin 0vw;
-	border: .1vmin solid #333;
+	border: .25vmin solid #333;
+	cursor: pointer;
 }
 /* aspect */
 @media (max-aspect-ratio: 3/4) {
@@ -237,7 +238,7 @@ window.onload = async function() {
 	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
 	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
 
-	const url_link = makeURL('covid19cio.json')
+	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
 	console.log(json_link)
 	showAreas(json_link, url_link)
@@ -245,26 +246,33 @@ window.onload = async function() {
 
 }
 const showAreas = function(json, url) {
+	/*
 	json.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
 	json.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
 	json.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
 	json.area.push({ name_jp: "千葉県", url: 'https://covid19.civictech.chiba.jp/' })
 	json.area.push({ name_jp: "大阪府", url: 'https://covid19-osaka.info/' })
 	json.area.push({ name_jp: '山口県', url: 'https://yamaguchi.stopcovid19.jp/' })
-	for (let i = 0; i < json.area.length; i++) {
-		const a = json.area[i]
-		const n = PREF.indexOf(a.name_jp)
-		if (n >= 0) {
-			const div = get('jp' + (n + 1))
+	*/
+	for (let i = 0; i < json.length; i++) {
+		const a = json[i]
+		//const n = PREF.indexOf(a.name_jp)
+		//const n = PREF.indexOf(a.name_jp)
+		//if (n >= 0) {
+		{
+			const div = get('jp' + (i + 1))
 			div.url = a.url
-			div.style.cursor = "pointer"
-			div.style.borderWidth = ".2vw"
+			//div.style.borderWidth = ".2vw"
 			div.onclick = function() {
 				window.open(this.url)
 			}
 		}
 	}
-	datasrc.innerHTML += ', ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
+	jpall.onclick = function() {
+		window.open('https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html')
+	}
+//	datasrc.innerHTML += ', ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON") + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
+	datasrc.innerHTML += ', ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON")
 }
 const init = function(data, data_bed, getBedCount) {
 //	dump(data);
@@ -317,37 +325,7 @@ var PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "�
 
 // from CC0 カラム地図
 // https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ
-/*
-const JAPAN = `
-山口	島根	鳥取	石川	新潟	青森	北海道
-広島	岡山	兵庫	福井	富山	秋田	岩手
-長崎		大阪	京都	長野	山形	宮城
-佐賀	福岡		滋賀	山梨	群馬	福島
-熊本	宮崎	大分	三重	静岡	埼玉	栃木
-鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
-沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
-*/
 
-/*
-const JAPAN = `
-山口	島根	鳥取	石川	新潟	青森	北海道
-広島	岡山	兵庫	福井	富山	秋田	岩手
-長崎	福岡	大阪	京都	長野	山形	宮城
-佐賀	宮崎	滋賀	日本	山梨	群馬	福島
-熊本	大分	奈良	日本	静岡	埼玉	栃木
-鹿児島	愛媛	香川	三重	岐阜	東京	茨城
-沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
-*/
-/*
-const JAPAN = `
-日本	日本	鳥取	石川	新潟	青森	北海道
-山口	島根	兵庫	福井	富山	秋田	岩手
-長崎	岡山	大阪	京都	長野	山形	宮城
-佐賀	福岡	広島	滋賀	山梨	群馬	福島
-熊本	宮崎	大分	三重	静岡	埼玉	栃木
-鹿児島	愛媛	香川	奈良	岐阜	東京	茨城
-沖縄	高知	徳島	和歌山	愛知	神奈川	千葉`
-*/
 const JAPAN = `
 日本	日本	鳥取	石川	富山	青森	北海道
 山口	島根	岡山	福井	新潟	秋田	岩手
