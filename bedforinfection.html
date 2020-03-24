@@ -1,10 +1,14 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>COVID-19 JAPAN - 都道府県別 感染症病床数（カラム地図7x7、厚生労働省データ）</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="apple-touch-icon" href="bedforinfection.png"/>
-<meta property="og:image" content="bedforinfection.png">
+<title>COVID-19 Japan - 都道府県別 感染症病床数（カラム地図7x7、厚生労働省データ）</title>
+<meta property="og:title" content="COVID-19 Japan 都道府県別 感染症病床数"/>
+<meta property="og:description" content="感染病床を持つ医療機関と病床数を都道府県別にすばやく表示、厚生労働省のオープンデータ使用"/>
+<link rel="apple-touch-icon" href="bedforinfection_icon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/bedforinfection2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/bedforinfection2.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <script src="https://fukuno.jig.jp/fukuno.js"></script>
 <script>"use strict"
@@ -15,7 +19,8 @@ const link = function(url, name) {
 window.onload = async function() {
 	get("japan").innerHTML += makeJapanHTML()
 
-	const url = 'https://app.sabae.cc/api/bedforinfection.json'
+	//const url = 'https://app.sabae.cc/api/bedforinfection.json'
+	const url = 'data/bedforinfection.json'
 	const json = await (await fetch(url)).json()
 	console.log(json)
 
@@ -23,7 +28,7 @@ window.onload = async function() {
 	description.textContent = json.description
 	datasrc.innerHTML = 'データ出典：' + link(json.srcurl, '厚生労働省') + " → " + link(url, 'JSON')
 
-	const show = [ 'sumi', 'sumt', 'sum1', 'sum2', 'sumk' ]
+	const show = [ 'sumi', 'sumt', 'sum1', 'sum2', 'sumk', 'sums' ]
 	for (const name of show) {
 		const c = document.getElementById(name)
 		if (c)
@@ -38,9 +43,67 @@ const calcRatio = function(cnt, base) {
 		return "-"
 	return fixfloat(cnt / base * 100, 1) + "%"
 }
+const makeTableFromJSON = function(json, header) {
+  const s = []
+	s.push("<table>")
+	if (!header) {
+		header = []
+		for (const d of json) {
+			for (const name in d) {
+				if (header.indexOf(name) == -1) {
+					header.push(name)
+				}
+			}
+		}
+	}
+	s.push('<tr>')
+	for (let i = 0; i < header.length; i++) {
+		const name = header[i]
+		s.push(`<th>${name}</th>`)
+	}
+	s.push('</tr>')
+	const sum = []
+	for (let i = 0; i < header.length; i++)
+		sum[i] = 0
+	sum[1] = [] // 病院名
+	for (const d of json) {
+		s.push('<tr>')
+		for (let i = 0; i < header.length; i++) {
+			const name = header[i]
+			let val = d[name]
+			if (val === undefined) {
+				val = "-"
+			}
+			s.push(`<td>${val}</td>`)
+			if (val != "" && parseInt(val) == val) {
+				sum[i] += parseInt(val)
+			}
+			if (i == 1 && sum[1].indexOf(val) == -1) {
+				sum[1].push(val)
+			}
+		}
+		s.push('</tr>')
+	}
+	s.push('<tr>')
+	s.push('<td>合計</td>')
+	sum[1] = sum[1].length
+	for (let i = 1; i < sum.length; i++) {
+		let val = sum[i]
+		//if (val == 0 || header[i] == 'No.')
+		if (val == 0)
+			val = ""
+		s.push(`<td>${val}</th>`)
+	}
+  s.push("</table>")
+  return s.join("")
+}
+
+const HEADER_BED_ALL = [ '種別', '病院名', '所在地', 'No.', '病床数', '感染症病床',	'結核病床(稼働病床)', '一般病床又は精神病床' ]
+const HEADER_BED = [ '種別', '病院名', '病床数', '感染症病床',	'結核病床(稼働病床)', '一般病床又は精神病床' ]
+
 const init = function(data) {
 //	dump(data);
-const area = data.summary.area
+	const area = data.summary.area
 	let max = 0
 	for (let i = 0; i < area.length; i++) {
 		if (area[i].sumi > max)
@@ -71,18 +134,29 @@ const area = data.summary.area
 					}
 				}
 			}
-			dump(res)
+			//dump(res)
+			tbl.innerHTML = makeTableFromJSON(res, HEADER_BED)
 		}
 	}
 	
 	const t = data.summary.total
-	jpall.innerHTML = `${addComma(t.sumi)}床` // <div class=pcrsum>(特定${addComma(t.sumt)} 一種${addComma(t.sum1)} 二種${addComma(t.sum2)} 結核${addComma(t.sumk)})</div>`
-	jpall.style.fontSize = "150%"
+	jpall.innerHTML = `全国<br>${addComma(t.sumi)}床` // <div class=pcrsum>(特定${addComma(t.sumt)} 一種${addComma(t.sum1)} 二種${addComma(t.sum2)} 結核${addComma(t.sumk)})</div>`
+	//jpall.style.fontSize = "150%"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 	jpall.onclick = function() {
 		//dump(data.summary.total)
-		dump(null)
+		//dump(null)
+		//tbl.innerHTML = ''
+		const hosp = data.hospitals
+		const res = []
+		for (const name in hosp) {
+			for (const d of hosp[name]) {
+				d['種別'] = name
+				res.push(d)
+			}
+		}
+		tbl.innerHTML = makeTableFromJSON(res, HEADER_BED_ALL)
 	}
 }
 
@@ -171,40 +245,35 @@ body {
 	text-align: center;
 }
 h1 {
-	margin: 0;
-	padding: .3em;
 	background-color: var(--main-color);
 	color: white;
-	font-size: 8vw;
 	text-align: center;
+	margin: 0;
+	padding: .3em;
+	font-size: 8vmin;
 }
 .subtitle {
+	background-color: var(--main-color);
+	color: white;
 	text-align: center;
 	margin: 0 0 .5em 0;
 	padding: .3em;
-	background-color: var(--main-color);
-	color: white;
-	font-size: 3vw;
+	font-size: 3vmin;
+}
+
+#cmap {
+	display: inline-block;
+	vertical-align: top;
 }
 
 #summary {
 	display: inline-block;
 	vertical-align: middle;
-	max-width: 500px;
-	margin-right: 20px;
-	margin-left: 20px;
+	max-width: 50vw;
+	margin-top: 1vw;
+	margin-right: 2vw;
+	margin-left: 2vw;
 }
-@media screen and (min-width: 1119px) {
-	#summary {
-		margin-top: 100px;
-	}
-}
-#cmap {
-	display: inline-block;
-	vertical-align: top;
-	max-width: 600px;
-}
-
 #summarytable {
 	display: inline-block;
 	margin-left: auto;
@@ -213,20 +282,21 @@ h1 {
 	margin-bottom: 0.5vh;
 }
 #summarytable td, th {
-	border: 3px solid var(--main-color);
+	border: .3vw solid var(--main-color);
 	padding: .2vh .5vw;
-	width: 20vw;
-	font-size: 2vw;
+	width: 5vw;
+	font-size: 1.7vw;
 	text-align: center;
 }
-#summarytable th {
+#summarytable td {
 	background-color: var(--main-color);
 	color: white;
+	font-size: 2vw;
 }
 #summarytable .sumi {
 	color: black;
 	background-color: white;
-	font-size: 4vw;
+	font-size: 3vw;
 }
 #summarydesc {
 	font-size: 80%;
@@ -234,6 +304,25 @@ h1 {
 }
 #lastupdatebox {
 	margin-left: 1em;
+}
+
+#tbl table {
+	border-collapse: collapse;
+	display: inline-block;
+	margin-bottom: .5vw;
+}
+#tbl td {
+	border: 1px solid black;
+	padding: .2vw .4vw;
+	font-size: 1.8vw;
+	text-align: left;
+}
+#tbl td:nth-child(3), #tbl td:nth-child(4), #tbl td:nth-child(5), #tbl td:nth-child(6) {
+	text-align: right;
+}
+#tbl th {
+	border: 1px solid black;
+	padding: .2vw .4vw;
 }
 
 .content {
@@ -277,6 +366,12 @@ a {
   max-width: 300px;
 }
 
+#pr {
+	display: inline-block;
+	margin: 1vw;
+	border: 1px solid;
+	padding: .3vw 2vw;
+}
 /* credit */
 .credit {
 	margin: 20px;
@@ -288,42 +383,47 @@ a {
 /* japan */
 #japan {
 	display: inline-block;
-	width: 100%; /*90vw; */
-	max-width: 800px;
-	x-height: 80vw;
-	x-background: red;
+	width: 100%;
 	position: relative;
 }
 #jp0 {
-	border-spacing: 1vw;
+	border-spacing: .4vw;
 	border-collapse: separate;
 	margin: auto;
 }
 #jp0 td {
-	width: 14%; /*calc(90vw / 7); */
-	x-height: calc(60vw / 7);
-	font-size: 80%; /*2vw; */
+	font-size: 1.4vw;
+	width: 6vw;
 	vertical-align: middle;
 	text-align: center;
-	border-radius: .5vw;
-	border: 1px solid #333;
-	margin: 20px;
+	x-border-radius: .5vw;
+	x-padding: vmin 0vw;
+	border: .25vmin solid #333;
+	cursor: pointer;
 }
+@media (max-aspect-ratio: 3/4) {
+	#jp0 td {
+		font-size: 2.5vw;
+		width: 12.0vw;
+	}
+}
+
 
 </style>
 </head>
 <body>
 
-<h1 id=title>COVID-19 Japan</h1><div class=subtitle>都道府県別 感染症病床数</div>
+<h1 id=title>COVID-19 JAPAN</h1><div class=subtitle>都道府県別 感染症病床数</div>
 
 <div class="content">
 
 <div id=summary>
 	<table id=summarytable>
-		<tr><th colspan=4 class=sumi>感染症病床数 <span id=sumi></span></th></tr>
-		<tr><th>特定</th><th>一種</th><th>二種</th><th>結核</th></tr>
-		<tr><td id=sumt></td><td id=sum1></td><td id=sum2></td><td id=sumk></td></tr>
+		<tr><th colspan=5 class=sumi>感染症病床数 <span id=sumi></span></th></tr>
+		<tr><th>特定</th><th>一種</th><th>二種</th><th>結核</th><th>一般</th></tr>
+		<tr><td id=sumt></td><td id=sum1></td><td id=sum2></td><td id=sumk></td><td id=sums></td></tr>
 	</table>
+	<div id=summarydesc>※ 感染症病床 = 特定 + 一種 + 二種（感染症病床）</div>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
 </div>
 
@@ -331,9 +431,11 @@ a {
 	<div id="japan"></div>
 </div>
 <div id="description"></div>
-<div id='debug'></div>
+<div id='tbl'></div>
 <div id='datasrc'></div>
 </div>
+
+<div id='pr'>自治体、医療機関の方へ<br><a href=https://fukuno.jig.jp/2799>新型コロナウイルス対策の感染病床のデータ提供お願いします</a></div>
 
 <div id="link"><a href=https://www.stopcovid19.jp/><img alt="COVID-19 JAPAN" src="covid19japan.png"/></a></div>
 
