@@ -1,13 +1,13 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
 <meta charset="utf-8"/>
-<title>COVID-19 JAPAN - 新型コロナウイルス対策ダッシュボード</title>
-<meta property="og:title" content="COVID-19 JAPAN 新型コロナウイルス対策ダッシュボード"/>
+<title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード</title>
+<meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード"/>
 <meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と政府CIOポータルのオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200323.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200323.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200323-2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200323-2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -188,13 +188,26 @@ h1 {
 		width: 13.0vw;
 	}
 }
+.pr {
+	margin-top: 1em;
+	text-align: center;
+}
 #pr {
 	text-align: center;
 	margin: 1em;
 	font-size: 180%;
 }
+#pr2 {
+	display: inline-block;
+	margin: 1vw;
+	border: 1px solid;
+	padding: .3vw 2vw;
+}
 #share {
 	text-align: center;
+}
+#share > * {
+  vertical-align: bottom;
 }
 #fb-share-button {
 	display: inline-block;
@@ -315,13 +328,13 @@ const showChart = function(data) {
 	detaildesc.innerHTML = `累積陽性者${data.data.npatients}人 累積退院${data.data.nexits}人 累積死亡${data.data.ndeaths}人 病床数${nbed}床`
 
 	detail.style.display = "block"
-	detail.style.animation = "fadein .3s ease 0s 1 normal"
+	detail.style.animation = "fadein .2s ease 0s 1 normal"
 
 	detail.onclick = btnclose.onclick = function() {
-		detail.style.animation = "fadeout .3s ease 0s 1 normal"
+		detail.style.animation = "fadeout .2s ease 0s 1 normal"
 		setTimeout(function() {
 			detail.style.display = "none"
-		}, 300)
+		}, 150)
 	}
 	
 	if (data.appurl) {
@@ -492,7 +505,7 @@ const makeJapanHTML = function() {
 
 <div id=summary>
 	<table id=summarytable>
-		<tr><th>感染病床使用率</th><th>現在患者数</th></tr>
+		<tr><th>感染病床使用率（参考）</th><th>現在患者数</th></tr>
 		<tr><td><span id=useratio></span></thd><td><span id=ncurrentpatients>-</span>人</td></tr>
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
@@ -509,7 +522,8 @@ const makeJapanHTML = function() {
 			<label><input type=checkbox id='beds'>二種（一般・精神）</label>
 		</div>
 		<div id=beddescription>
-			※<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況｜厚生労働省</a>（<a href=bedforinfection.html>都道府県別</a>）
+			※ 感染症使用率（参考） = 現在患者数 / 選択した感染症病床数の合計 (実情とは異なります)<br>
+			出典：<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況｜厚生労働省</a>（<a href=bedforinfection.html>都道府県別</a>）
 		</div>
 	</div>
 	<!--
@@ -528,9 +542,13 @@ const makeJapanHTML = function() {
 
 </div>
 
+<div class=pr>
+<div id='pr2'>自治体、医療機関の方へ<br><a href=https://fukuno.jig.jp/2799>新型コロナウイルス対策の感染病床のデータ提供お願いします</a></div>
 <div id='pr'>
 	「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
 </div>
+</div>
+
 <div id='share'>
 	<div id="fb-root"></div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0&appId=214172318638956&autoLogAppEvents=1"></script>
