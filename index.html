@@ -3,11 +3,11 @@
 <meta charset="utf-8"/>
 <title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード</title>
 <meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード"/>
-<meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と政府CIOポータルのオープンデータ使用"/>
+<meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200324.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200324.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200325.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200325.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -78,7 +78,10 @@ h1 {
 	margin-left: 1em;
 }
 #bedtypes {
-	margin: 1em 0 .5em 0;
+	margin: .5em 0 .5em 0;
+}
+#beddescription {
+	margin: .5em 0 .5em 0;
 }
 
 .content {
@@ -254,9 +257,28 @@ window.onload = async function() {
 	const json_bed = await fetchJSON(url_bed)
 	console.log(json_bed)
 
+	const url_bedc = makeURL('bedforinfection_current.json')
+	const json_bedc = await fetchJSON(url_bedc)
+	console.log(json_bedc)
+	for (let i = 0; i < json_bedc.length; i++) {
+		const cbed = json_bedc[i]
+		for (let j = 0; j < json_bed.area.length; j++) {
+			const a = json_bed.area[j]
+			if (a.name_ja == cbed['自治体名']) {
+				const n = parseInt(cbed['新型コロナウイルス対策感染病床数'])
+				a.sumc = n
+				a.sumc_src = cbed
+				console.log(a)
+			}
+		}
+	}
+
 	const chkbed = [ bedt, bed1, bed2, bedk, beds ]
 	const namebed = [ 'sumt', 'sum1', 'sum2', 'sumk', 'sums' ]
 	const getBedCount = function(json) {
+		if (json.sumc) {
+			return json.sumc
+		}
 		let cnt = 0
 		for (let i = 0; i < chkbed.length; i++) {
 			const chk = chkbed[i]
@@ -268,11 +290,14 @@ window.onload = async function() {
 	}
 
 	const showSummary = async function(json, json_bed) {
-		const sumbed = getBedCount(json_bed.total)
+		let sumbed = 0
+		for (let i = 0; i < json_bed.area.length; i++) {
+			sumbed += getBedCount(json_bed.area[i])
+		}
 		json_bed.total.useratio = calcRatio(json.ncurrentpatients, sumbed)
-		json_bed.total.sumbed = sumbed
+		json_bed.total.sumc = sumbed
 		const data = [ json, json_bed.total ]
-		const show = [ [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ], [ 'useratio', 'sumbed' ] ]
+		const show = [ [ 'ncurrentpatients', 'nexits', 'ndeaths', 'npatients', 'lastUpdate' ], [ 'useratio', 'sumc' ] ]
 		for (let i = 0; i < data.length; i++) {
 			const d = data[i]
 			for (const name of show[i]) {
@@ -288,9 +313,8 @@ window.onload = async function() {
 	}
 
 	const update = function() {
-		init(json, json_bed, getBedCount)
 		showSummary(json, json_bed)
-
+		showPrefs(json, json_bed, getBedCount)
 	}
 	update()
 	for (const chk of chkbed) {
@@ -299,7 +323,7 @@ window.onload = async function() {
 
 	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
 	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
-	datasrc.innerHTML += ", " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
+	datasrc.innerHTML += " / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
 
 	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
@@ -392,7 +416,7 @@ const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedC
 	// + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
 	datasrc.innerHTML += ' /  ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON")
 }
-const init = function(data, data_bed, getBedCount) {
+const showPrefs = function(data, data_bed, getBedCount) {
 //	dump(data);
 	let max = 0
 	for (let i = 0; i < data.area.length; i++) {
@@ -418,7 +442,7 @@ const init = function(data, data_bed, getBedCount) {
 		c.innerHTML = `${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
-		if (r > 1) {
+		if (r > 1 || nbed == 0) {
 			c.style.background = 'black'
 			c.style.color = 'white'
 		} else if (r > 0) {
@@ -512,23 +536,22 @@ const makeJapanHTML = function() {
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
-		<tr><th colspan=2>感染病床数 <span id=sumbed>-</span>床</th></tr>
+		<tr><th colspan=2>感染病床数 <span id=sumc>-</span>床</th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
 	<div id=bedtypesbox>
+		<div id=beddescription>
+			*感染病床使用率（参考） = 現在患者数 / 感染症病床数<br>
+			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」<br>
+			記載がない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」のデータを下記で選択したもので仮定。<br>
+			増床が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
+		</div>
 		<div id=bedtypes>
 			<label><input type=checkbox id='bedt' checked>特定</label>
 			<label><input type=checkbox id='bed1' checked>一種</label>
 			<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
 			<label><input type=checkbox id='bedk'>二種（結核）</label>
 			<label><input type=checkbox id='beds'>二種（一般・精神）</label>
-		</div>
-		<div id=beddescription>
-			*感染病床使用率（参考） = 現在患者数 / 選択した感染症病床数の合計<br>
-			*ここで示している感染症病床数は2019年4月1日時点のデータであるため、<br>
-			現在は増床されている可能性があります<br>
-			出典：<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a><br>
-			「<a href="https://code4sabae.github.io/bedforinfection/">都道府県別 感染症病床数</a>」
 		</div>
 	</div>
 	<!--
@@ -564,10 +587,12 @@ const makeJapanHTML = function() {
 
 <div class="credit">
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
-DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSON-APIに加工<br>
-DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSON-APIに加工（<a href=bedforinfection.html>都道府県別一覧アプリ</a>）<br>
-DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSON-APIに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSONに加工<br>
+DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」をJSONに加工<br>
+DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=bedforinfection.html>都道府県別一覧アプリ</a>）<br>
+DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
+DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナウイルス感染症対策プロジェクト<br>
 
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 </div>
