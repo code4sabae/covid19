@@ -74,6 +74,13 @@ h1 {
 #summarydesc {
 	margin-bottom: 1em;
 }
+.summaryvent {
+	font-size: 80%;
+}
+#ventsrc {
+	font-size: 65%;
+	font-weight: normal;
+}
 #lastupdatebox {
 	margin-left: 1em;
 }
@@ -163,6 +170,11 @@ h1 {
 	text-align: center;
 	margin: .5vmin;
 }
+#detailvent {
+	font-size: 2vmin;
+	text-align: center;
+	margin: .5vmin;
+}
 #chart {
 	width: 100%;
 	vertical-align: middle;
@@ -236,6 +248,11 @@ const link = function(url, name) {
 const fetchJSON = async function(url) {
 	return await (await fetch(url)).json()
 }
+const fetchCSV = async function(url) {
+	const csv = await (await fetch(url)).text()
+	const data = convertCSVtoArray(csv)
+	return csv2json(data)
+}
 const makeURL = function(path) {
 	//const base = 'http://localhost:8003/api/'
 	const base = 'data/'
@@ -289,6 +306,14 @@ window.onload = async function() {
 		return cnt
 	}
 
+	const url_vent = makeURL('ventilator-20200306.csv')
+	const json_vent = await fetchCSV(url_vent)
+	console.log(json_vent)
+	for (let i = 0; i < json.area.length; i++) {
+		json.area[i].vent = json_vent[i]
+	}
+	json.vent = json_vent[47]
+
 	const showSummary = async function(json, json_bed) {
 		let sumbed = 0
 		for (let i = 0; i < json_bed.area.length; i++) {
@@ -310,6 +335,13 @@ window.onload = async function() {
 				}
 			}
 		}
+		const v = json.vent
+		const pi = parseInt
+		ventce.textContent = addComma(v['総CE（名）'])
+		ventvent.textContent = addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))
+		ventecmo.textContent = addComma(v['ECMO装置取扱（台）'])
+		const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
+		ventsrc.innerHTML = `2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`
 	}
 
 	const update = function() {
@@ -330,6 +362,7 @@ window.onload = async function() {
 	showAreas(json_link, url_link, {}, json, json_bed.total, getBedCount)
 	//description.textContent = json.description
 
+	datasrc.innerHTML += "<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>"
 }
 const showChart = function(data) {
 	//console.log(data.data)
@@ -350,6 +383,12 @@ const showChart = function(data) {
 	})
 	detailtitle.innerHTML = (data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)"
 	detaildesc.innerHTML = `累積陽性者${data.data.npatients}人 累積退院${data.data.nexits}人 累積死亡${data.data.ndeaths}人 病床数${nbed}床`
+	const v = data.data.vent
+	const pi = parseInt
+	detailvent.innerHTML = `臨床工学技士${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱${addComma(v['ECMO装置取扱（台）'])}台`
+	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典元（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
+	const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
+	detailvent.innerHTML += `<br>2020年2月回数 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`
 
 	detail.style.display = "block"
 	detail.style.animation = "fadein .2s ease 0s 1 normal"
@@ -518,6 +557,7 @@ const makeJapanHTML = function() {
 	<div id="detailtitle"></div>
 	<canvas id='chart'></canvas>
 	<div id="detaildesc"></div>
+	<div id="detailvent"></div>
 	<div id='detailbtns'>
 		<button id='btnclose'>とじる</button>
 		<button id='btnapp'>アプリへ</button>
@@ -537,6 +577,7 @@ const makeJapanHTML = function() {
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
 		<tr><th colspan=2>感染病床数 <span id=sumc>-</span>床</th></tr>
+		<tr><th colspan=2><span class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台<br><span id=ventsrc></span><span></th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
 	<div id=bedtypesbox>
@@ -591,6 +632,7 @@ DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/000016470
 DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」をJSONに加工<br>
 DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=bedforinfection.html>都道府県別一覧アプリ</a>）<br>
 DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+DATA: 許諾「<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)</a>」 （<a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>）<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
 DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナウイルス感染症対策プロジェクト<br>
 

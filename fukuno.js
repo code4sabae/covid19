@@ -581,17 +581,19 @@ var convertCSVtoArray = function(s) {
 	if (line.length > 0)
 	res.push(line);
 	return res;
-	
-	/* // いい加減バージョン
-	var lines = s.split("\n");
-	var res = [];
-	for (var i = 0; i < lines.length; i++) {
-		var ar = lines[i].split(",");
-		res.push(ar);
-	}
-	return res;
-	*/
 };
+const csv2json = function(csv) {
+	const res = []
+	const head = csv[0]
+	for (let i = 1; i < csv.length; i++) {
+		const d = {}
+		for (let j = 0; j < head.length; j++) {
+			d[head[j]] = csv[i][j]
+		}
+		res.push(d)
+	}
+	return res
+}
 var getJSON = function(url, callback, enc) {
 	if (url.endsWith(".csv")) {
 		getRawJSON(url, enc ? enc : "SJIS", function(csv) {
