@@ -3,7 +3,7 @@
 <meta charset="utf-8"/>
 <title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード</title>
 <meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード"/>
-<meta property="og:description" content="日本の感染病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
+<meta property="og:description" content="日本の感染症病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200326.png"/>
@@ -47,7 +47,7 @@ h1 {
 #summary {
 	display: inline-block;
 	vertical-align: middle;
-	max-width: 50vw;
+	max-width: 40vw;
 	margin-top: 1vw;
 	margin-right: 2vw;
 	margin-left: 2vw;
@@ -63,7 +63,7 @@ h1 {
 	border: .3vw solid var(--main-color);
 	padding: .2vh .5vw;
 	width: 20vw;
-	font-size: 1.7vw;
+	font-size: 1.4vw;
 	text-align: center;
 }
 #summarytable td {
@@ -75,7 +75,7 @@ h1 {
 	margin-bottom: 1em;
 }
 .summaryvent {
-	font-size: 80%;
+	font-size: 70%;
 }
 #ventsrc {
 	font-size: 65%;
@@ -132,7 +132,7 @@ h1 {
 	margin: auto;
 }
 #jp0 td {
-	font-size: 1.4vw;
+	font-size: 1.2vw;
 	width: 6vw;
 	vertical-align: middle;
 	text-align: center;
@@ -201,6 +201,10 @@ h1 {
 	#jp0 td {
 		font-size: 2.6vw;
 		width: 13.0vw;
+		opacity: 0.99;
+	}
+	#summary {
+		max-width: 90vw;
 	}
 }
 .pr {
@@ -218,6 +222,10 @@ h1 {
 	border: 1px solid;
 	padding: .3vw 2vw;
 }
+.lang {
+	text-align: center;
+	margin: .5em;
+}
 #share {
 	text-align: center;
 }
@@ -230,7 +238,7 @@ h1 {
 }
 /* credit */
 .credit {
-	margin: 2vw;
+	margin: 2vw 0 1vw 0;
 	text-align: center;
 }
 /* debug */
@@ -241,6 +249,129 @@ h1 {
 <script src="fukuno.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 <script>"use strict"
+
+const TX = {
+	'新型コロナウイルス対策ダッシュボード': { 'en': 'Anti-Coronavirus Dashboard' },
+	'自治体、医療機関の方へ' : { 'en': 'For local governments and medical institutions,' },
+	'新型コロナウイルス対策の感染症病床のデータ提供お願いします': { 'en': 'Please provide data of bed for infection.' },
+	'都道府県の新型コロナウイルス対策サイトCSV': { 'en': 'official sites against COVID-19' },
+	'新型コロナウイルス感染症について': { 'en': 'About COID-19' },
+	'厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開': { 'en': 'Publish COVID-19 patients JSON data from PDF from Ministry of Health, Labour and Welfare' },
+	'東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介': { 'en': "Introduction of the against COVID-19 site by Tokyo Metropolitan Government using the open source" },
+	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
+	'感染症病床使用率': { 'en': 'Bed utilization rate' },
+	'参考': { 'en': 'assumption' },
+	'推定病床残数': { 'en': 'Remain of bed for infection' },
+	'感染症病床数': { 'en': 'Count of bed for infection' },
+	'現在患者数': { 'en': 'Current number of patients' },
+	'累積退院者': { 'en': 'Cumulative discharges' },
+	'累積陽性者': { 'en': 'Cumulative patients' },
+	'累積死者数': { 'en': 'Cumulative deaths' },
+	'新型コロナウイルス感染症': { 'en': 'COVID-19' },
+	'死亡者': { 'en': 'Number of dead' },
+	'PCR検査陽性者数': { 'en': 'Number of positive PCR test results' },
+	'感染症病床数は': { 'en': 'Number of bed for infection from ' },
+	'感染症病床数': { 'en': 'Number of bed for infection' },
+	'感染症指定医療機関の指定状況': { 'en': 'Status of Designated Medical Institutions for Infectious Diseases' },
+	'記載がない場合は': { 'en': 'If there are no that data, use these data ' },
+	'のデータを下記で選択したもので仮定。': { 'en': '' },
+	'増床が確認できるデータを': { 'en': 'We are looking for data that will confirm the increase count of bed.' },
+	'しております。': { 'en': '' },
+	'2020年2月回答': { 'en': 'answered at 2020-02' },
+	'一般社団法人 日本呼吸療法医学会': { 'en': 'Japanese Society of Respiratory Care Medicine' },
+	'公益社団法人 日本臨床工学技士会': { 'en': 'Japan Association for Clinical Engineers' },
+	'臨床工学技士': { 'en': 'CE' },
+	'総人工呼吸器取扱': { 'en': 'Total ventilator' },
+	'マスク専用人工呼吸器取扱': { 'en': 'Ventilator for mask' },
+	'マスク専用含む人工呼吸器取扱': { 'en': 'Total ventilator' },
+	'人工呼吸器取扱': { 'en': 'Ventilator' },
+	'人工呼吸器': { 'en': 'Ventilator' },
+	'ECMO装置取扱': { 'en': 'ECMO' },
+	'データ出典': { 'en': 'data source' },
+	'正しい手洗い': { 'en': 'Wash your hands' },
+	'密を避けた外出を！': { 'en': 'Keep distance!' },
+	'政府広報動画': { 'en': "Japan's TV" },
+	'国内事例': { 'en': 'Japan cases' },
+	'厚生労働省': { 'en': 'Ministry of Health, Labour and Welfare' },
+	'政府CIOポータル': { 'en': "Government Chief Information Officers' Portal, Japan" },
+	'出典元': { 'en' : 'source' },
+	'更新日時': { 'en': 'last update' },
+	'新型コロナウイルス': { 'en': 'Coronavirus ' },
+	'オープンデータ': { 'en': 'opendata ' },
+	'感染症病床 都道府県別一覧アプリ': { 'en': "Japan's bed for infection" },
+	'無症状病原体保有者を除く': { 'en': 'exculude asymptomatic pathogen holders' },
+	'をJSONに加工' : { 'en' : ' → JSON' },
+	'カラム地図': { 'en': 'The Tabular Maps' },
+	'福野泰介': { 'en': 'Taisuke Fukuno' },
+	'7x7都道府県': { 'en': 'Japan 7x7' },
+	'COVID-19対策プロジェクト': { 'en': 'Project against COVID-19' },
+	'平成31年4月1日現在': { 'en': 'in 2019-04-01' },
+	'全国': { 'en': 'Japan' },
+	'募集': { 'en': ' (details)' },
+	'許諾': { 'en': 'Permitted' },
+	'特定': { 'en': 'special' },
+	'一種': { 'en': 'type1' },
+	'二種': { 'en': 'type2' },
+	'感染症': { 'en': 'infectious disease' },
+	'結核': { 'en': 'tuberculosis' },
+	'一般・精神': { 'en': 'others' },
+	'提供': { 'en': ' provide' },
+	'人': { 'en': '' },
+	'台': { 'en': '' },
+	'床': { 'en': '' },
+	'、': { 'en': ', ' },
+	'とじる': { 'en': 'close' },
+	'アプリへ': { 'en': 'App' },
+	'公式サイトへ': { 'en': 'Official site' },
+	'累積' : { 'en': 'patients' },
+	'退院' : { 'en': 'discharges' },
+	'死者' : { 'en': 'deads' },
+}
+const getLang = function() {
+	if (document.location.hash.indexOf('en') >= 0) {
+		return "en"
+	}
+	let lang = (window.navigator.languages && window.navigator.languages[0]) || window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
+	return lang
+}
+const tx = function(s) {
+	let lang = getLang()
+	if (lang == 'ja')
+		return s
+	lang = 'en'
+//	return s
+
+	for (const ja in TX) {
+		for (;;) {
+			const n = s.indexOf(ja)
+			if (n < 0)
+				break
+			s = s.substring(0, n) + TX[ja][lang] + s.substring(n + ja.length)
+		}
+	}
+	for (let i = 0; i < PREF.length; i++) {
+		const pref = PREF[i]
+		for (;;) {
+			const n = s.indexOf(pref)
+			if (n < 0)
+				break
+			s = s.substring(0, n) + PREF_EN[i] + s.substring(n + pref.length)
+		}
+	}
+	return s
+}
+const translate = function() {
+	document.title = tx(document.title)
+	document.body.innerHTML = tx(document.body.innerHTML)
+	if (getLang() == 'en') {
+		document.getElementsByTagName('html')[0].setAttribute('lang', 'en')
+		/*
+		for (const css of document.styleSheets.cssRules) {
+			console.log(css)
+		}
+		*/
+	}
+}
 
 const link = function(url, name) {
 	return `<a href="${url}">${name}</a>`
@@ -264,6 +395,8 @@ const calcRatio = function(cnt, base) {
 	return fixfloat(cnt / base * 100, 1) + "%"
 }
 window.onload = async function() {
+	translate()
+
 	get("japan").innerHTML += makeJapanHTML()
 
 	const url = makeURL('covid19japan.json')
@@ -282,10 +415,9 @@ window.onload = async function() {
 		for (let j = 0; j < json_bed.area.length; j++) {
 			const a = json_bed.area[j]
 			if (a.name_ja == cbed['自治体名']) {
-				const n = parseInt(cbed['新型コロナウイルス対策感染病床数'])
+				const n = parseInt(cbed['新型コロナウイルス対策感染症病床数'])
 				a.sumc = n
 				a.sumc_src = cbed
-				console.log(a)
 			}
 		}
 	}
@@ -341,7 +473,7 @@ window.onload = async function() {
 		ventvent.textContent = addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))
 		ventecmo.textContent = addComma(v['ECMO装置取扱（台）'])
 		const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
-		ventsrc.innerHTML = `2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`
+		ventsrc.innerHTML = tx(`2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
 	}
 
 	const update = function() {
@@ -353,16 +485,16 @@ window.onload = async function() {
 		chk.onclick = update
 	}
 
-	description.textContent = '新型コロナウイルス感染症（国内事例） 現在患者数 / 感染病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く'
-	datasrc.innerHTML = 'データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON')
-	datasrc.innerHTML += " / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON")
+	description.textContent = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く')
+	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
+	datasrc.innerHTML += tx(" / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON"))
 
 	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
 	showAreas(json_link, url_link, {}, json, json_bed.total, getBedCount)
 	//description.textContent = json.description
 
-	datasrc.innerHTML += "<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>"
+	datasrc.innerHTML += tx("<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>")
 }
 const showChart = function(data) {
 	//console.log(data.data)
@@ -374,21 +506,21 @@ const showChart = function(data) {
 	detail.chart = new Chart(chart, {
 		type: 'pie',
 		data: {
-			labels: [ "現在患者数(" + npatients_c + ")", "推定病床残数(" + (nbed - npatients_c) + ")" ],
+			labels: [ tx("現在患者数(" + npatients_c + ")"), tx("推定病床残数(" + (nbed - npatients_c) + ")") ],
 			datasets: [{
 					backgroundColor: [ 'red', '#ccc' ],
 					data: [ npatients_c, nbed - npatients_c < 0 ? 0 : nbed - npatients_c ],
 			}]
 		}
 	})
-	detailtitle.innerHTML = (data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)"
-	detaildesc.innerHTML = `累積陽性者${data.data.npatients}人 累積退院${data.data.nexits}人 累積死亡${data.data.ndeaths}人 病床数${nbed}床`
+	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)")
+	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 感染症病床数:${nbed}床`)
 	const v = data.data.vent
 	const pi = parseInt
-	detailvent.innerHTML = `臨床工学技士${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱${addComma(v['ECMO装置取扱（台）'])}台`
+	detailvent.innerHTML = tx(`臨床工学技士:${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱:${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱:${addComma(v['ECMO装置取扱（台）'])}台`)
 	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典元（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
 	const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
-	detailvent.innerHTML += `<br>2020年2月回数 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`
+	detailvent.innerHTML += tx(`<br>2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
 
 	detail.style.display = "block"
 	detail.style.animation = "fadein .2s ease 0s 1 normal"
@@ -451,9 +583,9 @@ const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedC
 	jpall.onclick = function() {
 		showChart(this)
 	}
-	datasrc.innerHTML += ' /  ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON")
+	datasrc.innerHTML += tx(' /  ' + link('https://cio.go.jp/node/2581', '政府CIOポータル') + ' → ' + link(url, "JSON"))
 	// + "+" + link('https://stopcovid19.metro.tokyo.lg.jp/', '東京') + "/" + link('https://code4sabae.github.io/covid19/fukui.html', "福井") + "/" + link('http://yinouelab.info/covid19-kyoto/kyoto.html', '京都') + "/" + link('https://covid19-osaka.info/', '大阪') + "/" + link('https://yamaguchi.stopcovid19.jp/', '山口')
-	datasrc.innerHTML += ' /  ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON")
+	datasrc.innerHTML += tx(' /  ' + link('data/covid19pref.csv', '都道府県の新型コロナウイルス対策サイトCSV') + ' → ' + link(url, "JSON"))
 }
 const showPrefs = function(data, data_bed, getBedCount) {
 //	dump(data);
@@ -478,7 +610,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML = `${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`
+		c.innerHTML = tx(`${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
@@ -494,18 +626,26 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		}
 		c.data = a
 		
+		if (getLang() == 'en') {
+			c.style.fontSize = '1.2vw'
+			if (document.body.clientWidth / document.body.clientHeight < 3 / 4) // 修正必要
+				c.style.fontSize = '2vw'
+			
+		}
 	}
+	console.log(document.body.clientHeight, document.body.clientWidth, document.body.clientHeight / document.body.clientWidth, 4 / 3)
 	
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = `<div class=jpalllabel>全国</div>${sum} / ${getBedCount(data_bed.total)}<div class=pcrsum>現在患者数 / 感染病床数*<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`
+	jpall.innerHTML = tx(`<div class=jpalllabel>全国</div>${sum} / ${getBedCount(data_bed.total)}<div class=pcrsum>現在患者数 / 感染症病床数*<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`)
 	//jpall.style.fontSize = "1.5vw"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
 };
 
 // --
-var PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ];
+const PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ]
+const PREF_EN = [ "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamagata", "Fukushima", "Ibaraki", "Tochigi", "Gunma", "Saitama", "Chiba", "Tokyo", "Kanagawa", "Niigata", "Toyama", "Ishikawa", "Fukui", "Yamanashi", "Nagano", "Gifu", "Shizuoka", "Aichi", "Mie", "Shiga", "Kyoto", "Osaka", "Hyogo", "Nara", "Wakayama", "Tottori", "Shimane", "Okayama", "Hiroshima", "Yamaguchi", "Tokushima", "Kagawa", "Eihime", "Kochi", "Fukuoka", "Saga", "Nagasaki", "Kumamoto", "Oita", "Miyazaki", "Kagoshima", "Okinawa" ]
 
 
 // from CC0 カラム地図
@@ -565,24 +705,24 @@ const makeJapanHTML = function() {
 	</div>
 </div>
 
-<h1 id=title>COVID-19 Japan</h1><div class=subtitle>新型コロナウイルス対策ダッシュボード</div>
+<h1 id=title>COVID-19 Japan</h1><div class=subtitle id=subtitle>新型コロナウイルス対策ダッシュボード</div>
 
 <div class="content">
 
 <div id=summary>
 	<table id=summarytable>
-		<tr><th>感染病床使用率（参考）*</th><th>現在患者数</th></tr>
+		<tr><th>感染症病床使用率（参考）*</th><th>現在患者数</th></tr>
 		<tr><td><span id=useratio></span></thd><td><span id=ncurrentpatients>-</span>人</td></tr>
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
-		<tr><th colspan=2>感染病床数 <span id=sumc>-</span>床</th></tr>
+		<tr><th colspan=2>感染症病床数 <span id=sumc>-</span>床</th></tr>
 		<tr><th colspan=2><span class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台<br><span id=ventsrc></span><span></th></tr>
 	</table>
 	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
 	<div id=bedtypesbox>
 		<div id=beddescription>
-			*感染病床使用率（参考） = 現在患者数 / 感染症病床数<br>
+			*感染症病床使用率（参考） = 現在患者数 / 感染症病床数<br>
 			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」<br>
 			記載がない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」のデータを下記で選択したもので仮定。<br>
 			増床が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
@@ -612,7 +752,7 @@ const makeJapanHTML = function() {
 </div>
 
 <div class=pr>
-<div id='pr2'>自治体、医療機関の方へ<br><a href=https://fukuno.jig.jp/2799>新型コロナウイルス対策の感染病床のデータ提供お願いします</a></div>
+<div id='pr2'>自治体、医療機関の方へ<br><a href=https://fukuno.jig.jp/2799>新型コロナウイルス対策の感染症病床のデータ提供お願いします</a></div>
 <div id='pr'>
 	「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
 </div>
@@ -630,7 +770,7 @@ const makeJapanHTML = function() {
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSONに加工<br>
 DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」をJSONに加工<br>
-DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>都道府県別一覧アプリ</a>）<br>
+DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 DATA: 許諾「<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)</a>」 （<a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>）<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
@@ -638,6 +778,8 @@ DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナ
 
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 </div>
+
+<div class=lang><a href=#en onclick='javascript:location.hash="#en";location.reload()'>English</a> / <a href='#ja' onclick='javascript:location.hash="#ja";location.reload()'>Japanese</a></div>
 
 
 </body>
