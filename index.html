@@ -329,15 +329,19 @@ const TX = {
 	'シェア' : { 'en': 'share' },
 }
 const getLang = function() {
-	if (document.location.hash.indexOf('en') >= 0) {
+	const hash = document.location.hash
+	if (hash.indexOf('en') >= 0) {
 		return "en"
+	}
+	if (hash.indexOf('ja') >= 0) {
+		return "ja"
 	}
 	let lang = (window.navigator.languages && window.navigator.languages[0]) || window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
 	return lang
 }
 const tx = function(s) {
 	let lang = getLang()
-	if (lang == 'ja')
+	if (!lang || lang.indexOf('ja') >= 0)
 		return s
 	lang = 'en'
 //	return s
@@ -634,10 +638,9 @@ const showPrefs = function(data, data_bed, getBedCount) {
 			c.style.fontSize = '1.2vw'
 			if (document.body.clientWidth / document.body.clientHeight < 3 / 4) // 修正必要 サイズ変更に連動しない
 				c.style.fontSize = '2vw'
-			
 		}
 	}
-	console.log(document.body.clientHeight, document.body.clientWidth, document.body.clientHeight / document.body.clientWidth, 4 / 3)
+	//console.log(document.body.clientHeight, document.body.clientWidth, document.body.clientHeight / document.body.clientWidth, 4 / 3)
 	
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
