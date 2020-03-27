@@ -282,7 +282,7 @@ const TX = {
 	'公益社団法人 日本臨床工学技士会': { 'en': 'Japan Association for Clinical Engineers' },
 	'臨床工学技士': { 'en': 'CE' },
 	'総人工呼吸器取扱': { 'en': 'Total ventilator' },
-	かきスク専用人工呼吸器取扱': { 'en': 'Ventilator for mask' },
+	'マスク専用人工呼吸器取扱': { 'en': 'Ventilator for mask' },
 	'マスク専用含む人工呼吸器取扱': { 'en': 'Total ventilator' },
 	'人工呼吸器取扱': { 'en': 'Ventilator' },
 	'人工呼吸器': { 'en': 'Ventilator' },
@@ -336,7 +336,7 @@ const getLang = function() {
 	if (hash.indexOf('ja') >= 0) {
 		return "ja"
 	}
-	let lang = (window.navigator.languages && window.navigator.languages[0]) || window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
+	const lang = (window.navigator.languages && window.navigator.languages[0]) || window.navigator.language || window.navigator.userLanguage || window.navigator.browserLanguage
 	return lang
 }
 const tx = function(s) {
