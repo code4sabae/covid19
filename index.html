@@ -261,6 +261,8 @@ const TX = {
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
 	'感染症病床使用率': { 'en': 'Bed utilization rate' },
 	'参考': { 'en': 'assumption' },
+	'感染症病床数は': { 'en': 'Count of bed for infection from ' },
+	'を使用': { 'en' : '' },
 	'推定病床残数': { 'en': 'Remain of bed for infection' },
 	'感染症病床数': { 'en': 'Count of bed for infection' },
 	'現在患者数': { 'en': 'Current number of patients' },
@@ -270,11 +272,9 @@ const TX = {
 	'新型コロナウイルス感染症': { 'en': 'COVID-19' },
 	'死亡者': { 'en': 'Number of dead' },
 	'PCR検査陽性者数': { 'en': 'Number of positive PCR test results' },
-	'感染症病床数は': { 'en': 'Number of bed for infection from ' },
-	'感染症病床数': { 'en': 'Number of bed for infection' },
 	'感染症指定医療機関の指定状況': { 'en': 'Status of Designated Medical Institutions for Infectious Diseases' },
 	'記載がない場合は': { 'en': 'If there are no that data, use these data ' },
-	'のデータを下記で選択したもので仮定。': { 'en': '' },
+	'のデータを下記で仮定。': { 'en': '' },
 	'増床が確認できるデータを': { 'en': 'We are looking for data that will confirm the increase count of bed.' },
 	'しております。': { 'en': '' },
 	'2020年2月回答': { 'en': 'answered at 2020-02' },
@@ -422,7 +422,7 @@ window.onload = async function() {
 		for (let j = 0; j < json_bed.area.length; j++) {
 			const a = json_bed.area[j]
 			if (a.name_ja == cbed['自治体名']) {
-				const n = parseInt(cbed['新型コロナウイルス対策感染病床数'])
+				const n = parseInt(cbed['新型コロナウイルス対策感染症病床数'])
 				a.sumc = n
 				a.sumc_src = cbed
 				console.log(a)
@@ -732,8 +732,8 @@ const makeJapanHTML = function() {
 	<div id=bedtypesbox>
 		<div id=beddescription>
 			*感染症病床使用率（参考） = 現在患者数 / 感染症病床数<br>
-			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」<br>
-			記載がない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」のデータを下記で選択したもので仮定。<br>
+			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」を使用<br>
+			記載がない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」のデータを下記で仮定。<br>
 			増床が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
 		</div>
 		<div id=bedtypes>
@@ -780,17 +780,18 @@ const makeJapanHTML = function() {
 <div id=credit class="credit">
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSONに加工<br>
-DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」をJSONに加工<br>
+DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a><br>
 DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 DATA: 許諾「<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)</a>」 （<a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>）<br>
 LAYOUT: CC0 <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
 DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナウイルス感染症対策プロジェクト<br>
 
+<div class=lang><a href=#en onclick='javascript:location.hash="#en";location.reload()'>English</a> / <a href='#ja' onclick='javascript:location.hash="#ja";location.reload()'>Japanese</a></div>
+
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 </div>
 
-<div class=lang><a href=#en onclick='javascript:location.hash="#en";location.reload()'>English</a> / <a href='#ja' onclick='javascript:location.hash="#ja";location.reload()'>Japanese</a></div>
 
 
 </body>
