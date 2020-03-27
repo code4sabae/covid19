@@ -6,8 +6,8 @@
 <meta property="og:description" content="日本の感染症病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200326.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200326.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200326-2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200326-2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -418,9 +418,10 @@ window.onload = async function() {
 		for (let j = 0; j < json_bed.area.length; j++) {
 			const a = json_bed.area[j]
 			if (a.name_ja == cbed['自治体名']) {
-				const n = parseInt(cbed['新型コロナウイルス対策感染症病床数'])
+				const n = parseInt(cbed['新型コロナウイルス対策感染病床数'])
 				a.sumc = n
 				a.sumc_src = cbed
+				console.log(a)
 			}
 		}
 	}
