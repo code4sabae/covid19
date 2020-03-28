@@ -262,6 +262,7 @@ const TX = {
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
 	'感染症病床使用率': { 'en': 'Bed utilization rate' },
 	'参考': { 'en': 'assumption' },
+	'集約版': { 'en': 'summary' },
 	'感染症病床数は': { 'en': 'Count of bed for infection from ' },
 	'を使用': { 'en' : '' },
 	'推定病床残数': { 'en': 'Remain of bed for infection' },
@@ -780,7 +781,7 @@ const makeJapanHTML = function() {
 
 <div id=credit class="credit">
 APP: CC BY <a href=https://fukuno.jig.jp/2788>福野泰介 - 厚生労働省提供 新型コロナウイルス感染者PDFデータをJSON-API化して公開</a> <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
-DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」をJSONに加工<br>
+DATA: CC BY「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan.txt>TXT</a> (集約版 <a href=http://app.sabae.cc/api/covid19japan_summary.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan_summary.txt>TXT</a>)<br>
 DATA: CC BY 「<a href=https://docs.google.com/spreadsheets/d/1U9MF6eoeWHG5APvE9KY8_LSmhJ02bA2dzO5CprnBE1o/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a><br>
 DATA: CC BY「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: CC BY「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
