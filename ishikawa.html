@@ -9,6 +9,10 @@
 
 const url = "https://app.sabae.cc/api/covid19ishikawa.json"
 async function update() {
+  var noft = window.document.getElementById("noftication_refreshed");
+  if(noft !== void 0&&noft !== null){
+    noft.textContent = "更新しています....";
+  }
   const data = await (await fetch(url)).json()
   console.log(data)
   dump(data)
@@ -40,6 +44,14 @@ async function update() {
   `
 
   //console.log(ncontacts, nquerents, npatients, npatients2, ndischarges, ndischarges2)
+  if(noft !== void 0&&noft !== null){
+    noft.textContent = "更新しました！";
+    setTimeout(function(){
+      noft.textContent = "　";
+    }
+    ,3000)
+  }
+
 }
 window.onload = update()
 setInterval(update, 600000)
@@ -101,6 +113,20 @@ a {
 .buttons{
   text-align: center;
 }
+#button_of_refresh {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  border:4px solid var(--main-color);
+  font:16px sans-serif;
+  color: #333;
+  line-height: 50px;
+  overflow: hidden;
+  width:200px;
+}
+#noftication_refreshed{
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -108,8 +134,9 @@ a {
 <h1 id=title>COVID-19 Ishikawa</h1><div class=subtitle>石川県 新型コロナウイルスオープンデータサマリー</div>
 <div id="main"></div>
 <div class="buttons">
-  <button type="button" onclick="update()">更新</button>
+  <button type="button" onclick="update()" id="button_of_refresh">クリックで更新</button>
 </div>
+<p id="noftication_refreshed">　</p>
 <div id="link">
 
 <div id="src">
