@@ -97,6 +97,7 @@ h1 {
 	margin: .5em 0 .5em 0;
 }
 #beddescription {
+	font-size: 110%;
 	margin: .5em 0 .5em 0;
 }
 
@@ -280,10 +281,13 @@ const TX = {
 	'東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介': { 'en': "Introduction of the against COVID-19 site by Tokyo Metropolitan Government using the open source" },
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
 	'感染症病床使用率': { 'en': 'Bed utilization rate' },
-	'参考': { 'en': 'assumption' },
+	'新型コロナウイルス対策感染症病床': { 'en': 'Anti-Coronavirus bed data ' },
+	'お願いします': { 'en': '' },
+	'データ提供': { 'en': ' Please regist from here' },
+	'参考': { 'en': 'estinate' },
 	'登録フォーム': { 'en': 'regist form' },
 	'集約版': { 'en': 'summary' },
-	'感染症病床数は': { 'en': 'Count of bed for infection from ' },
+	'感染症病床数は': { 'en': 'Count of bed for infection from' },
 	'を使用': { 'en' : '' },
 	'推定病床残数': { 'en': 'Remain of bed for infection' },
 	'感染症病床数': { 'en': 'Count of bed for infection' },
@@ -295,8 +299,8 @@ const TX = {
 	'死亡者': { 'en': 'Number of dead' },
 	'PCR検査陽性者数': { 'en': 'Number of positive PCR test results' },
 	'感染症指定医療機関の指定状況': { 'en': 'Status of Designated Medical Institutions for Infectious Diseases' },
-	'記載がない場合は': { 'en': 'If there are no that data, use these data ' },
-	'のデータを下記で仮定。': { 'en': '' },
+	'記載ない場合は': { 'en': 'If there are no that data, use these data ' },
+	'を下記条件で仮定。': { 'en': '' },
 	'増床が確認できるデータを': { 'en': 'We are looking for data that will confirm the increase count of bed.' },
 	'しております。': { 'en': '' },
 	'2020年2月回答': { 'en': 'answered at 2020-02' },
@@ -319,7 +323,7 @@ const TX = {
 	'出典元': { 'en' : 'source' },
 	'更新日時': { 'en': 'last update' },
 	'新型コロナウイルス': { 'en': 'Coronavirus ' },
-	'オープンデータ': { 'en': 'opendata ' },
+	'オープンデータ': { 'en': ' opendata' },
 	'感染症病床 都道府県別一覧アプリ': { 'en': "Japan's bed for infection" },
 	'無症状病原体保有者を除く': { 'en': 'exculude asymptomatic pathogen holders' },
 	'をJSONに加工' : { 'en' : ' → JSON' },
@@ -342,6 +346,7 @@ const TX = {
 	'台': { 'en': '' },
 	'床': { 'en': '' },
 	'、': { 'en': ', ' },
+	'の': { 'en': ' ' },
 	'とじる': { 'en': 'close' },
 	'アプリへ': { 'en': 'App' },
 	'公式サイトへ': { 'en': 'Official site' },
@@ -755,7 +760,7 @@ const makeJapanHTML = function() {
 		<div id=beddescription>
 			*感染症病床使用率（参考） = 現在患者数 / 感染症病床数<br>
 			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用<br>
-			記載がない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」のデータを下記で仮定。<br>
+			記載ない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」を下記条件で仮定。<br>
 			増床が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
 		</div>
 		<div id=bedtypes>
