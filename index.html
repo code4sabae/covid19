@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" lang="ja">
 <head>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -57,7 +57,7 @@ h1 {
 	display: inline-block;
 	vertical-align: middle;
 	max-width: 40vw;
-	margin-top: 1vw;
+	margin-top: 0.3vw;
 	margin-right: 2vw;
 	margin-left: 2vw;
 }
@@ -78,7 +78,7 @@ h1 {
 #summarytable td {
 	background-color: var(--main-color);
 	color: white;
-	font-size: 4.5vw;
+	font-size: 4.0vw;
 }
 #summarydesc {
 	margin-bottom: 1em;
@@ -87,18 +87,22 @@ h1 {
 	font-size: 70%;
 }
 #ventsrc {
-	font-size: 65%;
+	font-size: 60%;
 	font-weight: normal;
 }
 #lastupdatebox {
-	margin-left: 1em;
 }
-#bedtypes {
-	margin: .5em 0 .5em 0;
+.bedformula {
+	font-size: 110%;
+	font-weight: bold;
+	margin-bottom: .3em;
 }
 #beddescription {
 	font-size: 110%;
 	margin: .5em 0 .5em 0;
+}
+#bedtypes {
+	margin: .1em 0 .5em 0;
 }
 
 .content {
@@ -185,7 +189,7 @@ h1 {
 #detailvent {
 	font-size: 2vmin;
 	text-align: center;
-	margin: .5vmin;
+	margin: 0.5vmin;
 }
 #chart {
 	width: 100%;
@@ -300,8 +304,8 @@ const TX = {
 	'PCR検査陽性者数': { 'en': 'Number of positive PCR test results' },
 	'感染症指定医療機関の指定状況': { 'en': 'Status of Designated Medical Institutions for Infectious Diseases' },
 	'記載ない場合は': { 'en': 'If there are no that data, use these data ' },
-	'を下記条件で仮定。': { 'en': '' },
-	'増床が確認できるデータを': { 'en': 'We are looking for data that will confirm the increase count of bed.' },
+	'下記合計と仮定': { 'en': '' },
+	'現在感染症床数が確認できるデータを': { 'en': 'We are looking for data that will confirm the increase count of bed.' },
 	'しております。': { 'en': '' },
 	'2020年2月回答': { 'en': 'answered at 2020-02' },
 	'一般社団法人 日本呼吸療法医学会': { 'en': 'Japanese Society of Respiratory Care Medicine' },
@@ -321,7 +325,7 @@ const TX = {
 	'厚生労働省': { 'en': 'Ministry of Health, Labour and Welfare' },
 	'政府CIOポータル': { 'en': "Government Chief Information Officers' Portal, Japan" },
 	'出典元': { 'en' : 'source' },
-	'更新日時': { 'en': 'last update' },
+	'更新日': { 'en': 'last update' },
 	'新型コロナウイルス': { 'en': 'Coronavirus ' },
 	'オープンデータ': { 'en': ' opendata' },
 	'感染症病床 都道府県別一覧アプリ': { 'en': "Japan's bed for infection" },
@@ -454,13 +458,14 @@ window.onload = async function() {
 				a.sumc_src = cbed
 				console.log(a)
 			}
+			json.area[j].bed = a
 		}
 	}
 
 	const chkbed = [ bedt, bed1, bed2, bedk, beds ]
 	const namebed = [ 'sumt', 'sum1', 'sum2', 'sumk', 'sums' ]
 	const getBedCount = function(json) {
-		if (json.sumc) {
+		if (usebednow.checked && json.sumc) {
 			return json.sumc
 		}
 		let cnt = 0
@@ -519,6 +524,7 @@ window.onload = async function() {
 	for (const chk of chkbed) {
 		chk.onclick = update
 	}
+	usebednow.onclick = update
 
 	description.textContent = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く')
 	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
@@ -550,12 +556,18 @@ const showChart = function(data) {
 	})
 	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)")
 	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 感染症病床数:${nbed}床`)
+	console.log(data.data)
+	const bed = data.data.bed
+	if (bed.sumc_src) {
+		console.log(bed.sumc_src)
+		detaildesc.innerHTML += tx(`<br>感染症病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス感染症病床数オープンデータ</a>`)
+	}
 	const v = data.data.vent
 	const pi = parseInt
 	detailvent.innerHTML = tx(`臨床工学技士:${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱:${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱:${addComma(v['ECMO装置取扱（台）'])}台`)
 	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典元（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
 	const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
-	detailvent.innerHTML += tx(`<br>2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
+	detailvent.innerHTML += tx(`<br>2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会 公益社団法人 日本臨床工学技士会</a>）`)
 
 	detail.style.display = "block"
 	detail.style.animation = "fadein .2s ease 0s 1 normal"
@@ -747,28 +759,28 @@ const makeJapanHTML = function() {
 
 <div id=summary>
 	<table id=summarytable>
-		<tr><th>感染症病床使用率（参考）*</th><th>現在患者数</th></tr>
+		<tr><th>感染症病床使用率(参考)*</th><th>現在患者数</th></tr>
 		<tr><td><span id=useratio></span></thd><td><span id=ncurrentpatients>-</span>人</td></tr>
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
 		<tr><th colspan=2>感染症病床数 <span id=sumc>-</span>床</th></tr>
-		<tr><th colspan=2><span class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台<br><span id=ventsrc></span><span></th></tr>
+		<tr><th colspan=2><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></th></tr>
 	</table>
-	<div id=lastupdatebox>更新日時: <span id=lastUpdate></span></div>
+	<div id=lastupdatebox>更新日: <span id=lastUpdate></span></div>
 	<div id=bedtypesbox>
 		<div id=beddescription>
-			*感染症病床使用率（参考） = 現在患者数 / 感染症病床数<br>
-			感染症病床数は「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用<br>
-			記載ない場合は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」を下記条件で仮定。<br>
-			増床が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
-		</div>
-		<div id=bedtypes>
-			<label><input type=checkbox id='bedt' checked>特定</label>
-			<label><input type=checkbox id='bed1' checked>一種</label>
-			<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
-			<label><input type=checkbox id='bedk'>二種（結核）</label>
-			<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+			<div class=bedformula>* 感染症病床使用率(参考) = 現在患者数 / 感染症病床数</div>
+			感染症病床数は「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況</a>」の下記合計と仮定<br>
+			<div id=bedtypes>
+				<label><input type=checkbox id='bedt' checked>特定</label>
+				<label><input type=checkbox id='bed1' checked>一種</label>
+				<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
+				<label><input type=checkbox id='bedk'>二種（結核）</label>
+				<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+			</div>
+			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a><br>
+			現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
 		</div>
 	</div>
 	<!--
