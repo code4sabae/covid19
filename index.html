@@ -526,7 +526,7 @@ window.onload = async function() {
 	}
 	usebednow.onclick = update
 
-	description.textContent = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数） ※無症状病原体保有者を除く')
+	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数） <s>※無症状病原体保有者を除く</s>')
 	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
 	datasrc.innerHTML += tx(" / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON"))
 
