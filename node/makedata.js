@@ -15,10 +15,14 @@ const fetchViaProxy = async function(url) {
 const fetchGoogleSpreadSheet = async function(key) {
 	const csvurl = `https://docs.google.com/spreadsheets/d/e/${key}/pub?gid=0&single=true&output=csv`
   const csv = await fetchViaProxy(csvurl)
-  fs.writeFileSync('vscovid19-data.csv', csv)
   const data = util.convertCSVtoArray(csv)
 	//data.shift()
 	return util.csv2json(data)
+}
+const fetchGoogleSpreadSheetCSV = async function(key) {
+	const csvurl = `https://docs.google.com/spreadsheets/d/e/${key}/pub?gid=0&single=true&output=csv`
+  const csv = await fetchViaProxy(csvurl)
+  return csv
 }
 
 const makeSupport = async function() {
@@ -36,10 +40,15 @@ const makeCovid19 = async function() {
   }
 }
 const makeBedData = async function() {
-  const key = '2PACX-1vQRpNRUT8_oXjgxsZd1KL6zAU_zKSUe-Z80DtcazxhmDMtO11FvPWvxUnbpcleFgbu3k2RYmAVqu1xc'
-  const json = await fetchGoogleSpreadSheet(key)
+  //const key = '2PACX-1vQRpNRUT8_oXjgxsZd1KL6zAU_zKSUe-Z80DtcazxhmDMtO11FvPWvxUnbpcleFgbu3k2RYmAVqu1xc'
+  const key = '2PACX-1vQEUdBj10hsT18kpdqluHmVfjh5hBXgLW0naLaMf6cXTRF5vd8ezOmwj49s815tJ1oMmamLmMsQF1Lp'
+  const csv = await fetchGoogleSpreadSheetCSV(key)
+  const fn = '../data/bedforinfection_current'
+  fs.writeFileSync(fn + '.csv', csv)
+  const data = util.convertCSVtoArray(csv)
+	const json = util.csv2json(data)
   console.log(json)
-  fs.writeFileSync('../data/bedforinfection_current.json', JSON.stringify(json))
+  fs.writeFileSync(fn + '.json', JSON.stringify(json))
 }
 /*
   9時-12時、
