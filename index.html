@@ -453,7 +453,7 @@ const fetchCSV = async function(url) {
 const makeURL = function(path) {
 	//const base = 'http://localhost:8003/api/'
 	const base = 'data/'
-	return base + path
+	return base + path + "?" + new Date().getTime() // ignore cache
 }
 const calcRatio = function(cnt, base) {
 	if (base == 0 || isNaN(cnt) || isNaN(base))
