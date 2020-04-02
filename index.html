@@ -239,13 +239,34 @@ h1 {
 	padding: .3vw 2vw;
 }
 #pr3 {
-	display: block;
+	display: inline-block;
 	text-align: center;
 	margin: 1vw;
 	x-width: 50vw;
 }
 #pr3 img {
 	width: 30vw;
+}
+#pr4 {
+	display: inline-block;
+	margin: 1vw;
+}
+#pr4 iframe {
+	display: inline-block;
+	width: 30vw;
+	height: 6.8vw;
+	border: #888 solid 2px;
+	box-sizing: border-box;
+	padding-top: .5vw;
+}
+@media (max-width: 480px) {
+	#pr3 img {
+		width: 90vw;
+	}
+	#pr4 iframe {
+		width: 90vw;
+		height: 19.2vw;
+	}
 }
 .lang {
 	text-align: center;
@@ -565,7 +586,7 @@ const showChart = function(data) {
 	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 感染症病床数:${nbed}床`)
 	console.log(data.data)
 	const bed = data.data.bed
-	if (bed.sumc_src) {
+	if (bed && bed.sumc_src) {
 		console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>感染症病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス感染症病床数オープンデータ</a>`)
 	}
@@ -809,9 +830,12 @@ const makeJapanHTML = function() {
 	<div id='pr'>
 		「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
 	</div>
+	<div id='pr4'>
+		<iframe src='https://tk3-805-12365.vw.sakura.ne.jp:3443/mini' scrolling=no></iframe>
+	</div>
 	<div id='pr3'>
 		<a href=https://vscovid19.code4japan.org/>
-			<img width=300 alt='VS COVID-19 #民間支援情報ナビ' src=vscovid19-banner-webp.webp>
+			<img alt='VS COVID-19 #民間支援情報ナビ' src=vscovid19-banner-webp.webp>
 		</a>
 	</div>
 </div>
@@ -845,6 +869,8 @@ DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナ
 <div id='media'>
 	「<a href=https://www.itmedia.co.jp/news/articles/2003/26/news112.html>「ひっ迫した状況が一目瞭然」新型コロナ病床数まとめサイト、大反響に「バグを疑った」と開発者仰天　“医療現場の声”励みにスピード公開 - ITmedia NEWS</a>」<br>
 	「<a href=https://www.nikkei.com/article/DGXMZO57336190X20C20A3LB0000/>新型コロナ患者数など一覧　鯖江の起業家ら専用サイト　　:日本経済新聞</a>」<br>
+	「<a href=https://news.yahoo.co.jp/byline/kutsunasatoshi/20200328-00170113/>都内の感染症指定医療機関で何が起こっているのか(忽那賢志) - 個人 - Yahoo!ニュース</a>」<br>
+	「<a href=https://business.nikkei.com/atcl/seminar/19/00058/033100045/>アリババは新型コロナ対策集を公開　広がるオープンイノベーション：日経ビジネス電子版</a><br>
 </div>
 
 </body>
