@@ -15,8 +15,8 @@
 <meta property="og:description" content="日本の感染症病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200331.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200331.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200401.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200401.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -244,7 +244,7 @@ h1 {
 	margin: 1vw;
 	x-width: 50vw;
 }
-#pr3 img {
+#pr3 img, #pr3 picture {
 	width: 30vw;
 }
 #pr4 {
@@ -835,7 +835,10 @@ const makeJapanHTML = function() {
 	</div>
 	<div id='pr3'>
 		<a href=https://vscovid19.code4japan.org/>
-			<img alt='VS COVID-19 #民間支援情報ナビ' src=vscovid19-banner-webp.webp>
+			<picture>
+				<source alt='VS COVID-19 #民間支援情報ナビ' srcset="vscovid19-banner.webp" type="image/webp">
+				<img alt='VS COVID-19 #民間支援情報ナビ' src="vscovid19-banner.png">
+			</picture>
 		</a>
 	</div>
 </div>
