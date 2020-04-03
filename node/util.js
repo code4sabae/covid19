@@ -15,7 +15,7 @@ exports.simplejson2txt = function(json) {
   res.push('')
   return res.join('\r\n')
 }
-exports.convertCSVtoArray = function(s) {
+exports.decodeCSV = function(s) {
 	const res = []
 	let st = 0
 	let line = []
@@ -85,6 +85,29 @@ exports.convertCSVtoArray = function(s) {
 		res.push(line)
 	return res
 }
+exports.convertCSVtoArray = exports.decodeCSV
+
+exports.encodeCSV = function(csvar) {
+  let s = []
+  for (let i = 0; i < csvar.length; i++) {
+    let s2 = []
+    const line = csvar[i]
+    for (let j = 0; j < line.length; j++) {
+      const v = line[j]
+      if (v == undefined || v.length == 0) {
+        s2.push("")
+      } else if (parseInt(v) == v) {
+        s2.push(v)
+      } else if (v.indexOf('"') >= 0) {
+        s2.push('"' + v.replace(/\"/g, '""') + '"')
+      } else {
+        s2.push('"' + v + '"')
+      }
+    }
+    s.push(s2.join(','))
+  }
+  return s.join('\n')
+}
 exports.csv2json = function(csv) {
 	const res = []
 	const head = csv[0]
@@ -96,6 +119,51 @@ exports.csv2json = function(csv) {
 		res.push(d)
 	}
 	return res
+}
+exports.json2csv = function(json) {
+  if (!Array.isArray(json)) {
+    throw 'is not array! at json2csv'
+  }
+  const head = []
+  for (const d of json) {
+    for (const name in d) {
+      if (head.indexOf(name) == -1) {
+        head.push(name)
+      }
+    }
+  }
+  const res = [ head ]
+  for (const d of json) {
+    const line = []
+    for (let i = 0; i < head.length; i++) {
+      const v = d[head[i]]
+      if (!v) {
+        line.push('')
+      } else {
+        line.push(v)
+      }
+    }
+    res.push(line)
+  }
+  return res
+}
+
+exports.writeCSV = function(fnbase, csvar) {
+  const s = this.encodeCSV(csvar)
+  fs.writeFileSync(fnbase + '.csv', s, 'utf-8')
+  fs.writeFileSync(fnbase + '.sjis.csv', iconv.encode(s, 'ShiftJIS'))
+  fs.writeFileSync(fnbase + '.json', JSON.stringify(this.csv2json(csvar)))
+}
+exports.readCSV = function(fnbase) {
+  try {
+    const data = fs.readFileSync(fnbase + '.csv', 'utf-8')
+    const csv = this.decodeCSV(data)
+    return csv
+  } catch (e) {
+    const data = fs.readFileSync(fnbase + '.json', 'utf-8')
+    const json = JSON.parse(data)
+    return this.json2csv(json)
+  }
 }
 exports.fix0 = function(n, beam) {
   const s = "000000000" + n
@@ -281,7 +349,7 @@ exports.getLastUpdateOfCache = function(url, path) {
 }
 
 exports.JAPAN_PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ]
-exports.JAPAN_PREF_EN = [ "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamagata", "Fukushima", "Ibaraki", "Tochigi", "Gunma", "Saitama", "Chiba", "Tokyo", "Kanagawa", "Niigata", "Toyama", "Ishikawa", "Fukui", "Yamanashi", "Nagano", "Gifu", "Shizuoka", "Aichi", "Mie", "Shiga", "Kyoto", "Osaka", "Hyogo", "Nara", "Wakayama", "Tottori", "Shimane", "Okayama", "Hiroshima", "Yamaguchi", "Tokushima", "Kagawa", "Eihime", "Kochi", "Fukuoka", "Saga", "Nagasaki", "Kumamoto", "Oita", "Miyazaki", "Kagoshima", "Okinawa" ]
+exports.JAPAN_PREF_EN = [ "Hokkaido", "Aomori", "Iwate", "Miyagi", "Akita", "Yamagata", "Fukushima", "Ibaraki", "Tochigi", "Gunma", "Saitama", "Chiba", "Tokyo", "Kanagawa", "Niigata", "Toyama", "Ishikawa", "Fukui", "Yamanashi", "Nagano", "Gifu", "Shizuoka", "Aichi", "Mie", "Shiga", "Kyoto", "Osaka", "Hyogo", "Nara", "Wakayama", "Tottori", "Shimane", "Okayama", "Hiroshima", "Yamaguchi", "Tokushima", "Kagawa", "Ehime", "Kochi", "Fukuoka", "Saga", "Nagasaki", "Kumamoto", "Oita", "Miyazaki", "Kagoshima", "Okinawa" ]
 
 exports.makeURL = function(url, relurl) {
   if (relurl.startsWith("http://") || relurl.startsWith("https://"))
@@ -316,6 +384,9 @@ const test = async function() {
 }
 
 if (require.main === module) {
-  test()
+//  test()
+  for (let i = 0; i < this.JAPAN_PREF.length; i++) {
+    console.log((i + 1) + '\t' + this.JAPAN_PREF[i] + "\t" + this.JAPAN_PREF_EN[i])
+  }
 } else {
 }

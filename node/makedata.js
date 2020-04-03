@@ -54,13 +54,20 @@ const makeBedData = async function() {
   9時-12時、
 */
 
-const makeCovid19Pref = function() {
+const makeCovid19Pref = async function() {
+  const key = '2PACX-1vS-OrSJv81VIWWrQ0W6vndw8HEjtztkWY39E97v-oFR0tYF0chwV-duQUkKIOSJPj57IbVuqGZO-C_K'
+  const json = await fetchGoogleSpreadSheet(key)
+  //console.log(data)
+  //console.log(csv)
+  /*
   const data = fs.readFileSync('covid19pref.csv', 'utf-8')
   //console.log(data)
   const csv = util.convertCSVtoArray(data)
   //console.log(csv)
   const json = util.csv2json(csv)
   console.log(json)
+  */
+  /*
   const PREF = util.JAPAN_PREF
   const PREF_EN = util.JAPAN_PREF_EN
   for (let i = 0; i < json.length; i++) {
@@ -72,15 +79,17 @@ const makeCovid19Pref = function() {
     }
     json[i].pref = PREF_EN[i]
   }
-  //console.log(JSON.stringify(json))
-  fs.writeFileSync('covid19pref.json', JSON.stringify(json))
+  */
+  util.writeCSV('../data/covid19pref', util.json2csv(json))
 
+  //console.log(JSON.stringify(json))
+  //fs.writeFileSync('covid19pref.json', JSON.stringify(json))
 }
 const main = async function() {
   // makeSupport()
   //makeCovid19()
-  makeBedData()
-
+  makeCovid19Pref()
+  //makeBedData()
 }
 if (require.main === module) {
   main()
