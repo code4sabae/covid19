@@ -199,13 +199,15 @@ const text2jsonWithInspections = function(txt, url, dt) {
   res.area = area
   return res
 }
+
 const text2jsonWithCurrentPatients = function(txt, url, dt) {
   const parseDate = function(s) {
     const fix0 = util.fix0
     s = util.toHalf(s)
     // ３月18日(水)
     // 3月18日(水) 対前日比
-    let num = s.match(/(\d+)月(\d+)日\(.\) .+/)
+    //let num = s.match(/(\d+)月(\d+)日\(.\) .+/)
+    let num = s.match(/(\d+)月(\d+)日/)
     if (num) {
       const y = new Date().getFullYear()
       const m = parseInt(num[1])
@@ -226,7 +228,18 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
   res.ndeaths = 0
   res.ncurrentpatients = 0
   //res.ninspections = 0
-  res.lastUpdate = parseDate(ss[0])
+  const dt2 = parseDate(ss[0])
+  if (dt2 != "--") {
+    res.lastUpdate = dt2
+  } else {
+    for (let i = 46; i < ss.length; i++) {
+      const dt3 = parseDate(ss[46])
+      if (dt3 != "--") {
+        res.lastUpdate = dt3
+        break
+      }
+    }
+  }
   
   const area = getAreas()
   for (let i = 0; i < area.length; i++) {
@@ -316,7 +329,9 @@ const main = async function() {
   const txt = await pdf2text.pdf2text(fn + ".pdf")
   const json = text2jsonWithCurrentPatients(txt, url, res.dt)
   console.log(json)
-  fs.writeFileSync(fn + ".json", JSON.stringify(json))
+  const sjson = JSON.stringify(json)
+  fs.writeFileSync(fn + ".json", sjson)
+  fs.writeFileSync('../data/covid19japan.json', sjson)
 }
 if (require.main === module) {
   main()
