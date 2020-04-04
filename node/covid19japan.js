@@ -338,7 +338,7 @@ const makeCovid19JapanList = function() {
   const path = '../data/covid19japan/'
   const list = fs.readdirSync(path)
   const fndest = '../data/covid19japan-all.json'
-  
+
   //console.log(list)
   // rename
   /*
@@ -369,8 +369,8 @@ const makeCovid19JapanList = function() {
   fs.writeFileSync(fndest, sjson)
 }
 const main = async function() {
-  // await makeCovid19Japan()
-  makeCovid19JapanList()
+  await makeCovid19Japan()
+  //makeCovid19JapanList()
 }
 if (require.main === module) {
   main()
