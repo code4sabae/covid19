@@ -25,7 +25,7 @@ APP：CC BY <a href='https://fukuno.jig.jp/2779'>fukuno.jig.jp</a><br>
 
 # COVID-19 Fukui
 https://code4sabae.github.io/covid19/fukui.html  
-<img src=https://code4sabae.github.io/covid19/fukui.png style='width:100%'>
+<img src=https://code4sabae.github.io/covid19/fukui_ogp.png style='width:100%'>
 https://fukuno.jig.jp/2784  
 
 # COVID-19 Ishikawa
