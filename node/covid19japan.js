@@ -369,8 +369,8 @@ const makeCovid19JapanList = function() {
   fs.writeFileSync(fndest, sjson)
 }
 const main = async function() {
-  await makeCovid19Japan()
-  //makeCovid19JapanList()
+  //await makeCovid19Japan()
+  makeCovid19JapanList()
 }
 if (require.main === module) {
   main()
