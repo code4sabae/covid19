@@ -315,23 +315,62 @@ const test2 = async function() {
   const json = text2jsonWithCurrentPatients(txt, "url", "2020-03-19")
   console.log(json)
 }
-const main = async function() {
+const makeCovid19Japan = async function() {  
   const html = await (await fetch(URL)).text()
   console.log(html)
   const title = '国内事例における都道府県別の患者報告数'
   const res = parseLink(html, title)
   console.log(res)
 
+  const path = '../data/covid19japan/'
   const url = res.url
   const fn = url.substring(url.lastIndexOf('/') + 1)
   const pdf = await (await fetch(url)).arrayBuffer()
-	fs.writeFileSync(fn + ".pdf", new Buffer.from(pdf), 'binary')
-  const txt = await pdf2text.pdf2text(fn + ".pdf")
+	fs.writeFileSync(fn, new Buffer.from(pdf), 'binary')
+  const txt = await pdf2text.pdf2text(fn)
   const json = text2jsonWithCurrentPatients(txt, url, res.dt)
   console.log(json)
   const sjson = JSON.stringify(json)
   fs.writeFileSync(fn + ".json", sjson)
   fs.writeFileSync('../data/covid19japan.json', sjson)
+}
+const makeCovid19JapanList = function() {
+  const path = '../data/covid19japan/'
+  const list = fs.readdirSync(path)
+  const fndest = '../data/covid19japan-all.json'
+  
+  //console.log(list)
+  // rename
+  /*
+  for (const f of list) {
+    console.log(f)
+    if (f.endsWith('.pdf.pdf')) {
+      fs.renameSync(path + f, path + f.substring(0, f.length - 4))
+    }
+  }
+  */
+  const all = []
+  for (const f of list) {
+    if (f.endsWith('.pdf.json')) {
+      const data = JSON.parse(fs.readFileSync(path + f, 'utf-8'))
+      console.log(f, data.lastUpdate)
+      data.srcurl_pdf_archived = 'https://www.stopcovid19.jp/data/covid19japan/' + f.substring(0, f.length - 4)
+      all.push(data)
+    }
+  }
+  const pi = function(d) {
+    return parseInt(d.replace(/-/g, ""))
+  }
+  all.sort(function(a, b) {
+    return pi(a.lastUpdate) - pi(b.lastUpdate)
+  })
+  console.log(all)
+  const sjson = JSON.stringify(all)
+  fs.writeFileSync(fndest, sjson)
+}
+const main = async function() {
+  // await makeCovid19Japan()
+  makeCovid19JapanList()
 }
 if (require.main === module) {
   main()

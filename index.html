@@ -13,8 +13,11 @@
 <title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード</title>
 <meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード"/>
 <meta property="og:description" content="日本の感染症病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用"/>
+<meta name="theme-color" content="#AD232F"/>
+<meta name="msapplication-TileColor" content="##AD232F"/>
 <link rel="icon" type="image/png" href="covid19japan-icon.png"/>
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
+<meta name="msapplication-square310x310logo" content="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200402.png"/>
 <meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200402.png"/>
@@ -573,7 +576,10 @@ const main = async function() {
 
 	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
-	showAreas(json_link, url_link, {}, json, json_bed.total, getBedCount)
+	const url_cio = makeURL('covid19cio.json')
+	const json_cio = await fetchJSON(url_cio)
+	console.log(json_cio)
+	showAreas(json_link, url_link, json_cio, json, json_bed.total, getBedCount)
 	//description.textContent = json.description
 
 	datasrc.innerHTML += tx("<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>")
@@ -638,18 +644,10 @@ const showChart = function(data) {
 document.addEventListener("DOMContentLoaded", main)
 
 const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedCount) {
-	console.log(bed_total)
-	jsonapp = { area: [] }
+	//console.log(bed_total)
+	//jsonapp = { area: [] }
 
-	//jsonapp.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
-	//jsonapp.area.push({ name_jp: "福井県", url: "https://code4sabae.github.io/covid19/fukui.html" })
-	jsonapp.area.push({ name_jp: "福井県", url: "https://covid19-fukui.com/" })
-	jsonapp.area.push({ name_jp: '京都府', url: 'http://yinouelab.info/covid19-kyoto/kyoto.html' })
-	jsonapp.area.push({ name_jp: "千葉県", url: 'https://covid19.civictech.chiba.jp/' })
-	jsonapp.area.push({ name_jp: "大阪府", url: 'https://covid19-osaka.info/' })
-	jsonapp.area.push({ name_jp: '山口県', url: 'https://yamaguchi.stopcovid19.jp/' })
-	jsonapp.area.push({ name_jp: '青森県', url: 'https://covid19.codeforaomori.org/' })
-	jsonapp.area.push({ name_jp: '兵庫県', url: 'https://stop-covid19-hyogo.org/' })
+	jsonapp.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
 
 	for (let i = 0; i < json.length; i++) {
 		const div = get('jp' + (i + 1))
@@ -657,6 +655,7 @@ const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedC
 		for (let j = 0; j < jsonapp.area.length; j++) {
 			if (jsonapp.area[j].name_jp == a.pref_ja) {
 				div.appurl = jsonapp.area[j].url
+				break
 			}
 		}
 		div.url = a.url
