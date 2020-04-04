@@ -124,7 +124,7 @@ h1 {
 	font-size: 65%;
 }
 .jpalllabel {
-	font-size: 80%;
+	font-size: 125%;
 }
 .pcrsum {
 	font-size: 45%;
@@ -293,6 +293,9 @@ h1 {
 	text-align: center;
 	margin-bottom: 2em;
 }
+#qrcode {
+	width: 140px;
+}
 /* debug */
 #debug {
 	text-align: left;
@@ -314,8 +317,8 @@ const TX = {
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
 	'感染症病床使用率': { 'en': 'Bed occupancy rate' },
 	'新型コロナウイルス対策感染症病床': { 'en': 'Anti-Coronavirus bed data ' },
-	'お願いします': { 'en': '' },
-	'データ提供': { 'en': ' Please regist from here' },
+	'をお願いします': { 'en': '' },
+	'一次情報提供': { 'en': ' Please regist from here' },
 	'参考': { 'en': 'estimate' },
 	'登録フォーム': { 'en': 'regist form' },
 	'集約版': { 'en': 'summary' },
@@ -413,8 +416,8 @@ const tx = function(s) {
 			s = s.substring(0, n) + TX[ja][lang] + s.substring(n + ja.length)
 		}
 	}
-	for (let i = 0; i < PREF.length; i++) {
-		const pref = PREF[i]
+	for (let i = 0; i < PREF_S.length; i++) {
+		const pref = PREF_S[i]
 		for (;;) {
 			const n = s.indexOf(pref)
 			if (n < 0)
@@ -439,6 +442,14 @@ const translate = function() {
 	}
 }
 
+const lazyLoading = function() {
+	const iframes = document.getElementsByTagName('iframe')
+	for (const f of iframes) {
+		if (f.getAttribute('data-src')) {
+			f.setAttribute('src', f.getAttribute('data-src'))
+		}
+	}
+}
 const link = function(url, name) {
 	return `<a href="${url}">${name}</a>`
 }
@@ -460,7 +471,7 @@ const calcRatio = function(cnt, base) {
 		return "-"
 	return fixfloat(cnt / base * 100, 1) + "%"
 }
-window.onload = async function() {
+const main = async function() {
 	translate()
 
 	get("japan").innerHTML += makeJapanHTML()
@@ -564,6 +575,7 @@ window.onload = async function() {
 	//description.textContent = json.description
 
 	datasrc.innerHTML += tx("<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>")
+	lazyLoading()
 }
 const showChart = function(data) {
 	//console.log(data.data)
@@ -621,6 +633,8 @@ const showChart = function(data) {
 		e.stopPropagation()
 	}
 }
+document.addEventListener("DOMContentLoaded", main)
+
 const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedCount) {
 	console.log(bed_total)
 	jsonapp = { area: [] }
@@ -685,7 +699,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML = tx(`${PREF[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`)
+		c.innerHTML = tx(`${PREF_S[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
@@ -709,11 +723,11 @@ const showPrefs = function(data, data_bed, getBedCount) {
 	}
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = tx(`<div class=jpalllabel>全国</div>${sum} / ${getBedCount(data_bed.total)}<div class=pcrsum>現在患者数 / 感染症病床数*<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`)
+	jpall.innerHTML = tx(`<div class=jpalllabel>${addComma(sum)} / ${addComma(getBedCount(data_bed.total))}<div class=pcrsum>(全国) 現在患者数 / 感染症病床数*<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`)
 	//jpall.style.fontSize = "1.5vw"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
-};
+}
 
 // --
 const PREF = [ "北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県" ]
@@ -826,12 +840,14 @@ const makeJapanHTML = function() {
 </div>
 
 <div class=pr>
-	<div id='pr2'>自治体、医療機関の方へ<br><a href='https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing'>新型コロナウイルス対策感染症病床</a>の<a xhref='https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform?usp=sf_link' href=https://fukuno.jig.jp/2799>データ提供</a>お願いします</a></div>
+	<div id='pr2'>自治体、医療機関の方へ<br><a href='https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing'>新型コロナウイルス対策感染症病床</a>の<a xhref='https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform?usp=sf_link' href=https://fukuno.jig.jp/2799>一次情報提供</a>をお願いします</a></div><br>
+	<!--
 	<div id='pr'>
 		「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
 	</div>
+-->
 	<div id='pr4'>
-		<iframe src='https://tk3-805-12365.vw.sakura.ne.jp:3443/mini' scrolling=no></iframe>
+		<iframe data-src='https://tk3-805-12365.vw.sakura.ne.jp:3443/mini' scrolling=no></iframe>
 	</div>
 	<div id='pr3'>
 		<a href=https://vscovid19.code4japan.org/>
@@ -859,15 +875,16 @@ DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナ
 
 <div class=lang><a href=#en onclick='javascript:location.hash="#en";location.reload()'>English</a> / <a href='#ja' onclick='javascript:location.hash="#ja";location.reload()'>Japanese</a></div>
 
-<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+<img id=qrcode src='covid19japan-qr.png'><br>
+<!--<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>-->
 </div>
 
 <div id='share'>
 	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0&appId=214172318638956&autoLogAppEvents=1"></script>
+	<script xasync defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v6.0&appId=214172318638956&autoLogAppEvents=1"></script>
 	<div class="fb-share-button" data-href="https://www.stopcovid19.jp/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.stopcovid19.jp%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
-	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-	<a href="https://b.hatena.ne.jp/entry/s/www.stopcovid19.jp/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script defer xasync src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<a href="https://b.hatena.ne.jp/entry/s/www.stopcovid19.jp/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" defer xasync="async"></script>
 </div>
 
 <div id='media'>
@@ -875,6 +892,7 @@ DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナ
 	「<a href=https://www.nikkei.com/article/DGXMZO57336190X20C20A3LB0000/>新型コロナ患者数など一覧　鯖江の起業家ら専用サイト　　:日本経済新聞</a>」<br>
 	「<a href=https://news.yahoo.co.jp/byline/kutsunasatoshi/20200328-00170113/>都内の感染症指定医療機関で何が起こっているのか(忽那賢志) - 個人 - Yahoo!ニュース</a>」<br>
 	「<a href=https://business.nikkei.com/atcl/seminar/19/00058/033100045/>アリババは新型コロナ対策集を公開　広がるオープンイノベーション：日経ビジネス電子版</a><br>
+	「<a href=https://dempa-digital.com/article/51768>新型コロナ情報サイトが話題　関連機関発表の一次データ基に感染者数や病床数一目で | 電波新聞デジタル</a>」<br>
 </div>
 
 </body>
