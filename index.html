@@ -394,6 +394,8 @@ const TX = {
 	'退院' : { 'en': 'discharges' },
 	'死者' : { 'en': 'deads' },
 	'シェア' : { 'en': 'share' },
+	'過去分': { 'en': 'archives' },
+	'、': { 'en': ', ' },
 }
 const getLang = function() {
 	const hash = document.location.hash
@@ -866,7 +868,7 @@ const makeJapanHTML = function() {
 credit<br>
 APP: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://fukuno.jig.jp/>jig.jp 福野泰介</a> / <a href=https://fukuno.jig.jp/2799>厚生労働省提供 新型コロナウイルス対策ダッシュボードについて</a> / <a href=https://fukuno.jig.jp/2788>感染者PDFデータをJSON-API化して公開</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 <br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan.txt>TXT</a> (集約版 <a href=http://app.sabae.cc/api/covid19japan_summary.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan_summary.txt>TXT</a>)<br>
+DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan.txt>TXT</a> (集約版 <a href=http://app.sabae.cc/api/covid19japan_summary.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan_summary.txt>TXT</a>、<a href=https://www.stopcovid19.jp/data/covid19japan-all.json>過去分</a>)<br>
 DATA: <a href=https://creativecommons.org/share-your-work/public-domain/cc0>CC0</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
