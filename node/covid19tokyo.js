@@ -42,7 +42,7 @@ const parseDate = function(s) {
 }
 //console.log(parseDate('2020年4月3日, 午前11時33分 (UTC+09:00)'))
 //console.log(parseDate('2020年4月3日, 午前11時33分 (UTC+09:55)'))
-return
+//return
 
 const checkJSON = function(json) {
   const names = {}
@@ -60,7 +60,9 @@ const checkJSON = function(json) {
   console.log(names)
 }
 const main = async function() {
+  console.log(1)
   const scsv = await (await fetch(URL)).text()
+  console.log(scsv)
   const csv = util.decodeCSV(scsv)
   const json = util.csv2json(csv)
   console.log(json)

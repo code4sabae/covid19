@@ -19,8 +19,8 @@
 <link rel="apple-touch-icon" href="japan7x7_icon.png"/>
 <meta name="msapplication-square310x310logo" content="japan7x7_icon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200402.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200402.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200402-2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200402-2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -70,13 +70,13 @@ h1 {
 	margin-left: auto;
 	margin-right: auto;
 	border-collapse: collapse;
-	margin-bottom: 0.5vh;
+	margin-bottom: 0.1vh;
 }
 #summarytable td, #summarytable th {
 	border: .3vw solid var(--main-color);
 	padding: .2vh .5vw;
 	width: 20vw;
-	font-size: 1.4vw;
+	font-size: 1.3vw;
 	text-align: center;
 }
 #summarytable td {
@@ -102,8 +102,8 @@ h1 {
 	margin-bottom: .3em;
 }
 #beddescription {
-	font-size: 110%;
-	margin: .5em 0 .5em 0;
+	font-size: 100%;
+	margin: .2em 0 .5em 0;
 }
 #bedtypes {
 	margin: .1em 0 .5em 0;
@@ -484,8 +484,10 @@ const main = async function() {
 	get("japan").innerHTML += makeJapanHTML()
 
 	const url = makeURL('covid19japan.json')
-	const json = await fetchJSON(url)
-	console.log(json)
+	const json_mhlw = await fetchJSON(url)
+	console.log(json_mhlw)
+
+	let json = json_mhlw
 
 	const url_bed = makeURL('bedforinfection_summary.json')
 	const json_bed = await fetchJSON(url_bed)
@@ -533,6 +535,18 @@ const main = async function() {
 	json.vent = json_vent[47]
 
 	const showSummary = async function(json, json_bed) {
+		const sum = { ncurrentpatients: 0, nexits: 0, ndeaths: 0, npatients: 0 }
+		for (let i = 0; i < json.area.length; i++) {
+			for (const n in sum) {
+				sum[n] += json.area[i][n]
+			}
+		}
+		
+		for (const n in sum) {
+			json[n] = sum[n]
+		}
+		
+
 		let sumbed = 0
 		for (let i = 0; i < json_bed.area.length; i++) {
 			sumbed += getBedCount(json_bed.area[i])
@@ -562,7 +576,16 @@ const main = async function() {
 		ventsrc.innerHTML = tx(`2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
 	}
 
+	const json_now = JSON.parse(JSON.stringify(json))
+	const tokyo = json_now.area[PREF.indexOf('東京都')]
+	tokyo.npatients = 891
+	tokyo.ncurrentpatients = 817
+	tokyo.nexits = 51
+	tokyo.ndeaths = 23
+
 	const update = function() {
+		json = usepatientsnow.checked ? json_now : json_mhlw
+		lastUpdateNow.style.display = usepatientsnow.checked ? "inline" : "none"
 		showSummary(json, json_bed)
 		showPrefs(json, json_bed, getBedCount)
 	}
@@ -571,6 +594,7 @@ const main = async function() {
 		chk.onclick = update
 	}
 	usebednow.onclick = update
+	usepatientsnow.onclick = update
 
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数）')
 	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
@@ -810,7 +834,7 @@ const makeJapanHTML = function() {
 		<tr><th colspan=2>感染症病床数 <span id=sumc>-</span>床</th></tr>
 		<tr><th colspan=2><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></th></tr>
 	</table>
-	<div id=lastupdatebox>更新日: <span id=lastUpdate></span></div>
+	<div id=lastupdatebox>現在患者数 更新日: <span id=lastUpdate></span><span id="lastUpdateNow" style='display:none'>（東京 2020-04-04）</span></div>
 	<div id=bedtypesbox>
 		<div id=beddescription>
 			<div class=bedformula>* 感染症病床使用率(参考) = 現在患者数 / 感染症病床数</div>
@@ -822,8 +846,9 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='bedk'>二種（結核）</label>
 				<label><input type=checkbox id='beds'>二種（一般・精神）</label>
 			</div>
-			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a><br>
-			現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
+			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a></label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京）」を使用</a></label><br>
+				現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております。
 		</div>
 	</div>
 	<!--
