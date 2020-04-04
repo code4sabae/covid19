@@ -426,15 +426,20 @@ const tx = function(s) {
 			s = s.substring(0, n) + TX[ja][lang] + s.substring(n + ja.length)
 		}
 	}
-	for (let i = 0; i < PREF_S.length; i++) {
-		const pref = PREF_S[i]
-		for (;;) {
-			const n = s.indexOf(pref)
-			if (n < 0)
-				break
-			s = s.substring(0, n) + PREF_EN[i] + s.substring(n + pref.length)
+	const txarray = function(s, ar, aren) {
+		for (let i = 0; i < ar.length; i++) {
+			const s2 = ar[i]
+			for (;;) {
+				const n = s.indexOf(s2)
+				if (n < 0)
+					break
+				s = s.substring(0, n) + aren[i] + s.substring(n + s2.length)
+			}
 		}
+		return s
 	}
+	s = txarray(s, PREF, PREF_EN)
+	s = txarray(s, PREF_S, PREF_EN)
 	return s
 }
 const translate = function() {
