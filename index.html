@@ -585,14 +585,21 @@ const main = async function() {
 	}
 
 	const json_now = JSON.parse(JSON.stringify(json))
+	const url_tokyo = 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
+	const json_tokyo = await (await fetch(url_tokyo)).json()
+	console.log('tokyo', json_tokyo)
 	const tokyo = json_now.area[PREF.indexOf('東京都')]
-	tokyo.npatients = 891
-	tokyo.ncurrentpatients = 817
-	tokyo.nexits = 51
-	tokyo.ndeaths = 23
+	tokyo.npatients = json_tokyo.main_summary.children[0].value
+	tokyo.ncurrentpatients = json_tokyo.main_summary.children[0].children[0].value
+	tokyo.nexits = json_tokyo.main_summary.children[0].children[1].value
+	tokyo.ndeaths = json_tokyo.main_summary.children[0].children[2].value
+	json_now.lastUpdateNow = json_tokyo.lastUpdate.replace(/\//g, '-')
 
 	const update = function() {
 		json = usepatientsnow.checked ? json_now : json_mhlw
+		if (json.lastUpdateNow) {
+			lastUpdateNow.textContent = ' (東京 ' + json.lastUpdateNow + ")"
+		}
 		lastUpdateNow.style.display = usepatientsnow.checked ? "inline" : "none"
 		showSummary(json, json_bed)
 		showPrefs(json, json_bed, getBedCount)
