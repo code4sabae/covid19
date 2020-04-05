@@ -60,11 +60,55 @@ h1 {
 #summary {
 	display: inline-block;
 	vertical-align: middle;
-	max-width: 40vw;
+	x-max-width: 40vw;
 	margin-top: 0.3vw;
 	margin-right: 2vw;
 	margin-left: 2vw;
 }
+.summarygrid {
+	display: inline-grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(7);
+	grid-gap: 0;
+	grid-template-areas: 
+		"a c"
+		"b d"
+		"e g"
+		"f h"
+		"i j"
+		"k k";
+	margin-bottom: 0.5vh;
+	font-size: 1.2vw;
+}
+.sga { grid-area: a; }
+.sgb { grid-area: b; }
+.sgc { grid-area: c; }
+.sgd { grid-area: d; }
+.sge { grid-area: e; }
+.sgf { grid-area: f; }
+.sgg { grid-area: g; }
+.sgh { grid-area: h; }
+.sgi { grid-area: i; }
+.sgj { grid-area: j; }
+.sgk { grid-area: k; }
+
+.summarygrid > div {	
+	border: .3vw solid var(--main-color);
+	margin: 0 -.3vw -.3vw 0;
+	padding: .1vh .5vw;
+}
+.sga, .sgc, .sge, .sgg {
+}
+.sgb, .sgd, .sgf, .sgh {
+	background-color: var(--main-color);
+	color: white;
+	font-size: 350%;
+}
+.sgi, .sgj {
+}
+.sgk {
+}
+
 #summarytable {
 	display: inline-block;
 	margin-left: auto;
@@ -219,15 +263,38 @@ h1 {
 }
 /* aspect */
 @media (max-aspect-ratio: 3/4) {
+	body {
+		font-size: 1.3vmax;
+	}
 	#jp0 td {
 		font-size: 2.6vw;
 		width: 13.0vw;
 		opacity: 0.99;
 	}
-	#summary {
-		max-width: 90vw;
+	.summarygrid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(5);
+		grid-gap: 0px;
+		grid-template-areas: 
+			"a c e g"
+			"b d f h"
+			"i i j j"
+			"k k k k";
+		font-size: 1.9vw;
+	}
+	.sgb, .sgd, .sgf, .sgh {
+		font-size: 250%;
 	}
 }
+/* min font-size */
+/*
+@media (max-width: 640px) {
+  body {
+    font-size: 2vmax; calc(16px + ((1vw - 6.4px)*3.571));
+  }
+}
+*/
 .pr {
 	margin-top: 1em;
 	text-align: center;
@@ -317,7 +384,7 @@ const TX = {
 	'新型コロナウイルス対策の感染症病床のデータ提供お願いします': { 'en': 'Please provide data of bed for infection.' },
 	'都道府県の新型コロナウイルス対策サイトCSV': { 'en': 'official sites against COVID-19' },
 	'新型コロナウイルス感染症について': { 'en': 'About COID-19' },
-	'軽症者等は自宅療養などの対応となり、病床を使用しないことがあります' : { 'en': 'Patients with mild illnesses are treated at home and may not be included in the number of hospital bed.' },
+	'軽症者等は自宅療養など、病床を使用しないことがあります' : { 'en': 'Patients with mild illnesses are treated at home and may not be included in the number of hospital bed.' },
 	'感染者PDFデータをJSON-API化して公開': { 'en': 'Publish COVID-19 patients JSON data from PDF' },
 	'東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介': { 'en': "Introduction of the against COVID-19 site by Tokyo Metropolitan Government using the open source" },
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
@@ -838,17 +905,27 @@ const makeJapanHTML = function() {
 <h1 id=title>COVID-19 Japan</h1><div class=subtitle id=subtitle>新型コロナウイルス対策ダッシュボード</div>
 
 <div class="content">
-
-<div id=summary>
+	<div id=summary>
+	<div class=summarygrid>
+		<div class=sga>感染症病床使用率(参考)*</div><div class=sgb><span id=useratio></span></div>
+		<div class=sgc>現在患者数</div><div class=sgd><span id=ncurrentpatients>-</span>人</div>
+		<div class=sge>累積退院者</div><div class=sgf><span id=nexits>-</span>人</div>
+		<div class=sgg>死亡者</div><div class=sgh><span id=ndeaths>-</span>人</div>
+		<div class=sgi>感染症病床数 <span id=sumc>-</span>床</div>
+		<div class=sgj>PCR検査陽性者数 <span id=npatients>-</span>人</div>
+		<div class=sgk><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></div>
+	</div>
+<!--
 	<table id=summarytable>
 		<tr><th>感染症病床使用率(参考)*</th><th>現在患者数</th></tr>
-		<tr><td><span id=useratio></span></thd><td><span id=ncurrentpatients>-</span>人</td></tr>
+		<tr><td><span id=useratio></span></td><td><span id=ncurrentpatients>-</span>人</td></tr>
 		<tr><th>累積退院者</th><th>死亡者</th></tr>
 		<tr><td><span id=nexits>-</span>人</td><td><span id=ndeaths>-</span>人</td></tr>
 		<tr><th colspan=2>PCR検査陽性者数 <span id=npatients>-</span>人</th></tr>
 		<tr><th colspan=2>感染症病床数 <span id=sumc>-</span>床</th></tr>
 		<tr><th colspan=2><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></th></tr>
 	</table>
+-->
 	<div id=lastupdatebox>現在患者数 更新日: <span id=lastUpdate></span><span id="lastUpdateNow" style='display:none'>（東京 2020-04-04）</span></div>
 	<div id=bedtypesbox>
 		<div id=beddescription>
@@ -857,14 +934,14 @@ const makeJapanHTML = function() {
 			<div id=bedtypes>
 				<label><input type=checkbox id='bedt' checked>特定</label>
 				<label><input type=checkbox id='bed1' checked>一種</label>
-				<label><input type=checkbox id='bed2' checked>二種（感染症）</label>
-				<label><input type=checkbox id='bedk'>二種（結核）</label>
-				<label><input type=checkbox id='beds'>二種（一般・精神）</label>
+				<label><input type=checkbox id='bed2' checked>二種(感染)</label>
+				<label><input type=checkbox id='bedk'>二種(結核)</label>
+				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
 			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a></label><br>
 			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京）」を使用</a></label><br>
 				現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
-				※軽症者等は自宅療養などの対応となり、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>）
+				※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>）
 		</div>
 	</div>
 	<!--
