@@ -326,12 +326,12 @@ const makeCovid19Japan = async function() {
   const url = res.url
   const fn = url.substring(url.lastIndexOf('/') + 1)
   const pdf = await (await fetch(url)).arrayBuffer()
-	fs.writeFileSync(fn, new Buffer.from(pdf), 'binary')
-  const txt = await pdf2text.pdf2text(fn)
+	fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+  const txt = await pdf2text.pdf2text(path + fn)
   const json = text2jsonWithCurrentPatients(txt, url, res.dt)
   console.log(json)
   const sjson = JSON.stringify(json)
-  fs.writeFileSync(fn + ".json", sjson)
+  fs.writeFileSync(path + fn + ".json", sjson)
   fs.writeFileSync('../data/covid19japan.json', sjson)
 }
 const makeCovid19JapanList = function() {
@@ -369,7 +369,7 @@ const makeCovid19JapanList = function() {
   fs.writeFileSync(fndest, sjson)
 }
 const main = async function() {
-  //await makeCovid19Japan()
+  await makeCovid19Japan()
   makeCovid19JapanList()
 }
 if (require.main === module) {
