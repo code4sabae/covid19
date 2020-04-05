@@ -4,7 +4,7 @@ const util = require('./util.js')
 
 const CACHE_TIME = 10 * 1000 // 10min
 const PATH = 'data/covid19tokyo/'
-const URL = 'https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv'
+const URL = 'https://www.harp.lg.jp/opendata/dataset/1369/resource/2828/patients.csv'
 
 // 2020年4月3日, 午前11時33分 (UTC+09:00)
 const parseDate = function(s) {
@@ -58,14 +58,14 @@ const checkJSON = function(json) {
   console.log(names)
 }
 const main = async function() {
-  console.log(1)
-  const scsv = await (await fetch(URL)).text()
-  console.log(scsv)
+  const scsv = await util.fetchText(URL, 'ShiftJIS')
+  //console.log(scsv)
   const csv = util.decodeCSV(scsv)
   const json = util.csv2json(csv)
   console.log(json)
 
   checkJSON(json)
+  return
 
   let cnt = 0
   const flglist = []
