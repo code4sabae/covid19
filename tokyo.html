@@ -1,19 +1,21 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="apple-touch-icon" href="tokyo-2.png"/>
-<meta property="og:image" content="tokyo-2.png"/>
+<link rel="apple-touch-icon" href="tokyo-20200404.png"/>
+<meta property="og:image" content="tokyo-20200404.png"/>
 <meta name="format-detection" content="telephone=no"/>
 <title>COVID-19 Tokyo - 東京都 新型コロナウイルスオープンデータサマリー</title>
 <script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
 <script>"use strict"
-const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json"
 async function update() {
   var noft = window.document.getElementById("noftication_refreshed");
   if (noft !== void 0&& noft !== null){
     noft.textContent = "更新しています....";
   }
 
-  const data = await (await fetch(url)).json()
+  const ignorecache = url => url + "?" + new Date().getTime()
+
+  const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json"
+  const data = await (await fetch(ignorecache(url))).json()
   console.log(data)
   dump(data)
 
@@ -59,7 +61,7 @@ async function update() {
   tmap.innerHTML = makeTabularMapHTML()
 
   const url_detail = 'data/covid19tokyo-detail.json'
-  const data_detail = await (await fetch(url_detail)).json()
+  const data_detail = await (await fetch(ignorecache(url_detail))).json()
   let max = 0
   for (let i = 0; i < data_detail.length - 1; i++) {
     const d = data_detail[i]
@@ -247,7 +249,7 @@ a {
 
 <div id='detail'>
 <div id='tmap'></div>
-<div id='tmapdescription'>【参考】区市町村別患者数（都内発生分） （4月3日時点の累計値）<br>(<a href=https://www.fukushihoken.metro.tokyo.lg.jp/hodo/saishin/corona150.html>出典</a> / <a href=data/covid19tokyo-detail.json>JSON</a> / <a href=data/covid19tokyo-detail.csv>CSV</a> / <a href=data/covid19tokyo-detail.sjis.csv>CSV for Excel</a> / <a href=https://github.com/code4sabae/covid19>src on GitHub</a> / <a href=https://github.com/tabularmaps/hq>カラム地図</a>)</div>
+<div id='tmapdescription'>【参考】区市町村別患者数（都内発生分） （4月4日時点の累計値）<br>(<a href=https://www.fukushihoken.metro.tokyo.lg.jp/hodo/saishin/corona150.html>出典</a> / <a href=data/covid19tokyo-detail.json>JSON</a> / <a href=data/covid19tokyo-detail.csv>CSV</a> / <a href=data/covid19tokyo-detail.sjis.csv>CSV for Excel</a> / <a href=https://github.com/code4sabae/covid19>src on GitHub</a> / <a href=https://github.com/tabularmaps/hq>カラム地図</a>)</div>
 </div>
 
 <div id="main"></div>
@@ -263,7 +265,7 @@ a {
 
 <div id="src">
 DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src on GitHub</a> より<br>
-APP：CC BY <a href='https://fukuno.jig.jp/2780'>fukuno.jig.jp</a> / <a href=https://fukuno.jig.jp/2811>東京都カラム地図追加</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>)
+APP：CC BY <a href='https://fukuno.jig.jp/2780'>fukuno.jig.jp</a> / <a href=https://fukuno.jig.jp/2811>東京都カラム地図追加</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)><br
 <br>
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
 </div>

@@ -233,8 +233,8 @@ const makeTokyo = async function() {
   const res = { name: 'Tokyo', patientscurrent: cnt, patients: json.length, src_url: URL }
 }
 const main = async function() {
-  //const fn = '../data/153-5.png' /
-  const fn = '../data/150-5.png' // 4/3
+  const fn = '../data/covid19tokyo/153-5.png' // 4/4
+  //const fn = '../data/150-5.png' // 4/3
   const data = await getPatientsTokyo(fn)
   util.writeCSV('../data/covid19tokyo-detail', util.json2csv(data))
   console.log(data)
