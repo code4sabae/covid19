@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="apple-touch-icon" href="tokyo.png"/>
-<meta property="og:image" content="tokyo.png"/>
+<link rel="apple-touch-icon" href="tokyo-2.png"/>
+<meta property="og:image" content="tokyo-2.png"/>
 <meta name="format-detection" content="telephone=no"/>
 <title>COVID-19 Tokyo - 東京都 新型コロナウイルスオープンデータサマリー</title>
 <script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
@@ -9,7 +9,7 @@
 const url = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json"
 async function update() {
   var noft = window.document.getElementById("noftication_refreshed");
-  if(noft !== void 0&&noft !== null){
+  if (noft !== void 0&& noft !== null){
     noft.textContent = "更新しています....";
   }
 
@@ -56,6 +56,30 @@ async function update() {
     </table>
   `
 
+  tmap.innerHTML = makeTabularMapHTML()
+
+  const url_detail = 'data/covid19tokyo-detail.json'
+  const data_detail = await (await fetch(url_detail)).json()
+  let max = 0
+  for (let i = 0; i < data_detail.length - 1; i++) {
+    const d = data_detail[i]
+    if (parseInt(d.npatients) > max) {
+      max = d.npatients
+    }
+  }
+  for (let i = 0; i < data_detail.length; i++) {
+    const d = data_detail[i]
+    const div = get('area' + CITY.indexOf(d.name_ja))
+    if (!div) {
+      console.log('err', d.name_ja)
+    }
+    div.innerHTML += '<br>' + d.npatients
+    const p = 100 * (1 - d.npatients / max * .5)
+    if (p > 50)
+      div.style.backgroundColor = `hsl(0, 100%, ${p}%)`
+  }
+  console.log(data_detail)
+
   //console.log(ncontacts, nquerents, npatients, npatients2, ndischarges, ndischarges2)
   console.log(ncontacts, nquerents, npatients, npatients2)
   if(noft !== void 0 && noft !== null){
@@ -65,10 +89,65 @@ async function update() {
     }
     ,3000)
   }
-
 }
-window.onload = update();
+
+const CITY = [
+    '千代田', '中央', '港', '新宿', '文京', '台東', '墨田', '江東', '品川', '目黒', '大田',
+    '世田谷', '渋谷', '中野', '杉並', '豊島', '北', '荒川', '板橋', '練馬', '足立', '葛飾',
+    '江戸川', '八王子', '立川', '武蔵野', '三鷹', '青梅', '府中', '昭島', '調布', '町田', '小金井',
+    '小平', '日野', '東村山', '国分寺', '国立', '福生', '狛江', '東大和', '清瀬', '東久留米', '武蔵村山',
+    '多摩', '稲城', '羽村', 'あきる野', '西東京', '瑞穂', '日の出', '檜原', '奥多摩', '大島', '利島',
+    '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中'
+  ]
+
+const TABMAP = `
+奥多摩町	青梅市	武蔵村山市	東村山市	清瀬市	板橋区	北区	足立区
+日の出町	瑞穂町	立川市	東大和市	東久留米市	練馬区	文京区	荒川区
+あきる野市	羽村市	国分寺市	小平市	西東京市	中野区	千代田区	台東区
+檜原村	福生市	国立市	小金井市	武蔵野市	豊島区	中央区	墨田区
+都外	昭島市	府中市	三鷹市	杉並区	新宿区	港区	葛飾区
+調査中	日野市	多摩市	調布市	世田谷区	渋谷区	品川区	江戸川区
+新島村	八王子市	町田市	稲城市	狛江市	目黒区	大田区	江東区
+利島村	大島町	神津島村	御蔵島村	三宅村	青ヶ島村	八丈町	小笠原村`
+
+const makeTabularMapHTML = function() {
+	let japan = []
+	const japans = TABMAP.trim().split('\n')
+	for (let j of japans) {
+		japan.push(j.split('\t'))
+	}
+	let s = []
+	s.push('<table>')
+  let flg = false
+	for (let jpn of japan) {
+		s.push('<tr>')
+		for (let pref of jpn) {
+      let minlen = 10000
+      let n = -1
+      for (let i = 0; i < CITY.length; i++) {
+        if (pref.indexOf(CITY[i]) == 0) {
+          if (pref.length < minlen) {
+            minlen = pref.length
+            console.log(pref, minlen)
+            n = i
+          }
+        }
+      }
+      if (n < 0) {
+        console.log('err: not found ', pref)
+      }
+			s.push('<td class=pref id=area' + n + '>' + pref + '</td>')
+		}
+		s.push('</tr>')
+	}
+	s.push('</table>')
+	return s.join('')
+}
+
+
+window.onload = update
 setInterval(update, 600000)
+
 </script>
 <style>
 body {
@@ -96,21 +175,36 @@ h1 {
 #main, #link {
   text-align: center;
 }
-table {
+#main table {
   margin: .5em;
   display: inline-block;
   border-collapse: collapse;
 }
-td {
+#main td {
   border: 4px solid var(--main-color);
   padding: .2em .5em;
 }
-td:first-child {
+#main td:first-child {
   text-align: left;
 }
-td:nth-child(2) {
+#main td:nth-child(2) {
   text-align: right;
 }
+#detail {
+  text-align: center;
+  margin-bottom: 1em;
+}
+#tmap table {
+  margin: .5em;
+  display: inline-block;
+  border-collapse: collapse;
+}
+#tmap td {
+  border: 2px solid var(--main-color);
+  padding: 0.1em;
+  font-size: 80%;
+}
+
 #debug {
   border: 1px solid black;
   margin: 1em;
@@ -119,6 +213,7 @@ td:nth-child(2) {
 }
 #src {
 	margin: .5em;
+  text-align: center;
 }
 a {
 	color: gray !important;
@@ -137,29 +232,41 @@ a {
   overflow: hidden;
   width:200px;
 }
-#noftication_refreshed{
+#noftication_refreshed {
   text-align: center;
+}
+#link img {
+  width: 80vw;
+  max-width: 300px;
 }
 </style>
 </head>
 <body>
 
 <h1 id=title>COVID-19 Tokyo</h1><div class=subtitle>東京都 新型コロナウイルスオープンデータサマリー</div>
+
+<div id='detail'>
+<div id='tmap'></div>
+<div id='tmapdescription'>【参考】区市町村別患者数（都内発生分） （4月3日時点の累計値）<br>(<a href=https://www.fukushihoken.metro.tokyo.lg.jp/hodo/saishin/corona150.html>出典</a> / <a href=data/covid19tokyo-detail.json>JSON</a> / <a href=data/covid19tokyo-detail.csv>CSV</a> / <a href=data/covid19tokyo-detail.sjis.csv>CSV for Excel</a> / <a href=https://github.com/code4sabae/covid19>src on GitHub</a> / <a href=https://github.com/tabularmaps/hq>カラム地図</a>)</div>
+</div>
+
 <div id="main"></div>
 <div class="buttons">
   <button type="button" onclick="update()" id="button_of_refresh">更新</button>
 </div>
 <p id="noftication_refreshed">　</p>
-<div id="link">
-  <!--
+
+<div id="link"><a href=https://www.stopcovid19.jp/><img alt="COVID-19 JAPAN" src="covid19japan.png"/></a></div>
+<!--
     →詳細「<a href=https://stopcovid19.metro.tokyo.lg.jp/>都内の最新感染動向 | 東京都 新型コロナウイルス対策サイト</a>」</div>-->
 <!--<div id="debug"></div>-->
 
 <div id="src">
 DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src on GitHub</a> より<br>
 APP：CC BY <a href='https://fukuno.jig.jp/2780'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
-</div>
+<br>
 <img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+</div>
 
 </div>
 

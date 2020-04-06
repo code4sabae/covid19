@@ -137,7 +137,7 @@ exports.json2csv = function(json) {
     const line = []
     for (let i = 0; i < head.length; i++) {
       const v = d[head[i]]
-      if (!v) {
+      if (v == undefined) {
         line.push('')
       } else {
         line.push(v)
