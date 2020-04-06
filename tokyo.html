@@ -75,7 +75,7 @@ async function update() {
     }
     div.innerHTML += '<br>' + d.npatients
     const p = 100 * (1 - d.npatients / max * .5)
-    if (p > 50)
+    if (p >= 50)
       div.style.backgroundColor = `hsl(0, 100%, ${p}%)`
   }
   console.log(data_detail)
