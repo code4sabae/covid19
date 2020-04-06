@@ -14,13 +14,13 @@
 <meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード #StopCOVID19JP"/>
 <meta property="og:description" content="日本の感染症病床使用率と現在患者数を全体と都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用 #StopCOVID19JP"/>
 <meta name="theme-color" content="#AD232F"/>
-<meta name="msapplication-TileColor" content="##AD232F"/>
+<meta name="msapplication-TileColor" content="#AD232F"/>
 <link rel="icon" type="image/png" href="covid19japan-icon.png"/>
-<link rel="apple-touch-icon" href="japan7x7_icon.png"/>
-<meta name="msapplication-square310x310logo" content="japan7x7_icon.png"/>
+<link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
+<meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/japan7x7_ogp_20200404-2.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/japan7x7_ogp_20200404-2.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/img/japan7x7_ogp_20200404-2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/img/japan7x7_ogp_20200404-2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -310,7 +310,7 @@ h1 {
 	border: 1px solid;
 	padding: .3vw 2vw;
 }
-#pr3 {
+#pr3, #pr5 {
 	display: inline-block;
 	text-align: center;
 	margin: 1vw;
@@ -331,8 +331,11 @@ h1 {
 	box-sizing: border-box;
 	padding-top: .5vw;
 }
+#pr5 img {
+	width: 30vw;
+}
 @media (max-width: 480px) {
-	#pr3 img {
+	#pr3 img, #pr5 img {
 		width: 90vw;
 	}
 	#pr4 iframe {
@@ -973,10 +976,13 @@ const makeJapanHTML = function() {
 	<div id='pr3'>
 		<a href=https://vscovid19.code4japan.org/>
 			<picture>
-				<source alt='VS COVID-19 #民間支援情報ナビ' srcset="vscovid19-banner.webp" type="image/webp">
-				<img alt='VS COVID-19 #民間支援情報ナビ' src="vscovid19-banner.png">
+				<source alt='VS COVID-19 #民間支援情報ナビ' srcset="img/vscovid19-banner.webp" type="image/webp">
+				<img alt='VS COVID-19 #民間支援情報ナビ' src="img/vscovid19-banner.png">
 			</picture>
 		</a>
+	</div>
+	<div id='pr5'>
+		<a href=https://note.stopcovid19.jp/><img alt='コロナの専門家' src='img/notestopcovid19-banner.png'></a>
 	</div>
 </div>
 

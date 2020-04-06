@@ -1,5 +1,5 @@
 # COVID-19 Japan
-<img src=https://www.stopcovid19.jp/japan7x7_ogp_20200402.png style='width:100%'>
+<img src=https://www.stopcovid19.jp/img/japan7x7_ogp_20200404-2 style='width:100%'>
 https://stopcovid19.jp/     
 COVID-19 Japan 新型コロナウイルス対策ダッシュボード    
 
