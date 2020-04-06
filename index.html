@@ -682,7 +682,7 @@ const main = async function() {
 	usebednow.onclick = update
 	usepatientsnow.onclick = update
 
-	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者、累積退院者、累積死者数）')
+	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者/累積退院者/累積死者数）')
 	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
 	datasrc.innerHTML += tx(" / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON"))
 
@@ -812,7 +812,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML = tx(`${PREF_S[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}, ${addComma(a.nexits)}, ${addComma(a.ndeaths)})</div>`)
+		c.innerHTML = tx(`${PREF_S[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
@@ -836,7 +836,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 	}
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = tx(`<div class=jpalllabel>${addComma(sum)} / ${addComma(getBedCount(data_bed.total))}<div class=pcrsum>(全国) 現在患者数 / 感染症病床数*<br>(累積${addComma(data.npatients)}, 退院${addComma(data.nexits)}, 死者${addComma(data.ndeaths)})</div>`)
+	jpall.innerHTML = tx(`<div class=jpalllabel>${addComma(sum)} / ${addComma(getBedCount(data_bed.total))}<div class=pcrsum>(全国) 現在患者数 / 感染症病床数*<br>(累積${addComma(data.npatients)}/退院${addComma(data.nexits)}/死者${addComma(data.ndeaths)})</div>`)
 	//jpall.style.fontSize = "1.5vw"
 	jpall.style.background = 'var(--main-color)'
 	jpall.style.color = 'white'
