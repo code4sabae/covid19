@@ -19,8 +19,8 @@
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200405.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200405.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200405-2.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200405-2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
@@ -194,7 +194,7 @@ h1 {
 	margin: auto;
 }
 #jp0 td {
-	font-size: 1.2vw;
+	font-size: 1.1vw;
 	width: 6vw;
 	height: 4em;
 	vertical-align: middle;
@@ -216,14 +216,12 @@ h1 {
 	x-top: 23vh;
 	width: 94vw;
 	max-width: 95vh;
-	x-max-height: 90vh;
 	padding: 1vh 1vw;
 	box-sizing: border-box;
 	text-align: center;
 }
 #detailc {
 	display: inline-block;
-	x-max-width: 100vh;
 }
 #detailtitle {
 	font-size: 3.5vmin;
@@ -231,12 +229,12 @@ h1 {
 	margin: .5vmin;
 }
 #detaildesc {
-	font-size: 2vmin;
+	font-size: 1.8vmin;
 	text-align: center;
 	margin: .5vmin;
 }
 #detailvent {
-	font-size: 2vmin;
+	font-size: 1.8vmin;
 	text-align: center;
 	margin: 0.5vmin;
 }
@@ -267,9 +265,8 @@ h1 {
 		font-size: 1.3vmax;
 	}
 	#jp0 td {
-		font-size: 2.6vw;
+		font-size: 2.4vw;
 		width: 13.0vw;
-		opacity: 0.99;
 	}
 	.summarygrid {
 		display: grid;
@@ -721,6 +718,9 @@ const showChart = function(data) {
 	if (bed && bed.sumc_src) {
 		console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>感染症病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス感染症病床数オープンデータ</a>`)
+		if (bed.sumc_src['備考']) {
+			detaildesc.innerHTML += tx(`<br>* ${bed.sumc_src['備考']}`)
+		}
 	}
 	const v = data.data.vent
 	const pi = parseInt
@@ -943,7 +943,7 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
 			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a></label><br>
-			<label><input type=checkbox id='usepatientsnow'>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京）」を使用</a></label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京）」を使用</a></label><br>
 				現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
 				※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>）
 		</div>

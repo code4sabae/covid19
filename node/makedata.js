@@ -88,7 +88,7 @@ const makeCovid19Pref = async function() {
 const main = async function() {
   // makeSupport()
   //makeCovid19()
-  //makeCovid19Pref()
+  makeCovid19Pref()
   makeBedData()
 }
 if (require.main === module) {
