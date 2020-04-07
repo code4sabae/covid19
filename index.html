@@ -60,7 +60,7 @@ h1 {
 #summary {
 	display: inline-block;
 	vertical-align: middle;
-	x-max-width: 40vw;
+	max-width: 40vw;
 	margin-top: 0.3vw;
 	margin-right: 2vw;
 	margin-left: 2vw;
@@ -268,6 +268,9 @@ h1 {
 		font-size: 2.4vw;
 		width: 13.0vw;
 	}
+	#summary {
+		max-width: 100vw;
+	}
 	.summarygrid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -413,6 +416,10 @@ const TX = {
 	'下記合計と仮定': { 'en': '' },
 	'現在感染症床数が確認できるデータを': { 'en': 'We are looking for data that will confirm the number of hospital beds for infectious diseases.' },
 	'しております': { 'en': '' },
+	'一般社団法人 日本耳鼻咽喉科学会' : { 'en': 'The Oto-Rhino-Laryngological Society of Japan' },
+	'定義における': { 'en': ' defined ' },
+	'ローリスク地域': { 'en': ' low-risk area' },
+	'ハイリスク地域': { 'en': ' high-risk area' },
 	'2020年2月回答': { 'en': 'answered at 2020-02' },
 	'一般社団法人 日本呼吸療法医学会': { 'en': 'Japanese Society of Respiratory Care Medicine' },
 	'公益社団法人 日本臨床工学技士会': { 'en': 'Japan Association for Clinical Engineers' },
@@ -442,6 +449,7 @@ const TX = {
 	'7x7都道府県': { 'en': 'Japan 7x7' },
 	'COVID-19対策プロジェクト': { 'en': 'Project against COVID-19' },
 	'平成31年4月1日現在': { 'en': 'in 2019-04-01' },
+	'患者数': { 'en': 'Active cases' },
 	'全国': { 'en': 'Japan' },
 	'募集': { 'en': ' (details)' },
 	'詳細': { 'en': 'details' },
@@ -449,11 +457,12 @@ const TX = {
 	'特定': { 'en': 'special' },
 	'一種': { 'en': 'type1' },
 	'二種': { 'en': 'type2' },
-	'感染症': { 'en': 'infectious disease' },
+	'感染': { 'en': 'infectious disease' },
 	'結核': { 'en': 'tuberculosis' },
-	'一般・精神': { 'en': 'others' },
+	'一般/精神': { 'en': 'others' },
 	'提供': { 'en': ' provide' },
 	'人': { 'en': '' },
+	'名': { 'en': ''},
 	'台': { 'en': '' },
 	'床': { 'en': '' },
 	'、': { 'en': ', ' },
@@ -713,10 +722,17 @@ const showChart = function(data) {
 	})
 	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)")
 	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 感染症病床数:${nbed}床`)
-	console.log(data.data)
+	detaildesc.innerHTML += tx(`<br><a href=http://www.jibika.or.jp/members/information/info_corona.html>一般社団法人 日本耳鼻咽喉科学会</a>定義における`)
+	if (npatients_c < 10) {
+		detaildesc.innerHTML += tx(`ローリスク地域（現在患者数 ${npatients_c}名 < 10名）`)
+	} else {
+		detaildesc.innerHTML += tx(`ハイリスク地域（現在患者数 ${npatients_c}名 >= 10名）`)
+	}
+
+	//console.log(data.data)
 	const bed = data.data.bed
 	if (bed && bed.sumc_src) {
-		console.log(bed.sumc_src)
+		//console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>感染症病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス感染症病床数オープンデータ</a>`)
 		if (bed.sumc_src['備考']) {
 			detaildesc.innerHTML += tx(`<br>* ${bed.sumc_src['備考']}`)
@@ -724,7 +740,7 @@ const showChart = function(data) {
 	}
 	const v = data.data.vent
 	const pi = parseInt
-	detailvent.innerHTML = tx(`臨床工学技士:${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱:${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱:${addComma(v['ECMO装置取扱（台）'])}台`)
+	detailvent.innerHTML = tx(`(参考) 臨床工学技士:${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱:${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱:${addComma(v['ECMO装置取扱（台）'])}台`)
 	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典元（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
 	const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
 	detailvent.innerHTML += tx(`<br>2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会 公益社団法人 日本臨床工学技士会</a>）`)
@@ -821,7 +837,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		} else if (r > 0) {
 			const off = .1
 			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
-			c.style.color = r < .5 ? "black" : "white"
+			c.style.color = r < .4 ? "black" : "white"
 		} else {
 			c.style.background = 'white'
 			c.style.color = 'black'
