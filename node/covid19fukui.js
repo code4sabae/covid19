@@ -6,6 +6,9 @@ const CACHE_TIME = 10 * 1000 // 10min
 const PATH = 'data/covid19fukui/'
 const URL = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
 
+const date2s = function(datetime) {
+  return datetime.replace(/:|-/g, "")
+}
 const checkJSON = function(json) {
   const names = {}
   for (const d of json) {
@@ -52,13 +55,12 @@ const makeData = async function() {
   const res = { name: 'Fukui', npatients: json.length, ncurrentpatients: patientscurrent, nexits: nexits, ndeaths: ndeaths, src_url: URL, lastUpdate: lastUpdate }
   res.url_opendata = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3.html'
   //console.log(res)
+  fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", scsv)
+  fs.writeFileSync('../data/covid19fukui/_latest.csv', scsv)
   return res
 }
 const makeDataFromJSON = async function() {
   const url = 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
-  //const res = await fetch(url)
-  //console.log(res.headers) // no last-modified
-  //  const s = res.headers.get('last-modified')
   
   //const [ sjson, lastUpdate ] = await util.fetchTextWithLastModified(url)
   const sjson = await util.fetchText(url)
@@ -73,15 +75,23 @@ const makeDataFromJSON = async function() {
   res.src_url = url
   res.url_opendata = 'https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc'
   //console.log(res)
+
+  fs.writeFileSync('../data/covid19tokyo/' + date2s(res.lastUpdate) + ".json", sjson)
+  fs.writeFileSync('../data/covid19tokyo/_latest.json', sjson)
   return res
 }
 
+const test = async function() {
+  const url = URL
+  const res = await fetch(url)
+  console.log(res.headers) // no last-modified
+}
 const main = async function() {
   const data = []
   data.push(await makeData())
   data.push(await makeDataFromJSON())
   console.log(data)
-  //util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
+  util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
 }
 if (require.main === module) {
   main()
