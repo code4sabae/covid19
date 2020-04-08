@@ -56,7 +56,7 @@ const makeData = async function() {
   res.url_opendata = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3.html'
   //console.log(res)
   fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", scsv)
-  fs.writeFileSync('../data/covid19fukui/_latest.csv', scsv)
+  fs.writeFileSync('../data/covid19fukui/latest.csv', scsv)
   return res
 }
 const makeDataFromJSON = async function() {
@@ -77,7 +77,7 @@ const makeDataFromJSON = async function() {
   //console.log(res)
 
   fs.writeFileSync('../data/covid19tokyo/' + date2s(res.lastUpdate) + ".json", sjson)
-  fs.writeFileSync('../data/covid19tokyo/_latest.json', sjson)
+  fs.writeFileSync('../data/covid19tokyo/latest.json', sjson)
   return res
 }
 

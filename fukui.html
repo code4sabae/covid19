@@ -66,7 +66,7 @@ const makeTabularMap = function(stab) {
 
 const showDetail = async function() {
 //const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
-  const url = 'data/covid19fukui/_latest.csv'
+  const url = 'data/covid19fukui/latest.csv'
   const scsv = await (await fetch(url)).text()
   const csv = convertCSVtoArray(scsv)
   const json = csv2json(csv)
