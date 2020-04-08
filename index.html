@@ -556,12 +556,15 @@ const fetchCSV = async function(url) {
 const makeURL = function(path) {
 	//const base = 'http://localhost:8003/api/'
 	const base = 'data/'
-	return base + path // + "?" + new Date().getTime() // ignore cache
+	return base + path + "?" + new Date().getTime() // ignore cache
 }
 const calcRatio = function(cnt, base) {
 	if (base == 0 || isNaN(cnt) || isNaN(base))
 		return "-"
 	return fixfloat(cnt / base * 100, 1) + "%"
+}
+const parseTime = function(s) {
+	return new Date(s).getTime()
 }
 const main = async function() {
 	translate()
@@ -570,6 +573,10 @@ const main = async function() {
 
 	const url = makeURL('covid19japan.json')
 	const json_mhlw = await fetchJSON(url)
+	for (const p of json_mhlw.area) {
+		p.lastUpdate = json_mhlw.lastUpdate
+		p.url_opendata = json_mhlw.srcurl_pdf
+	}
 	console.log(json_mhlw)
 
 	let json = json_mhlw
@@ -589,7 +596,6 @@ const main = async function() {
 				const n = parseInt(cbed['新型コロナウイルス対策感染症病床数'])
 				a.sumc = n
 				a.sumc_src = cbed
-				console.log(a)
 			}
 			json.area[j].bed = a
 		}
@@ -661,6 +667,7 @@ const main = async function() {
 		ventsrc.innerHTML = tx(`2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
 	}
 
+	/*
 	const json_now = JSON.parse(JSON.stringify(json))
 	const url_tokyo = 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
 	const json_tokyo = await (await fetch(url_tokyo)).json()
@@ -671,11 +678,26 @@ const main = async function() {
 	tokyo.nexits = json_tokyo.main_summary.children[0].children[1].value
 	tokyo.ndeaths = json_tokyo.main_summary.children[0].children[2].value
 	json_now.lastUpdateNow = json_tokyo.lastUpdate.replace(/\//g, '-')
+	*/
+	const json_now = JSON.parse(JSON.stringify(json))
+	{
+		const url_fast = makeURL('covid19japan-fast.json')
+		const json_fast = await (await fetch(url_fast)).json()
+		console.log('fast', json_fast)
+		for (const json of json_fast) {
+			const pref = json_now.area[PREF_EN.indexOf(json.name)]
+			for (const name in json) {
+				pref[name] = json[name]
+			}
+			if (!json_now.lastUpdateNow || parseTime(json_now.lastUpdateNow) < parseTime(pref.lastUpdate))
+				json_now.lastUpdateNow = pref.lastUpdate
+		}
+	}
 
 	const update = function() {
 		json = usepatientsnow.checked ? json_now : json_mhlw
 		if (json.lastUpdateNow) {
-			lastUpdateNow.textContent = ' (東京 ' + json.lastUpdateNow + ")"
+			lastUpdateNow.textContent = ' (速報 ' + json.lastUpdateNow + ")"
 		}
 		lastUpdateNow.style.display = usepatientsnow.checked ? "inline" : "none"
 		showSummary(json, json_bed)
@@ -689,7 +711,7 @@ const main = async function() {
 	usepatientsnow.onclick = update
 
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典：' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
+	datasrc.innerHTML = tx('データ出典: ' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
 	datasrc.innerHTML += tx(" / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON"))
 
 	const url_link = makeURL('covid19pref.json')
@@ -722,6 +744,11 @@ const showChart = function(data) {
 	})
 	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 感染症病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)")
 	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 感染症病床数:${nbed}床`)
+	if (data.data.src_url) {
+		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>${data.data.name_jp} 新型コロナウイルス患者数オープンデータ</a>`)
+	} else {
+		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>厚生労働省 新型コロナウイルス感染症（国内事例）の状況</a>`)
+	}
 	detaildesc.innerHTML += tx(`<br><a href=http://www.jibika.or.jp/members/information/info_corona.html>一般社団法人 日本耳鼻咽喉科学会</a>定義における`)
 	if (npatients_c < 10) {
 		detaildesc.innerHTML += tx(`ローリスク地域（現在患者数 ${npatients_c}名 < 10名）`)
@@ -735,7 +762,7 @@ const showChart = function(data) {
 		//console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>感染症病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス感染症病床数オープンデータ</a>`)
 		if (bed.sumc_src['備考']) {
-			detaildesc.innerHTML += tx(`<br>* ${bed.sumc_src['備考']}`)
+			detaildesc.innerHTML += tx(` * ${bed.sumc_src['備考']}`)
 		}
 	}
 	const v = data.data.vent
@@ -946,7 +973,7 @@ const makeJapanHTML = function() {
 		<tr><th colspan=2><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></th></tr>
 	</table>
 -->
-	<div id=lastupdatebox>現在患者数 更新日: <span id=lastUpdate></span><span id="lastUpdateNow" style='display:none'>（東京 2020-04-04）</span></div>
+	<div id=lastupdatebox>現在患者数 更新日: <span id=lastUpdate></span><span id="lastUpdateNow" style='display:none'></span></div>
 	<div id=bedtypesbox>
 		<div id=beddescription>
 			<div class=bedformula>* 感染症病床使用率(参考) = 現在患者数 / 感染症病床数</div>
@@ -959,7 +986,7 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
 			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a></label><br>
-			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京）」を使用</a></label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京/福井）」を使用</a></label><br>
 				現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
 				※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>）
 		</div>

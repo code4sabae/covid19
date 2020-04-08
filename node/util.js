@@ -254,6 +254,20 @@ exports.fetchText = async function(url, enc) {
   var buf = new Buffer.from(abuf, 'binary')
   return iconv.decode(buf, enc)
 }
+exports.fetchTextWithLastModified = async function(url, enc) {
+  const res = await fetch(url)
+  let lastUpdate = null
+  const s = res.headers.get('last-modified')
+  if (s) {
+    lastUpdate = this.formatYMDHMS(new Date(s))
+  }
+  if (!enc) {
+    return [ await res.text(), lastUpdate ]
+  }
+  const abuf = await res.arrayBuffer()
+  var buf = new Buffer.from(abuf, 'binary')
+  return [ iconv.decode(buf, enc), lastUpdate ]
+}
 exports.getWebWithCache = async function(url, path, cachetime, enc) {
   const ext = exports.getExtFromURL(url)
   const fnlatest = path + "_latest" + ext
