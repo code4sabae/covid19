@@ -81,7 +81,7 @@ const main = async function() {
   data.push(await makeData())
   data.push(await makeDataFromJSON())
   console.log(data)
-  util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
+  //util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
 }
 if (require.main === module) {
   main()
