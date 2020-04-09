@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード #StopCOVID19JP</title>
+<meta property="og:title" content="COVID-19 Japan 新型コロナウイルス対策ダッシュボード #StopCOVID19JP"/>
+<meta property="og:description" content="日本の感染症病床使用率と現在患者数を都道府県別にすばやく表示、厚生労働省と各自治体から提供されるオープンデータ使用 #StopCOVID19JP"/>
+<meta name="theme-color" content="#AD232F"/>
+<meta name="msapplication-TileColor" content="#AD232F"/>
+<link rel="icon" type="image/png" href="covid19japan-icon2.png"/>
+<link rel="apple-touch-icon" href="covid19japan-icon2.png"/>
+<meta name="msapplication-square310x310logo" content="covid19japan-icon2.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200407.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200407.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no"/>
+<style>
+body {
+	--main-color: #AD232F;
+	color: black;
+	word-wrap: break-word;
+	margin: 0;
+	zoom: 100%;
+	font-family: sans-serif;
+}
+h1 {
+	display: inline-block;
+	padding: 0;
+	background-color: var(--main-color);
+	color: white;
+	text-align: center;
+	border-radius: 30vw;
+	width: 30vw;
+	height: 30vw;
+	margin: 4vw;
+}
+.maintitle {
+	position: relative;
+	top: 4vw;
+	font-size: 10vw;
+}
+.subtitle {
+	position: relative;
+	top: 2vw;
+	font-size: 6vw;
+}
+.box {
+	display: inline-block;
+	border: 1px solid black;
+	x-width: 40vw;
+	x-height: 40vw;
+}
+</style>
+</head>
+<body>
+
+<div class=box id=icon>
+<h1 id=title><div class=maintitle>C19</div><div class=subtitle>JP</div></h1>
+</div>
+
+<div class=box id=iconx>
+	<h1 id=title><div class=maintitle>C19</div></h1><div class=subtitle>Dashboard JP</div>
+	</div>
+	
+<script src=../html2canvas.min.js></script>
+<script>
+const main = async function() {
+	const canvas = await html2canvas(icon)
+	document.body.appendChild(canvas)
+}
+main()
+</script>
+
+</body>
+</html>

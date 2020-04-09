@@ -2,9 +2,9 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const util = require('./util.js')
 
-const CACHE_TIME = 10 * 1000 // 10min
-const PATH = 'data/covid19fukui/'
-const URL = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
+//const CACHE_TIME = 10 * 1000 // 10min
+//const PATH = 'data/covid19fukui/'
+//const URL = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
 
 const date2s = function(datetime) {
   return datetime.replace(/:|-/g, "")
@@ -25,7 +25,9 @@ const checkJSON = function(json) {
   console.log(names)
 }
 const makeData = async function() {
-  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(URL, 'ShiftJIS')
+  const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv'
+  //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(URL, 'ShiftJIS')
+  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
   const json = util.csv2json(csv)
@@ -52,7 +54,7 @@ const makeData = async function() {
     if (PREF
   }
   */
-  const res = { name: 'Fukui', npatients: json.length, ncurrentpatients: patientscurrent, nexits: nexits, ndeaths: ndeaths, src_url: URL, lastUpdate: lastUpdate }
+  const res = { name: 'Fukui', npatients: json.length, ncurrentpatients: patientscurrent, nexits: nexits, ndeaths: ndeaths, src_url: url, lastUpdate: lastUpdate }
   res.url_opendata = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3.html'
   //console.log(res)
   fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", scsv)
