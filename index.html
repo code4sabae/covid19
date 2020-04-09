@@ -4,10 +4,10 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162141832-1"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-162141832-1');
+window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-162141832-1')
 </script>
 <meta charset="utf-8"/>
 <title>COVID-19 Japan - 新型コロナウイルス対策ダッシュボード #StopCOVID19JP</title>
@@ -19,10 +19,11 @@ gtag('config', 'UA-162141832-1');
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200407.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200407.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200408.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19japan_ogp_20200408.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700&display=swap" rel="stylesheet">
 <style>
 body {
 	--main-color: #AD232F;
@@ -35,17 +36,18 @@ body {
 a {
 	color: gray !important;
 }
-h1 {
+header {
 	background-color: var(--main-color);
 	color: white;
+}
+h1 {
 	text-align: center;
 	margin: 0;
 	padding: .3em;
 	font-size: 8vmin;
+	x-font-family: 'Overpass', sans-serif;
 }
 .subtitle {
-	background-color: var(--main-color);
-	color: white;
 	text-align: center;
 	margin: 0 0 .5em 0;
 	padding: .3em;
@@ -378,7 +380,8 @@ h1 {
 }
 </style>
 <script src="fukuno.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" async></script>
+<script defer src='Chart.bundle.min.js' xsrc="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<!--<script defer src='html2canvas.min.js'></script>-->
 <script>"use strict"
 
 const TX = {
@@ -724,7 +727,24 @@ const main = async function() {
 
 	datasrc.innerHTML += tx("<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>")
 	lazyLoading()
+
+	/*
+	capture.onclick = async function() {
+		window.scrollTo(0, 0)
+		const canvas = await html2canvas(tocapture)
+		downloadImage('covid19japan.png', canvas.toDataURL())
+	}
+	*/
 }
+document.addEventListener("DOMContentLoaded", main)
+
+const downloadImage = function(fn, data) {
+	const a = create('a')
+	a.href = data
+	a.download = fn
+	a.click()
+}
+
 const showChart = function(data) {
 	//console.log(data.data)
 	const npatients_c = data.data.ncurrentpatients
@@ -796,7 +816,6 @@ const showChart = function(data) {
 		e.stopPropagation()
 	}
 }
-document.addEventListener("DOMContentLoaded", main)
 
 const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedCount) {
 	//console.log(bed_total)
@@ -949,7 +968,9 @@ const makeJapanHTML = function() {
 	</div>
 </div>
 
-<h1 id=title>COVID-19 Japan</h1><div class=subtitle id=subtitle>新型コロナウイルス対策ダッシュボード</div>
+<div id=tocapture>
+
+<header><h1 id=title>COVID-19 Japan</h1><div class=subtitle id=subtitle>新型コロナウイルス対策ダッシュボード</div></header>
 
 <div class="content">
 	<div id=summary>
@@ -1004,6 +1025,9 @@ const makeJapanHTML = function() {
 </div>
 <div id="description"></div>
 <div id='datasrc'></div>
+<!--<button id=capture>cap</button>-->
+
+</div>
 
 </div>
 
