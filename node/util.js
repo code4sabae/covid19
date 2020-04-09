@@ -243,6 +243,10 @@ exports.mkdirSyncForFile = function(fn) {
     }
   }
 }
+exports.writeFileSync = function(fn, data, enc) {
+  this.mkdirSyncForFile(fn)
+  fs.writeFileSync(fn, data, enc)
+}
 exports.getExtFromURL = function(url) {
   let ext = ".txt"
   const n = url.lastIndexOf('/')
