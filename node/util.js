@@ -150,8 +150,10 @@ exports.json2csv = function(json) {
 
 exports.writeCSV = function(fnbase, csvar) {
   const s = this.encodeCSV(csvar)
-  fs.writeFileSync(fnbase + '.csv', s, 'utf-8')
-  fs.writeFileSync(fnbase + '.sjis.csv', iconv.encode(s, 'ShiftJIS'))
+  const bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ])
+  fs.writeFileSync(fnbase + '.csv', bom)
+  fs.appendFileSync(fnbase + '.csv', s, 'utf-8')
+  //fs.writeFileSync(fnbase + '.sjis.csv', iconv.encode(s, 'ShiftJIS'))
   fs.writeFileSync(fnbase + '.json', JSON.stringify(this.csv2json(csvar)))
 }
 exports.readCSV = function(fnbase) {
