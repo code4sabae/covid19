@@ -162,7 +162,6 @@ exports.readCSV = function(fnbase) {
     if (data.charCodeAt(0) == 0xfeff) {
       data = data.substring(1)
     }
-    console.log(data.charAt(0), data.charCodeAt(0), data.charCodeAt(0).toString(16))
     const csv = this.decodeCSV(data)
     return csv
   } catch (e) {
@@ -252,6 +251,21 @@ exports.getExtFromURL = function(url) {
   }
   return ext
 }
+exports.getHistogram = function(s) {
+  const chs = {}
+  for (const c of s) {
+    if (!chs[c.charCodeAt(0)])
+      chs[c.charCodeAt(0)] = 1
+    else
+      chs[c.charCodeAt(0)]++
+  }
+  const ar = []
+  for (const c in chs) {
+    ar.push([ c, chs[c] ])
+  }
+  ar.sort((a, b) => b[1] - a[1])
+  return ar
+}
 exports.fetchText = async function(url, enc) {
   if (!enc) {
     return await (await fetch(url)).text()
@@ -263,15 +277,25 @@ exports.fetchText = async function(url, enc) {
 exports.fetchTextWithLastModified = async function(url, enc) {
   const res = await fetch(url)
   let lastUpdate = null
+  if (res.status != 200)
+    return null
+  //console.log(res, res.status)
   const s = res.headers.get('last-modified')
   if (s) {
     lastUpdate = this.formatYMDHMS(new Date(s))
   }
-  if (!enc) {
-    return [ await res.text(), lastUpdate ]
-  }
   const abuf = await res.arrayBuffer()
-  var buf = new Buffer.from(abuf, 'binary')
+  if (!enc) {
+    //const text = String.fromCharCode.apply(null, new Uint8Array(abuf)) // await res.text()
+    const text = new TextDecoder().decode(abuf)
+    //console.log(this.getHistogram(text))
+    // console.log(String.fromCharCode(65533))
+    if (text.indexOf(String.fromCharCode(65533)) == -1) {
+      return [ text, lastUpdate ]
+    }
+    enc = 'ShiftJIS'
+  }
+  const buf = new Buffer.from(abuf, 'binary')
   return [ iconv.decode(buf, enc), lastUpdate ]
 }
 exports.getWebWithCache = async function(url, path, cachetime, enc) {

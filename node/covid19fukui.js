@@ -21,9 +21,15 @@ const checkJSON = function(json) {
   console.log(names)
 }
 const makeData = async function() {
+  const url_opendata = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html'
   const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv'
-  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url, 'ShiftJIS')
-  //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url, 'ShiftJIS')
+  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  /*
+  process.exit(0)
+  return
+  */
+
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
   const json = util.csv2json(csv)
@@ -51,7 +57,7 @@ const makeData = async function() {
   }
   */
   const res = { name: 'Fukui', npatients: json.length, ncurrentpatients: patientscurrent, nexits: nexits, ndeaths: ndeaths, src_url: url, lastUpdate: lastUpdate }
-  res.url_opendata = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3.html'
+  res.url_opendata = url_opendata
   //console.log(res)
   fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", scsv)
   fs.writeFileSync('../data/covid19fukui/latest.csv', scsv)
@@ -90,8 +96,8 @@ const main = async function() {
   data.push(await makeDataFromJSON())
   console.log(data)
   util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
-  const data2 = util.readCSV('../data/covid19japan-fast')
-  console.log(data2)
+  //const data2 = util.readCSV('../data/covid19japan-fast')
+  //console.log(data2)
 }
 if (require.main === module) {
   main()
