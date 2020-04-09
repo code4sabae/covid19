@@ -2,10 +2,6 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const util = require('./util.js')
 
-//const CACHE_TIME = 10 * 1000 // 10min
-//const PATH = 'data/covid19fukui/'
-//const URL = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
-
 const date2s = function(datetime) {
   return datetime.replace(/:|-/g, "")
 }
@@ -26,8 +22,8 @@ const checkJSON = function(json) {
 }
 const makeData = async function() {
   const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv'
-  //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(URL, 'ShiftJIS')
-  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url, 'ShiftJIS')
+  //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
   const json = util.csv2json(csv)
@@ -94,6 +90,8 @@ const main = async function() {
   data.push(await makeDataFromJSON())
   console.log(data)
   util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
+  const data2 = util.readCSV('../data/covid19japan-fast')
+  console.log(data2)
 }
 if (require.main === module) {
   main()
