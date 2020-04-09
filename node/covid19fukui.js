@@ -32,6 +32,7 @@ const makeData = async function() {
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
+  //csv.splice(0, 1)
   const json = util.csv2json(csv)
   //console.log(json)
 
@@ -59,8 +60,8 @@ const makeData = async function() {
   const res = { name: 'Fukui', npatients: json.length, ncurrentpatients: patientscurrent, nexits: nexits, ndeaths: ndeaths, src_url: url, lastUpdate: lastUpdate }
   res.url_opendata = url_opendata
   //console.log(res)
-  fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", scsv)
-  fs.writeFileSync('../data/covid19fukui/latest.csv', scsv)
+  fs.writeFileSync('../data/covid19fukui/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
+  fs.writeFileSync('../data/covid19fukui/latest.csv', util.addBOM(scsv))
   return res
 }
 const makeDataFromJSON = async function() {
@@ -91,11 +92,16 @@ const test = async function() {
   console.log(res.headers) // no last-modified
 }
 const main = async function() {
+  //const data = fs.readFileSync('../data/covid19fukui/20200409T151739.csv', 'utf-8')
+  //fs.writeFileSync('../data/covid19fukui/20200409T151739-2.csv', util.addBOM(data))
+  
   const data = []
   data.push(await makeData())
   data.push(await makeDataFromJSON())
   console.log(data)
   util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
+  
+
   //const data2 = util.readCSV('../data/covid19japan-fast')
   //console.log(data2)
 }

@@ -147,12 +147,14 @@ exports.json2csv = function(json) {
   }
   return res
 }
-
+exports.addBOM = function(s) {
+  return '\ufeff' + s
+}
 exports.writeCSV = function(fnbase, csvar) {
   const s = this.encodeCSV(csvar)
   //const bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ]) // add BOM
   //fs.writeFileSync(fnbase + '.csv', bom)
-  fs.writeFileSync(fnbase + '.csv', '\ufeff' + s, 'utf-8')
+  fs.writeFileSync(fnbase + '.csv', this.addBOM(s), 'utf-8')
   //fs.writeFileSync(fnbase + '.sjis.csv', iconv.encode(s, 'ShiftJIS'))
   fs.writeFileSync(fnbase + '.json', JSON.stringify(this.csv2json(csvar)))
 }
