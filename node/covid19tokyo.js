@@ -56,9 +56,13 @@ let numimg = null
 const croppedimg2num = async function(img) {
   if (numimg == null) {
     numimg = []
+    //const imgfn = 'numimg'
+    //const size = 16
+    const imgfn = 'numimg2'
+    const size = 18
     for (let i = 0; i < 10; i++) {
-      numimg[i] = await jimp.read('numimg/n' + i + '.png')
-      numimg[i].resize(16, 16)
+      numimg[i] = await jimp.read(imgfn + '/n' + i + '.png')
+      numimg[i].resize(size, size)
     }
   }
   const pixel2num = function(n) {
@@ -73,7 +77,10 @@ const croppedimg2num = async function(img) {
       for (let j = 0; j < img1.bitmap.height && j < img2.bitmap.height; j++) {
         const n1 = pixel2num(img1.getPixelColor(i, j))
         const n2 = pixel2num(img2.getPixelColor(i, j))
-        n += Math.abs(n1 - n2)
+        let dn = Math.abs(n1 - n2)
+        if (i > img1.bitmap.width / 4 && i < img1.bitmap.width * 3 / 4)
+          dn /= 2
+        n += dn
       }
     }
     return n
@@ -92,11 +99,11 @@ const croppedimg2num = async function(img) {
   return nmin
 }
 
+let nmakenumimage = 0
 const makeNumImage = async function(img) {
-  let cnt = 0
   await cropImages(img, async function(img) {
-    imgc.write('temp/num' + cnt++ + '.png')
-    console.log(cnt)
+    img.write('temp/num' + nmakenumimage++ + '.png')
+    console.log(nmakenumimage)
   })
 }
 
@@ -159,6 +166,7 @@ const cropImages = async function(img, asynccallback) {
 }
 
 const DEBUG = true
+const MAKE_NUM_IMAGE = false
 const getPatientsTokyo = async function(fn) {
   const towns = [
     '千代田', '中央', '港', '新宿', '文京', '台東', '墨田', '江東', '品川', '目黒', '大田',
@@ -168,19 +176,36 @@ const getPatientsTokyo = async function(fn) {
     '多摩', '稲城', '羽村', 'あきる野', '西東京', '瑞穂', '日の出', '檜原', '奥多摩', '大島', '利島',
     '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中'
   ]
-  const jpg = await jimp.read(fn)
+  // 837x387
+  // 813x362
+  const png = await jimp.read(fn)
+
   let res = []
+  //const offx = 26
+  //const offy = 50
+  //const boxw = 66
+  //const boxh = 52
+  
+  const offx = 26 - 20
+  const offy = 50 - 16
+  const boxw = 75
+  const boxh = 59
   for (let i = 0; i < 11 * 6 - 2; i++) {
-    const x = 26 + 66 * (i % 11)
-    const y = 50 + 52 * Math.floor(i / 11)
-    const w = 60
-    const h = 24
-    const imgc = jpg.clone()
+    const x = offx + boxw * (i % 11)
+    const y = offy + boxh * Math.floor(i / 11)
+    const w = Math.floor(boxw * .9) // 60
+    const h = Math.floor(boxh * 24 / 52) // 24
+    const imgc = png.clone()
     imgc.crop(x, y, w, h)
     //const text = await img2text.img2text(imgc, DEBUG)
-    const num = await img2num(imgc)
-    //imgc.write('temp/' + i + '.png')
-    res.push({ name_ja: towns[i], npatients: num })
+    if (MAKE_NUM_IMAGE) {
+      await makeNumImage(imgc)
+    } else {
+      const num = await img2num(imgc)
+      if (DEBUG)
+        imgc.write('temp/' + i + '.png')
+      res.push({ name_ja: towns[i], npatients: num })
+    }
   }
   return res
 }
@@ -233,13 +258,17 @@ const makeTokyo = async function() {
   const res = { name: 'Tokyo', patientscurrent: cnt, patients: json.length, src_url: URL }
 }
 const main = async function() {
-  const fn = '../data/covid19tokyo/153-5.png' // 4/4
+  /*
+  const fn = '../data/covid19tokyo/173-5.png' // 4/8
+  //const fn = '../data/covid19tokyo/153-5.png' // 4/4
   //const fn = '../data/150-5.png' // 4/3
   const data = await getPatientsTokyo(fn)
   util.writeCSV('../data/covid19tokyo-detail', util.json2csv(data))
   console.log(data)
-  
-  //const img = await jimp.read('temp/47.png')
+  */
+  const data = util.readCSV('../data/covid19tokyo-detail')
+  util.writeCSV('../data/covid19tokyo-detail', data)
+ //const img = await jimp.read('temp/47.png')
   //console.log(await img2num(img))
 }
 if (require.main === module) {
