@@ -406,6 +406,7 @@ const TX = {
 	'をお願いします': { 'en': '' },
 	'一次情報提供': { 'en': ' Please regist from here' },
 	'参考': { 'en': 'estimate' },
+	'速報': { 'en': 'early' },
 	'登録フォーム': { 'en': 'regist form' },
 	'集約版': { 'en': 'summary' },
 	'感染症病床数は': { 'en': 'Hospital beds for infectious diseases from' },
@@ -476,6 +477,7 @@ const TX = {
 	'床': { 'en': '' },
 	'、': { 'en': ', ' },
 	'の': { 'en': ' ' },
+	'を表示' : {'en' : '' },
 	'とじる': { 'en': 'close' },
 	'アプリへ': { 'en': 'App' },
 	'公式サイトへ': { 'en': 'Official site' },
@@ -749,7 +751,7 @@ const main = async function() {
 			labelcurrent.textContent = tx('現在患者数')
 		}
 		if (json.lastUpdateNow) {
-			lastUpdateNow.textContent = ' (速報 ' + json.lastUpdateNow + ")"
+			lastUpdateNow.textContent = tx(' (速報 ' + json.lastUpdateNow + ")")
 		}
 		lastUpdateNow.style.display = usepatientsnow.checked ? "inline" : "none"
 		showSummary(json, json_bed)
@@ -1063,8 +1065,8 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
 			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</label><br>
-			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京/福井/福岡）」を使用</label><br>
-			<label><input type=checkbox id='usepatientspeek'><a href=https://www.jmari.med.or.jp/>日本医師会総合政策研究機構</a>「<a href=https://www.jmari.med.or.jp/research/research/wr_697.html>ピーク時予測患者数</a>」</label><label><input type=checkbox id=usepatientspeekh>（重症患者のみ）</label></label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>(東京/福井/福岡)」を使用(速報)</label><br>
+			<label><input type=checkbox id='usepatientspeek'><a href=https://www.jmari.med.or.jp/>日本医師会総合政策研究機構</a>「<a href=https://www.jmari.med.or.jp/research/research/wr_697.html>ピーク時予測患者数</a>」を表示</label><label><input type=checkbox id=usepatientspeekh>（重症患者のみ）</label></label><br>
 		</div>
 	</div>
 	<!--
