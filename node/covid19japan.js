@@ -228,7 +228,8 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
   res.ndeaths = 0
   res.ncurrentpatients = 0
   //res.ninspections = 0
-  const dt2 = parseDate(ss[0])
+  const linestart = ss[0].indexOf('関数') >= 0 ? 2 : 1
+  const dt2 = parseDate(ss[linestart - 1])
   if (dt2 != "--") {
     res.lastUpdate = dt2
   } else {
@@ -248,11 +249,10 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = 0
     a.nexits = 0
     a.ndeaths = 0
-    a.ndif = 0
-    a.ratio = 0
+    a.patientsdif = 0
+    a.patientsratio = 0
   }
   console.log(ss)
-  const linestart = ss[0].indexOf('関数') >= 0 ? 2 : 1
   for (let i = linestart;; i++) {
     const ss2 = ss[i].split(' ')
     let nstart = parseInt(ss2[0]) == ss2[0] ? 1 : 0
@@ -279,9 +279,9 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
     a.nexits = parseInt(ss2[nstart + nskip + 5])
     a.ndeaths = parseInt(ss2[nstart + nskip + 7])
-    a.ndif = parseInt(ss2[nstart + 2])
+    a.patientsdif = parseInt(ss2[nstart + 2])
     if (nskip)
-      a.ratio = parseFloat(ss2[nstart + 3])
+      a.patientsratio = parseFloat(ss2[nstart + 3])
     if (a.npatients != a.ncurrentpatients + a.nexits + a.ndeaths) {
       console.log("***** " + pref, a.ncurrentpatients, a.nexits, a.ndeaths)
       //return null
@@ -346,8 +346,10 @@ const makeCovid19Japan = async function() {
 }
 const makeCovid19JapanList = function() {
   const path = '../data/covid19japan/'
-  const list = fs.readdirSync(path)
+  const flist = fs.readdirSync(path)
   const fndest = '../data/covid19japan-all.json'
+  const fndestcsv = '../data/covid19japan-all.csv'
+  const baseurl = 'https://www.stopcovid19.jp/data/covid19japan/'
 
   //console.log(list)
   // rename
@@ -360,23 +362,45 @@ const makeCovid19JapanList = function() {
   }
   */
   const all = []
-  for (const f of list) {
+  const list = []
+  for (const f of flist) {
     if (f.endsWith('.pdf.json')) {
       const data = JSON.parse(fs.readFileSync(path + f, 'utf-8'))
       console.log(f, data.lastUpdate)
-      data.srcurl_pdf_archived = 'https://www.stopcovid19.jp/data/covid19japan/' + f.substring(0, f.length - 4)
+      const fbase = f.substring(0, f.length - 5)
+      data.srcurl_pdf_archived = baseurl + fbase
       all.push(data)
+      const fncsv = data.lastUpdate + '.csv'
+      writeCSVbyJSON(path + fncsv, data.area)
+      console.log(data.area)
+      list.push({
+        lastUpdate: data.lastUpdate,
+        description: data.description,
+        srcurl_web: data.srcurl_web,
+        srcurl_pdf: data.srcurl_pdf,
+        srcurl_pdf_archived: data.srcurl_pdf_archived,
+        url_csv: baseurl + fncsv,
+        url_json: data.srcurl_pdf_archived + '.json',
+      })
     }
   }
   const pi = function(d) {
     return parseInt(d.replace(/-/g, ""))
   }
-  all.sort(function(a, b) {
+  const pisort = function(a, b) {
     return pi(a.lastUpdate) - pi(b.lastUpdate)
-  })
+  }
+  all.sort(pisort)
+  list.sort(pisort)
   console.log(all)
   const sjson = JSON.stringify(all)
   fs.writeFileSync(fndest, sjson)
+  console.log(list)
+  writeCSVbyJSON(fndestcsv, list)
+}
+const writeCSVbyJSON = function(fn, json) {
+  const scsv = util.encodeCSV(util.json2csv(json))
+  fs.writeFileSync(fn, util.addBOM(scsv))
 }
 const main = async function() {
   await makeCovid19Japan()

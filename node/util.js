@@ -96,7 +96,7 @@ exports.encodeCSV = function(csvar) {
       const v = line[j]
       if (v == undefined || v.length == 0) {
         s2.push("")
-      } else if (parseInt(v) == v) {
+      } else if (typeof v == 'number') {
         s2.push(v)
       } else if (v.indexOf('"') >= 0) {
         s2.push('"' + v.replace(/\"/g, '""') + '"')
