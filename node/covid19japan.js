@@ -248,13 +248,20 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = 0
     a.nexits = 0
     a.ndeaths = 0
+    a.ndif = 0
+    a.ratio = 0
   }
-  for (let i = 1;; i++) {
+  console.log(ss)
+  const linestart = ss[0].indexOf('関数') >= 0 ? 2 : 1
+  for (let i = linestart;; i++) {
     const ss2 = ss[i].split(' ')
     let nstart = parseInt(ss2[0]) == ss2[0] ? 1 : 0
     const pref = ss2[nstart]
+    if (pref.indexOf(ss2[nstart + 1]) >= 0) {
+      nstart++
+    }
     const nskip = ss2[nstart + 5].indexOf('%') >= 0 ? 1 : 0
-    //console.log(nskip, ss2[nstart + 5])
+    console.log(nskip, ss2[nstart + 5])
     if (pref == '総計') {
       const a = res
       a.npatients = parseInt(ss2[nstart + 1])
@@ -272,6 +279,9 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
     a.nexits = parseInt(ss2[nstart + nskip + 5])
     a.ndeaths = parseInt(ss2[nstart + nskip + 7])
+    a.ndif = parseInt(ss2[nstart + 2])
+    if (nskip)
+      a.ratio = parseFloat(ss2[nstart + 3])
     if (a.npatients != a.ncurrentpatients + a.nexits + a.ndeaths) {
       console.log("***** " + pref, a.ncurrentpatients, a.nexits, a.ndeaths)
       //return null
