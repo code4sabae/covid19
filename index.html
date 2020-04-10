@@ -105,7 +105,7 @@ h1 {
 .sgb, .sgd, .sgf, .sgh {
 	background-color: var(--main-color);
 	color: white;
-	font-size: 350%;
+	font-size: 300%;
 }
 .sgi, .sgj {
 }
@@ -161,7 +161,7 @@ h1 {
 	text-align: center;
 }
 
-#description {
+.description {
 	margin: 1em;
 }
 
@@ -397,6 +397,11 @@ const TX = {
 	'東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介': { 'en': "Introduction of the against COVID-19 site by Tokyo Metropolitan Government using the open source" },
 	'都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)': { 'en': 'Number of ventilators by prefecture (at the time of the February 2020 survey)' },
 	'感染症病床使用率': { 'en': 'Bed occupancy rate' },
+	'病床使用率': { 'en': 'Bed occupancy rate' },
+	'日本医師会総合政策研究機構': { 'en': 'Japan Medical Association Research Institute' },
+	'ピーク時予測患者数': { 'en': 'Predicted cases (peek)' },
+	'ピーク時予測重症患者数': { 'en': 'Predicted critically cases (peek)' },
+	'重症患者のみ': { 'en': 'only critically cases' },
 	'新型コロナウイルス対策感染症病床': { 'en': 'Anti-Coronavirus bed data ' },
 	'をお願いします': { 'en': '' },
 	'一次情報提供': { 'en': ' Please regist from here' },
@@ -554,7 +559,7 @@ const fetchJSON = async function(url) {
 }
 const fetchCSV = async function(url) {
 	const csv = await (await fetch(url)).text()
-	const data = convertCSVtoArray(csv)
+	const data = decodeCSV(csv)
 	return csv2json(data)
 }
 const makeURL = function(path) {
@@ -565,7 +570,8 @@ const makeURL = function(path) {
 const calcRatio = function(cnt, base) {
 	if (base == 0 || isNaN(cnt) || isNaN(base))
 		return "-"
-	return fixfloat(cnt / base * 100, 1) + "%"
+	const n = cnt / base * 100
+	return fixfloat(n, n >= 100 ? 0 : 1) + "%"
 }
 const parseTime = function(s) {
 	return new Date(s).getTime()
@@ -636,11 +642,13 @@ const main = async function() {
 				sum[n] += json.area[i][n]
 			}
 		}
-		
 		for (const n in sum) {
 			json[n] = sum[n]
 		}
-		
+		if (usepatientspeek.checked) {
+			json.nexits = "-"
+			json.ndeaths = "-"
+		}
 
 		let sumbed = 0
 		for (let i = 0; i < json_bed.area.length; i++) {
@@ -698,8 +706,46 @@ const main = async function() {
 		}
 	}
 
+	// ピーク時
+	const json_peek = JSON.parse(JSON.stringify(json))
+	{
+		const url_peek = makeURL('jmari_med_or_jp/patients_peek.csv')
+		const scsv = await (await fetch(url_peek)).text()
+		const json_p = csv2json(decodeCSV(scsv))
+		console.log('peek', json_p)
+		const sum = function(d, ar) {
+			let n = 0
+			for (const name of ar) {
+				n += parseInt(d[name].trim())
+			}
+			return n
+		}
+		for (let i = 0; i < json_p.length; i++) {
+			const a = json_peek.area[i]
+			a.npatients = parseInt(json_p[i]['発症者'].trim())
+			a.ncurrentpatients1 = parseInt(json_p[i]['入院患者'].trim())
+			a.ncurrentpatients2 = parseInt(json_p[i]['重症患者'].trim())
+			a.nicus = sum(json_p[i], [ "ICU", "HCU", "SCU" ])
+			a.nexits = ""
+			a.ndeaths = ""
+		}
+		json_peek.lastUpdateNow = '2020-04-03'
+		console.log(json_peek)
+	}
+
 	const update = function() {
-		json = usepatientsnow.checked ? json_now : json_mhlw
+		if (usepatientspeek.checked) {
+			for (let i = 0; i < json_peek.area.length; i++) {
+				const a = json_peek.area[i]
+				a.ncurrentpatients = usepatientspeekh.checked ? a.ncurrentpatients2 : a.ncurrentpatients1
+			}
+			json = json_peek
+			labelcurrent.textContent = tx(usepatientspeekh.checked ? 'ピーク時予測重症患者数' : 'ピーク時予測患者数')
+		} else {
+			usepatientspeekh.checked = false
+			json = usepatientsnow.checked ? json_now : json_mhlw
+			labelcurrent.textContent = tx('現在患者数')
+		}
 		if (json.lastUpdateNow) {
 			lastUpdateNow.textContent = ' (速報 ' + json.lastUpdateNow + ")"
 		}
@@ -713,6 +759,13 @@ const main = async function() {
 	}
 	usebednow.onclick = update
 	usepatientsnow.onclick = update
+	usepatientspeek.onclick = update
+	usepatientspeekh.onclick = function() {
+		if (usepatientspeekh.checked) {
+			usepatientspeek.checked = true
+		}
+		update()
+	}
 
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者/累積退院者/累積死者数）')
 	datasrc.innerHTML = tx('データ出典: ' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
@@ -976,8 +1029,8 @@ const makeJapanHTML = function() {
 <div class="content">
 	<div id=summary>
 	<div class=summarygrid>
-		<div class=sga>感染症病床使用率(参考)*</div><div class=sgb><span id=useratio></span></div>
-		<div class=sgc>現在患者数</div><div class=sgd><span id=ncurrentpatients>-</span>人</div>
+		<div class=sga>病床使用率(参考)*</div><div class=sgb><span id=useratio></span></div>
+		<div class=sgc id=labelcurrent>現在患者数</div><div class=sgd><span id=ncurrentpatients>-</span>人</div>
 		<div class=sge>累積退院者</div><div class=sgf><span id=nexits>-</span>人</div>
 		<div class=sgg>死亡者</div><div class=sgh><span id=ndeaths>-</span>人</div>
 		<div class=sgi>感染症病床数 <span id=sumc>-</span>床</div>
@@ -1007,10 +1060,9 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='bedk'>二種(結核)</label>
 				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
-			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</a></label><br>
-			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京/福井/福岡）」を使用</a></label><br>
-				現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
-				※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>）
+			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス感染症病床数オープンデータ</a>」を使用</label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>（東京/福井/福岡）」を使用</label><br>
+			<label><input type=checkbox id='usepatientspeek'><a href=https://www.jmari.med.or.jp/>日本医師会総合政策研究機構</a>「<a href=https://www.jmari.med.or.jp/research/research/wr_697.html>ピーク時予測患者数</a>」</label><label><input type=checkbox id=usepatientspeekh>（重症患者のみ）</label></label><br>
 		</div>
 	</div>
 	<!--
@@ -1024,7 +1076,14 @@ const makeJapanHTML = function() {
 <div id=cmap>
 	<div id="japan"></div>
 </div>
-<div id="description"></div>
+<div class='description'>
+	<div id="description"></div>
+	<div id='description2'>
+	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000614803.pdf>詳細</a>
+	現在患者数や現在感染症床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
+	</div>
+</div>
+
 <div id='datasrc'></div>
 <!--<button id=capture>cap</button>-->
 

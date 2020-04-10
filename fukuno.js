@@ -512,76 +512,76 @@ var xml2json = function(url, callback) {
 	var url2 = base + "&cache=no&callback=" + getCallbackMethod(callback) + "&url=" + encodeURI(url);
 	jsonp(url2);
 };
-var convertCSVtoArray = function(s) {
-	var res = [];
-	var st = 0;
-	var line = [];
-	var sb = null;
+const decodeCSV = function(s) {
+	const res = []
+	let st = 0
+	let line = []
+	let sb = null
 	if (!s.endsWith("\n"))
-	s += "\n";
-	var len = s.length;
-	for (var i = 0; i < len; i++) {
-		var c = s.charAt(i);
+		s += "\n"
+	const len = s.length
+	for (let i = 0; i < len; i++) {
+		let c = s.charAt(i)
 		if (c == '\r')
-		continue;
+			continue
 		if (st == 0) {
 			if (c == '\n') {
 				if (line.length > 0)
-				line.push("");
-				res.push(line);
-				line = [];
+					line.push("")
+				res.push(line)
+				line = []
 			} else if (c == ',') {
-				line.push("");
+				line.push("")
 			} else if (c == '"') {
-				sb = "";
-				st = 2;
+				sb = ""
+				st = 2
 			} else {
-				sb = c;
-				st = 1;
+				sb = c
+				st = 1
 			}
 		} else if (st == 1) {
 			if (c == '\n') {
-				line.push(sb);
-				res.push(line);
-				line = [];
-				st = 0;
-				sb = null;
+				line.push(sb)
+				res.push(line)
+				line = []
+				st = 0
+				sb = null
 			} else if (c == ',') {
-				line.push(sb);
-				sb = null;
-				st = 0;
+				line.push(sb)
+				sb = null
+				st = 0
 			} else {
-				sb += c;
+				sb += c
 			}
 		} else if (st == 2) {
 			if (c == '"') {
-				st = 3;
+				st = 3
 			} else {
-				sb += c;
+				sb += c
 			}
 		} else if (st == 3) {
 			if (c == '"') {
-				sb += c;
-				st = 2;
+				sb += c
+				st = 2
 			} else if (c == ',') {
-				line.push(sb);
-				sb = null;
-				st = 0;
+				line.push(sb)
+				sb = null
+				st = 0
 			} else if (c == '\n') {
-				line.push(sb);
-				res.push(line);
-				line = [];
-				st = 0;
-				sb = null;
+				line.push(sb)
+				res.push(line)
+				line = []
+				st = 0
+				sb = null
 			}
 		}
 	}
 	if (sb != null)
-	line.push(sb);
+		line.push(sb)
 	if (line.length > 0)
-	res.push(line);
-	return res;
-};
+		res.push(line)
+	return res
+}
 const csv2json = function(csv) {
 	const res = []
 	const head = csv[0]
