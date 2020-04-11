@@ -249,8 +249,8 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = 0
     a.nexits = 0
     a.ndeaths = 0
-    a.patientsdif = 0
-    a.patientsratio = 0
+    //a.patientsdif = 0
+    //a.patientsratio = 0
   }
   console.log(ss)
   for (let i = linestart;; i++) {
@@ -279,9 +279,9 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
     a.nexits = parseInt(ss2[nstart + nskip + 5])
     a.ndeaths = parseInt(ss2[nstart + nskip + 7])
-    a.patientsdif = parseInt(ss2[nstart + 2])
-    if (nskip)
-      a.patientsratio = parseFloat(ss2[nstart + 3])
+    //a.patientsdif = parseInt(ss2[nstart + 2])
+    //if (nskip)
+    //  a.patientsratio = parseFloat(ss2[nstart + 3])
     if (a.npatients != a.ncurrentpatients + a.nexits + a.ndeaths) {
       console.log("***** " + pref, a.ncurrentpatients, a.nexits, a.ndeaths)
       //return null
