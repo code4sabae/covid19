@@ -1,0 +1,4 @@
+﻿name,author,csv,src,lastUpdate
+人口（都道府県別）（平成28年）,総務省「人口推計」,population_jp_2016.csv,https://www.e-stat.go.jp/dbview?sid=0003171322,2016-10-01
+人口（都道府県別）（平成29年）,総務省「人口推計」,population_jp_2017.csv,https://www.stat.go.jp/naruhodo/c1data/02_01_stt.html,2017-10-01
+人口（都道府県別）（平成30年）,総務省「人口推計」,population_jp_2018.csv,https://www.stat.go.jp/data/jinsui/2018np/index.html,2018-10-01

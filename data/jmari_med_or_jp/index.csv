@@ -1,2 +1,3 @@
 ﻿name,author,csv,src,lastUpdate
-コロナウィルス感染症ピーク時予測患者数と各種病床数（都道府県別）,日本医師会総合政策研究機構,patients_peek.csv,https://www.jmari.med.or.jp/research/research/wr_697.html,200-04-03
+コロナウィルス感染症ピーク時予測患者数と各種病床数（都道府県別）,日本医師会総合政策研究機構,patients_peek.csv,https://www.jmari.med.or.jp/research/research/wr_697.html,2020-04-03
+2020年の日本の地域別将来推計人口,国立社会保障・人口問題研究所,population_jp.csv,http://www.ipss.go.jp/pp-shicyoson/j/shicyoson18/1kouhyo/gaiyo.pdf,2018-03-01
