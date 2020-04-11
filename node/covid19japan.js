@@ -343,6 +343,7 @@ const makeCovid19Japan = async function() {
   const sjson = JSON.stringify(json)
   fs.writeFileSync(path + fn + ".json", sjson)
   fs.writeFileSync('../data/covid19japan.json', sjson)
+  writeCSVbyJSON('../data/covid19japan.csv', json.area)
 }
 const makeCovid19JapanList = function() {
   const path = '../data/covid19japan/'

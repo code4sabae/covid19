@@ -460,6 +460,7 @@ const TX = {
 	'COVID-19対策プロジェクト': { 'en': 'Project against COVID-19' },
 	'平成31年4月1日現在': { 'en': 'in 2019-04-01' },
 	'患者数': { 'en': 'Active cases' },
+	'APP (アプリ開発/提供)': { 'en': 'APP' },
 	'全国': { 'en': 'Japan' },
 	'募集': { 'en': ' (details)' },
 	'詳細': { 'en': 'details' },
@@ -554,7 +555,7 @@ const lazyLoading = function() {
 	}
 }
 const link = function(url, name) {
-	return `<a href="${url}">${name}</a>`
+	return `<a href="${cutQuery(url)}">${name}</a>`
 }
 const fetchJSON = async function(url) {
 	return await (await fetch(url)).json()
@@ -568,6 +569,12 @@ const makeURL = function(path) {
 	//const base = 'http://localhost:8003/api/'
 	const base = 'data/'
 	return base + path + "?" + new Date().getTime() // ignore cache
+}
+const cutQuery = function(url) {
+	const n = url.lastIndexOf('?')
+	if (n >= 0)
+		return url.substring(0, n)
+	return url
 }
 const calcRatio = function(cnt, base) {
 	if (base == 0 || isNaN(cnt) || isNaN(base))
@@ -771,8 +778,13 @@ const main = async function() {
 		update()
 	}
 
+	const makeCSVURL = function(url) {
+		url = cutQuery(url)
+		return url.substring(0, url.length - 4) + 'csv'
+	}
+	const url_csv = makeCSVURL(url)
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 感染症病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典: ' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url, 'JSON'))
+	datasrc.innerHTML = tx('データ出典: ' + link(json.srcurl_web, '厚生労働省') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON'))
 	datasrc.innerHTML += tx(" / " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省') + " → " + link(url_bed, "JSON"))
 
 	const url_link = makeURL('covid19pref.json')
@@ -1069,12 +1081,6 @@ const makeJapanHTML = function() {
 			<label><input type=checkbox id='usepatientspeek'><a href=https://www.jmari.med.or.jp/>日本医師会総合政策研究機構</a>「<a href=https://www.jmari.med.or.jp/research/research/wr_697.html>ピーク時予測患者数</a>」を表示</label><label><input type=checkbox id=usepatientspeekh>（重症患者のみ）</label></label><br>
 		</div>
 	</div>
-	<!--
-	<div id=summarydesc>
-		出典: クルーズ船を除く入退院状況 by <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>厚生労働省</a> → <span id=imgurl></span><a href=https://app.sabae.cc/api/covid19japan_summary.json>JSON-API</a><br>
-		<span id=lastupdatebox>更新日時: <span id=lastUpdate></span></span>
-	</div>
--->
 </div>
 
 <div id=cmap>
@@ -1122,9 +1128,10 @@ const makeJapanHTML = function() {
 
 <div id=credit class="credit">
 credit<br>
-APP: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://fukuno.jig.jp/>jig.jp 福野泰介</a> / <a href=https://fukuno.jig.jp/2799>厚生労働省提供 新型コロナウイルス対策ダッシュボードについて</a> / <a href=https://fukuno.jig.jp/2788>感染者PDFデータをJSON-API化して公開</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
+APP (アプリ開発/提供): <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://fukuno.jig.jp/>jig.jp 福野泰介</a> <a href=https://twitter.com/taisukef>@taisukef</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
+「<a href=https://fukuno.jig.jp/2799>厚生労働省提供 新型コロナウイルス対策ダッシュボードについて</a>」「<a href=https://fukuno.jig.jp/2788>感染者PDFデータをJSON-API化して公開</a>」<br>
 <br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan.txt>TXT</a> (集約版 <a href=http://app.sabae.cc/api/covid19japan_summary.json>JSON</a> / <a href=http://app.sabae.cc/api/covid19japan_summary.txt>TXT</a>、<a href=https://www.stopcovid19.jp/data/covid19japan-all.json>過去分</a>)<br>
+DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a>)<br>
 DATA: <a href=https://creativecommons.org/share-your-work/public-domain/cc0>CC0</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス感染症病床数オープンデータ</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
