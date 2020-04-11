@@ -332,16 +332,19 @@ const makeCovid19Japan = async function() {
   const res = parseLink(html, title)
   console.log(res)
 
-  const path = '../data/covid19japan/'
   const url = res.url
   const fn = url.substring(url.lastIndexOf('/') + 1)
+  const path = '../data/covid19japan/'
   const pdf = await (await fetch(url)).arrayBuffer()
-	fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
-  const txt = await pdf2text.pdf2text(path + fn)
-  const json = text2jsonWithCurrentPatients(txt, url, res.dt)
+  fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+  await makeCovid19JapanByPDF(url, path + fn)
+}
+const makeCovid19JapanByPDF = async function(url, fn) {  
+  const txt = await pdf2text.pdf2text(fn)
+  const json = text2jsonWithCurrentPatients(txt, url) // , res.dt)
   console.log(json)
   const sjson = JSON.stringify(json)
-  fs.writeFileSync(path + fn + ".json", sjson)
+  fs.writeFileSync(fn + ".json", sjson)
   fs.writeFileSync('../data/covid19japan.json', sjson)
   writeCSVbyJSON('../data/covid19japan.csv', json.area)
 }
@@ -404,6 +407,8 @@ const writeCSVbyJSON = function(fn, json) {
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
 const main = async function() {
+  //await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000620956.pdf', '../data/covid19japan/000620956.pdf')
+
   await makeCovid19Japan()
   makeCovid19JapanList()
 }
