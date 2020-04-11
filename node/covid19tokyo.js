@@ -3,6 +3,7 @@ const fetch = require('node-fetch')
 const util = require('./util.js')
 const jimp = require("jimp")
 const img2text = require('./img2text.js')
+const pdf2text = require('./pdf2text.js')
 
 const CACHE_TIME = 10 * 1000 // 10min
 const PATH = 'data/covid19tokyo/'
@@ -167,7 +168,7 @@ const cropImages = async function(img, asynccallback) {
 
 const DEBUG = true
 const MAKE_NUM_IMAGE = false
-const getPatientsTokyo = async function(fn) {
+const getPatientsTokyo = async function(fn) { // 数字認識精度が悪く断念
   const towns = [
     '千代田', '中央', '港', '新宿', '文京', '台東', '墨田', '江東', '品川', '目黒', '大田',
     '世田谷', '渋谷', '中野', '杉並', '豊島', '北', '荒川', '板橋', '練馬', '足立', '葛飾',
@@ -208,6 +209,51 @@ const getPatientsTokyo = async function(fn) {
     }
   }
   return res
+}
+const getPatientsTokyoByPDF = async function(fn) { // 並びがデタラメ過ぎて断念
+  const txt = await pdf2text.pdf2text(fn)
+  //console.log(txt)
+  const ss = txt.split('\n')
+  let state = 0
+  const nums = []
+  const areas = []
+  for (let s of ss) {
+    if (state == 0) {
+      if (s.indexOf('【参考】区市町村別患者数（都内発生分）') >= 0) {
+        state = 1
+      }
+    } else if (state == 1) {
+      if (s.charAt(0) == '※' || s.indexOf('今後の') >= 0) {
+        continue
+      }
+      if (s.indexOf('総数（累計）') >= 0) {
+        state = 2
+        continue
+      }
+      s = s.replace('東久留米武蔵村山', '東久留米 武蔵村山')
+      const s2 = s.split(' ')
+      if (s2.length > 0) {
+        if (parseInt(s2[0]) == s2[0]) {
+//          for (let i = s2.length - 1; i >= 0; i--) {
+          for (let i = 0; i < s2.length; i++) {
+              const s3 = s2[i]
+            nums.push(s3)
+          }
+        } else {
+          console.log(s2[0], s)
+          for (let i = 0; i < s2.length; i++) {
+            const s3 = s2[i]
+            areas.push(s3)
+          }
+        }
+      }
+    }
+  }
+  for (let i = 0; i < areas.length; i++) {
+    console.log(areas[i], nums[i])
+  }
+  console.log(areas.length, nums.length)
+  return null
 }
 
 const checkJSON = function(json) {
@@ -266,10 +312,15 @@ const main = async function() {
   util.writeCSV('../data/covid19tokyo-detail', util.json2csv(data))
   console.log(data)
   */
+  /*
   const data = util.readCSV('../data/covid19tokyo-detail')
   util.writeCSV('../data/covid19tokyo-detail', data)
+  */
  //const img = await jimp.read('temp/47.png')
   //console.log(await img2num(img))
+
+  const fn = '../data/covid19tokyo/2020041000.pdf'
+  await getPatientsTokyoByPDF(fn)
 }
 if (require.main === module) {
   main()
