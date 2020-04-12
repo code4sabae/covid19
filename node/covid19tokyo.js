@@ -4,6 +4,7 @@ const util = require('./util.js')
 const jimp = require("jimp")
 const img2text = require('./img2text.js')
 const pdf2text = require('./pdf2text.js')
+const parsetokyocovidreportpdf = require('./parsetokyocovidreportpdf.js')
 
 const CACHE_TIME = 10 * 1000 // 10min
 const PATH = 'data/covid19tokyo/'
@@ -166,17 +167,19 @@ const cropImages = async function(img, asynccallback) {
 // return cnt
 }
 
+const TOKYO_CITIES = [
+  '千代田', '中央', '港', '新宿', '文京', '台東', '墨田', '江東', '品川', '目黒', '大田',
+  '世田谷', '渋谷', '中野', '杉並', '豊島', '北', '荒川', '板橋', '練馬', '足立', '葛飾',
+  '江戸川', '八王子', '立川', '武蔵野', '三鷹', '青梅', '府中', '昭島', '調布', '町田', '小金井',
+  '小平', '日野', '東村山', '国分寺', '国立', '福生', '狛江', '東大和', '清瀬', '東久留米', '武蔵村山',
+  '多摩', '稲城', '羽村', 'あきる野', '西東京', '瑞穂', '日の出', '檜原', '奥多摩', '大島', '利島',
+  '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中'
+]
+
 const DEBUG = true
 const MAKE_NUM_IMAGE = false
 const getPatientsTokyo = async function(fn) { // 数字認識精度が悪く断念
-  const towns = [
-    '千代田', '中央', '港', '新宿', '文京', '台東', '墨田', '江東', '品川', '目黒', '大田',
-    '世田谷', '渋谷', '中野', '杉並', '豊島', '北', '荒川', '板橋', '練馬', '足立', '葛飾',
-    '江戸川', '八王子', '立川', '武蔵野', '三鷹', '青梅', '府中', '昭島', '調布', '町田', '小金井',
-    '小平', '日野', '東村山', '国分寺', '国立', '福生', '狛江', '東大和', '清瀬', '東久留米', '武蔵村山',
-    '多摩', '稲城', '羽村', 'あきる野', '西東京', '瑞穂', '日の出', '檜原', '奥多摩', '大島', '利島',
-    '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中'
-  ]
+  const towns = TOKYO_CITIES
   // 837x387
   // 813x362
   const png = await jimp.read(fn)
@@ -303,6 +306,15 @@ const makeTokyo = async function() {
   console.log(json.length, cnt)
   const res = { name: 'Tokyo', patientscurrent: cnt, patients: json.length, src_url: URL }
 }
+const getPatientsTokyoByPDF2 = async function(fn, dt) {
+  //const fn = '../../data/covid19tokyo/2020041000.pdf'
+  //const dt = '2020-04-10.csv'
+  //await getPatientsTokyoByPDF(fn)
+  let data = await parsetokyocovidreportpdf.parseTokyoCovidReportPDF(fn)
+  console.log(data)
+  data = 'name_ja,npatients\n' + data
+  fs.writeFileSync('../data/covid19tokyo-detail/' + dt, util.addBOM(data))
+}
 const main = async function() {
   /*
   const fn = '../data/covid19tokyo/173-5.png' // 4/8
@@ -318,9 +330,10 @@ const main = async function() {
   */
  //const img = await jimp.read('temp/47.png')
   //console.log(await img2num(img))
+  const fn = '../../data/covid19tokyo-detail/20200411.pdf'
+  const dt = '2020-04-11.csv'
+  await getPatientsTokyoByPDF2(fn, dt)
 
-  const fn = '../data/covid19tokyo/2020041000.pdf'
-  await getPatientsTokyoByPDF(fn)
 }
 if (require.main === module) {
   main()

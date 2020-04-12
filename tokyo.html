@@ -13,7 +13,7 @@
 <meta name="twitter:image" content="https://www.stopcovid19.jp/img/covid19tokyo_ogp_20200408-2.png"/>
 
 
-<script src="https://fukuno.jig.jp/app/csv/lib/fukuno.js"></script>
+<script src="fukuno.js"></script>
 <script>"use strict"
 async function update() {
   var noft = window.document.getElementById("noftication_refreshed");
@@ -69,8 +69,9 @@ async function update() {
 
   tmap.innerHTML = makeTabularMapHTML()
 
-  const url_detail = 'data/covid19tokyo-detail.json'
-  const data_detail = await (await fetch(ignorecache(url_detail))).json()
+  //const url_detail = 'data/covid19tokyo-detail.json'
+  const url_detail = 'data/covid19tokyo-detail/2020-04-11.csv'
+  const data_detail = csv2json(decodeCSV(await (await fetch(ignorecache(url_detail))).text()))
   let max = 0
   for (let i = 0; i < data_detail.length - 1; i++) {
     const d = data_detail[i]
@@ -108,7 +109,7 @@ const CITY = [
     '江戸川', '八王子', '立川', '武蔵野', '三鷹', '青梅', '府中', '昭島', '調布', '町田', '小金井',
     '小平', '日野', '東村山', '国分寺', '国立', '福生', '狛江', '東大和', '清瀬', '東久留米', '武蔵村山',
     '多摩', '稲城', '羽村', 'あきる野', '西東京', '瑞穂', '日の出', '檜原', '奥多摩', '大島', '利島',
-    '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中'
+    '新島', '神津島', '三宅', '御蔵島', '八丈', '青ヶ島', '小笠原', '都外', '調査中※'
   ]
 
 const TABMAP = `
@@ -117,7 +118,7 @@ const TABMAP = `
 あきる野市	羽村市	国分寺市	小平市	西東京市	中野区	千代田区	台東区
 檜原村	福生市	国立市	小金井市	武蔵野市	豊島区	中央区	墨田区
 都外	昭島市	府中市	三鷹市	杉並区	新宿区	港区	葛飾区
-調査中	日野市	多摩市	調布市	世田谷区	渋谷区	品川区	江戸川区
+調査中※	日野市	多摩市	調布市	世田谷区	渋谷区	品川区	江戸川区
 新島村	八王子市	町田市	稲城市	狛江市	目黒区	大田区	江東区
 利島村	大島町	神津島村	御蔵島村	三宅村	青ヶ島村	八丈町	小笠原村`
 
@@ -139,7 +140,7 @@ const makeTabularMapHTML = function() {
         if (pref.indexOf(CITY[i]) == 0) {
           if (pref.length < minlen) {
             minlen = pref.length
-            console.log(pref, minlen)
+            //console.log(pref, minlen)
             n = i
           }
         }
@@ -270,7 +271,7 @@ a {
 
 <div id='detail'>
 <div id='tmap'></div>
-<div id='tmapdescription'>【参考】区市町村別患者数（都内発生分） （4月8日時点の累計値）<br>(<a href=https://www.fukushihoken.metro.tokyo.lg.jp/hodo/saishin/corona173.html>出典</a> / <a href=data/covid19tokyo-detail.json>JSON</a> / <a href=data/covid19tokyo-detail.csv>CSV</a> / <a href=https://github.com/code4sabae/covid19>src on GitHub</a> / <a href=https://github.com/tabularmaps/hq>カラム地図</a>)</div>
+<div id='tmapdescription'>【参考】区市町村別患者数（都内発生分） （4月11日時点の累計値）<br>(<a href=https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/1007666.html>出典</a> / <a href=data/covid19tokyo-detail/2020-04-11.csv>CSV</a> / <a href=https://github.com/code4sabae/covid19>src on GitHub</a> / <a href=https://github.com/tabularmaps/hq>カラム地図</a>)</div>
 </div>
 
 <div id="main"></div>
@@ -286,6 +287,7 @@ a {
 
 <div id="src">
 DATA: CC BY <a href=https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json>data.json</a> - <a href=https://stopcovid19.metro.tokyo.lg.jp/>東京都公式 新型コロナウイルス対策サイト</a> <a href=https://github.com/tokyo-metropolitan-gov/covid19>src on GitHub</a> より<br>
+LIB: MIT <a href=https://github.com/smatsumt/parse-tokyo-covid-report-pdf>smatsumt/parse-tokyo-covid-report-pdf: 東京都新型コロナウイルス感染症対策本部報の "患者の発生について" （別紙）から、区ごとの発生状況を読み取り</a><br>
 APP：CC BY <a href='https://fukuno.jig.jp/2780'>fukuno.jig.jp</a> / <a href=https://fukuno.jig.jp/2811>東京都カラム地図追加</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)><br>
 <br>
 
