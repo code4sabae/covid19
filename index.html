@@ -27,7 +27,7 @@ gtag('config', 'UA-162141832-1')
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@700&display=swap" rel="stylesheet">
 <style>
 body {
-	--main-color: #AD232F;
+	--main-color: #5275cc;
 	color: black;
 	font-family: sans-serif;
 	word-wrap: break-word;
@@ -843,17 +843,19 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
 		c.innerHTML = tx(`${PREF_S[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
+        const NoColor = "black";
+        //5275cc -> 変更後の青テーマ色です
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
-			c.style.background = 'black'
+			c.style.background = NoColor
 			c.style.color = 'white'
 		} else if (r > 0) {
 			const off = .1
-			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
+			c.style.background = `rgba(${0x52}, ${0x75}, ${0xcc},` + ((r + off) / (1 - off)) + ")"
 			c.style.color = r < .4 ? "black" : "white"
 		} else {
 			c.style.background = 'white'
-			c.style.color = 'black'
+			c.style.color = NoColor
 		}
 		c.data = a
 
