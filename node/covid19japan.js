@@ -252,6 +252,12 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     //a.patientsdif = 0
     //a.patientsratio = 0
   }
+  const parsei = function(s) {
+    if (s == '-') {
+      return 0
+    }
+    return parseInt(s)
+  }
   console.log(ss)
   for (let i = linestart;; i++) {
     const ss2 = ss[i].split(' ')
@@ -277,8 +283,8 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     const a = area[npref]
     a.npatients = parseInt(ss2[nstart + 1])
     a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
-    a.nexits = parseInt(ss2[nstart + nskip + 5])
-    a.ndeaths = parseInt(ss2[nstart + nskip + 7])
+    a.nexits = parsei(ss2[nstart + nskip + 5])
+    a.ndeaths = parsei(ss2[nstart + nskip + 7])
     //a.patientsdif = parseInt(ss2[nstart + 2])
     //if (nskip)
     //  a.patientsratio = parseFloat(ss2[nstart + 3])
