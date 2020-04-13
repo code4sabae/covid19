@@ -18,7 +18,7 @@
 "石川県","Ishikawa","https://www.pref.ishikawa.lg.jp/kansen/coronakennai.html",,,,,,,,,,,
 "福井県","Fukui","https://www.pref.fukui.lg.jp/doc/kenkou/kansensyo-yobousessyu/corona.html","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv",,,,,"1","1","1",
 "山梨県","Yamanashi","https://www.pref.yamanashi.jp/koucho/coronavirus/info_coronavirus.html",,,,,,,,,,,
-"長野県","Nagano","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/bukan-haien-doko.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/bukan-haien-doko.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/documents/hasseijoukyou0404.csv",,,,,,"1",,"注釈付きの2データセットある変形CSV"
+"長野県","Nagano","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",,,,,,,"1",,"注釈付きの2データセットある変形CSV"
 "岐阜県","Gifu","https://www.pref.gifu.lg.jp/kinkyu-juyo-joho/shingata_corona.html",,,,,,,,,,,
 "静岡県","Shizuoka","https://www.pref.shizuoka.jp/kinkyu/covid-19.html",,,,,,,,,,,
 "愛知県","Aichi","https://www.pref.aichi.jp/site/covid19-aichi/",,,,,,,,,,,
