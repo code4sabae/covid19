@@ -1,7 +1,7 @@
 ﻿"name","name_jp","npatients","ncurrentpatients","nexits","ndeaths"
 "Hokkaido","北海道",272,100,161,11
 "Aomori","青森県",22,18,4,0
-"Iwate","岩手県",0,0,NaN,NaN
+"Iwate","岩手県",0,0,0,0
 "Miyagi","宮城県",54,49,5,0
 "Akita","秋田県",15,10,5,0
 "Yamagata","山形県",35,35,0,0
