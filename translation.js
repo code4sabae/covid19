@@ -9,6 +9,7 @@ const TX = {
   'うち現在は入院等': { 'en' : 'Active cases' },
   'うち退院': { 'en': 'Discharged patients' },
   'うち死亡': { 'en': 'Deaths' },
+  '新型コロナウイルス対策病床数オープンデータ': { 'en': 'Beds opendata for COVID-19' },
   '都道府県発表': { 'en': 'From local government ' },
 	'新型コロナウイルス対策ダッシュボードについて': { 'en': 'about Anti-Coronavirus Dashboard' },
 	'新型コロナウイルス対策ダッシュボード': { 'en': 'Anti-Coronavirus Dashboard' },

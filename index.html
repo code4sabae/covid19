@@ -165,6 +165,9 @@ h1 {
 	margin: 1em;
 }
 
+.pref {
+	font-size: 120%;
+}
 .npatients {
 	font-weight: bold;
 }
@@ -841,7 +844,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML = tx(`${PREF_S[i - 1]}<br><span class=npatients>${cnt}</span> <span class=nbed>/ ${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
+		c.innerHTML = tx(`<div class=pref>${PREF_S[i - 1]}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
