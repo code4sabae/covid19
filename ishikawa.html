@@ -4,10 +4,10 @@
 <meta property="og:image" content="ishikawa.png"/>
 <meta name="format-detection" content="telephone=no"/>
 <title>COVID-19 Ishikawa - 石川県 新型コロナウイルスオープンデータサマリー</title>
-<script src="fukuno.js"></script>
 <script type='module'>
 
 import tabularmap from './tabularmap.mjs'
+import util from './util.mjs'
 
 // 
 const SRC_TABULAR_MAP = `
@@ -17,7 +17,7 @@ const SRC_TABULAR_MAP = `
 白山市	川北町	野々市市	金沢市
 加賀市	小松市	能美市	県外`
 
-const fetchCSVtoJSON = async url => csv2json(decodeCSV(await (await fetch(url)).text()))
+const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
 
 async function update() {
   var noft = window.document.getElementById("noftication_refreshed")
@@ -51,6 +51,7 @@ async function update() {
   const nexit = total['退院'] // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
   const lastUpdate = target.lastUpdate
 
+  const { addComma, fixfloat } = util
   tbl.innerHTML = `
     <table>
       <tr><td>現在患者数</td><td>${addComma(ncurrentpatients)}人</td></tr>
