@@ -26,43 +26,15 @@
 
 <script src="https://fukuno.jig.jp/fukuno2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-<script>"use strict"
+<script type='module'>
+
+import tabularmap from './tabularmap.mjs'
 
 const TAB_FUKUI = `	あわら市	勝山市	大野市
 坂井市	福井市	永平寺町	池田町
 越前町	鯖江市	越前市	南越前町
 高浜町	若狭町	美浜町	敦賀市
 おおい町	小浜市		`
-
-const makeTabularMap = function(stab) {
-  const area = []
-  let maxc = 0
-	const lines = stab.split('\n')
-	for (let a of lines) {
-    const row = a.split('\t')
-    if (row.length > 1 || row[0].length > 0) {
-      area.push(row)
-      if (row.length > maxc) {
-        maxc = row.length
-      }
-    }
-  }
-  const c = document.createElement('div')
-  c.className = 'tabularmap'
-  c.style.display = 'grid'
-  c.style.gridTemplateColumns = `repeat(${maxc}, 1fr)`
-  const areas = []
-  for (const ar of area) {
-    for (const a of ar) {
-      const div = document.createElement('span')
-      c.appendChild(div)
-      div.textContent = a
-      areas.push(a)
-    }
-  }
-  c.areas = areas
-  return c
-}
 
 const showDetail = async function() {
 //const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
@@ -72,7 +44,7 @@ const showDetail = async function() {
   const json = csv2json(csv)
   console.log(json)
 
-  const map = makeTabularMap(TAB_FUKUI)
+  const map = tabularmap.makeTabularMap(TAB_FUKUI)
   const total = {}
   for (const a of map.children) {
     a.ncurrentpatients = 0
@@ -251,12 +223,13 @@ h1 {
 	color: white;
 	font-size: 3vw;
 }
+h2 {
+  font-size: 2.8vw;
+}
+/* tabular map */
 .tabmapc {
   display: inline-block;
   width: 90vw;
-}
-h2 {
-  font-size: 2.8vw;
 }
 .tabularmap {
   margin: 1em auto;
@@ -267,6 +240,7 @@ h2 {
   padding: .4vh 0;
   font-size: 90%;
 }
+/* main */
 #main {
   text-align: center;
 }
