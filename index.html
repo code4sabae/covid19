@@ -165,7 +165,7 @@ h1 {
 	margin: 1em;
 }
 
-.pref {
+.prefname {
 	font-size: 120%;
 }
 .npatients {
@@ -844,7 +844,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		c.innerHTML = tx(`<div class=pref>${PREF_S[i - 1]}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
+		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
@@ -861,9 +861,9 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		c.data = a
 
 		if (getLang() == 'en') {
-			c.style.fontSize = '1.2vw'
-			if (document.body.clientWidth / document.body.clientHeight < 3 / 4) // 修正必要 サイズ変更に連動しない
-				c.style.fontSize = '2vw'
+			//c.style.fontSize = '1.2vw'
+			//if (document.body.clientWidth / document.body.clientHeight < 3 / 4) // 修正必要 サイズ変更に連動しない
+			//	c.style.fontSize = '2vw'
 		}
 	}
 	let s = ''
