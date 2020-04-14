@@ -44,11 +44,9 @@ const checkJSON = function(json) {
 }
 const makeData = async function(pref, url, url_opendata) {
   //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url, 'ShiftJIS')
-  const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
-  /*
-  process.exit(0)
-  return
-  */
+  let [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  //console.log(scsv, lastUpdate) // 熊本県 LastModified なし
+  console.log('lastUpdate', lastUpdate)
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
@@ -70,6 +68,11 @@ const makeData = async function(pref, url, url_opendata) {
     }
   }
   let patientscurrent = json.length - ndeaths - nexits
+
+  if (!lastUpdate) {
+    lastUpdate = json[json.length - 1]['公表_年月日']
+    console.log('lastUpdate', lastUpdate)
+  }
   /*
   const area = []
   const PREF = util.JAPAN_PREF_EN
@@ -91,19 +94,29 @@ const test = async function() {
   const res = await fetch(url)
   console.log(res.headers) // no last-modified
 }
+/*
 const list = [
   { pref: "Fukui", url: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv', url_opendata: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html' },
   { pref: "Fukuoka", url: 'https://ckan.open-governmentdata.org/dataset/8a9688c2-7b9f-4347-ad6e-de3b339ef740/resource/c27769a2-8634-47aa-9714-7e21c4038dd4/download/400009_pref_fukuoka_covid19_patients.csv', url_opendata: 'https://ckan.open-governmentdata.org/dataset/401000_pref_fukuoka_covid19_patients' },
+  { pref: "Kumamoto", url: '', url_opendata: '' },
 ]
+*/
+
+const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
 
 const main = async function() {
   //const data = fs.readFileSync('../data/covid19fukui/20200409T151739.csv', 'utf-8')
   //fs.writeFileSync('../data/covid19fukui/20200409T151739-2.csv', util.addBOM(data))
 
+  const url_official = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-OrSJv81VIWWrQ0W6vndw8HEjtztkWY39E97v-oFR0tYF0chwV-duQUkKIOSJPj57IbVuqGZO-C_K/pub?gid=0&single=true&output=csv'
+  const list = await fetchCSVtoJSON(url_official)
   
   const data = []
   for (const d of list) {
-    data.push(await makeData(d.pref, d.url, d.url_opendata))
+    if (d.data_standard && d.data_canuse) {
+    //if (d.pref == 'Kumamoto') {
+      data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
+    }
   }
   data.push(await makeDataFromJSON())
   console.log(data)

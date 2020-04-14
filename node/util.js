@@ -280,12 +280,13 @@ exports.fetchText = async function(url, enc) {
   var buf = new Buffer.from(abuf, 'binary')
   return iconv.decode(buf, enc)
 }
-exports.fetchTextWithLastModified = async function(url, enc) {
+exports.fetchTextWithLastModified = async function(url, enc, debug) {
   const res = await fetch(url)
   let lastUpdate = null
   if (res.status != 200)
     return null
-  //console.log(res, res.status)
+  if (debug)
+    console.log(res, res.status, res.headers)
   const s = res.headers.get('last-modified')
   if (s) {
     lastUpdate = this.formatYMDHMS(new Date(s))
