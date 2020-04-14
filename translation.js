@@ -104,6 +104,7 @@ const TX = {
 	'結核': { 'en': 'tuberculosis' },
 	'一般/精神': { 'en': 'others' },
 	'提供': { 'en': ' provide' },
+	'登録': { 'en': 'regist form' },
 	'人': { 'en': '' },
 	'名': { 'en': ''},
 	'台': { 'en': '' },
