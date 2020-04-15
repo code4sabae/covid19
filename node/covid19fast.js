@@ -88,6 +88,38 @@ const makeData = async function(pref, url, url_opendata) {
   util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
   return res
 }
+const makeDataFromAlt = async function(pref, url, url_opendata) {
+  let [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  //console.log(scsv, lastUpdate) // 熊本県 LastModified なし
+  console.log('lastUpdate', lastUpdate)
+
+  //console.log(scsv)
+  const csv = util.decodeCSV(scsv)
+  //csv.splice(0, 1)
+  const json = util.csv2json(csv)
+  //console.log(json)
+
+  checkJSON(json)
+
+  console.log(json)
+  const latest = json[json.length - 1]
+  
+  const res = { name: pref }
+  res.npatients = parseInt(latest['陽性累計'])
+  res.ncurrentpatients = parseInt(latest['患者累計'])
+  res.nexits = parseInt(latest['治療終了累計'])
+  res.ndeaths = parseInt(latest['死亡累計'])
+  res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
+  res.src_url = url
+  res.url_opendata = url_opendata
+
+  console.log(res)
+  
+  const lpref = pref.toLowerCase()
+  util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
+  util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
+  return res
+}
 
 const test = async function() {
   const url = URL
@@ -113,9 +145,16 @@ const main = async function() {
   
   const data = []
   for (const d of list) {
-    if (d.data_standard && d.data_canuse) {
-    //if (d.pref == 'Kumamoto') {
-      data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
+    if (d.data_canuse == 1) {
+      console.log(d.data_canuse, d.pref)
+      if (d.data_standard == 1) {
+      //if (d.pref == 'Kumamoto') {
+        data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
+      } else if (d.data_alt == 1) {
+        const d2 = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
+        console.log(d2)
+        data.push(d2)
+      }
     }
   }
   data.push(await makeDataFromJSON())
