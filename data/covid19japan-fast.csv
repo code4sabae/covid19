@@ -2,4 +2,4 @@
 "Hokkaido",290,116,161,13,"2020-04-15T09:42:10","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
 "Fukui",100,87,9,4,"2020-04-15T14:46:16","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
 "Kumamoto",28,22,5,1,"2020-04-13","https://www.pref.kumamoto.jp/common/UploadFileOutput.ashx?c_id=3&id=22038&sub_id=5&flid=231586","https://www.pref.kumamoto.jp/kiji_22038.html"
-"Tokyo",2319,2220,52,47,"2020-04-15T11:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
+"Tokyo",2446,2341,52,53,"2020-04-15T21:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
