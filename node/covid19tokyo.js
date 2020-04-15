@@ -330,9 +330,16 @@ const main = async function() {
   */
  //const img = await jimp.read('temp/47.png')
   //console.log(await img2num(img))
+
+  /*
   const fn = '../../data/covid19tokyo-detail/20200411.pdf'
   const dt = '2020-04-11.csv'
   await getPatientsTokyoByPDF2(fn, dt)
+  */
+
+  const urlindex = 'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
+  const html = await (await fetch(urlindex)).text()
+  const ch
 
 }
 if (require.main === module) {
