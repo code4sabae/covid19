@@ -314,6 +314,7 @@ const getPatientsTokyoByPDF2 = async function(fn, dt) {
   console.log(data)
   data = 'name_ja,npatients\n' + data
   fs.writeFileSync('../data/covid19tokyo-detail/' + dt, util.addBOM(data))
+  fs.writeFileSync('../data/covid19tokyo-detail/latest.csv', util.addBOM(data))
 }
 const main = async function() {
   /*
@@ -336,10 +337,15 @@ const main = async function() {
   const dt = '2020-04-11.csv'
   await getPatientsTokyoByPDF2(fn, dt)
   */
+ const fn = '../../data/covid19tokyo-detail/2020041601.pdf'
+ const dt = '2020-04-15.csv'
+ await getPatientsTokyoByPDF2(fn, dt)
 
+  /*
   const urlindex = 'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
   const html = await (await fetch(urlindex)).text()
   const ch
+  */
 
 }
 if (require.main === module) {
