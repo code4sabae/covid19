@@ -104,11 +104,12 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
   console.log(json)
   const latest = json[json.length - 1]
   
+  lastUpdate = latest['公表_年月日'] || lastUpdate
   const res = { name: pref }
-  res.npatients = parseInt(latest['陽性累計'])
-  res.ncurrentpatients = parseInt(latest['患者累計'])
-  res.nexits = parseInt(latest['治療終了累計'])
-  res.ndeaths = parseInt(latest['死亡累計'])
+  res.npatients = parseInt(latest['陽性累計'] || latest['陽性患者数累計'])
+  res.ncurrentpatients = parseInt(latest['患者累計'] || latest['入院者数累計'])
+  res.nexits = parseInt(latest['治療終了累計'] || latest['退院者数累計'])
+  res.ndeaths = parseInt(latest['死亡累計'] || latest['死亡者数累計'])
   res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
   res.src_url = url
   res.url_opendata = url_opendata
@@ -148,8 +149,8 @@ const main = async function() {
     //if (d.pref == 'Kumamoto')
     //  continue
     if (d.data_canuse == 1) {
-      console.log(d.data_canuse, d.pref)
-      if (d.data_standard == 1) {
+      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt)
+      if (d.data_standard == 1 && d.data_alt != 1) {
         data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
       } else if (d.data_alt == 1) {
         const d2 = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
