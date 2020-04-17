@@ -145,10 +145,11 @@ const main = async function() {
   
   const data = []
   for (const d of list) {
+    //if (d.pref == 'Kumamoto')
+    //  continue
     if (d.data_canuse == 1) {
       console.log(d.data_canuse, d.pref)
       if (d.data_standard == 1) {
-      //if (d.pref == 'Kumamoto') {
         data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
       } else if (d.data_alt == 1) {
         const d2 = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
