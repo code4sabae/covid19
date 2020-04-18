@@ -20,7 +20,7 @@
 "山梨県","Yamanashi","https://www.pref.yamanashi.jp/koucho/coronavirus/info_coronavirus.html",,,,,,,,,,,,,
 "長野県","Nagano","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",,,,,,,,,"1",,"注釈付きの2データセットある変形CSV"
 "岐阜県","Gifu","https://www.pref.gifu.lg.jp/kinkyu-juyo-joho/shingata_corona.html",,,,,,,,,,,,,
-"静岡県","Shizuoka","https://www.pref.shizuoka.jp/kinkyu/covid-19.html",,,,,,,,,,,,,
+"静岡県","Shizuoka","https://www.pref.shizuoka.jp/kinkyu/covid-19.html","https://opendata.pref.shizuoka.jp/dataset/8167.html","https://opendata.pref.shizuoka.jp/dataset/8167.html","https://opendata.pref.shizuoka.jp/dataset/8167/resource/44807/220001_shizuoka_covid19_patients.csv",,,,,"1",,,"1","1","死亡時の更新方法が不明"
 "愛知県","Aichi","https://www.pref.aichi.jp/site/covid19-aichi/",,,,,,,,,,,,,
 "三重県","Mie","https://www.pref.mie.lg.jp/YAKUMUS/HP/m0068000066.htm",,,,,,,,,,,,,
 "滋賀県","Shiga","https://www.pref.shiga.lg.jp/ippan/kenkouiryouhukushi/yakuzi/309252.html",,,,,,,,,,,,,
