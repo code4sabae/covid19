@@ -26,7 +26,7 @@
 "滋賀県","Shiga","https://www.pref.shiga.lg.jp/ippan/kenkouiryouhukushi/yakuzi/309252.html",,,,,,,,,,,,,
 "京都府","Kyoto","https://www.pref.kyoto.jp/kentai/news/novelcoronavirus.html",,,,,,,,,,,,,
 "大阪府","Osaka","http://www.pref.osaka.lg.jp/iryo/osakakansensho/corona.html",,,,,,,,,,,,,
-"兵庫県","Hyogo","https://web.pref.hyogo.lg.jp/kk03/200129.html","http://open-data.pref.hyogo.lg.jp/?page_id=141","http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx",,,,,,,,,,"Excel形式、厚労省データと退院者数で1名ずれあり？"
+"兵庫県","Hyogo","https://web.pref.hyogo.lg.jp/kk03/200129.html","http://open-data.pref.hyogo.lg.jp/?page_id=141","http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175",,,"https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx",,,,,,,,"Excel形式、厚労省データと退院者数で1名ずれあり？"
 "奈良県","Nara","http://www.pref.nara.jp/item/225304.htm",,,,,,,,,,,,,
 "和歌山県","Wakayama","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",,,,,,,,,,,,,
 "鳥取県","Tottori","https://www.pref.tottori.lg.jp/item/1197213.htm",,,,,,,,,,,,,
