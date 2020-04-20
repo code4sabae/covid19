@@ -114,7 +114,7 @@ exports.csv2json = function(csv) {
 	for (let i = 1; i < csv.length; i++) {
 		const d = {}
 		for (let j = 0; j < head.length; j++) {
-			d[head[j]] = csv[i][j]
+      d[head[j]] = csv[i][j]
 		}
 		res.push(d)
 	}
