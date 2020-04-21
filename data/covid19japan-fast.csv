@@ -1,6 +1,6 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata"
 "Hokkaido",451,245,185,21,"2020-04-21T10:30:08","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
-"Fukui",113,84,25,4,"2020-04-21T10:56:31","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
+"Fukui",118,84,30,4,"2020-04-21T15:59:03","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
 "Shizuoka",52,36,16,0,"2020-04-20T21:03:50","https://opendata.pref.shizuoka.jp/dataset/8167/resource/44807/220001_shizuoka_covid19_patients.csv","https://opendata.pref.shizuoka.jp/dataset/8167.html"
 "Fukuoka",521,412,97,12,"2020-04-20","https://ckan.open-governmentdata.org/dataset/fe943202-2db4-44f8-9686-9cf682690bb7/resource/207a6b85-80a5-4297-aba1-a9e0fae93092/download/400009_pref_fukuoka_covid19_totalpatients.csv","https://www.open-governmentdata.org/fukuoka-pref/pages/search?keyword=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc&search_clear=#result_area"
 "Tokyo",3184,2507,600,77,"2020-04-20T19:45","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
