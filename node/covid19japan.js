@@ -262,6 +262,8 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
   console.log(ss)
   for (let i = linestart;; i++) {
     const ss2 = ss[i].split(' ')
+    if (ss2.length < 10)
+      continue
     let nstart = parseInt(ss2[0]) == ss2[0] ? 1 : 0
     const pref = ss2[nstart]
     if (pref.indexOf(ss2[nstart + 1]) >= 0) {
