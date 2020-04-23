@@ -44,6 +44,7 @@ const checkJSON = function(json) {
 }
 const makeData = async function(pref, url, url_opendata) {
   //const [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url, 'ShiftJIS')
+  console.log(url)
   let [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
   //console.log(scsv, lastUpdate) // 熊本県 LastModified なし
   console.log('lastUpdate', lastUpdate)
@@ -100,22 +101,32 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
   //console.log(json)
 
   checkJSON(json)
-
   console.log(json)
-  const latest = json[json.length - 1]
-  
-  lastUpdate = latest['公表_年月日'] || lastUpdate
+
   const res = { name: pref }
-  res.npatients = parseInt(latest['陽性累計'] || latest['陽性患者数累計'])
-  res.ncurrentpatients = parseInt(latest['患者累計'] || latest['入院者数累計'])
-  res.nexits = parseInt(latest['治療終了累計'] || latest['退院者数累計'])
-  res.ndeaths = parseInt(latest['死亡累計'] || latest['死亡者数累計'])
-  res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
+  const latest = json[json.length - 1]
+  if (latest['完了_年月日']) {
+    res.npatients = 0
+    res.nexits = 0
+    res.ndeaths = 0
+    for (const d of json) {
+      res.npatients += parseInt(d['陽性確認_件数'])
+      res.nexits += parseInt(d['陰性確認_件数'])
+      res.ndeaths += parseInt(d['死亡確認_件数'])
+      res.lastUpdate = d['完了_年月日'].replace(/\//g, '-').replace(/ /g, 'T')
+    }
+    res.ncurrentpatients = res.npatients - res.nexits - res.ndeaths
+  } else {
+    lastUpdate = latest['公表_年月日'] || lastUpdate
+    res.npatients = parseInt(latest['陽性累計'] || latest['陽性患者数累計'])
+    res.ncurrentpatients = parseInt(latest['患者累計'] || latest['入院者数累計'])
+    res.nexits = parseInt(latest['治療終了累計'] || latest['退院者数累計'])
+    res.ndeaths = parseInt(latest['死亡累計'] || latest['死亡者数累計'])
+    res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
+  }
   res.src_url = url
   res.url_opendata = url_opendata
-
   console.log(res)
-  
   const lpref = pref.toLowerCase()
   util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
   util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
