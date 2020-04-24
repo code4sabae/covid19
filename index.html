@@ -687,7 +687,7 @@ const main = async function() {
 	}
 	const url_csv = makeCSVURL(url)
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「国内事例における都道府県別の患者報告数」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
+	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「国内事例における都道府県別の患者報告数」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
 	datasrc.innerHTML += tx("<br>対策病床数: " + link('https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0', '都道府県発表 新型コロナウイルス対策病床数オープンデータ') + " &amp; " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省「感染症指定医療機関の指定状況」') + " → " + link(url_bed, "JSON") + "/" + link('https://code4sabae.github.io/bedforinfection/', 'APP'))
 
 	const url_link = makeURL('covid19pref.json')
