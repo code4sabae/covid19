@@ -2,25 +2,37 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const util = require('./util.js')
 
-const makeDataFromJSON = async function() {
-  const url = 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
+const makeDataFromDataJSON = async function(pref, url_datajson, url_opendata) {
+  const url = url_datajson // 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
   
   //const [ sjson, lastUpdate ] = await util.fetchTextWithLastModified(url)
   const sjson = await util.fetchText(url)
   const json = JSON.parse(sjson)
 
-  const res = { name: 'Tokyo' }
+  const res = { name: pref }
   res.npatients = json.main_summary.children[0].value
-	res.ncurrentpatients = json.main_summary.children[0].children[0].value
-	res.nexits = json.main_summary.children[0].children[1].value
-	res.ndeaths = json.main_summary.children[0].children[2].value
+  const ch = json.main_summary.children[0].children
+  const get = function(name) {
+    for (const d of ch) {
+      if (d.attr == name) {
+        return d.value
+      }
+    }
+    console.log("error! not found", name)
+    console.log(ch)
+    process.exit(1)
+  }
+  res.nexits = get('退院')
+  res.ndeaths = get('死亡')
+  res.ncurrentpatients = res.npatients - res.nexits - res.ndeaths
   res.lastUpdate = json.lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
   res.src_url = url
-  res.url_opendata = 'https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc'
+  res.url_opendata = url_opendata
   //console.log(res)
 
-  fs.writeFileSync('../data/covid19tokyo/' + date2s(res.lastUpdate) + ".json", sjson)
-  fs.writeFileSync('../data/covid19tokyo/latest.json', sjson)
+  const lpref = pref.toLowerCase()
+  util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".json", sjson)
+  util.writeFileSync('../data/covid19' + lpref + '/latest.json', sjson)
   return res
 }
 
@@ -62,7 +74,7 @@ const makeData = async function(pref, url, url_opendata) {
   let nexits = 0
   let ndeaths = 0
   for (const d of json) {
-    if (d['患者_状態'] == '死亡') {
+    if (d['患者_状態'] == '死亡' || d['状態'] == '死亡') {
       ndeaths++
     } else if (d['患者_退院済フラグ'] == 1 || d['退院済フラグ'] == 1) {
       nexits++
@@ -117,11 +129,14 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
     }
     res.ncurrentpatients = res.npatients - res.nexits - res.ndeaths
   } else {
-    lastUpdate = latest['公表_年月日'] || lastUpdate
+    lastUpdate = latest['公表_年月日'] || latest['受付_年月日'] || lastUpdate
     res.npatients = parseInt(latest['陽性累計'] || latest['陽性患者数累計'])
-    res.ncurrentpatients = parseInt(latest['患者累計'] || latest['入院者数累計'])
-    res.nexits = parseInt(latest['治療終了累計'] || latest['退院者数累計'])
-    res.ndeaths = parseInt(latest['死亡累計'] || latest['死亡者数累計'])
+    res.ncurrentpatients = parseInt(latest['患者累計'] || latest['入院者数累計'] || latest['入院'])
+    res.nexits = parseInt(latest['治療終了累計'] || latest['退院者数累計'] || latest['退院'])
+    res.ndeaths = parseInt(latest['死亡累計'] || latest['死亡者数累計'] || latest['死亡'])
+    if (!res.npatients) {
+      res.npatients = res.ncurrentpatients + res.nexits + res.ndeaths
+    }
     res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
   }
   res.src_url = url
@@ -138,13 +153,15 @@ const test = async function() {
   const res = await fetch(url)
   console.log(res.headers) // no last-modified
 }
-/*
-const list = [
-  { pref: "Fukui", url: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv', url_opendata: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html' },
-  { pref: "Fukuoka", url: 'https://ckan.open-governmentdata.org/dataset/8a9688c2-7b9f-4347-ad6e-de3b339ef740/resource/c27769a2-8634-47aa-9714-7e21c4038dd4/download/400009_pref_fukuoka_covid19_patients.csv', url_opendata: 'https://ckan.open-governmentdata.org/dataset/401000_pref_fukuoka_covid19_patients' },
-  { pref: "Kumamoto", url: '', url_opendata: '' },
+
+
+const list_test = [ // for test
+  //{ pref: "Fukui", url: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_patients.csv', url_opendata: 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html' },
+  //{ pref: "Fukuoka", url: 'https://ckan.open-governmentdata.org/dataset/8a9688c2-7b9f-4347-ad6e-de3b339ef740/resource/c27769a2-8634-47aa-9714-7e21c4038dd4/download/400009_pref_fukuoka_covid19_patients.csv', url_opendata: 'https://ckan.open-governmentdata.org/dataset/401000_pref_fukuoka_covid19_patients' },
+  // { pref: "Toyama", data_canuse: 1, data_standard: 1, url_patients_csv: 'http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_patients.csv', url_opendata: 'http://opendata.pref.toyama.jp/dataset/covid19' },
+  // { pref: "Gifu", data_canuse: 1, data_standard: 1, url_patients_csv: 'https://data.gifu-opendata.pref.gifu.lg.jp/dataset/4661bf9d-6f75-43fb-9d59-f02eb84bb6e3/resource/9c35ee55-a140-4cd8-a266-a74edf60aa80/download/210005gifucovid19patients.csv', url_opendata: 'https://data.gifu-opendata.pref.gifu.lg.jp/dataset/c11223-001' },
+  { pref: 'Yamaguchi', data_canuse: 1, data_alt: 1, data_standard: 1, url_patients_alt: 'https://yamaguchi-opendata.jp/ckan/dataset/f6e5cff9-ae43-4cd9-a398-085187277edf/resource/1a5f9bca-3216-45df-8a99-5c591df8f628/download/350001_yamaguchi_covid19_hospitalization.csv', url_opendata: 'https://yamaguchi-opendata.jp/ckan/dataset/f6e5cff9-ae43-4cd9-a398-085187277edf ' },
 ]
-*/
 
 const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
 
@@ -157,11 +174,14 @@ const main = async function() {
   
   const data = []
   for (const d of list) {
-    //if (d.pref == 'Kumamoto')
+    //if (d.pref != 'Osaka')
     //  continue
+    console.log(d)
     if (d.data_canuse == 1) {
-      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt)
-      if (d.data_standard == 1 && d.data_alt != 1) {
+      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json)
+      if (d.data_json) {
+        data.push(await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata))
+      } else if (d.data_standard == 1 && d.data_alt != 1) {
         data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
       } else if (d.data_alt == 1) {
         const d2 = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
@@ -170,7 +190,7 @@ const main = async function() {
       }
     }
   }
-  data.push(await makeDataFromJSON())
+  //data.push(await makeDataFromJSON())
   console.log(data)
   util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
 
