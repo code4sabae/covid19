@@ -1,6 +1,6 @@
-const fs = require('fs')
-const fetch = require('node-fetch')
-const util = require('./util.js')
+import fs from 'fs'
+import fetch from 'node-fetch'
+import util from './util.mjs'
 
 const makeDataFromDataJSON = async function(pref, url_datajson, url_opendata) {
   const url = url_datajson // 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
@@ -63,6 +63,9 @@ const makeData = async function(pref, url, url_opendata) {
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
+  if (csv[0][0].indexOf('長野県における新型コロナウイルス感染症の発生状況') >= 0) {
+    csv.splice(0, 2)
+  }
   //csv.splice(0, 1)
   const json = util.csv2json(csv)
   //console.log(json)
@@ -74,9 +77,9 @@ const makeData = async function(pref, url, url_opendata) {
   let nexits = 0
   let ndeaths = 0
   for (const d of json) {
-    if (d['患者_状態'] == '死亡' || d['状態'] == '死亡') {
+    if (d['患者_状態'] == '死亡' || d['状態'] == '死亡' || d['患者_死亡フラグ'] == 1 || d['患者状況'] == '死亡') {
       ndeaths++
-    } else if (d['患者_退院済フラグ'] == 1 || d['退院済フラグ'] == 1) {
+    } else if (d['患者_退院済フラグ'] == 1 || d['退院済フラグ'] == 1 || d['患者状況'] == '退院') {
       nexits++
     }
   }
@@ -99,6 +102,7 @@ const makeData = async function(pref, url, url_opendata) {
   const lpref = pref.toLowerCase()
   util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
   util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
+  util.writeFileSync('../data/covid19' + lpref + '/latest.json', JSON.stringify(res))
   return res
 }
 const makeDataFromAlt = async function(pref, url, url_opendata) {
@@ -176,21 +180,21 @@ const main = async function() {
   const data = []
   for (const d of list) {
     /*
-    if (d.pref != 'Wakayama') {
+    if (d.pref != 'Kumamoto') {
     //if (d.pref != 'Hyogo') {
       continue
     }
     */
-   
+
     console.log(d)
     if (d.data_canuse == 1) {
-      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json)
+      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json, 'special', d.data_special)
       if (d.data_special) {
         const fn = '../data/covid19' + d.pref.toLowerCase() + '/latest.json'
         const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
         console.log(fn, json)
         data.push(json)
-      } if (d.data_json) {
+      } else if (d.data_json) {
         data.push(await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata))
       } else if (d.data_standard == 1 && d.data_alt != 1) {
         data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
@@ -208,7 +212,8 @@ const main = async function() {
   //const data2 = util.readCSV('../data/covid19japan-fast')
   //console.log(data2)
 }
-if (require.main === module) {
+if (process.argv[1].endsWith('/covid19fast.mjs')) {
   main()
-} else {
 }
+
+export default { makeData }
