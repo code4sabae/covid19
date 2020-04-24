@@ -264,6 +264,7 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     const ss2 = ss[i].split(' ')
     if (ss2.length < 10)
       continue
+    console.log(ss2)
     let nstart = parseInt(ss2[0]) == ss2[0] ? 1 : 0
     const pref = ss2[nstart]
     if (pref.indexOf(ss2[nstart + 1]) >= 0) {
@@ -279,6 +280,8 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
       a.ndeaths = parseInt(ss2[nstart + nskip + 7])
       a.description = ss[i + 1]
       break
+    } else if (pref == 'その他') {
+      continue // とりあえず、その他は含めない
     }
     const npref = PREF.indexOf(pref)
     if (npref == -1)
@@ -338,7 +341,8 @@ const test2 = async function() {
 const makeCovid19Japan = async function() {  
   const html = await (await fetch(URL)).text()
   console.log(html)
-  const title = '国内事例における都道府県別の患者報告数'
+  //const title = '国内事例における都道府県別の患者報告数'
+  const title = '国内における都道府県別のPCR検査陽性者数'
   const res = parseLink(html, title)
   console.log(res)
 
