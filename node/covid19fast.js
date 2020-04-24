@@ -145,6 +145,7 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
   const lpref = pref.toLowerCase()
   util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
   util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
+  util.writeFileSync('../data/covid19' + lpref + '/latest.json', JSON.stringify(res))
   return res
 }
 
@@ -174,12 +175,22 @@ const main = async function() {
   
   const data = []
   for (const d of list) {
-    //if (d.pref != 'Osaka')
-    //  continue
+    /*
+    if (d.pref != 'Wakayama') {
+    //if (d.pref != 'Hyogo') {
+      continue
+    }
+    */
+   
     console.log(d)
     if (d.data_canuse == 1) {
       console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json)
-      if (d.data_json) {
+      if (d.data_special) {
+        const fn = '../data/covid19' + d.pref.toLowerCase() + '/latest.json'
+        const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
+        console.log(fn, json)
+        data.push(json)
+      } if (d.data_json) {
         data.push(await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata))
       } else if (d.data_standard == 1 && d.data_alt != 1) {
         data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
