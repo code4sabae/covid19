@@ -228,8 +228,12 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
   res.ndeaths = 0
   res.ncurrentpatients = 0
   //res.ninspections = 0
-  const linestart = ss[0].indexOf('関数') >= 0 ? 2 : 1
+  console.log(ss)
+  const linestart = 2 // ss[0].indexOf('関数') >= 0 ? 2 : 1
+  console.log(ss, linestart)
   const dt2 = parseDate(ss[linestart - 1])
+  console.log(dt2)
+  //process.exit(0)
   if (dt2 != "--") {
     res.lastUpdate = dt2
   } else {

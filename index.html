@@ -847,6 +847,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
+		// ${["⤴","","⤵"][rnd(3)]}
 		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
