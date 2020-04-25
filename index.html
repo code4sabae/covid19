@@ -48,7 +48,7 @@ h1 {
 	font-size: 8vmin;
 	x-font-family: 'Overpass', sans-serif;
 }
-.yajirusi {
+.trendarrow {
 	position: relative;
 	top: .15em;
 	margin-left: .2em;
@@ -504,6 +504,13 @@ const main = async function() {
 	}
 	console.log(json_mhlw)
 
+	const url_trend = makeURL('covid19japan-trend.json')
+	const json_trend = await fetchJSON(url_trend)
+	for (let i = 0; i < json_trend.length; i++) {
+		json_mhlw.area[i].trend = json_trend[i]
+	}
+	console.log(json_mhlw)
+
 	let json = json_mhlw
 
 	const url_bed = makeURL('bedforinfection_summary.json')
@@ -853,9 +860,20 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		sum += cnt
 		//const r = cnt / max
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
-		//const img = ["<img class=yajirusi src=img/yajirusi01.svg>","<img class=yajirusi src=img/yajirusi02.svg>",""][rnd(3)]
-		const img = ''
-		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${img}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
+		
+		// trendarrow
+		let trendimg = ""
+		const dratio = a.trend.prevcurrentpatients ? a.trend.dcurrentpatients / a.trend.prevcurrentpatients : 0
+		//console.log(dratio, a.trend.dcurrentpatients, a.trend.prevcurrentpatients)
+		const th = .05
+		if (dratio >= th) {
+			trendimg = "<img class=trendarrow src=img/trendarrow01.svg>"
+		} else if (dratio <= -th) {
+			trendimg = "<img class=trendarrow style='transform:scale(1,-1)' src=img/trendarrow03.svg>"
+		}
+
+		//const img = ''
+		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		if (r > 1 || nbed == 0) {
@@ -998,6 +1016,7 @@ const makeJapanHTML = function() {
 	<div id='description2'>
 	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000622473.pdf>詳細</a>）
 	現在患者数や現在新型コロナ対策病床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
+	（厚労省データの現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>
 	</div>
 </div>
 
