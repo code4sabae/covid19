@@ -48,9 +48,6 @@ const main = async function() {
     console.log(dt)
     const csvurl = d['ファイル（CSV形式）'].split(' ')[0]
     console.log(csvurl)
-
-    //const csv = await (await fetch(csvurl)).text()
-    //fs.writeFileSync(path + 'test.csv', csv, 'utf-8')
     const res = await covid19fast.makeData(pref, csvurl, url_opendata)
     console.log(res)
     break

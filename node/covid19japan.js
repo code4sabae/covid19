@@ -64,10 +64,11 @@ const parseDate = function(s) {
 
 const parseLink = function(data, title) {
   const dom = cheerio.load(data)
-  const res = {}
+  let res = null
   dom('a').each((idx, ele) => {
     const text = dom(ele).text()
-    if (text && text.startsWith(title)) {
+    if (text && text.indexOf(title) >= 0) {
+      res = {}
       res.dt = parseDate(text)
       const href = dom(ele).attr("href")
       res.url = href.startsWith("https://") ? href : BASEURL + href
@@ -345,11 +346,14 @@ const test2 = async function() {
 const makeCovid19Japan = async function() {  
   const html = await (await fetch(URL)).text()
   console.log(html)
-  //const title = '国内事例における都道府県別の患者報告数'
-  const title = '国内における都道府県別のPCR検査陽性者数'
+  const title = '国内事例における都道府県別の患者報告数'
+  const title2 = '国内における都道府県別のPCR検査陽性者数'
   const res = parseLink(html, title)
+  if (!res) {
+    res = parseLink(html, title2)
+  }
   console.log(res)
-
+  
   const url = res.url
   const fn = url.substring(url.lastIndexOf('/') + 1)
   const path = '../data/covid19japan/'
