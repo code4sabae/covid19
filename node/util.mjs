@@ -169,11 +169,19 @@ exports.addBOM = function(s) {
 }
 exports.writeCSV = function(fnbase, csvar) {
   const s = this.encodeCSV(csvar)
+  const old = this.readCSV(fnbase)
+  if (old) {
+    const snew = this.encodeCSV(this.decodeCSV(s)) // normalize format of number
+    if (this.encodeCSV(old) == snew) {
+      return false // no updates
+    }
+  }
   //const bom = new Uint8Array([ 0xEF, 0xBB, 0xBF ]) // add BOM
   //fs.writeFileSync(fnbase + '.csv', bom)
   fs.writeFileSync(fnbase + '.csv', this.addBOM(s), 'utf-8')
   //fs.writeFileSync(fnbase + '.sjis.csv', iconv.encode(s, 'ShiftJIS'))
   fs.writeFileSync(fnbase + '.json', JSON.stringify(this.csv2json(csvar)))
+  return true
 }
 exports.readCSV = function(fnbase) {
   try {
@@ -184,10 +192,14 @@ exports.readCSV = function(fnbase) {
     const csv = this.decodeCSV(data)
     return csv
   } catch (e) {
+  }
+  try {
     const data = fs.readFileSync(fnbase + '.json', 'utf-8')
     const json = JSON.parse(data)
     return this.json2csv(json)
+  } catch (e) {
   }
+  return null
 }
 exports.readJSONfromCSV = function(fn) {
   try {
@@ -431,6 +443,22 @@ exports.splitString = function(s, splitters) {
   if (n < s.length)
     res.push(s.substring(n))
   return res
+}
+exports.addBOM = function(s) {
+  return '\ufeff' + s
+}
+exports.removeBOM = function(s) {
+  if (s && s.charAt(0) == '\ufeff')
+    return s.substring(1)
+  return s
+}
+exports.sortByString = function(a, b) {
+  if (a > b) {
+    return 1
+  } else if (a < b) {
+    return -1
+  }
+  return 0
 }
 
 const main = async function() {

@@ -207,13 +207,29 @@ const main = async function() {
   }
   //data.push(await makeDataFromJSON())
   console.log(data)
-  util.writeCSV('../data/covid19japan-fast', util.json2csv(data))
+  if (util.writeCSV('../data/covid19japan-fast', util.json2csv(data))) {
+    util.writeCSV('../data/covid19fast/' + util.getYMDHMS(), util.json2csv(data))
+    util.writeCSV('../data/covid19fast/' + util.getYMD(), util.json2csv(data))
+  }
 
   //const data2 = util.readCSV('../data/covid19japan-fast')
   //console.log(data2)
 }
+
+//import Diff from 'diff'
+
 if (process.argv[1].endsWith('/covid19fast.mjs')) {
   main()
+
+
+  /*
+  const csv1 = util.readCSV('../data/covid19fast/20200426065504')
+  let csv2 = util.readCSV('../data/covid19fast/20200426065639')
+  //csv2 = csv2.unshift()
+  const diff = Diff.diffJson(csv1, csv2)
+  console.log(diff)
+  console.log(JSON.stringify(csv1) == JSON.stringify(csv2))
+  */
 }
 
 export default { makeData }
