@@ -304,6 +304,13 @@ exports.writeFileSync = function(fn, data, enc) {
   this.mkdirSyncForFile(fn)
   fs.writeFileSync(fn, data, enc)
 }
+exports.readFileSync = function(fn, enc) {
+  try {
+    return fs.readFileSync(fn, enc)
+  } catch (e) {
+  }
+  return null
+}
 exports.getExtFromURL = function(url) {
   let ext = ".txt"
   const n = url.lastIndexOf('/')
