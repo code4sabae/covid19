@@ -1,5 +1,5 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients"
-"Hokkaido",601,359,217,25,"2020-04-26T11:16:33","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",
+"Hokkaido",615,365,225,25,"2020-04-27T09:58:34","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",
 "Fukushima",69,50,19,0,"2020-04-26T19:52:40","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200426.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",
 "Gunma",141,102,25,14,"2020-04-27T09:00","https://raw.githubusercontent.com/bpr-gunma/covid19/master/data/data.json","https://github.com/bpr-gunma/covid19",
 "Chiba",668,549,101,18,"2020-04-23T20:52","https://raw.githubusercontent.com/civictechzenchiba/covid19-chiba/master/data/data.json","https://github.com/civictechzenchiba/covid19-chiba",
