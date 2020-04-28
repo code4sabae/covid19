@@ -21,7 +21,7 @@ const parseDateTime = function(s) {
     throw "can't parseDateTime " + s
   const d = new Date()
   d.setFullYear(parseInt(n[1]))
-  d.setMonth(parseInt(n[2]) + 1)
+  d.setMonth(parseInt(n[2]) - 1)
   d.setDate(parseInt(n[3]))
   d.setHours(parseInt(n[4]))
   d.setMinutes(0)

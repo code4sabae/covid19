@@ -106,9 +106,9 @@ const makeData = async function(pref, url, url_opendata) {
   return res
 }
 const makeDataFromAlt = async function(pref, url, url_opendata) {
-  let [ scsv, lastUpdate ] = await util.fetchTextWithLastModified(url)
+  const [ scsv, lastUpdateFetched ] = await util.fetchTextWithLastModified(url)
   //console.log(scsv, lastUpdate) // 熊本県 LastModified なし
-  console.log('lastUpdate', lastUpdate)
+  console.log('lastUpdateFetched', lastUpdateFetched)
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
@@ -121,6 +121,7 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
 
   const res = { name: pref }
   const latest = json[json.length - 1]
+  let lastUpdate = null
   if (latest['完了_年月日']) {
     res.npatients = 0
     res.nexits = 0
@@ -141,7 +142,11 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
     if (!res.npatients) {
       res.npatients = res.ncurrentpatients + res.nexits + res.ndeaths
     }
-    res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
+    if (lastUpdate)
+      res.lastUpdate = lastUpdate.replace(/\//g, '-').replace(/ /g, 'T')
+  }
+  if (lastUpdateFetched) {
+    res.lastUpdate = lastUpdateFetched
   }
   res.src_url = url
   res.url_opendata = url_opendata
@@ -176,6 +181,7 @@ const main = async function() {
 
   const url_official = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-OrSJv81VIWWrQ0W6vndw8HEjtztkWY39E97v-oFR0tYF0chwV-duQUkKIOSJPj57IbVuqGZO-C_K/pub?gid=0&single=true&output=csv'
   const list = await fetchCSVtoJSON(url_official)
+  //const list = list_test
   
   const data = []
   for (const d of list) {
@@ -207,6 +213,8 @@ const main = async function() {
   }
   //data.push(await makeDataFromJSON())
   console.log(data)
+  return
+
   if (util.writeCSV('../data/covid19japan-fast', util.json2csv(data))) {
     util.writeCSV('../data/covid19fast/' + util.getYMDHMS(), util.json2csv(data))
     util.writeCSV('../data/covid19fast/' + util.getYMD(), util.json2csv(data))

@@ -28,13 +28,15 @@ const parseDateTime = function(s) {
   if (!n)
     throw "can't parseDateTime " + s
   const d = new Date()
+  //console.log(n)
   d.setFullYear(parseInt(n[3]) + 2000)
-  d.setMonth(parseInt(n[1]) + 1)
+  d.setMonth(parseInt(n[1]) - 1)
   d.setDate(parseInt(n[2]))
   d.setHours(parseInt(n[4]))
   d.setMinutes(0)
   d.setSeconds(0)
   d.setMilliseconds(0)
+  //console.log(util.formatYMDHMS(d))
   return d
 }
 const date2s = function(datetime) {
@@ -54,6 +56,7 @@ const parseJSON = function(pref, json, url, url_opendata) {
   res.nexits = parseInt(latest['退院'])
   res.ndeaths = parseInt(latest['死亡'])
   res.lastUpdate = util.formatYMDHMS(parseDateTime(lastUpdate))
+  console.log(lastUpdate, res.lastUpdate)
 
   console.log(res)
   return res
