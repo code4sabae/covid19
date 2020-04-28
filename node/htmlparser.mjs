@@ -42,12 +42,13 @@ exports.parseTHTD = function(dom, ele) {
     const parse = function(ele) {
       const atags = dom('a', null, ele)
       if (atags.length == 0) {
-        line.push(dom(ele).text().trim())
+        const s = dom(ele).text()
+        line.push(s.trim())
         return
       }
       atags.each((idx, a) => {
         const doma = dom(a)
-        line.push(doma.attr('href') + " " + trim(doma.text()))
+        line.push(doma.attr('href') + " " + doma.text().trim())
       })
     }
     dom('th', null, tr).each((idx, th) => parse(th))
@@ -62,7 +63,7 @@ exports.parseTables = function(dom) { // aタグは 'URL text' としてパー�
     return s.replace(/\s/g, '')
   }
   dom('table').each((idx, ele) => {
-    tbl.push(parseTHTD(dom, ele))
+    tbl.push(this.parseTHTD(dom, ele))
   })
   return tbl
 }

@@ -63,9 +63,15 @@ const makeData = async function(pref, url, url_opendata) {
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
-  if (csv[0][0].indexOf('長野県における新型コロナウイルス感染症の発生状況') >= 0) {
+
+  // for 長野
+  const firstline = csv[0][0]
+  if (firstline.indexOf('長野県における新型コロナウイルス感染症の発生状況') >= 0) {
     csv.splice(0, 2)
+  } else if (firstline.indexOf('陽性患者属性') >= 0) {
+    csv.splice(0, 1)
   }
+
   //csv.splice(0, 1)
   const json = util.csv2json(csv)
   //console.log(json)
@@ -76,6 +82,7 @@ const makeData = async function(pref, url, url_opendata) {
 
   let nexits = 0
   let ndeaths = 0
+  console.log(json)
   for (const d of json) {
     if (d['患者_状態'] == '死亡' || d['状態'] == '死亡' || d['患者_死亡フラグ'] == 1 || d['患者状況'] == '死亡') {
       ndeaths++
@@ -213,7 +220,6 @@ const main = async function() {
   }
   //data.push(await makeDataFromJSON())
   console.log(data)
-  return
 
   if (util.writeCSV('../data/covid19japan-fast', util.json2csv(data))) {
     util.writeCSV('../data/covid19fast/' + util.getYMDHMS(), util.json2csv(data))

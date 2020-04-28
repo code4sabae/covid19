@@ -23,9 +23,14 @@ const main = async function() {
 
   const dom = cheerio.load(html)
 
-  const csvurl = url_base + htmlparser.extractLink(dom, '新型コロナウイルス感染症患者の発生状況（CSV：')
+  //const title = '新型コロナウイルス感染症患者の発生状況（CSV：'
+  const title = '発生状況（CSV：'
+  const csvurl = url_base + htmlparser.extractLink(dom, title)
   console.log(csvurl)
-
+  if (!csvurl) {
+    console.log("parse error!!")
+    process.exit(1)
+  }
   const res = await covid19fast.makeData(pref, csvurl, url_opendata)
   console.log(res)
 }
