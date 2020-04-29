@@ -7,7 +7,7 @@
 "Fukui",122,49,66,7,"2020-04-29T14:23:09","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",
 "Nagano",66,49,17,0,"2020-04-29T19:14:30","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",
 "Gifu",149,75,68,6,"2020-04-28T22:29:25","https://data.gifu-opendata.pref.gifu.lg.jp/dataset/4661bf9d-6f75-43fb-9d59-f02eb84bb6e3/resource/9c35ee55-a140-4cd8-a266-a74edf60aa80/download/210005gifucovid19patients.csv","https://data.gifu-opendata.pref.gifu.lg.jp/dataset/c11223-001",
-"Shizuoka",67,31,36,0,"2020-04-28T21:29:51","https://opendata.pref.shizuoka.jp/dataset/8167/resource/44807/220001_shizuoka_covid19_patients.csv","https://opendata.pref.shizuoka.jp/dataset/8167.html",
+"Shizuoka",68,32,36,0,"2020-04-29T19:20:49","https://opendata.pref.shizuoka.jp/dataset/8167/resource/44807/220001_shizuoka_covid19_patients.csv","https://opendata.pref.shizuoka.jp/dataset/8167.html",
 "Osaka",1553,944,573,36,"2020-04-29T16:02","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",
 "Hyogo",637,334,276,27,"2020-04-29T00:00:00","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","http://open-data.pref.hyogo.lg.jp/?page_id=141",26
 "Wakayama",60,28,30,2,"2020-04-29T14:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",
