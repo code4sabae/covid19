@@ -1,6 +1,6 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients"
 "Hokkaido",688,423,238,27,"2020-04-29T11:43:08","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",
-"Fukushima",70,50,20,0,"2020-04-28T21:27:25","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200428.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",
+"Fukushima",72,51,21,0,"2020-04-29T19:50:56","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200429.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",
 "Gunma",146,102,29,15,"2020-04-29T09:00","https://raw.githubusercontent.com/bpr-gunma/covid19/master/data/data.json","https://github.com/bpr-gunma/covid19",
 "Chiba",728,572,131,25,"2020-04-29T15:52","https://raw.githubusercontent.com/civictechzenchiba/covid19-chiba/master/data/data.json","https://github.com/civictechzenchiba/covid19-chiba",
 "Tokyo",4059,2690,1261,108,"2020-04-28T20:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",
