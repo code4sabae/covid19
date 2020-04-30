@@ -1,8 +1,7 @@
-import fs from 'fs'
-import util from './util.mjs'
 import webdriver from 'selenium-webdriver'
+import fs from 'fs'
 import Jimp from 'jimp'
-import cheerio from 'cheerio'
+import util from './util.mjs'
 
 const { Builder, By, until } = webdriver
 
@@ -12,14 +11,14 @@ capabilities.set('chromeOptions', {
     '--headless',
     '--no-sandbox',
     '--disable-gpu',
-    '--window-size=820,640' // 効かない
+    '--window-size=820,640'
   ]
 })
 
 const saveScreenShot = async function (fn) {
   const driver = await new Builder().withCapabilities(capabilities).build()
 
-  //await driver.get('https://www.stopcovid19.jp/#ja')
+  // await driver.get('https://www.stopcovid19.jp/#ja')
   await driver.get('http://localhost:8888/fukunojigjp/app/covid19/#ja')
 
   // await driver.wait(until.elementLocated(By.id('qrcode')), 10000)
