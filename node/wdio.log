@@ -1,0 +1,18 @@
+2020-04-30T10:11:13.055Z INFO webdriverio: Initiate new session using the webdriver protocol
+2020-04-30T10:11:13.057Z INFO webdriver: [POST] http://localhost:4444/session
+2020-04-30T10:11:13.058Z INFO webdriver: DATA {
+  capabilities: { alwaysMatch: { browserName: 'safari' }, firstMatch: [ {} ] },
+  desiredCapabilities: { browserName: 'safari' }
+}
+2020-04-30T10:11:13.079Z ERROR webdriver: RequestError: connect ECONNREFUSED 127.0.0.1:4444
+    at ClientRequest.<anonymous> (/Users/fukuno/data/java/_zerosen/hosts/default/fukunojigjp/web/app/covid19/node/node_modules/got/dist/source/core/index.js:759:25)
+    at Object.onceWrapper (events.js:422:26)
+    at ClientRequest.emit (events.js:327:22)
+    at ClientRequest.EventEmitter.emit (domain.js:485:12)
+    at ClientRequest.origin.emit (/Users/fukuno/data/java/_zerosen/hosts/default/fukunojigjp/web/app/covid19/node/node_modules/@szmarczak/http-timer/dist/source/index.js:39:20)
+    at Socket.socketErrorListener (_http_client.js:432:9)
+    at Socket.emit (events.js:315:20)
+    at Socket.EventEmitter.emit (domain.js:485:12)
+    at emitErrorNT (internal/streams/destroy.js:84:8)
+    at processTicksAndRejections (internal/process/task_queues.js:84:21)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)

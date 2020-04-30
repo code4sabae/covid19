@@ -1,0 +1,16 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "makedata.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taisuke Fukuno <fukuno@jig.jp> (https://fukuno.jig.jp/)",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.10.3",
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "webdriverio": "^6.1.5"
+  }
+}
