@@ -222,12 +222,13 @@ h1 {
 	z-index: 2;
 	background-color: white;
 	border: 4px solid black;
-	left: 2vw;
-	x-right: 2vw;
-	top: 1vh;
+	left: 0vw;
+	top: 0vh;
 	x-top: 23vh;
-	width: 94vw;
+	width: 100vw;
 	max-width: 95vh;
+	max-height: 100vh;
+	overflow-y: auto;
 	padding: 1vh 1vw;
 	box-sizing: border-box;
 	text-align: center;
@@ -263,6 +264,24 @@ h1 {
 	font-size: 2.5vmin;
 	padding: 1vmin;
 }
+.areamap_title {
+	font-size: 140%;
+	margin-top: 1em;
+	margin-bottom: .3em;
+}
+.areamap {
+	border: 1px solid #333;
+	margin: .5em;
+}
+.areamap > span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: .2vmax .2vmax;
+	x-border: .1vmax solid #333;
+	x-margin: .2vmax;
+}
+
 @keyframes fadein {
 	0% { opacity: 0 }
 	100% { opacity: 1 }
@@ -731,7 +750,7 @@ const downloadImage = function(fn, data) {
 	a.click()
 }
 
-const showChart = function(data) {
+const showChart = async function(data) {
 	//console.log(data.data)
 	const npatients_c = data.data.ncurrentpatients
 	const nbed = data.getBedCount()
@@ -801,6 +820,88 @@ const showChart = function(data) {
 		window.open(data.url)
 		e.stopPropagation()
 	}
+
+	detail_areamap.innerHTML = ''
+	if (data.data.name == 'Tokyo') {
+		await showAreaMapTokyo()
+	}
+}
+const TOKYO_CITY_MAP = `奥多摩町 青梅市 武蔵村山市 東村山市 清瀬市 板橋区 北区 足立区
+日の出町 瑞穂町 立川市 東大和市 東久留米市 練馬区 文京区 荒川区
+あきる野市 羽村市 国分寺市 小平市 西東京市 中野区 千代田区 台東区
+檜原村 福生市 国立市 小金井市 武蔵野市 豊島区 中央区 墨田区
+- 昭島市 府中市 三鷹市 杉並区 新宿区 港区 葛飾区
+- 日野市 多摩市 調布市 世田谷区 渋谷区 品川区 江戸川区
+新島村 八王子市 町田市 稲城市 狛江市 目黒区 大田区 江東区
+利島村 大島町 神津島村 御蔵島村 三宅村 青ヶ島村 八丈町 小笠原村`
+const makeGrids = function(stab) {
+  const area = []
+  let maxc = 0
+  const lines = stab.split('\n')
+	for (let a of lines) {
+    const row = a.split(' ')
+    if (row.length > 1 || row[0].length > 0) {
+      area.push(row)
+      if (row.length > maxc) {
+        maxc = row.length
+      }
+    }
+  }
+  const c = document.createElement('div')
+  c.style.display = 'grid'
+  c.style.gridTemplateColumns = `repeat(${maxc}, 1fr)`
+  c.style.gridTemplateRows = `repeat(${lines.length}, 1fr)`
+  for (const ar of area) {
+    for (const a of ar) {
+      const div = document.createElement('span')
+      c.appendChild(div)
+			div.textContent = a
+    }
+	}
+	c.area = area.flat()
+  return c
+}
+const showAreaMapTokyo = async function() {
+	const citymap = makeGrids(TOKYO_CITY_MAP)
+	citymap.className = 'areamap'
+
+	const url_detail = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/patient.json"
+	
+  const data_detail_json = await (await fetch(url_detail)).json()
+  console.log(data_detail_json)
+  const data_detail = data_detail_json.datasets.data
+  let max = 0
+  for (let i = 0; i < data_detail.length - 1; i++) {
+    const d = data_detail[i]
+    if (parseInt(d.count) > max) {
+      max = d.count
+    }
+  }
+
+  const other = []
+  for (let i = 0; i < data_detail.length; i++) {
+    const d = data_detail[i]
+    const div = citymap.children[citymap.area.indexOf(d.label)]
+    if (!div) {
+      //console.log('err', d.label)
+      other.push(d.label + ":" + d.count)
+      continue
+    }
+    div.innerHTML += '<br>' + d.count
+    const p = 100 * (1 - d.count / max * .5)
+    if (p >= 50)
+      div.style.backgroundColor = `hsl(0, 100%, ${p}%)`
+  }
+
+	const div1 = create("div", "areamap_title")
+	div1.textContent = '【参考】区市町村別患者数（都内発生分） 更新: ' + data_detail_json.date
+	detail_areamap.appendChild(div1)
+
+	detail_areamap.appendChild(citymap)
+
+	const div2 = create("div", "areamap_other")
+  div2.textContent = '（' + other.join('、') + '）'
+	detail_areamap.appendChild(div2)
 }
 
 const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedCount) {
@@ -819,9 +920,9 @@ const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedC
 			}
 		}
 		div.url = a.url
-		div.onclick = function() {
+		div.onclick = async function() {
 			//window.open(this.url)
-			showChart(this)
+			await showChart(this)
 		}
 	}
 	jpall.url = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
@@ -967,6 +1068,7 @@ const makeJapanHTML = function() {
 	<canvas id='chart'></canvas>
 	<div id="detaildesc"></div>
 	<div id="detailvent"></div>
+	<div id='detail_areamap'></div>
 	<div id='detailbtns'>
 		<button id='btnclose'>とじる</button>
 		<button id='btnapp'>アプリへ</button>
