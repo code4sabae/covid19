@@ -1,3 +1,5 @@
+import cheerio from 'cheerio'
+
 const exports = {}
 
 exports.extractText = function(dom, tag, key) {
@@ -66,6 +68,65 @@ exports.parseTables = function(dom) { // aタグは 'URL text' としてパー�
     tbl.push(this.parseTHTD(dom, ele))
   })
   return tbl
+}
+
+exports.parseItemType = function (res, dom, ele) {
+  const d = dom(ele)
+  const itemtype = d.attr('itemtype')
+  const body = {}
+  dom(ele).find('[itemprop]').each((idx, ele) => {
+    const d = dom(ele)
+    const itemprop = d.attr('itemprop')
+    let val = null
+    if (d.attr('itemtype')) {
+      val = {}
+      exports.parseItemType(val, dom, ele)
+    } else {
+      const chk = [ 'href', 'datetime', 'src', 'content', 'value' ]
+      for (const c of chk) {
+        val = d.attr(c)
+        if (val)
+          break
+      }
+      if (!val)
+        val = d.text()
+    }
+    body[itemprop] = val
+  })
+  if (res[itemtype]) {
+    if (res[itemtype] instanceof Array) {
+      res[itemtype].push(body)
+    } else {
+      res[itemtype] = [ res[itemtype], body ]
+    }
+  } else {
+    res[itemtype] = body
+  }
+}
+exports.parseItems = function (dom) {
+  const res = {}
+  dom('[itemtype]').each((idx, ele) => {
+    exports.parseItemType(res, dom, ele)
+  })
+  return res
+}
+exports.parseItem = function (domOrHTML, filtertype) {
+  let dom = domOrHTML
+  if (typeof domOrHTML == 'string') {
+    dom = cheerio.load(domOrHTML)
+  }
+  let res = null
+  dom(`[itemtype="${filtertype}"]`).each((idx, ele) => {
+    if (res) {
+      return
+    }
+    res = {}
+    exports.parseItemType(res, dom, ele)
+  })
+  if (!res) {
+    return null
+  }
+  return res[filtertype]
 }
 
 export default exports

@@ -2,6 +2,7 @@ import webdriver from 'selenium-webdriver'
 import fs from 'fs'
 import Jimp from 'jimp'
 import util from './util.mjs'
+import cmd from './cmd.mjs'
 
 const { Builder, By, until } = webdriver
 
@@ -15,11 +16,10 @@ capabilities.set('chromeOptions', {
   ]
 })
 
-const saveScreenShot = async function (fn) {
+const saveScreenShot = async function (url, fn) {
   const driver = await new Builder().withCapabilities(capabilities).build()
 
-  // await driver.get('https://www.stopcovid19.jp/#ja')
-  await driver.get('http://localhost:8888/fukunojigjp/app/covid19/#ja')
+  await driver.get(url)
 
   // await driver.wait(until.elementLocated(By.id('qrcode')), 10000)
   await util.sleep(5000)
@@ -31,7 +31,7 @@ const saveScreenShot = async function (fn) {
   driver.quit()
 }
 
-const resizeImage = async function (fn) {
+const resizeImage = async function (dstfn, fn) {
   const dw = 1220
   const dh = 640
 
@@ -40,11 +40,12 @@ const resizeImage = async function (fn) {
   png.resize(dw, h)
   png.crop(0, 0, dw, dh)
 
-  const path = '../ogp/'
-  const dstfn = 'covid19japan_ogp_' + util.getYMDHMS() + '.png'
-  await png.write(path + dstfn)
-  console.log('write ' + dstfn)
-  return dstfn
+  await png.write(dstfn)
+}
+const saveOGP = async function (url, dstfn) {
+  const fn = 'screenshot.png'
+  await saveScreenShot(url, fn)
+  await resizeImage(dstfn, fn)
 }
 const editOGP = function (fn) {
   const srcfn = '../index.html'
@@ -54,9 +55,22 @@ const editOGP = function (fn) {
   fs.writeFileSync(srcfn, html, 'utf-8')
 }
 const main = async function () {
-  const fn = 'screenshot.png'
-  await saveScreenShot(fn)
-  const dstfn = await resizeImage(fn)
-  editOGP(dstfn)
+  if (process.argv.length >= 3) {
+    // console.log(process.argv)
+    const url = process.argv[2]
+    console.log(url)
+    const dstfn = 'ss.png'
+    await saveOGP(url, dstfn)
+    await cmd.cmd('open ' + dstfn)
+  } else {
+    const url = 'http://localhost:8888/fukunojigjp/app/covid19/#ja'
+    const path = '../ogp/'
+    const dstfn = 'covid19japan_ogp_' + util.getYMDHMS() + '.png'
+    console.log('write ' + dstfn)
+    await saveOGP(url, path + dstfn)
+    editOGP(dstfn)
+  }
 }
 main()
+
+export default { saveScreenShot }

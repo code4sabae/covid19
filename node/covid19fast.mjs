@@ -1,6 +1,7 @@
 import fs from 'fs'
 import fetch from 'node-fetch'
 import util from './util.mjs'
+import cmd from './cmd.mjs'
 
 const makeDataFromDataJSON = async function(pref, url_datajson, url_opendata) {
   const url = url_datajson // 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
@@ -203,7 +204,10 @@ const main = async function() {
     if (d.data_canuse == 1) {
       console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json, 'special', d.data_special)
       if (d.data_special) {
-        const fn = '../data/covid19' + d.pref.toLowerCase() + '/latest.json'
+        const lpref = d.pref.toLowerCase()
+        const stdout = await cmd.cmd('node covid19' + lpref + '.mjs')
+        // console.log(stdout, 'special invoked')
+        const fn = '../data/covid19' + lpref + '/latest.json'
         const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
         console.log(fn, json)
         data.push(json)
@@ -218,7 +222,7 @@ const main = async function() {
       }
     }
   }
-  //data.push(await makeDataFromJSON())
+  // data.push(await makeDataFromJSON())
   console.log(data)
 
   if (util.writeCSV('../data/covid19japan-fast', util.json2csv(data))) {
