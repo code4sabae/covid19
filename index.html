@@ -643,8 +643,16 @@ const main = async function() {
 			for (const name in json) {
 				pref[name] = json[name]
 			}
-			if (!json_now.lastUpdateNow || parseTime(json_now.lastUpdateNow) < parseTime(pref.lastUpdate))
+			// if nbeds exists
+			if (pref.nbeds) {
+				console.log('nbeds', pref)
+				pref.bed.sumc = pref.nbeds
+				pref.bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
+			}
+
+			if (!json_now.lastUpdateNow || parseTime(json_now.lastUpdateNow) < parseTime(pref.lastUpdate)) {
 				json_now.lastUpdateNow = pref.lastUpdate
+			}
 			//console.log(pref) // 
 			fastprefs.push(shortenPref(pref.name_jp))
 		}
