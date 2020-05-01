@@ -10,8 +10,8 @@ gtag('js', new Date())
 gtag('config', 'UA-162141832-1')
 </script>
 <meta charset="utf-8"/>
-<title>COVID-19 Vocaburary</title>
-<meta property="og:title" content="COVID-19 Vocaburary"/>
+<title>COVID-19 Vocabulary</title>
+<meta property="og:title" content="COVID-19 Vocabulary"/>
 <meta property="og:description" content="vocaburaries for COVID-19 apps"/>
 <link rel="icon" type="image/png" href="../covid19japan-icon.png"/>
 <link rel="apple-touch-icon" href="../covid19japan-leargeicon.png"/>
@@ -23,11 +23,47 @@ gtag('config', 'UA-162141832-1')
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
 <style>
+body {
+	padding: 0 1em;
+}
+table, th, td {
+	border: 2px solid gray;
+	margin: 1em;
+	padding: .2em .5em;
+}
+h2 {
+	font-size: 120%;
+}
+#ta {
+	width: 90vw;
+	height: 16em;
+}
 </style>
 </head>
 <body>
 
+<div itemscope itemtype="https://schema.org/DefinedTermSet" id="define">
+	<h1>COVID-19 Vocabulary</h1>
 
+	<h2>itemtype: <span itemprop="url">https://www.stopcovid19.jp/schema/</span></h2>
+	<table>
+		<tr><th>name</th><th>description</th><th>sample value</th></tr>
+		<tr itemscope itemtype="https://schema.org/DefinedTerm"><td itemprop="name">npatients</td><td itemprop="description">累積陽性者数</td><td>10</td></tr>
+		<tr itemscope itemtype="https://schema.org/DefinedTerm"><td itemprop="name">nexits</td><td itemprop="description">累積退院者数</td><td>5</td></tr>
+		<tr itemscope itemtype="https://schema.org/DefinedTerm"><td itemprop="name">ndeaths</td><td itemprop="description">累積退院者数</td><td>5</td></tr>
+		<tr itemscope itemtype="https://schema.org/DefinedTerm"><td itemprop="name">lastUpdate</td><td itemprop="description">更新日時</td><td>2020-05-01</td></tr>
+	</table>
+</div>
+
+<div>defined using <a href=https://schema.org/DefinedTermSet>https://schema.org/DefinedTermSet</a></div>
+<div>defined by <a href=https://fukuno.jig.jp/2837>taisukef</a></div>
+
+<hr>
+src of this HTML<br>
+<textarea id=ta></textarea>
+<script type='module'>
+ta.value = define.innerHTML
+</script>
 
 </body>
 </html>
