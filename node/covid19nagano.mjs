@@ -11,24 +11,24 @@ const main = async function() {
   const pref = "Nagano"
 
   const lpref = pref.toLowerCase()
-  //const path = '../data/covid19' + lpref + '/'
-  const path = 'temp/covid19' + lpref + '/'
-  const fn = path + "test.html"
+  // const path = '../data/covid19' + lpref + '/'
+  // const path = 'temp/covid19' + lpref + '/'
+  // const fn = path + "test.html"
 
-  //const html = fs.readFileSync(fn, 'utf-8')
+  // const html = fs.readFileSync(fn, 'utf-8')
   const html = await (await fetch(url_opendata)).text()
-  //fs.mkdirSync(path)
-  fs.writeFileSync(fn, html, 'utf-8')
-  console.log(html)
+  // fs.mkdirSync(path)
+  // fs.writeFileSync(fn, html, 'utf-8')
+  // console.log(html)
 
   const dom = cheerio.load(html)
 
-  //const title = '新型コロナウイルス感染症患者の発生状況（CSV：'
+  // const title = '新型コロナウイルス感染症患者の発生状況（CSV：' 
   const title = '発生状況（CSV：'
   const csvurl = url_base + htmlparser.extractLink(dom, title)
   console.log(csvurl)
   if (!csvurl) {
-    console.log("parse error!!")
+    console.log('parse error!!')
     process.exit(1)
   }
   const res = await covid19fast.makeData(pref, csvurl, url_opendata)
