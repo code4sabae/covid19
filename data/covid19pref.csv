@@ -27,7 +27,7 @@
 "京都府","Kyoto","https://www.pref.kyoto.jp/kentai/news/novelcoronavirus.html","https://github.com/Shiga-pref-org/covid19",,,,,,,,,,,,,"オープンデータなし"
 "大阪府","Osaka","http://www.pref.osaka.lg.jp/iryo/osakakansensho/corona.html","https://github.com/codeforosaka/covid19",,,"https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json",,,,,"1",,,"1","ok","アプリ公式運用"
 "兵庫県","Hyogo","https://web.pref.hyogo.lg.jp/kk03/200129.html","http://open-data.pref.hyogo.lg.jp/?page_id=141","http://open-data.pref.hyogo.lg.jp/index.php?key=muq1trrqj-175#_175",,,"https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx",,,,,,"1","1","ok","Excel形式、厚労省データと退院者数で1名ずれあり？"
-"奈良県","Nara","http://www.pref.nara.jp/item/225304.htm",,,,,,,,,,,,,,"オープンデータなし"
+"奈良県","Nara","http://www.pref.nara.jp/item/225304.htm","http://www.pref.nara.jp/55168.htm","http://www.pref.nara.jp/55168.htm",,,,,,,,,,,"dev","Excel形式"
 "和歌山県","Wakayama","https://www.pref.wakayama.lg.jp/prefg/000200/covid19.html","https://www.pref.wakayama.lg.jp/prefg/000200/covid19.html",,,,"https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx",,,,,,"1","1","ok","Excel形式、退院数も記載あるのでなんとか"
 "鳥取県","Tottori","https://www.pref.tottori.lg.jp/item/1197213.htm",,,,,,,,,,,,,,"オープンデータなし"
 "島根県","Shimane","https://www.pref.shimane.lg.jp/bousai_info/bousai/kikikanri/kikikanri_jian/newcoronavirus.html",,,,,,,,,,,,,,"オープンデータなし"
