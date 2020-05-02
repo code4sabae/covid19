@@ -39,14 +39,14 @@ const makeCovid19 = async function() {
     fs.writeFileSync(fn, JSON.stringify(data))
   }
 }
-const makeBedData = async function() {
-  //const key = '2PACX-1vQRpNRUT8_oXjgxsZd1KL6zAU_zKSUe-Z80DtcazxhmDMtO11FvPWvxUnbpcleFgbu3k2RYmAVqu1xc'
+const makeBedData = async function () {
+  // const key = '2PACX-1vQRpNRUT8_oXjgxsZd1KL6zAU_zKSUe-Z80DtcazxhmDMtO11FvPWvxUnbpcleFgbu3k2RYmAVqu1xc'
   const key = '2PACX-1vQEUdBj10hsT18kpdqluHmVfjh5hBXgLW0naLaMf6cXTRF5vd8ezOmwj49s815tJ1oMmamLmMsQF1Lp'
   const csv = await fetchGoogleSpreadSheetCSV(key)
   const fn = '../data/bedforinfection_current'
   fs.writeFileSync(fn + '.csv', csv)
   const data = util.convertCSVtoArray(csv)
-	const json = util.csv2json(data)
+  const json = util.csv2json(data)
   console.log(json)
   fs.writeFileSync(fn + '.json', JSON.stringify(json))
 }

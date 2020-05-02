@@ -64,8 +64,8 @@ const fetchAndSave = async function (url) {
   return fn
 }
 const getSheetXlsx = async function (url) {
-  // const fn = await fetchAndSave(url)
-  const fn = 'temp/1588310128556.xlsx'
+   const fn = await fetchAndSave(url)
+  //const fn = 'temp/1588310128556.xlsx'
   const workbook = xlsx.readFile(fn)
   // fs.unlinkSync(fn)
 
