@@ -20,6 +20,7 @@ const saveScreenShot = async function (url, fn) {
   const driver = await new Builder().withCapabilities(capabilities).build()
 
   await driver.get(url)
+  await driver.executeScript('document.body.style.overflow = "hidden"')
 
   // await driver.wait(until.elementLocated(By.id('qrcode')), 10000)
   await util.sleep(5000)
@@ -64,11 +65,14 @@ const main = async function () {
     await cmd.cmd('open ' + dstfn)
   } else {
     const url = 'http://localhost:8888/fukunojigjp/app/covid19/#ja'
-    const path = '../ogp/'
+    const debug = false
+    const path = debug ? 'temp/' : '../ogp/'
     const dstfn = 'covid19japan_ogp_' + util.getYMDHMS() + '.png'
     console.log('write ' + dstfn)
     await saveOGP(url, path + dstfn)
-    editOGP(dstfn)
+    if (!debug) {
+      editOGP(dstfn)
+    }
   }
 }
 main()
