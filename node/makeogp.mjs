@@ -60,9 +60,9 @@ const main = async function () {
     // console.log(process.argv)
     const url = process.argv[2]
     console.log(url)
-    const dstfn = 'ss.png'
+    const dstfn = process.argv.length >= 4 ? process.argv[3] : 'ss.png'
     await saveOGP(url, dstfn)
-    await cmd.cmd('open ' + dstfn)
+    //await cmd.cmd('open ' + dstfn)
   } else {
     const url = 'http://localhost:8888/fukunojigjp/app/covid19/#ja'
     const debug = false
