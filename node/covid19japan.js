@@ -264,8 +264,15 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     }
     return n
   }
+  const parseIntWithComma = function (s) {
+    console.log(s)
+    s = s.replace(/,/g, '')
+    const n = parseInt(s)
+    if (n.toString() !== s) { return 0 }
+    return n
+  }
   console.log(ss)
-  for (let i = linestart;; i++) {
+  for (let i = linestart; ; i++) {
     const ss2 = ss[i].split(' ')
     if (ss2.length < 10)
       continue
@@ -279,10 +286,10 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     //console.log(nskip, ss2[nstart + 5])
     if (pref == '総計') {
       const a = res
-      a.npatients = parseInt(ss2[nstart + 1])
-      a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
-      a.nexits = parseInt(ss2[nstart + nskip + 5])
-      a.ndeaths = parseInt(ss2[nstart + nskip + 7])
+      a.npatients = parseIntWithComma(ss2[nstart + 1])
+      a.ncurrentpatients = parseIntWithComma(ss2[nstart + nskip + 3])
+      a.nexits = parseIntWithComma(ss2[nstart + nskip + 5])
+      a.ndeaths = parseIntWithComma(ss2[nstart + nskip + 7])
       a.description = ss[i + 1]
       break
     } else if (pref == 'その他') {
@@ -292,10 +299,10 @@ const text2jsonWithCurrentPatients = function(txt, url, dt) {
     if (npref == -1)
       return null
     const a = area[npref]
-    a.npatients = parseInt(ss2[nstart + 1])
-    a.ncurrentpatients = parseInt(ss2[nstart + nskip + 3])
-    a.nexits = parsei(ss2[nstart + nskip + 5])
-    a.ndeaths = parsei(ss2[nstart + nskip + 7])
+    a.npatients = parseIntWithComma(ss2[nstart + 1])
+    a.ncurrentpatients = parseIntWithComma(ss2[nstart + nskip + 3])
+    a.nexits = parseIntWithComma(ss2[nstart + nskip + 5])
+    a.ndeaths = parseIntWithComma(ss2[nstart + nskip + 7])
     //console.log(pref, a)
     //a.patientsdif = parseInt(ss2[nstart + 2])
     //if (nskip)

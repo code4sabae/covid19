@@ -13,6 +13,7 @@ const main = async function() {
     const dc = latest.area[i]
     const dp = prev.area[i]
     const div = dc.ncurrentpatients - dp.ncurrentpatients
+    console.log(dc.name, dc.ncurrentpatients, dp.ncurrentpatients)
     const ratio = dp.ncurrentpatients ? div / dp.ncurrentpatients : 0
     const o = {
       name: dc.name,
