@@ -21,7 +21,7 @@
 "長野県","Nagano","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",,,,,,,,,"1","1","ok","注釈付きの2データセットある変形CSV、URLは更新毎に変化"
 "岐阜県","Gifu","https://www.pref.gifu.lg.jp/kinkyu-juyo-joho/shingata_corona.html","https://data.gifu-opendata.pref.gifu.lg.jp/dataset/c11223-001","https://data.gifu-opendata.pref.gifu.lg.jp/dataset/c11223-001/resource/9c35ee55-a140-4cd8-a266-a74edf60aa80","https://data.gifu-opendata.pref.gifu.lg.jp/dataset/4661bf9d-6f75-43fb-9d59-f02eb84bb6e3/resource/9c35ee55-a140-4cd8-a266-a74edf60aa80/download/210005gifucovid19patients.csv",,,,,"1",,,,"1","ok","文字コードSJIS"
 "静岡県","Shizuoka","https://www.pref.shizuoka.jp/kinkyu/covid-19.html","https://opendata.pref.shizuoka.jp/dataset/8167.html","https://opendata.pref.shizuoka.jp/dataset/8167.html","https://opendata.pref.shizuoka.jp/dataset/8167/resource/44807/220001_shizuoka_covid19_patients.csv",,,,,"1",,,,"1","1","患者状態の反映を確認"
-"愛知県","Aichi","https://www.pref.aichi.jp/site/covid19-aichi/",,,,,,,,,,,,,,"オープンデータなし"
+"愛知県","Aichi","https://www.pref.aichi.jp/site/covid19-aichi/",,,,,,,,,,,,,,"オープンデータなし、サイトには画像のみ"
 "三重県","Mie","https://www.pref.mie.lg.jp/YAKUMUS/HP/m0068000066.htm","https://www.pref.mie.lg.jp/YAKUMUS/HP/m0068000071_00022.htm",,,,,,,,,,,,,"退院数不明"
 "滋賀県","Shiga","https://www.pref.shiga.lg.jp/ippan/kenkouiryouhukushi/yakuzi/309252.html","https://github.com/Shiga-pref-org/covid19",,,,,,,,"1",,,,"pending","アプリ公式運用、data.jsonなし"
 "京都府","Kyoto","https://www.pref.kyoto.jp/kentai/news/novelcoronavirus.html","https://github.com/Shiga-pref-org/covid19",,,,,,,,,,,,,"オープンデータなし"
