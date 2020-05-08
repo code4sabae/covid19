@@ -354,7 +354,8 @@ const makeCovid19Japan = async function() {
   const html = await (await fetch(URL)).text()
   console.log(html)
   const title = '国内事例における都道府県別の患者報告数'
-  const title2 = '国内における都道府県別のPCR検査陽性者数'
+  // const title2 = '国内における都道府県別のPCR検査陽性者数'
+  const title2 = '内における都道府県別のPCR検査陽性者数'
   let res = parseLink(html, title)
   if (!res) {
     res = parseLink(html, title2)
