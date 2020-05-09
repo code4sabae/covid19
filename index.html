@@ -646,6 +646,11 @@ const main = async function() {
 			// if nbeds exists
 			if (pref.nbeds) {
 				console.log('nbeds', pref)
+				const bed = json_bed.area.find(a => a.name === pref.name)
+				bed.sumc = pref.nbeds
+				bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
+				
+				// for Chart .. 整理が必要
 				pref.bed.sumc = pref.nbeds
 				pref.bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
 			}
@@ -759,7 +764,8 @@ const downloadImage = function(fn, data) {
 }
 
 const showChart = async function(data) {
-	//console.log(data.data)
+	console.log('showChart', data.data)
+
 	const npatients_c = data.data.ncurrentpatients
 	const nbed = data.getBedCount()
 	if (detail.chart) {

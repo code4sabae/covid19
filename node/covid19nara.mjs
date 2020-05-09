@@ -3,19 +3,50 @@ import util from './util.mjs'
 import fetch from 'node-fetch'
 import fs from 'fs'
 
+const decodeExcelRow = function (s) {
+  let n = 0
+  for (let i = 0; i < s.length; i++) {
+    const m = s.charCodeAt(i) - 'A'.charCodeAt(0) + 1
+    n = n * 26 + m
+  }
+  return n
+}
+const encodeExcelRow = function (n) {
+  let s = ''
+  n--
+  let flg = false
+  for (;;) {
+    const m = (flg ? n - 1 : n) % 26
+    s = String.fromCharCode('A'.charCodeAt(0) + m) + s
+    n = Math.floor(n / 26)
+    if (!n) { break }
+    flg = true
+  }
+  return s
+}
+
+/*
+for (let i = 1; i < 5000; i++) {
+  const s = encodeExcelRow(i)
+  const m = decodeExcelRow(s)
+  console.log(i, s, m, i === m)
+}
+process.exit(0)
+*/
+
 const xlsx2csv = function (sheet) {
   const res = []
   const rect = sheet['!ref'].match(/(\D+)(\d+):(\D+)(\d+)/)
-  const colst = rect[1].charCodeAt(0) - 'A'.charCodeAt(0)
+  const colst = decodeExcelRow(rect[1])
   const rowst = parseInt(rect[2])
-  const coled = rect[3].charCodeAt(0) - 'A'.charCodeAt(0)
+  const coled = decodeExcelRow(rect[3])
   const rowed = parseInt(rect[4])
   for (let i = 0; i < rowed - rowst + 1; i++) {
-    const row = i + rowst
+    const row = i + rowst - 1
     const line = []
     let dataflg = false
     for (let j = 0; j < coled - colst + 1; j++) {
-      const col = String.fromCharCode('A'.charCodeAt(0) + j + colst)
+      const col = encodeExcelRow(j + colst)
       const cell = sheet[col + row]
       if (cell) {
         const v = sheet[col + row].w // v
@@ -45,12 +76,22 @@ const parseJSON = function (pref, json) {
   const lastUpdate = latest['公表_年月日']
   res.npatients = parseInt(latest['陽性確認_件数_累計'])
   res.ncurrentpatients = parseInt(latest['入院者数'])
-  res.nbeds = parseInt(latest['感染症対応病床数'])
+  res.nbeds_hospital = parseInt(latest['感染症対応病床数'])
+  res.nbeds_hotel = parseInt(latest['宿泊療養室数'])
+  res.nbeds = res.nbeds_hospital + res.nbeds_hotel
   res.nexits = parseInt(latest['退院者_累計'])
   res.ndeaths = parseInt(latest['死亡者_累計'])
   res.lastUpdate = lastUpdate // util.formatYMDHMS(parseDateTime(lastUpdate))
   console.log(lastUpdate, res.lastUpdate)
 
+  for (const name in res) {
+    if (name !== 'name' && name.charAt(0) === 'n') {
+      // console.log(res[name], name)
+      if (isNaN(res[name])) {
+        return null
+      }
+    }
+  }
   console.log(res)
   return res
 }
@@ -64,8 +105,8 @@ const fetchAndSave = async function (url) {
   return fn
 }
 const getSheetXlsx = async function (url) {
-   const fn = await fetchAndSave(url)
-  //const fn = 'temp/1588310128556.xlsx'
+  const fn = await fetchAndSave(url)
+  // const fn = 'temp/1588943159486.xlsx'
   const workbook = xlsx.readFile(fn)
   // fs.unlinkSync(fn)
 
@@ -85,7 +126,6 @@ const main = async function () {
 
   const sh = await getSheetXlsx(url)
   let csv = xlsx2csv(sh)
-  console.log(csv)
   // util.writeFileSync('temp/test.csv', util.addBOM(util.encodeCSV(csv)))
   csv = csv.splice(1)
 
