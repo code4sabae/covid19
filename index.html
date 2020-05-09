@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509232853.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509232853.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509233626.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509233626.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -525,8 +525,8 @@ const main = async function() {
 
 	const url_trend = makeURL('covid19japan-trend.json')
 	const json_trend = await fetchJSON(url_trend)
-	for (let i = 0; i < json_trend.length; i++) {
-		json_mhlw.area[i].trend = json_trend[i]
+	for (const p of json_mhlw.area) {
+		p.trend = json_trend.find(i => i.name === p.name)
 	}
 	console.log(json_mhlw)
 
