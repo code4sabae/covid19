@@ -235,18 +235,18 @@ exports.formatYMD = function(t) {
   const fix0 = exports.fix0
   return t.getFullYear() + "-" + fix0(t.getMonth() + 1, 2) + "-" + fix0(t.getDate(), 2)
 }
-exports.getYMDHMS = function() {
-  const t = new Date()
+exports.getYMDHMS = function (t) {
+  if (!t) { t = new Date() }
   const fix0 = exports.fix0
   return t.getFullYear() + fix0(t.getMonth() + 1, 2) + fix0(t.getDate(), 2) + fix0(t.getHours(), 2) + fix0(t.getMinutes(), 2) + fix0(t.getSeconds(), 2)
 }
-exports.getYMDH = function() {
-  const t = new Date()
+exports.getYMDH = function (t) {
+  if (!t) { t = new Date() }
   const fix0 = exports.fix0
   return t.getFullYear() + fix0(t.getMonth() + 1, 2) + fix0(t.getDate(), 2) + fix0(t.getHours(), 2)
 }
-exports.getYMD = function() {
-  const t = new Date()
+exports.getYMD = function (t) {
+  if (!t) { t = new Date() }
   const fix0 = exports.fix0
   return t.getFullYear() + fix0(t.getMonth() + 1, 2) + fix0(t.getDate(), 2)
 }

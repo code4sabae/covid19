@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200508212127.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200508212127.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509232853.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509232853.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -978,7 +978,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		
 		// trendarrow
 		let trendimg = ""
-		const dratio = a.trend.prevcurrentpatients ? a.trend.dcurrentpatients / a.trend.prevcurrentpatients : 0
+		const dratio = a.trend ? (a.trend.prevcurrentpatients ? a.trend.dcurrentpatients / a.trend.prevcurrentpatients : 0) : 0
 		//console.log(dratio, a.trend.dcurrentpatients, a.trend.prevcurrentpatients)
 		const th = .05
 		if (dratio >= th) {
@@ -1132,7 +1132,7 @@ const makeJapanHTML = function() {
 	<div id='description2'>
 	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000622473.pdf>詳細</a>）
 	現在患者数や現在新型コロナ対策病床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
-	（厚生労働省データの現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>
+	（<!--厚生労働省データの-->現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>
 	</div>
 </div>
 
