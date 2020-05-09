@@ -1,7 +1,7 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients","nbeds_hospital","nbeds_hotel","nbeds"
 "Hokkaido",934,462,424,48,"2020-05-09T10:53:46","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
 "Fukushima",81,36,45,0,"2020-05-09T17:53:28","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200509.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,
-"Saitama",946,391,514,41,"2020-05-08","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html",,,,
+"Saitama",962,396,525,41,"2020-05-09","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html",,,,
 "Chiba",773,521,219,33,"2020-05-07T19:01","https://raw.githubusercontent.com/civictechzenchiba/covid19-chiba/master/data/data.json","https://github.com/civictechzenchiba/covid19-chiba",,,,
 "Tokyo",4846,2514,2152,180,"2020-05-09T20:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,,
 "Toyama",216,126,77,13,"2020-05-08","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv",,,,
