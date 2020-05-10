@@ -539,6 +539,9 @@ const main = async function () {
   console.log(path + json.lastUpdate + '.csv')
   fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
   fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
+
+  // make all
+  makeCovid19JapanList()
 }
 if (require.main === module) {
   main()
