@@ -495,7 +495,7 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   res.ndeaths = 0
   res.ncurrentpatients = 0
 
-  const pi = s => s === '不明' ? 0 : parseInt(s)
+  const pi = s => parseInt(s) !== s ? 0 : parseInt(s)
   const data = util.csv2json(csv)
   const area = getAreas()
   for (let i = 0; i < area.length; i++) {
@@ -508,7 +508,7 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     a.ndeaths = c['死亡(累積) (人)']
     a.nheavycurrentpatients = c['うち重症']
     a.nunknowns = c['確認中(人)']
-    a.ncurrentpatients = a.npatients - a.nexits - (a.ndeaths !== '不明' ? a.ndeaths : 0)
+    a.ncurrentpatients = a.npatients - a.nexits - pi(a.ndeaths)
 
     res.npatients += a.npatients
     res.nexits += a.nexits
@@ -521,12 +521,17 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   return res
 }
 const main = async function () {
+  /*
   const url = 'https://www.mhlw.go.jp/content/10906000/000628667.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11229.html'
+  */
+  const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
+  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
+
   const path = '../data/covid19japan/'
   const fn = url.substring(url.lastIndexOf('/') + 1)
-  // const pdf = await (await fetch(url)).arrayBuffer()
-  // fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+  const pdf = await (await fetch(url)).arrayBuffer()
+  fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
 
   const txt = await pdf2text.pdf2text(path + fn)
   console.log(txt)
