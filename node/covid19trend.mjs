@@ -72,7 +72,7 @@ const TABULARMAPS_JAPAN = `
 const sortByTabularMaps = function (array) {
   const prefja = name => PREF_S[PREF_EN.indexOf(name)]
   const tabidx = name => TABULARMAPS_JAPAN.indexOf(prefja(name))
-  return array.sort((a, b) => tabidx(a) - tabidx(b))
+  return array.sort((a, b) => tabidx(a.name) - tabidx(b.name))
 }
 const json2txt = function (json) {
   const p = s => PREF_EN.indexOf(s) < 0 ? s : PREF_C3[PREF_EN.indexOf(s)]
@@ -98,10 +98,11 @@ const main = async function () {
   }
   // console.log(trend)
   // console.log(fast)
+
+  util.writeCSV(dstfnbase, util.json2csv(trend))
+
   const trend2 = sortByTabularMaps(trend)
   console.log(trend2)
-  
-  util.writeCSV(dstfnbase, util.json2csv(trend))
   fs.writeFileSync(dstfnbase + '.txt', json2txt(trend2))
 }
 if (process.argv[1].endsWith('/covid19trend.mjs')) {
