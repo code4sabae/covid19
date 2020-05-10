@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200510231646.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200510231646.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511070753.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511070753.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -979,7 +979,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		
 		// trendarrow
 		let trendimg = ""
-		const dratio = a.trend ? (a.trend.prevcurrentpatients ? a.trend.dcurrentpatients / a.trend.prevcurrentpatients : 0) : 0
+		const dratio = a.trend ? (a.trend.ncurrentpatients ? a.trend.dcurrentpatients / (a.trend.ncurrentpatients + a.trend.dcurrentpatients) : 0) : 0
 		//console.log(dratio, a.trend.dcurrentpatients, a.trend.prevcurrentpatients)
 		const th = .05
 		if (dratio >= th) {
@@ -1175,7 +1175,8 @@ credit<br>
 APP (アプリ開発/提供): <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://fukuno.jig.jp/>jig.jp 福野泰介</a> <a href=https://twitter.com/taisukef>@taisukef</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 「<a href=https://fukuno.jig.jp/2799>厚生労働省提供 新型コロナウイルス対策ダッシュボードについて</a>」「<a href=https://fukuno.jig.jp/2788>感染者PDFデータをJSON-API化して公開</a>」<br>
 <br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a> / <a href=tableview.html>APP</a>)<br>
+DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a> / <a href=tableview.html>APP</a>)<br>
+DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://www.stopcovid19.jp/>COVID-19 Japan 新型コロナウイルス対策ダッシュボード</a> <a href=https://www.stopcovid19.jp/data/covid19japan-trend.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a>（厚生労働省、各都道府県公表データの集約）<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」<a href=data/covid19japan-fast.csv>CSV</a> / <a href=data/covid19japan-fast.json>JSON</a><br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス対策病床数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
