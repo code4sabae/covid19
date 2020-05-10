@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509233626.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200509233626.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200510142008.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200510142008.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -580,7 +580,8 @@ const main = async function() {
 		const sum = { ncurrentpatients: 0, nexits: 0, ndeaths: 0, npatients: 0 }
 		for (let i = 0; i < json.area.length; i++) {
 			for (const n in sum) {
-				sum[n] += json.area[i][n]
+				const s = json.area[i][n]
+				sum[n] += s === '不明' ? 0 : parseInt(s)
 			}
 		}
 		for (const n in sum) {
@@ -732,7 +733,7 @@ const main = async function() {
 	}
 	const url_csv = makeCSVURL(url)
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「国内事例における都道府県別の患者報告数」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
+	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「各都道府県の検査陽性者の状況」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
 	datasrc.innerHTML += tx("<br>対策病床数: " + link('https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0', '都道府県発表 新型コロナウイルス対策病床数オープンデータ') + " &amp; " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省「感染症指定医療機関の指定状況」') + " → " + link(url_bed, "JSON") + "/" + link('https://code4sabae.github.io/bedforinfection/', 'APP'))
 
 	const url_link = makeURL('covid19pref.json')
@@ -786,7 +787,7 @@ const showChart = async function(data) {
 	if (data.data.src_url) {
 		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>${data.data.name_jp} 新型コロナウイルス患者数オープンデータ</a>`)
 	} else {
-		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>厚生労働省 新型コロナウイルス感染症（国内事例）の状況</a>`)
+		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>厚生労働省 新型コロナウイルス感染症 各都道府県の検査陽性者の状況</a>`)
 	}
 	detaildesc.innerHTML += tx(`<br><a href=http://www.jibika.or.jp/members/information/info_corona.html>一般社団法人 日本耳鼻咽喉科学会</a>定義における`)
 	if (npatients_c < 10) {

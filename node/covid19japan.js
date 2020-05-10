@@ -109,7 +109,7 @@ const parseNumber = function(s) {
   //console.log(s, num)
   return parseInt(num[1])
 }
-const getAreas = function() {
+const getAreas = function () {
   const area = []
   for (let i = 0; i < PREF.length; i++) {
     area[i] = { name: PREF_EN[i], name_jp: PREF[i] }
@@ -436,11 +436,109 @@ const writeCSVbyJSON = function(fn, json) {
   const scsv = util.encodeCSV(util.json2csv(json))
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
-const main = async function() {
+const mainV1 = async function() {
   //await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000620956.pdf', '../data/covid19japan/000620956.pdf')
 
+  // version 1
   await makeCovid19Japan()
   makeCovid19JapanList()
+}
+//
+const text2csvWithCurrentPatients2 = function (txt) {
+  const ss = txt.split('\n')
+  const parseIntWithComma = function (s) {
+    s = s.replace(/,/g, '')
+    const n = parseInt(s)
+    if (n.toString() !== s) { return s }
+    return n
+  }
+  // console.log(ss)
+  const list = []
+  list.push(['都道府県名', 'PCR検査陽性者', 'PCR検査実施人数', '入院治療等を要する者 (人)', 'うち重症', '退院又は療養解除となった者の数 (人)', '死亡(累積) (人)', '確認中(人)'])
+  for (let i = 0; i < 47; i++) {
+    const ss2a = ss[3 + i].split(' ')
+    let pref = ss2a[0] + ss2a[1]
+    const nstart = pref === '北海' || pref === '神奈' || pref === '鹿児' || pref === '和歌' ? 3 : 2
+    if (nstart === 3) { pref += ss2a[2] }
+    //const pref2 = PREF.find(p => p.startsWith(pref))
+    const pref2 = PREF[i]
+    const ss2 = [pref2]
+    for (let i = nstart; i < ss2a.length; i++) {
+      ss2.push(parseIntWithComma(ss2a[i]))
+    }
+    list.push(ss2)
+  }
+  // console.log(list)
+  return list
+}
+const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
+  const parseDate = function (s) {
+    const fix0 = util.fix0
+    s = util.toHalf(s)
+    const num = s.match(/令和(\d+)年(\d+)月(\d+)日/)
+    if (num) {
+      const y = parseInt(num[1])
+      const m = parseInt(num[2])
+      const d = parseInt(num[3])
+      return (y + 2018) + '-' + fix0(m, 2) + '-' + fix0(d, 2)
+    }
+    return '--'
+  }
+
+  const res = {}
+  res.srcurl_pdf = url
+  res.srcurl_web = urlweb
+  res.description = '各都道府県の検査陽性者の状況(空港検疫、チャーター便案件を除く国内事例)'
+  res.lastUpdate = parseDate(txt)
+  res.npatients = 0
+  res.nexits = 0
+  res.ndeaths = 0
+  res.ncurrentpatients = 0
+
+  const pi = s => s === '不明' ? 0 : parseInt(s)
+  const data = util.csv2json(csv)
+  const area = getAreas()
+  for (let i = 0; i < area.length; i++) {
+    const a = area[i]
+    const c = data[i]
+    console.log(c)
+    a.npatients = c['PCR検査陽性者']
+    a.ncurrentpatients = 0
+    a.nexits = c['退院又は療養解除となった者の数 (人)']
+    a.ndeaths = c['死亡(累積) (人)']
+    a.nheavycurrentpatients = c['うち重症']
+    a.nunknowns = c['確認中(人)']
+    a.ncurrentpatients = a.npatients - a.nexits - (a.ndeaths !== '不明' ? a.ndeaths : 0)
+
+    res.npatients += a.npatients
+    res.nexits += a.nexits
+    res.ndeaths += pi(a.ndeaths)
+    res.nheavycurrentpatients += pi(a.nheavycurrentpatients)
+    res.nunknowns += pi(a.nunknowns)
+    res.ncurrentpatients += pi(a.ncurrentpatients)
+  }
+  res.area = area
+  return res
+}
+const main = async function () {
+  const url = 'https://www.mhlw.go.jp/content/10906000/000628667.pdf'
+  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11229.html'
+  const path = '../data/covid19japan/'
+  const fn = url.substring(url.lastIndexOf('/') + 1)
+  // const pdf = await (await fetch(url)).arrayBuffer()
+  // fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+
+  const txt = await pdf2text.pdf2text(path + fn)
+  console.log(txt)
+  const csv = text2csvWithCurrentPatients2(txt)
+  console.log(csv)
+  fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
+
+  const json = makeCurrentPatientsJSON(txt, csv, url, urlweb)
+  fs.writeFileSync(path + json.lastUpdate + '.csv', util.addBOM(util.encodeCSV(util.json2csv(json.area))), 'utf-8')
+  console.log(path + json.lastUpdate + '.csv')
+  fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
+  fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
 }
 if (require.main === module) {
   main()
