@@ -266,8 +266,8 @@ const showTable = async function(target, data, prevdata, popudata) {
 	}
 	tbl.appendChild(tr)
 	const calcRatio = function(n, m) {
-		if (m == 0)
-			return '0%'
+		if (m == 0) { return '0%' }
+		if (isNaN(n)) { return '-' }
 		const r = Math.floor(n / m * 100)
 		return r + "%"
 	}
@@ -304,7 +304,8 @@ const showTable = async function(target, data, prevdata, popudata) {
 			add('総計')
 			add(total.npatients)
 			add(total.patientsdif)
-			const popu = popudata.reduce((p, d) => p + parseInt(d[popuname]), 0)
+			const parsei = p => isNaN(p) ? 0 : parseInt(p)
+			const popu = popudata.reduce((p, d) => p + parsei(d[popuname]), 0)
 			//console.log('total pp', popu)
 			const ratio = fixfloat(total.npatients * 10000 / popu + .0005, 3)
 			add(ratio)
@@ -319,14 +320,12 @@ const showTable = async function(target, data, prevdata, popudata) {
 		}
 
 		const d = sorted[i]
-		console.log('sorted', i, d, sorted)
 		if (d.npatients == 0)
 			continue
 		tr = create('tr')
 		add(d.name_jp)
 		add(d.npatients)
 		if (prevdata) {
-			console.log(prevdata, d.name_jp)
 			const prevnpatients = getData(prevdata, d.name_jp).npatients
 			d.patientsdif = d.npatients - prevnpatients
 			//console.log(d.patientsdif, d.npatients - prevnpatients)
@@ -346,10 +345,9 @@ const showTable = async function(target, data, prevdata, popudata) {
 		add(calcRatio(d.ndeaths, d.npatients))
 		tbl.appendChild(tr)
 		for (const n of sumname) {
-			if (d[n] == '-')
-				total[n] = '-'
-			else
+			if (!isNaN(d[n])) {
 				total[n] += parseInt(d[n])
+			}
 		}
 	}
 	table.innerHTML = ''
