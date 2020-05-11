@@ -350,7 +350,7 @@ const test2 = async function() {
   const json = text2jsonWithCurrentPatients(txt, "url", "2020-03-19")
   console.log(json)
 }
-const makeCovid19Japan = async function() {  
+const makeCovid19Japan = async function () {
   const html = await (await fetch(URL)).text()
   console.log(html)
   const title = '国内事例における都道府県別の患者報告数'
@@ -520,14 +520,33 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   res.area = area
   return res
 }
+const parseURLCovid19 = async function (urlweb) {
+  const html = await (await fetch(urlweb)).text()
+  // console.log(html)
+  const title = '各都道府県の検査陽性者の状況'
+  const title2 = '国内における都道府県別のPCR検査陽性者数'
+  let url = parseLink(html, title)
+  if (!url) {
+    url = parseLink(html, title2)
+  }
+  return url.url
+}
 const main = async function () {
   /*
   const url = 'https://www.mhlw.go.jp/content/10906000/000628667.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11229.html'
   */
+ /*
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
-
+  */
+  const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
+  const url = await parseURLCovid19(urlweb)
+  console.log(url)
+  if (!url) {
+    console.log('not found url', url)
+    return
+  }
   const path = '../data/covid19japan/'
   const fn = url.substring(url.lastIndexOf('/') + 1)
   const pdf = await (await fetch(url)).arrayBuffer()

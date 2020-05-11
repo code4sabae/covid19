@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511115041.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511115041.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511214144.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200511214144.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -979,8 +979,11 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		
 		// trendarrow
 		let trendimg = ""
-		const dratio = a.trend ? (a.trend.ncurrentpatients ? a.trend.dcurrentpatients / (a.trend.ncurrentpatients + a.trend.dcurrentpatients) : 0) : 0
-		//console.log(dratio, a.trend.dcurrentpatients, a.trend.prevcurrentpatients)
+		let dratio = 0
+		if (a.trend && a.trend.ncurrentpatients) {
+			dratio = a.trend.dcurrentpatients / (a.trend.ncurrentpatients - a.trend.dcurrentpatients)
+		}
+		// console.log(a.name, dratio, a.trend.dcurrentpatients, a.trend.ncurrentpatients)
 		const th = .05
 		if (dratio >= th) {
 			trendimg = "<img class=trendarrow src=img/trendarrow01.svg>"
