@@ -437,10 +437,10 @@ const writeCSVbyJSON = function(fn, json) {
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
 const mainV1 = async function() {
-  //await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000620956.pdf', '../data/covid19japan/000620956.pdf')
+  await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000622869.pdf', '../data/covid19japan/000622869.pdf')
 
   // version 1
-  await makeCovid19Japan()
+  // await makeCovid19Japan()
   makeCovid19JapanList()
 }
 //
@@ -568,7 +568,8 @@ const main = async function () {
   makeCovid19JapanList()
 }
 if (require.main === module) {
-  main()
+  // main()
+  mainV1()
 } else {
   startUpdate()
 }
