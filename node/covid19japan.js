@@ -201,14 +201,14 @@ const text2jsonWithInspections = function(txt, url, dt) {
   return res
 }
 
-const text2jsonWithCurrentPatients = function(txt, url, dt) {
-  const parseDate = function(s) {
+const text2jsonWithCurrentPatients = function (txt, url, dt) {
+  const parseDate = function (s) {
     const fix0 = util.fix0
     s = util.toHalf(s)
     // ３月18日(水)
     // 3月18日(水) 対前日比
-    //let num = s.match(/(\d+)月(\d+)日\(.\) .+/)
-    let num = s.match(/(\d+)月(\d+)日/)
+    // let num = s.match(/(\d+)月(\d+)日\(.\) .+/)
+    const num = s.match(/(\d+)月(\d+)日/)
     if (num) {
       const y = new Date().getFullYear()
       const m = parseInt(num[1])
@@ -369,12 +369,12 @@ const makeCovid19Japan = async function () {
   fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   await makeCovid19JapanByPDF(url, path + fn)
 }
-const makeCovid19JapanByPDF = async function(url, fn) {  
+const makeCovid19JapanByPDF = async function (url, fn) {
   const txt = await pdf2text.pdf2text(fn)
   const json = text2jsonWithCurrentPatients(txt, url) // , res.dt)
   console.log(json)
   const sjson = JSON.stringify(json)
-  fs.writeFileSync(fn + ".json", sjson)
+  fs.writeFileSync(fn + '.json', sjson)
   fs.writeFileSync('../data/covid19japan.json', sjson)
   writeCSVbyJSON('../data/covid19japan.csv', json.area)
 }
@@ -568,8 +568,8 @@ const main = async function () {
   makeCovid19JapanList()
 }
 if (require.main === module) {
-  // main()
-  mainV1()
+  main()
+  // mainV1()
 } else {
   startUpdate()
 }
