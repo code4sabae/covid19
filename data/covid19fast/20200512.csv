@@ -1,5 +1,5 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients","nbeds_hospital","nbeds_hotel","nbeds"
-"Hokkaido",954,439,459,56,"2020-05-11T09:45:20","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
+"Hokkaido",966,432,472,62,"2020-05-12T10:22:30","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
 "Fukushima",81,31,50,0,"2020-05-11T19:02:59","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200511.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,
 "Saitama",969,311,616,42,"2020-05-11","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html",,,,
 "Chiba",779,471,274,34,"2020-05-10T02:17","https://raw.githubusercontent.com/civictechzenchiba/covid19-chiba/master/data/data.json","https://github.com/civictechzenchiba/covid19-chiba",,,,
