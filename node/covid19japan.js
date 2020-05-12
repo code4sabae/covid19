@@ -378,7 +378,7 @@ const makeCovid19JapanByPDF = async function (url, fn) {
   fs.writeFileSync('../data/covid19japan.json', sjson)
   writeCSVbyJSON('../data/covid19japan.csv', json.area)
 }
-const makeCovid19JapanList = function() {
+const makeCovid19JapanList = function () {
   const path = '../data/covid19japan/'
   const flist = fs.readdirSync(path)
   const fndest = '../data/covid19japan-all.json'
@@ -414,14 +414,14 @@ const makeCovid19JapanList = function() {
         srcurl_pdf: data.srcurl_pdf,
         srcurl_pdf_archived: data.srcurl_pdf_archived,
         url_csv: baseurl + fncsv,
-        url_json: data.srcurl_pdf_archived + '.json',
+        url_json: data.srcurl_pdf_archived + '.json'
       })
     }
   }
-  const pi = function(d) {
-    return parseInt(d.replace(/-/g, ""))
+  const pi = function (d) {
+    return parseInt(d.replace(/-/g, ''))
   }
-  const pisort = function(a, b) {
+  const pisort = function (a, b) {
     return pi(a.lastUpdate) - pi(b.lastUpdate)
   }
   all.sort(pisort)
@@ -432,7 +432,7 @@ const makeCovid19JapanList = function() {
   console.log(list)
   writeCSVbyJSON(fndestcsv, list)
 }
-const writeCSVbyJSON = function(fn, json) {
+const writeCSVbyJSON = function (fn, json) {
   const scsv = util.encodeCSV(util.json2csv(json))
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
