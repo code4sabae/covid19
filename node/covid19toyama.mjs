@@ -79,6 +79,13 @@ const main = async function () {
   console.log(res)
 
   const lpref = pref.toLowerCase()
+  const latest = JSON.parse(util.readFileSync('../data/covid19' + lpref + '/latest.json'))
+  if (latest.lastUpdate > res.lastUpdate) {
+    console.log('old file??', latest.lastUpdate, res.lastUpdate)
+    console.log('no update')
+    return
+  }
+
   // const scsv = util.encodeCSV(csv)
   util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + '.csv', util.addBOM(util.encodeCSV(csv)))
   util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(util.encodeCSV(csv)))
