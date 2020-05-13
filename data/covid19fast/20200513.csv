@@ -2,7 +2,7 @@
 "Hokkaido",979,409,502,68,"2020-05-13T10:27:57","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,,,,
 "Miyagi",88,6,81,1,"2020-05-13T10:00","https://www.pref.miyagi.jp/uploaded/attachment/792486.xlsx","https://www.pref.miyagi.jp/site/covid-19/02.html",,,,,,,
 "Akita",16,1,15,0,"2020-05-11","https://www.pref.akita.lg.jp/pages/archive/47957","https://www.pref.akita.lg.jp/pages/archive/47957",1,0,0,,,,
-"Fukushima",81,29,52,0,"2020-05-12T18:15:08","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200512.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,,,,
+"Fukushima",81,24,57,0,"2020-05-13T18:15:59","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200513.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,,,,
 "Saitama",970,285,642,43,"2020-05-12","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html",,,,,,,
 "Chiba",779,471,274,34,"2020-05-11T15:51","https://raw.githubusercontent.com/civictechzenchiba/covid19-chiba/master/data/data.json","https://github.com/civictechzenchiba/covid19-chiba",,,,,,,
 "Tokyo",4987,1890,2901,196,"2020-05-13T17:15","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,,,,,
