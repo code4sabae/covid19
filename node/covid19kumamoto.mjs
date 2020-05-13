@@ -49,6 +49,7 @@ const main = async function () {
     const csvurl = d['ファイル（CSV形式）'].split(' ')[0]
     console.log(csvurl)
     const res = await covid19fast.makeData(pref, csvurl, urlOpendata)
+    res.lastUpdate = dt
     console.log(res)
     break
   }

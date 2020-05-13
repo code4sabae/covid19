@@ -184,13 +184,18 @@ const list_test = [ // for test
 const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
 
 const main = async function() {
+  const yday = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000) // 2日前以降は含めない
+  const yesterday = new Date(util.formatYMD(yday)).getTime()
+  // console.log(yesterday, util.formatYMD(yday), new Date(util.formatYMD(yday)))
+
   //const data = fs.readFileSync('../data/covid19fukui/20200409T151739.csv', 'utf-8')
   //fs.writeFileSync('../data/covid19fukui/20200409T151739-2.csv', util.addBOM(data))
 
   const url_official = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-OrSJv81VIWWrQ0W6vndw8HEjtztkWY39E97v-oFR0tYF0chwV-duQUkKIOSJPj57IbVuqGZO-C_K/pub?gid=0&single=true&output=csv'
   const list = await fetchCSVtoJSON(url_official)
   //const list = list_test
-  
+
+
   const data = []
   for (const d of list) {
     /*
@@ -203,6 +208,7 @@ const main = async function() {
     console.log(d)
     if (d.data_canuse == 1) {
       console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json, 'special', d.data_special)
+      let fastdata = null
       if (d.data_special) {
         const lpref = d.pref.toLowerCase()
         const stdout = await cmd.cmd('node covid19' + lpref + '.mjs')
@@ -210,20 +216,26 @@ const main = async function() {
         const fn = '../data/covid19' + lpref + '/latest.json'
         const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
         console.log(fn, json)
-        data.push(json)
+        fastdata = json
       } else if (d.data_json) {
-        data.push(await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata))
+        fastdata = await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata)
       } else if (d.data_standard == 1 && d.data_alt != 1) {
-        data.push(await makeData(d.pref, d.url_patients_csv, d.url_opendata))
+        fastdata + await makeData(d.pref, d.url_patients_csv, d.url_opendata)
       } else if (d.data_alt == 1) {
-        const d2 = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
-        console.log(d2)
-        data.push(d2)
+        fastdata = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
       }
+      if (fastdata && fastdata.lastUpdate && new Date(fastdata.lastUpdate).getTime() > yesterday) {
+        data.push(fastdata)
+      }
+      await util.sleep(1000)
     }
   }
   // data.push(await makeDataFromJSON())
-  console.log(data)
+
+  //console.log(data)
+  for (const d of data) {
+    console.log(d.lastUpdate, new Date(d.lastUpdate))
+  }
 
   if (util.writeCSV('../data/covid19japan-fast', util.json2csv(data))) {
     util.writeCSV('../data/covid19fast/' + util.getYMDHMS(), util.json2csv(data))

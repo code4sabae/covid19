@@ -553,7 +553,8 @@ const main = async function () {
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
-  const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
+  // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
+  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11291.html'
   const url = await parseURLCovid19(urlweb)
   console.log(url)
   if (!url) {
