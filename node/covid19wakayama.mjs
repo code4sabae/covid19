@@ -6,8 +6,6 @@ import xlsx2csv from './xlsx2csv.mjs'
 
 const fetchAndSave = async function (url, dstpath) {
   const fnlatest = dstpath + 'latest.xlsx'
-  return fnlatest // for debug
-
   const data = await (await fetch(url)).arrayBuffer()
   const temp = new Date().getTime() + '.xlsx'
   dstpath = dstpath || 'temp/'

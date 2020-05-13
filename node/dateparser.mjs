@@ -21,6 +21,15 @@ exports.parseDate = function (s) {
     const min = parseInt(num[4])
     return `${y}-${util.fix0(m, 2)}-${util.fix0(d, 2)}T${util.fix0(hour, 2)}:${util.fix0(min, 2)}`
   }
+  num = s.match(/(\d+)月(\d+)日\s*(\d+)時(\d+)分/)
+  if (num) {
+    const y = new Date().getFullYear()
+    const m = parseInt(num[1])
+    const d = parseInt(num[2])
+    const hour = parseInt(num[3])
+    const min = parseInt(num[4])
+    return `${y}-${util.fix0(m, 2)}-${util.fix0(d, 2)}T${util.fix0(hour, 2)}:${util.fix0(min, 2)}`
+  }
   num = s.match(/(\d+)月(\d+)日/)
   if (num) {
     const y = new Date().getFullYear()
