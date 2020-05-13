@@ -228,25 +228,30 @@ const text2jsonWithCurrentPatients = function (txt, url, dt) {
   res.nexits = 0
   res.ndeaths = 0
   res.ncurrentpatients = 0
-  //res.ninspections = 0
+  // res.ninspections = 0
   console.log(ss)
-  const linestart = 2 // ss[0].indexOf('関数') >= 0 ? 2 : 1
+  // const linestart = 2 // ss[0].indexOf('関数') >= 0 ? 2 : 1
+  const linestart = ss[0].indexOf('関数') >= 0 ? 2 : 1
   console.log(ss, linestart)
   const dt2 = parseDate(ss[linestart - 1])
   console.log(dt2)
-  //process.exit(0)
-  if (dt2 != "--") {
+  
+  if (dt2 !== '--') {
     res.lastUpdate = dt2
   } else {
     for (let i = 46; i < ss.length; i++) {
       const dt3 = parseDate(ss[46])
-      if (dt3 != "--") {
+      if (dt3 != '--') {
         res.lastUpdate = dt3
         break
       }
     }
   }
-  
+  if (res.lastUpdate == '--') {
+    console.log('cant parse lastUpdate!!')
+    process.exit(1)
+  }
+
   const area = getAreas()
   for (let i = 0; i < area.length; i++) {
     const a = area[i]
@@ -257,9 +262,9 @@ const text2jsonWithCurrentPatients = function (txt, url, dt) {
     //a.patientsdif = 0
     //a.patientsratio = 0
   }
-  const parsei = function(s) {
+  const parsei = function (s) {
     const n = parseInt(s)
-    if (n != s) {
+    if (n !== s) {
       return 0
     }
     return n
@@ -274,10 +279,10 @@ const text2jsonWithCurrentPatients = function (txt, url, dt) {
   console.log(ss)
   for (let i = linestart; ; i++) {
     const ss2 = ss[i].split(' ')
-    if (ss2.length < 10)
-      continue
+    // if (ss2.length < 10) { continue }
+    if (ss2.length < 9) { continue }
     console.log(ss2)
-    let nstart = parseInt(ss2[0]) == ss2[0] ? 1 : 0
+    let nstart = parseInt(ss2[0]) === ss2[0] ? 1 : 0
     const pref = ss2[nstart]
     if (pref.indexOf(ss2[nstart + 1]) >= 0) {
       nstart++
@@ -436,12 +441,20 @@ const writeCSVbyJSON = function (fn, json) {
   const scsv = util.encodeCSV(util.json2csv(json))
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
-const mainV1 = async function() {
-  await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000622869.pdf', '../data/covid19japan/000622869.pdf')
+const mainV1 = async function () {
+  // await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000622869.pdf', '../data/covid19japan/000622869.pdf')
+
+  const url = 'https://www.mhlw.go.jp/content/10906000/000620403.pdf'
+  const fn = '../data/covid19japan/000620403.pdf'
+  const txt = await pdf2text.pdf2text(fn)
+  const json = text2jsonWithCurrentPatients(txt, url) // , res.dt)
+  console.log(json)
+  const sjson = JSON.stringify(json)
+  fs.writeFileSync(fn + '.json', sjson)
 
   // version 1
   // await makeCovid19Japan()
-  makeCovid19JapanList()
+  //makeCovid19JapanList()
 }
 //
 const text2csvWithCurrentPatients2 = function (txt) {
@@ -460,7 +473,7 @@ const text2csvWithCurrentPatients2 = function (txt) {
     let pref = ss2a[0] + ss2a[1]
     const nstart = pref === '北海' || pref === '神奈' || pref === '鹿児' || pref === '和歌' ? 3 : 2
     if (nstart === 3) { pref += ss2a[2] }
-    //const pref2 = PREF.find(p => p.startsWith(pref))
+    // const pref2 = PREF.find(p => p.startsWith(pref))
     const pref2 = PREF[i]
     const ss2 = [pref2]
     for (let i = nstart; i < ss2a.length; i++) {
@@ -559,8 +572,10 @@ const main = async function () {
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
 
   const json = makeCurrentPatientsJSON(txt, csv, url, urlweb)
-  fs.writeFileSync(path + json.lastUpdate + '.csv', util.addBOM(util.encodeCSV(util.json2csv(json.area))), 'utf-8')
+  const scsv = util.addBOM(util.encodeCSV(util.json2csv(json.area)))
   console.log(path + json.lastUpdate + '.csv')
+  fs.writeFileSync(path + json.lastUpdate + '.csv', scsv, 'utf-8')
+  fs.writeFileSync(path + '../covid19japan.csv', scsv, 'utf-8')
   fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
   fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
 
@@ -568,8 +583,10 @@ const main = async function () {
   makeCovid19JapanList()
 }
 if (require.main === module) {
-  main()
+  main() // ver2
   // mainV1()
+  // makeCovid19JapanList()
+
 } else {
   startUpdate()
 }
