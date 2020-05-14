@@ -36,10 +36,20 @@ const TAB_FUKUI = `	あわら市	勝山市	大野市
 高浜町	若狭町	美浜町	敦賀市
 おおい町	小浜市		`
 
-const showDetail = async function() {
-//const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
-  const url = 'data/covid19fukui/latest.csv'
-  const scsv = await (await fetch(url)).text()
+const proxy = function (url) {
+  // return 'https://app.sabae.cc/proxy/?url=' + encodeURIComponent(url)
+  return 'http://localhost:8003/proxy/?url=' + encodeURIComponent(url)
+}
+const fetchSJIS = async function (url) {
+  const res = await fetch(url)
+  const buf = await res.arrayBuffer()
+	return new TextDecoder("Shift_JIS").decode(buf)
+}
+const showDetail = async function () {
+  const url = 'https://www.pref.fukui.lg.jp/doc/toukei-jouhou/opendata/list_3_d/fil/covid19_patients.csv'
+  // const url = 'data/covid19fukui/latest.csv'
+  // const scsv = await (await fetch(proxy(url))).text()
+  const scsv = await fetchSJIS(proxy(url))
   const csv = convertCSVtoArray(scsv)
   const json = csv2json(csv)
   console.log(json)
@@ -114,9 +124,9 @@ const update = async function() {
   }
   const tabmap = await showDetail()
 
-  const url = 'https://app.sabae.cc/api/covid19fukui.json'
-  const data = await (await fetch(url)).json()
-
+  // const url = 'https://app.sabae.cc/api/covid19fukui.json'
+  // const data = await (await fetch(url)).json()
+  const data = tabmap.total
 
   const calcSum = (data) => data.reduce((acc, val) => acc + parseInt(val['小計']), 0)
   /*
@@ -130,28 +140,32 @@ const update = async function() {
   */
   const ncontacts = 0 // calcSum(data.contacts.data)
   const nquerents = 0 // calcSum(data.querents.data)
-  const npatiants = data.summary.n_patients
+  const npatiants = data.npatients // data.summary.n_patients
   const ndischarges = 0 // data.discharges.data.length
 
-  const ninspections = data.summary.n_inspections
-  const ndeath = data.summary.n_death
-  const nlight = data.summary.n_light
-  const nheavy = data.summary.n_heavy
-  const nexit = data.summary.n_exit
+  // const ninspections = data.summary.n_inspections
+  const ndeath = data.ndeaths // data.summary.n_death
+  // const nlight = data.summary.n_light
+  // const nheavy = data.summary.n_heavy
+  const nexit = data.nexits // data.summary.n_exit
   //const npatients_c = nlight + nheavy
   const npatients_c = tabmap.total.ncurrentpatients
   //const lastUpdate = data.lastUpdate
   const lastUpdate = tabmap.total.lastUpdate
 
-  const npcrperday = data.summary.n_capacity_pcr_per_day
-  const nbed = 84 // data.summary.n_capacity_bed
+  // const npcrperday = data.summary.n_capacity_pcr_per_day
+  const nbed = 237 // data.summary.n_capacity_bed
   
   table_c.innerHTML = `
     <table>
         <tr><td>現在患者数（入院中）</td><td>${addComma(npatients_c)}人</td></tr>
         <tr><td>感染症病床数</td><td>${nbed}床</td></tr>
-      <tr><td>感染症病床使用率（現在患者数/感染症病床数）</td><td>${fixfloat(npatients_c * 100 / nbed, 2)}%</td></tr>
+      <tr><td>対策病床使用率（現在患者数/対策病床数）</td><td>${fixfloat(npatients_c * 100 / nbed, 2)}%</td></tr>
       <tr><td>陽性患者数</td><td>${addComma(npatiants)}人</td></tr>
+      <tr><td>最終更新日時</td><td>${lastUpdate}</td></tr>
+    </table>
+  `
+  /*
       <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
       <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatiants * 100 / ninspections, 2)}%</td></tr>
       <!--
@@ -165,13 +179,11 @@ const update = async function() {
       <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
       <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
       -->
-      <tr><td>最終更新日時</td><td>${lastUpdate}</td></tr>
-    </table>
-  `
+  */
 
 //  console.log(ncontacts, nquerents, npatiants, npatiants2, ndischarges, ndischarges2)
   //dump(data)
-
+    
   new Chart(chart, {
     type: 'pie',
     data: {

@@ -1,8 +1,9 @@
-const fs = require('fs')
-const fetch = require('node-fetch')
-const cheerio = require('cheerio')
-const util = require('./util.js')
-const pdf2text = require('./pdf2text.js')
+import fs from 'fs'
+import fetch from 'node-fetch'
+import cheerio from 'cheerio'
+import util from './util.mjs'
+import pdf2text from './pdf2text.mjs'
+//import pdf2text from './pdf2text.js'
 
 //const CACHE_TIME = 1 * 60 * 60 * 1000 // 1hour
 const CACHE_TIME = 10 * 1000 // 10min
@@ -517,10 +518,10 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     console.log(c)
     a.npatients = c['PCR検査陽性者']
     a.ncurrentpatients = 0
-    a.nexits = c['退院又は療養解除となった者の数 (人)']
-    a.ndeaths = c['死亡(累積) (人)']
+    a.nexits = c['退院又は療養解除となった者の数 (人)'] || c['退院又は療養解除となった者の数']
+    a.ndeaths = c['死亡(累積) (人)'] || c['死亡']
     a.nheavycurrentpatients = c['うち重症']
-    a.nunknowns = c['確認中(人)']
+    a.nunknowns = c['確認中(人)'] || c['確認中']
     a.ncurrentpatients = a.npatients - a.nexits - pi(a.ndeaths)
 
     res.npatients += a.npatients
@@ -553,23 +554,29 @@ const main = async function () {
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
-  // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html'
-  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11291.html'
-  const url = await parseURLCovid19(urlweb)
-  console.log(url)
-  if (!url) {
-    console.log('not found url', url)
-    return
-  }
+  const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
+  // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11291.html' // 報道
   const path = '../data/covid19japan/'
-  const fn = url.substring(url.lastIndexOf('/') + 1)
-  const pdf = await (await fetch(url)).arrayBuffer()
-  fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+  let fn = null // '000630627.pdf'
+  const fetchdata = true
+  let url = null
+  if (fetchdata) {
+    url = await parseURLCovid19(urlweb)
+    console.log(url)
+    if (!url) {
+      console.log('not found url', url)
+      return
+    }
+    fn = url.substring(url.lastIndexOf('/') + 1)
+    const pdf = await (await fetch(url)).arrayBuffer()
+    fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
+  }
 
   const txt = await pdf2text.pdf2text(path + fn)
   console.log(txt)
   const csv = text2csvWithCurrentPatients2(txt)
   console.log(csv)
+
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
 
   const json = makeCurrentPatientsJSON(txt, csv, url, urlweb)
@@ -579,18 +586,15 @@ const main = async function () {
   fs.writeFileSync(path + '../covid19japan.csv', scsv, 'utf-8')
   fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
   fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
-
-  // make all
-  makeCovid19JapanList()
 }
-if (require.main === module) {
+if (process.argv[1].endsWith('/covid19japan.mjs')) {
   main() // ver2
+  makeCovid19JapanList()
   // mainV1()
   // makeCovid19JapanList()
-
 } else {
-  startUpdate()
+  // startUpdate()
 }
 
-exports.getCovid19DataJSON = getCovid19DataJSON
-exports.getCovid19DataSummaryForIchigoJam = getCovid19DataSummaryForIchigoJam
+// exports.getCovid19DataJSON = getCovid19DataJSON
+// exports.getCovid19DataSummaryForIchigoJam = getCovid19DataSummaryForIchigoJam
