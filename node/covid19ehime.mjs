@@ -24,19 +24,7 @@ const fetchAndSave = async function (url, dstpath, ext) {
   return fnlatest
 }
 
-const main = async function () {
-  const pref = 'Ehime'
-  const urlWeb = 'https://www.pref.ehime.jp/h25500/kansen/covid19.html'
-  const url = 'https://www.pref.ehime.jp/h25500/kansen/documents/kennai_link.pdf'
-  // const fn = 'kennai_link.pdf'
-  const lpref = pref.toLowerCase()
-  const path = '../data/covid19' + lpref + '/'
-
-  const fn = await fetchAndSave(url, path, '.pdf')
-  console.log(fn)
-  // return
-
-  const txt = await pdf2text.pdf2text(fn)
+const parseV1 = function (res, txt) {
   const ss = txt.split('\n')
   // console.log(ss)
   let data = null
@@ -51,11 +39,10 @@ const main = async function () {
   }
   if (!dt || !data) {
     console.log('cant parse', dt, data)
-    process.exit(1)
+    // process.exit(1)
+    return null
   }
   // 0:感染者（累積） 1:入院中 2:医療機関 3:軽症 4:重症 5:宿泊療養 6:死亡 7:退院
-  const res = {}
-  res.name = pref
   try {
     res.npatients = parseInt(data[1])
     res.lastUpdate = dt
@@ -65,12 +52,68 @@ const main = async function () {
     res.ncurrentpatients_hospital = parseInt(data[6])
     res.ncurrentpatients_hotel = parseInt(data[3])
     res.nheavycurrentpatients = parseInt(data[5])
-    res.src_url = url
-    res.url_opendata = urlWeb
   } catch (e) {
     console.log('error! can\'t parse', e)
-    process.exit(1)
+    // process.exit(1)
+    return null
   }
+  return res
+}
+const parseV2 = function (res, txt) {
+  const ss = txt.split('\n')
+  console.log(ss)
+
+  // 死亡者数、不明
+  /*
+  '退院等：44人',
+  '【 Ｒ２.５.１５ １３時現在 】',
+  '治療中：26人',
+  '合 計 1,441 1,371 70',
+  */
+  for (const t of ss) {
+    if (!res.lastUpdate) {
+      const t2 = util.toHalf(t)
+      res.lastUpdate = dateparser.parseDate(t2)
+    }
+    let n = t.match(/退院数: ([\d|,]+)人/)
+    if (n) {
+      res.nexits = util.removeComma(n[1])
+    }
+    n = t.match(/治療中: ([\d|,]+)人/)
+    if (n) {
+      res.nexits = util.removeComma(n[1])
+    }
+    n = t.match(/合 計: ([\d|,]+) ([\d|,]+) ([\d|,]+)/)
+    if (n) {
+      res.ninspections = util.removeComma(n[1])
+      res.npatients = util.removeComma(n[3])
+    }
+  }
+  return res
+}
+const main = async function () {
+  const pref = 'Ehime'
+  const urlWeb = 'https://www.pref.ehime.jp/h25500/kansen/covid19.html'
+  const url = 'https://www.pref.ehime.jp/h25500/kansen/documents/kennai_link.pdf'
+  const lpref = pref.toLowerCase()
+  const path = '../data/covid19' + lpref + '/'
+
+  //const fn = path + '1589530359544.pdf' // 'kennai_link.pdf'
+  const fn = await fetchAndSave(url, path, '.pdf')
+  console.log(fn)
+  // return
+
+  const txt = await pdf2text.pdf2text(fn)
+
+  const res = {}
+  res.name = pref
+  if (!parseV1(res, txt)) {
+    console.log('cant parse V1')
+    // process.exit(1)
+    return
+  }
+  res.src_url = url
+  res.url_opendata = urlWeb
   console.log(res)
 
   //util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + '.html', html, 'utf-8')

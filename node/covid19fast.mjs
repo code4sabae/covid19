@@ -183,9 +183,11 @@ const list_test = [ // for test
 
 const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
 
-const main = async function() {
+const main = async function () {
   const yday = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000) // 2日前以降は含めない
   const yesterday = new Date(util.formatYMD(yday)).getTime()
+  // console.log(new Date(yesterday))
+  // return
   // console.log(yesterday, util.formatYMD(yday), new Date(util.formatYMD(yday)))
 
   //const data = fs.readFileSync('../data/covid19fukui/20200409T151739.csv', 'utf-8')
@@ -195,15 +197,9 @@ const main = async function() {
   const list = await fetchCSVtoJSON(url_official)
   //const list = list_test
 
-
   const data = []
   for (const d of list) {
-    /*
-    if (d.pref != 'Kumamoto') {
-    //if (d.pref != 'Hyogo') {
-      continue
-    }
-    */
+    // if (d.pref !== 'Akita') { continue }
 
     console.log(d)
     if (d.data_canuse == 1) {
@@ -224,8 +220,13 @@ const main = async function() {
       } else if (d.data_alt == 1) {
         fastdata = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
       }
-      if (fastdata && fastdata.lastUpdate && new Date(fastdata.lastUpdate).getTime() > yesterday) {
-        data.push(fastdata)
+      if (fastdata && fastdata.lastUpdate) {
+        if (new Date(fastdata.lastUpdate).getTime() >= yesterday) {
+          data.push(fastdata)
+        } else {
+          console.log('too old', d.pref, fastdata.lastUpdate, new Date(fastdata.lastUpdate).getTime(), yesterday, new Date(yesterday))
+          await util.sleep(2000)
+        }
       }
       await util.sleep(1000)
     }
