@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200515205853.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200515205853.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/img/**"/>
+<meta property="twitter:image" content="https://www.stopcovid19.jp/img/**"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -525,8 +525,8 @@ const main = async function() {
 
 	const url_trend = makeURL('covid19japan-trend.json')
 	const json_trend = await fetchJSON(url_trend)
-	for (const p of json_mhlw.area) {
-		p.trend = json_trend.find(i => i.name === p.name)
+	for (let i = 0; i < json_trend.length; i++) {
+		json_mhlw.area[i].trend = json_trend[i]
 	}
 	console.log(json_mhlw)
 
@@ -580,8 +580,7 @@ const main = async function() {
 		const sum = { ncurrentpatients: 0, nexits: 0, ndeaths: 0, npatients: 0 }
 		for (let i = 0; i < json.area.length; i++) {
 			for (const n in sum) {
-				const s = json.area[i][n]
-				sum[n] += s != parseInt(s) ? 0 : parseInt(s)
+				sum[n] += json.area[i][n]
 			}
 		}
 		for (const n in sum) {
@@ -644,21 +643,8 @@ const main = async function() {
 			for (const name in json) {
 				pref[name] = json[name]
 			}
-			// if nbeds exists
-			if (pref.nbeds) {
-				console.log('nbeds', pref)
-				const bed = json_bed.area.find(a => a.name === pref.name)
-				bed.sumc = pref.nbeds
-				bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
-				
-				// for Chart .. 整理が必要
-				pref.bed.sumc = pref.nbeds
-				pref.bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
-			}
-
-			if (!json_now.lastUpdateNow || parseTime(json_now.lastUpdateNow) < parseTime(pref.lastUpdate)) {
+			if (!json_now.lastUpdateNow || parseTime(json_now.lastUpdateNow) < parseTime(pref.lastUpdate))
 				json_now.lastUpdateNow = pref.lastUpdate
-			}
 			//console.log(pref) // 
 			fastprefs.push(shortenPref(pref.name_jp))
 		}
@@ -733,7 +719,7 @@ const main = async function() {
 	}
 	const url_csv = makeCSVURL(url)
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「各都道府県の検査陽性者の状況」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
+	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「国内事例における都道府県別の患者報告数」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
 	datasrc.innerHTML += tx("<br>対策病床数: " + link('https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0', '都道府県発表 新型コロナウイルス対策病床数オープンデータ') + " &amp; " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省「感染症指定医療機関の指定状況」') + " → " + link(url_bed, "JSON") + "/" + link('https://code4sabae.github.io/bedforinfection/', 'APP'))
 
 	const url_link = makeURL('covid19pref.json')
@@ -765,8 +751,7 @@ const downloadImage = function(fn, data) {
 }
 
 const showChart = async function(data) {
-	console.log('showChart', data.data)
-
+	//console.log(data.data)
 	const npatients_c = data.data.ncurrentpatients
 	const nbed = data.getBedCount()
 	if (detail.chart) {
@@ -787,7 +772,7 @@ const showChart = async function(data) {
 	if (data.data.src_url) {
 		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>${data.data.name_jp} 新型コロナウイルス患者数オープンデータ</a>`)
 	} else {
-		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>厚生労働省 新型コロナウイルス感染症 各都道府県の検査陽性者の状況</a>`)
+		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>厚生労働省 新型コロナウイルス感染症（国内事例）の状況</a>`)
 	}
 	detaildesc.innerHTML += tx(`<br><a href=http://www.jibika.or.jp/members/information/info_corona.html>一般社団法人 日本耳鼻咽喉科学会</a>定義における`)
 	if (npatients_c < 10) {
@@ -979,11 +964,8 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		
 		// trendarrow
 		let trendimg = ""
-		let dratio = 0
-		if (a.trend && a.trend.ncurrentpatients) {
-			dratio = a.trend.dcurrentpatients / (a.trend.ncurrentpatients - a.trend.dcurrentpatients)
-		}
-		// console.log(a.name, dratio, a.trend.dcurrentpatients, a.trend.ncurrentpatients)
+		const dratio = a.trend.prevcurrentpatients ? a.trend.dcurrentpatients / a.trend.prevcurrentpatients : 0
+		//console.log(dratio, a.trend.dcurrentpatients, a.trend.prevcurrentpatients)
 		const th = .05
 		if (dratio >= th) {
 			trendimg = "<img class=trendarrow src=img/trendarrow01.svg>"
@@ -1136,7 +1118,7 @@ const makeJapanHTML = function() {
 	<div id='description2'>
 	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/content/10900000/000622473.pdf>詳細</a>）
 	現在患者数や現在新型コロナ対策病床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております<br>
-	（<!--厚生労働省データの-->現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>
+	（厚生労働省データの現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>
 	</div>
 </div>
 
@@ -1178,8 +1160,7 @@ credit<br>
 APP (アプリ開発/提供): <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://fukuno.jig.jp/>jig.jp 福野泰介</a> <a href=https://twitter.com/taisukef>@taisukef</a> (<a href=https://github.com/code4sabae/covid19>src on GitHub</a>)<br>
 「<a href=https://fukuno.jig.jp/2799>厚生労働省提供 新型コロナウイルス対策ダッシュボードについて</a>」「<a href=https://fukuno.jig.jp/2788>感染者PDFデータをJSON-API化して公開</a>」<br>
 <br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a> / <a href=tableview.html>APP</a>)<br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://www.stopcovid19.jp/>COVID-19 Japan 新型コロナウイルス対策ダッシュボード</a> <a href=https://www.stopcovid19.jp/data/covid19japan-trend.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a>（厚生労働省、各都道府県公表データの集約）<br>
+DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a> / <a href=tableview.html>APP</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」<a href=data/covid19japan-fast.csv>CSV</a> / <a href=data/covid19japan-fast.json>JSON</a><br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス対策病床数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
