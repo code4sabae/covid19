@@ -7,5 +7,5 @@
 "Nagano",76,24,52,0,"2020-05-15T13:00:10","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",
 "Osaka",1765,474,1228,63,"2020-05-14T20:01","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",
 "Hyogo",698,113,548,37,"2020-05-15T00:00:00","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","http://open-data.pref.hyogo.lg.jp/?page_id=141",19
-"Wakayama",63,8,52,3,"2020-05-14T14:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",
+"Wakayama",63,8,52,3,"2020-05-15T14:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",
 "Fukuoka",657,110,522,25,"2020-05-15T08:25:47","https://ckan.open-governmentdata.org/dataset/fe943202-2db4-44f8-9686-9cf682690bb7/resource/207a6b85-80a5-4297-aba1-a9e0fae93092/download/400009_pref_fukuoka_covid19_totalpatients.csv","https://www.open-governmentdata.org/fukuoka-pref/pages/search?keyword=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc&search_clear=#result_area",
