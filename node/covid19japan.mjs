@@ -508,6 +508,7 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   res.nexits = 0
   res.ndeaths = 0
   res.ncurrentpatients = 0
+  res.ninspections = 0
 
   const pi = s => parseInt(s) !== s ? 0 : parseInt(s)
   const data = util.csv2json(csv)
@@ -523,6 +524,7 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     a.nheavycurrentpatients = c['うち重症']
     a.nunknowns = c['確認中(人)'] || c['確認中']
     a.ncurrentpatients = a.npatients - a.nexits - pi(a.ndeaths)
+    a.ninspections = c['PCR検査実施人数']
 
     res.npatients += a.npatients
     res.nexits += a.nexits
@@ -530,6 +532,7 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     res.nheavycurrentpatients += pi(a.nheavycurrentpatients)
     res.nunknowns += pi(a.nunknowns)
     res.ncurrentpatients += pi(a.ncurrentpatients)
+    res.ninspections += pi(a.ninspections)
   }
   res.area = area
   return res
@@ -545,6 +548,12 @@ const parseURLCovid19 = async function (urlweb) {
   }
   return url.url
 }
+const bklist = `https://www.mhlw.go.jp/content/10906000/000628667.pdf
+https://www.mhlw.go.jp/content/10906000/000628697.pdf
+https://www.mhlw.go.jp/content/10906000/000628917.pdf
+https://www.mhlw.go.jp/content/10900000/000629701.pdf
+https://www.mhlw.go.jp/content/10906000/000630162.pdf
+https://www.mhlw.go.jp/content/10906000/000630627.pdf`
 const main = async function () {
   /*
   const url = 'https://www.mhlw.go.jp/content/10906000/000628667.pdf'
@@ -557,9 +566,17 @@ const main = async function () {
   const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11291.html' // 報道
   const path = '../data/covid19japan/'
-  let fn = null // '000630627.pdf'
-  const fetchdata = true
+  // let fn = null // '000630627.pdf'
+  /*
+  for (const b of bklist.split('\n')) {
+  let url = b.trim()
+  let fn = url.substring(url.lastIndexOf('/') + 1)
+  console.log(fn)
+  */
+
+  // const fetchdata = false
   let url = null
+  const fetchdata = true
   if (fetchdata) {
     url = await parseURLCovid19(urlweb)
     console.log(url)
@@ -583,12 +600,15 @@ const main = async function () {
   const scsv = util.addBOM(util.encodeCSV(util.json2csv(json.area)))
   console.log(path + json.lastUpdate + '.csv')
   fs.writeFileSync(path + json.lastUpdate + '.csv', scsv, 'utf-8')
-  fs.writeFileSync(path + '../covid19japan.csv', scsv, 'utf-8')
   fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
+
+  fs.writeFileSync(path + '../covid19japan.csv', scsv, 'utf-8')
   fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
+
+  // }
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
-  main() // ver2
+  // main() // ver2
   makeCovid19JapanList()
   // mainV1()
   // makeCovid19JapanList()
