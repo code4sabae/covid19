@@ -566,7 +566,7 @@ const main = async function () {
   const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11291.html' // 報道
   const path = '../data/covid19japan/'
-  // let fn = null // '000630627.pdf'
+  let fn = null // '000630627.pdf'
   /*
   for (const b of bklist.split('\n')) {
   let url = b.trim()
@@ -608,7 +608,7 @@ const main = async function () {
   // }
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
-  // main() // ver2
+  await main() // ver2
   makeCovid19JapanList()
   // mainV1()
   // makeCovid19JapanList()
