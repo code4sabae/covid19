@@ -29,7 +29,7 @@ gtag('config', 'UA-162141832-1')
 body {
 	--main-color: #AD232F;
 	color: black;
-	font-family: sans-serif;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 	word-wrap: break-word;
 	margin: 0;
 	font-size: 1vmax;
@@ -117,6 +117,9 @@ h1 {
 }
 .sgk {
 }
+.fontsmaller {
+	font-size: 60%;
+} 
 
 #summarytable {
 	display: inline-block;
@@ -505,7 +508,7 @@ const calcRatio = function(cnt, base) {
 	if (base == 0 || isNaN(cnt) || isNaN(base))
 		return "-"
 	const n = cnt / base * 100
-	return fixfloat(n, n >= 100 ? 0 : 1) + "%"
+	return fixfloat(n, n >= 100 ? 0 : 1)
 }
 const parseTime = function(s) {
 	return new Date(s).getTime()
@@ -1101,10 +1104,10 @@ const makeJapanHTML = function() {
 <div class="content">
 	<div id=summary>
 	<div class=summarygrid>
-		<div class=sga>対策病床使用率(参考)*</div><div class=sgb><span id=useratio></span></div>
-		<div class=sgc id=labelcurrent>現在患者数</div><div class=sgd><span id=ncurrentpatients>-</span>人</div>
-		<div class=sge>累積退院者</div><div class=sgf><span id=nexits>-</span>人</div>
-		<div class=sgg>死亡者</div><div class=sgh><span id=ndeaths>-</span>人</div>
+		<div class=sga>対策病床使用率(参考)*</div><div class=sgb><span id=useratio></span><span class="fontsmaller">%</span></div>
+		<div class=sgc id=labelcurrent>現在患者数</div><div class=sgd><span id=ncurrentpatients>-</span><span class="fontsmaller">人</span></div>
+		<div class=sge>累積退院者</div><div class=sgf><span id=nexits>-</span><span class="fontsmaller">人</span></div>
+		<div class=sgg>死亡者</div><div class=sgh><span id=ndeaths>-</span><span class="fontsmaller">人</span></div>
 		<div class=sgi>対策病床数 <span id=sumc>-</span>床</div>
 		<div class=sgj>PCR検査陽性者数 <span id=npatients>-</span>人</div>
 		<div class=sgk><div class=summaryvent>臨床工学技士 <span id=ventce>-</span>人 / 人工呼吸器 <span id=ventvent>-</span>台 / ECMO <span id=ventecmo>-</span>台</div><div id=ventsrc></div></div>
