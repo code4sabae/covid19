@@ -554,7 +554,7 @@ https://www.mhlw.go.jp/content/10906000/000628917.pdf
 https://www.mhlw.go.jp/content/10900000/000629701.pdf
 https://www.mhlw.go.jp/content/10906000/000630162.pdf
 https://www.mhlw.go.jp/content/10906000/000630627.pdf`
-const main = async function () {
+const mainV2 = async function () {
   /*
   const url = 'https://www.mhlw.go.jp/content/10906000/000628667.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11229.html'
@@ -607,10 +607,13 @@ const main = async function () {
 
   // }
 }
-if (process.argv[1].endsWith('/covid19japan.mjs')) {
-  await main() // ver2
+const main = async () => {
+  // await mainV1()
+  await mainV2() // ver2
   makeCovid19JapanList()
-  // mainV1()
+}
+if (process.argv[1].endsWith('/covid19japan.mjs')) {
+  main()
   // makeCovid19JapanList()
 } else {
   // startUpdate()
