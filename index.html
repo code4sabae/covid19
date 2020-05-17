@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200517205018.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200517205018.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200517205626.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200517205626.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -960,6 +960,20 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		if (data.area[i].ncurrentpatients > max)
 			max = data.area[i].ncurrentpatients
 	}
+	const setColor = function (c, r) {
+		if (r > 1) { //  || nbed == 0) {
+			c.style.background = 'black'
+			c.style.color = 'white'
+		} else if (r > 0) {
+			const off = .1
+			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
+			c.style.color = r < .4 ? "black" : "white"
+		} else {
+			c.style.background = 'white'
+			c.style.color = 'black'
+		}
+	}
+
 	let sum = 0
 	for (let i = 1; i <= 47; i++) {
 		const c = get("jp" + i)
@@ -978,7 +992,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		//c.innerHTML += `<br>${cnt}人<div class=pcr>(${addComma(cnti)}, ${calcRatio(cnt, cnti)})</div>`
 		
 		// trendarrow
-		let trendimg = ""
+		let trendimg = ''
 		let dratio = 0
 		if (a.trend && a.trend.ncurrentpatients) {
 			dratio = a.trend.dcurrentpatients / (a.trend.ncurrentpatients - a.trend.dcurrentpatients)
@@ -995,17 +1009,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
-		if (r > 1 || nbed == 0) {
-			c.style.background = 'black'
-			c.style.color = 'white'
-		} else if (r > 0) {
-			const off = .1
-			c.style.background = `rgba(${0xad}, ${0x23}, ${0x2f},` + ((r + off) / (1 - off)) + ")"
-			c.style.color = r < .4 ? "black" : "white"
-		} else {
-			c.style.background = 'white'
-			c.style.color = 'black'
-		}
+		setColor(c, r)
 		c.data = a
 
 		if (getLang() == 'en') {
@@ -1016,10 +1020,14 @@ const showPrefs = function(data, data_bed, getBedCount) {
 	}
 	let s = ''
 	//jpall.innerHTML = `${sum}人<div class=pcrsum>(検査数 ${addComma(data.ninspections)}, 陽性率 ${calcRatio(sum, data.ninspections)})</div>`
-	jpall.innerHTML = tx(`<div class=jpalllabel>${addComma(sum)} / ${addComma(getBedCount(data_bed.total))}<div class=pcrsum>(全国) 現在患者数 / 対策病床数*<br>(累積${addComma(data.npatients)}/退院${addComma(data.nexits)}/死者${addComma(data.ndeaths)})</div>`)
+	const totalbed = getBedCount(data_bed.total)
+	jpall.innerHTML = tx(`<div class=jpalllabel>${addComma(sum)} / ${addComma(totalbed)}<div class=pcrsum>(全国) 現在患者数 / 対策病床数*<br>(累積${addComma(data.npatients)}/退院${addComma(data.nexits)}/死者${addComma(data.ndeaths)})</div>`)
 	//jpall.style.fontSize = "1.5vw"
-	jpall.style.background = 'var(--main-color)'
-	jpall.style.color = 'white'
+	//jpall.style.background = 'var(--main-color)'
+	//jpall.style.color = 'white'
+	const totalr = sum / totalbed
+	// console.log('total', totalr, sum, totalbed)
+	setColor(jpall, totalr)
 }
 
 // -
