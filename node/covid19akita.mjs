@@ -48,10 +48,11 @@ const main = async function () {
   console.log(data)
   console.log(dt)
   // const chk = ['陽性者累計', '入院者数', 'うち重症者数', '死亡者数', '退院者数', '宿泊療養者数']
-  const chk = ['感染者累計', '入院者数', 'うち重症者数', '宿泊療養者数', '退院者・療養解除者数', '死亡者数']
+  //const chk = ['感染者累計', '入院者数', 'うち重症者数', '宿泊療養者数', '退院者・療養解除者数', '死亡者数']
+  const chk = ['感染者数累計', '入院者数', 'うち重症者数', '宿泊療養者数', '退院者・療養解除者数', '死亡者数']
   for (let i = 0; i < chk.length; i++) {
     if (chk[i] !== data[i]) {
-      console.log('****!! err cant parse data')
+      console.log('****!! err cant parse data', chk[i], data[i])
       process.exit(1)
     }
   }

@@ -478,7 +478,8 @@ const text2csvWithCurrentPatients2 = function (txt) {
     const pref2 = PREF[i]
     const ss2 = [pref2]
     for (let i = nstart; i < ss2a.length; i++) {
-      ss2.push(parseIntWithComma(ss2a[i]))
+      const s3 = ss2a[i]
+      if (!s3.startsWith('※')) { ss2.push(parseIntWithComma(s3)) }
     }
     list.push(ss2)
   }
