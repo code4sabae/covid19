@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200519202632.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200519202632.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200519202906.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20200519202906.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -785,7 +785,7 @@ const showChart = async function(data) {
 			}]
 		}
 	})
-	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 病床使用率 ' + calcRatio(npatients_c, nbed) + " (参考)")
+	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 病床使用率 ' + calcRatio(npatients_c, nbed) + "% (参考)")
 	detaildesc.innerHTML = tx(`累積陽性者:${data.data.npatients}人 累積退院者:${data.data.nexits}人 累積死者:${data.data.ndeaths}人 対策病床数:${nbed}床`)
 	if (data.data.src_url) {
 		detaildesc.innerHTML += tx(`<br>更新日: ${data.data.lastUpdate} 出典: <a href=${data.data.url_opendata}>${data.data.name_jp} 新型コロナウイルス患者数オープンデータ</a>`)
