@@ -34,7 +34,13 @@ const main = async function () {
   })
   console.log(data)
   console.log(dt)
-  const chk = ['検査実施人数', '陽性者数', '現在の感染者数', '退院・療養終了', '死亡']
+  // const chk = ['検査実施人数', '陽性者数', '現在の感染者数', '退院・療養終了', '死亡']
+  const chk = [
+    '陽性者数\n            （累積）',
+    '現在の感染者数',
+    '退院・療養終了',
+    '死亡'
+  ]
   for (let i = 0; i < chk.length; i++) {
     if (!data[i].startsWith(chk[i])) {
       console.log('****!! err cant parse data')
@@ -44,11 +50,16 @@ const main = async function () {
   const res = {}
   res.name = pref
   try {
-    res.npatients = parseInt(data[6])
     res.lastUpdate = dt
+    res.npatients = parseInt(data[4])
+    res.nexits = parseInt(data[6])
+    res.ndeaths = parseInt(data[7])
+    /*
+    res.npatients = parseInt(data[6])
     res.nexits = parseInt(data[8])
     res.ndeaths = parseInt(data[9])
-    res.ncurrentpatients = res.npatients - res.nexits - res.ndeaths
+    */
+   res.ncurrentpatients = res.npatients - res.nexits - res.ndeaths
     /*
     res.ncurrentpatients_hospital = parseInt(data[7])
     res.ncurrentpatients_hotel = parseInt(data[11])
