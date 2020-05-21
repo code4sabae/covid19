@@ -8,7 +8,7 @@
 "Toyama",227,38,168,21,"2020-05-20","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv",,,,,,,
 "Fukui",122,9,105,8,"2020-05-21T15:06:58","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",,,,,,,
 "Nagano",76,16,60,0,"2020-05-21T16:18:09","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",,,,,,,
-"Osaka",1777,336,1365,76,"2020-05-21T07:01","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",,,,,,,
+"Osaka",1780,305,1399,76,"2020-05-21T20:01","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",,,,,,,
 "Hyogo",699,60,601,38,"2020-05-21T00:00:00","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","http://open-data.pref.hyogo.lg.jp/?page_id=141",12,,,,,,
 "Nara",91,6,82,2,"2020-05-21","http://www.pref.nara.jp/secure/227221/%E5%A5%88%E8%89%AF%E7%9C%8C_02%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A%E3%82%A6%E3%82%A4%E3%83%AB%E3%82%B9%E6%84%9F%E6%9F%93%E8%80%85_%E6%82%A3%E8%80%85%E9%9B%86%E8%A8%88%E8%A1%A8.xlsx","http://www.pref.nara.jp/55168.htm",,240,108,348,,,
 "Wakayama",63,7,53,3,"2020-05-21T14:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",,,,,,,
