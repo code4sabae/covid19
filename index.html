@@ -609,7 +609,7 @@ const main = async function() {
 				const div = document.getElementById(name)
 				if (div) {
 					let n = d[name]
-					if (parseInt(n) == n)
+					if (parseInt(n) === n && n >= 1000)
 						n = addComma(n)
 					div.textContent = n
 				}
