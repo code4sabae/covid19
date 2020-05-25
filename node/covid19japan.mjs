@@ -466,11 +466,13 @@ const text2csvWithCurrentPatients2 = function (txt) {
     if (n.toString() !== s) { return s }
     return n
   }
-  // console.log(ss)
+  console.log(ss)
   const list = []
+  const rowoff = ss.map(s => s.charAt(0)).indexOf('北')
+  console.log(rowoff)
   list.push(['都道府県名', 'PCR検査陽性者', 'PCR検査実施人数', '入院治療等を要する者 (人)', 'うち重症', '退院又は療養解除となった者の数 (人)', '死亡(累積) (人)', '確認中(人)'])
   for (let i = 0; i < 47; i++) {
-    const ss2a = ss[3 + i].split(' ')
+    const ss2a = ss[rowoff + i].split(' ')
     let pref = ss2a[0] + ss2a[1]
     const nstart = pref === '北海' || pref === '神奈' || pref === '鹿児' || pref === '和歌' ? 3 : 2
     if (nstart === 3) { pref += ss2a[2] }
@@ -594,7 +596,7 @@ const mainV2 = async function () {
   console.log(txt)
   const csv = text2csvWithCurrentPatients2(txt)
   console.log(csv)
-
+ 
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
 
   const json = makeCurrentPatientsJSON(txt, csv, url, urlweb)
