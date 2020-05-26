@@ -1,6 +1,6 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","ncurrentpatients_hospital","ncurrentpatients_hotel","nheavycurrentpatients"
 "Hokkaido",1057,238,736,83,"2020-05-26T09:34:25","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,
-"Miyagi",88,1,86,1,"2020-05-25T10:00","https://www.pref.miyagi.jp/uploaded/attachment/794108.xlsx","https://www.pref.miyagi.jp/site/covid-19/02.html",,,
+"Miyagi",88,1,86,1,"2020-05-26T10:00","https://www.pref.miyagi.jp/uploaded/attachment/794471.xlsx","https://www.pref.miyagi.jp/site/covid-19/02.html",,,
 "Fukushima",81,10,71,0,"2020-05-25T18:05:58","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200525.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,
 "Chiba",904,86,774,44,"2020-05-25","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",,,
 "Tokyo",5160,561,4311,288,"2020-05-25T23:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,
