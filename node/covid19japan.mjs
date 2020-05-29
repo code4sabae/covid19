@@ -527,6 +527,11 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     a.nheavycurrentpatients = c['うち重症']
     a.nunknowns = c['確認中(人)'] || c['確認中']
     a.ncurrentpatients = a.npatients - a.nexits - pi(a.ndeaths)
+    const nc = c['入院治療等を要する者']
+    if (a.ncurrentpatients !== nc) {
+      console.log('unmatch', a)
+      a.ncurrentpatients = nc
+    }
     a.ninspections = c['PCR検査実施人数']
 
     res.npatients += a.npatients

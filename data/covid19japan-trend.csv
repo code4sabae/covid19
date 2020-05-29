@@ -13,7 +13,7 @@
 "Chiba",57,-7
 "Tokyo",414,-39
 "Kanagawa",229,0
-"Niigata",8,0
+"Niigata",7,-1
 "Toyama",19,-1
 "Ishikawa",58,-3
 "Fukui",5,0
@@ -21,7 +21,7 @@
 "Nagano",9,0
 "Gifu",2,-1
 "Shizuoka",4,1
-"Aichi",20,-3
+"Aichi",15,-8
 "Mie",3,0
 "Shiga",10,0
 "Kyoto",21,1
@@ -39,10 +39,10 @@
 "Ehime",28,-1
 "Kochi",1,0
 "Fukuoka",61,18
-"Saga",12,0
+"Saga",10,-2
 "Nagasaki",0,0
 "Kumamoto",6,-1
 "Oita",1,0
 "Miyazaki",0,0
 "Kagoshima",0,0
-"Okinawa",0,-1
+"Okinawa",4,3
