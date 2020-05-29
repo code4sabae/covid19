@@ -567,7 +567,8 @@ const mainV2 = async function () {
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
   // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
-  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html' // 報道
+  // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html' // 報道
+  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11587.html'
   const path = '../data/covid19japan/'
   let fn = null // '000630627.pdf'
   /*
