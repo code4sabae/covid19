@@ -571,9 +571,9 @@ const mainV2 = async function () {
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
-  // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
+  const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html' // 報道
-  const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11587.html'
+  // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11587.html'
   const path = '../data/covid19japan/'
   let fn = null // '000630627.pdf'
   /*
@@ -624,9 +624,6 @@ const main = async () => {
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
   main()
-  // makeCovid19JapanList()
-} else {
-  // startUpdate()
 }
 
 // exports.getCovid19DataJSON = getCovid19DataJSON
