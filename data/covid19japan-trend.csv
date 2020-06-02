@@ -1,5 +1,5 @@
 ﻿"name","ncurrentpatients","dcurrentpatients"
-"Hokkaido",197,2
+"Hokkaido",191,-4
 "Aomori",0,-1
 "Iwate",0,0
 "Miyagi",0,0
@@ -11,7 +11,7 @@
 "Gunma",9,-3
 "Saitama",59,-8
 "Chiba",38,-11
-"Tokyo",405,0
+"Tokyo",391,-14
 "Kanagawa",184,-13
 "Niigata",3,-2
 "Toyama",15,-1
