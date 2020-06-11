@@ -4,6 +4,8 @@ const TX = {
 	'PCR検査陽性者数の累積': { 'en': 'total number of PCR confirmed cases' },
 	'前日より5%以上増加': { 'en': 'Up more than 5% from the previous day' },
 	'前日より5%以上減少': { 'en': 'Down more than 5% from the previous day' },
+	'前日より増加': { 'en': 'Up from the previous day' },
+	'前日より減少': { 'en': 'Down from the previous day' },
 	'厚生労働省データの現在患者数': { 'en': "Active cases data from Ministry of Health, Labour and Welfare" },
   '人口一万人当たり': { 'en': 'per 10,000 inhabitants' },
   '対前日': { 'en': 'Difference from the previous day' },
