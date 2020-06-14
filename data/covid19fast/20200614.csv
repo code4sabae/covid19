@@ -2,7 +2,7 @@
 "Hokkaido",1163,122,950,91,"2020-06-13T19:47:32","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",
 "Fukushima",81,2,79,0,"2020-06-13T17:47:13","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200613.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",
 "Chiba",923,28,850,45,"2020-06-14","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",
-"Tokyo",5497,321,4862,314,"2020-06-13T18:15","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",
+"Tokyo",5544,364,4866,314,"2020-06-14T18:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",
 "Fukui",122,1,113,8,"2020-06-14T13:28:42","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",
 "Nagano",76,3,73,0,"2020-06-14T16:00:08","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",
 "Osaka",1786,33,1668,85,"2020-06-13T13:02","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",
