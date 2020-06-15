@@ -5,11 +5,12 @@ const oneDayBefore = function (d) {
   return new Date(d.getTime() - (1000 * 60 * 60 * 24))
 }
 const makeTrendFromFast = async function () {
-  const now = new Date()
-  // const now = oneDayBefore(new Date()) // for debug
+  const DEBUG = true;
+  const now = DEBUG ? oneDayBefore(new Date()) : new Date();
   const yesterday = oneDayBefore(now)
   const src1 = '../data/covid19fast/' + util.getYMD(yesterday) + '.json'
   const src2 = '../data/covid19fast/' + util.getYMD(now) + '.json'
+  console.log(src1, src2);
   const prev = JSON.parse(fs.readFileSync(src1))
   const latest = JSON.parse(fs.readFileSync(src2))
   console.log(latest)
