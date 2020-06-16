@@ -203,30 +203,34 @@ const main = async function () {
 
     console.log(d)
     if (d.data_canuse == 1) {
-      console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json, 'special', d.data_special)
-      let fastdata = null
-      if (d.data_special) {
-        const lpref = d.pref.toLowerCase()
-        const stdout = await cmd.cmd('node covid19' + lpref + '.mjs')
-        // console.log(stdout, 'special invoked')
-        const fn = '../data/covid19' + lpref + '/latest.json'
-        const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
-        console.log(fn, json)
-        fastdata = json
-      } else if (d.data_json) {
-        fastdata = await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata)
-      } else if (d.data_standard == 1 && d.data_alt != 1) {
-        fastdata + await makeData(d.pref, d.url_patients_csv, d.url_opendata)
-      } else if (d.data_alt == 1) {
-        fastdata = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
-      }
-      if (fastdata && fastdata.lastUpdate) {
-        if (new Date(fastdata.lastUpdate).getTime() >= yesterday) {
-          data.push(fastdata)
-        } else {
-          console.log('too old', d.pref, fastdata.lastUpdate, new Date(fastdata.lastUpdate).getTime(), yesterday, new Date(yesterday))
-          await util.sleep(2000)
+      try {
+        console.log(d.data_canuse, d.pref, 'standard', d.data_standard, 'alt', d.data_alt, 'data.json', d.data_json, 'special', d.data_special)
+        let fastdata = null
+        if (d.data_special) {
+          const lpref = d.pref.toLowerCase()
+          const stdout = await cmd.cmd('node covid19' + lpref + '.mjs')
+          // console.log(stdout, 'special invoked')
+          const fn = '../data/covid19' + lpref + '/latest.json'
+          const json = JSON.parse(fs.readFileSync(fn, 'utf-8'))
+          console.log(fn, json)
+          fastdata = json
+        } else if (d.data_json) {
+          fastdata = await makeDataFromDataJSON(d.pref, d.url_patients_json, d.url_opendata)
+        } else if (d.data_standard == 1 && d.data_alt != 1) {
+          fastdata + await makeData(d.pref, d.url_patients_csv, d.url_opendata)
+        } else if (d.data_alt == 1) {
+          fastdata = await makeDataFromAlt(d.pref, d.url_patients_alt, d.url_opendata)
         }
+        if (fastdata && fastdata.lastUpdate) {
+          if (new Date(fastdata.lastUpdate).getTime() >= yesterday) {
+            data.push(fastdata)
+          } else {
+            console.log('too old', d.pref, fastdata.lastUpdate, new Date(fastdata.lastUpdate).getTime(), yesterday, new Date(yesterday))
+            await util.sleep(2000)
+          }
+        }
+      } catch (e) {
+        console.log(e.stack, d.pref);
       }
       await util.sleep(1000)
     }
