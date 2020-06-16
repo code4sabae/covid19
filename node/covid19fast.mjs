@@ -199,7 +199,7 @@ const main = async function () {
 
   const data = []
   for (const d of list) {
-    // if (d.pref !== 'Akita') { continue }
+    // if (d.pref !== 'Fukui') { continue }
 
     console.log(d)
     if (d.data_canuse == 1) {
