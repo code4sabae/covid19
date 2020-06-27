@@ -435,7 +435,7 @@ const makeCovid19JapanList = function () {
   console.log(all)
   const sjson = JSON.stringify(all)
   fs.writeFileSync(fndest, sjson)
-  console.log(list)
+  console.log(list[list.length - 1])
   writeCSVbyJSON(fndestcsv, list)
 }
 const writeCSVbyJSON = function (fn, json) {
