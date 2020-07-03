@@ -474,7 +474,7 @@ const text2csvWithCurrentPatients2 = function (txt) {
   for (let i = 0; i < 47; i++) {
     const ss2a = ss[rowoff + i].split(' ')
     let pref = ss2a[0] + ss2a[1]
-    const nstart = pref === '北海' || pref === '神奈' || pref === '鹿児' || pref === '和歌' ? 3 : 2
+    const nstart = pref === '北海' || pref === '神奈' || pref === '鹿児' || pref === '⿅児' || pref === '和歌' ? 3 : 2
     if (nstart === 3) { pref += ss2a[2] }
     // const pref2 = PREF.find(p => p.startsWith(pref))
     const pref2 = PREF[i]
@@ -492,12 +492,25 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   const parseDate = function (s) {
     const fix0 = util.fix0
     s = util.toHalf(s)
-    const num = s.match(/令和(\d+)年(\d+)月(\d+)日/)
-    if (num) {
-      const y = parseInt(num[1])
-      const m = parseInt(num[2])
-      const d = parseInt(num[3])
-      return (y + 2018) + '-' + fix0(m, 2) + '-' + fix0(d, 2)
+    s = s.replace(/⽉/g, "月"); // 令和2年7⽉2⽇ へんな漢字
+    s = s.replace(/⽇/g, "日");
+    {
+      const num = s.match(/令和(\d+)年(\d+)月(\d+)日/)
+      if (num) {
+        const y = parseInt(num[1])
+        const m = parseInt(num[2])
+        const d = parseInt(num[3])
+        return (y + 2018) + '-' + fix0(m, 2) + '-' + fix0(d, 2)
+      }
+    }
+    {
+      const num = s.match(/(2\d+)年(\d+)月(\d+)日/)
+      if (num) {
+        const y = parseInt(num[1])
+        const m = parseInt(num[2])
+        const d = parseInt(num[3])
+        return y + '-' + fix0(m, 2) + '-' + fix0(d, 2)
+      }
     }
     return '--'
   }
@@ -571,11 +584,13 @@ const mainV2 = async function () {
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
-  const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
+  //const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
+  const urlweb = "https://www.mhlw.go.jp/stf/newpage_12236.html";
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html' // 報道
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11587.html'
   const path = '../data/covid19japan/'
   let fn = null // '000630627.pdf'
+  //let fn = "000646194.pdf";
   /*
   for (const b of bklist.split('\n')) {
   let url = b.trim()
