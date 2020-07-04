@@ -68,7 +68,7 @@ const parseLink = function(data, title) {
   let res = null
   dom('a').each((idx, ele) => {
     const text = dom(ele).text()
-    if (text && text.indexOf(title) >= 0) {
+    if (res == null && text && text.indexOf(title) >= 0) {
       res = {}
       res.dt = parseDate(text)
       const href = dom(ele).attr("href")
@@ -558,6 +558,13 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
   res.area = area
   return res
 }
+const parseURLCovid19Latest = async function (urlweb) {
+  const html = await (await fetch(urlweb)).text();
+  // console.log(html)
+  const title = "新型コロナウイルス感染症の現在の状況と厚生労働省の対応について";
+  let url = parseLink(html, title);
+  return url.url;
+}
 const parseURLCovid19 = async function (urlweb) {
   const html = await (await fetch(urlweb)).text()
   // console.log(html)
@@ -584,9 +591,16 @@ const mainV2 = async function () {
   const url = 'https://www.mhlw.go.jp/content/10906000/000628697.pdf'
   const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11232.html'
   */
-  //const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
-  const urlweb = "https://www.mhlw.go.jp/stf/newpage_12236.html";
-  // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html' // 報道
+  // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
+  // 報道
+  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
+  const urlweb = await parseURLCovid19Latest(urlweb7)
+  console.log(urlweb)
+  /// process.exit(0);
+
+
+  //const urlweb = "https://www.mhlw.go.jp/stf/newpage_12236.html";
+  // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11567.html'
   // const urlweb = 'https://www.mhlw.go.jp/stf/newpage_11587.html'
   const path = '../data/covid19japan/'
   let fn = null // '000630627.pdf'
