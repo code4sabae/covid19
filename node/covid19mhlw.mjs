@@ -8,7 +8,7 @@ import pdf2text from './pdf2text.mjs'
 
 const path = "../data/mhlw_go_jp/opendata/";
 
-const main = async function () {
+const download = async function () {
   const list = [
     "https://www.mhlw.go.jp/content/pcr_positive_daily.csv",
     "https://www.mhlw.go.jp/content/pcr_tested_daily.csv",
@@ -82,7 +82,11 @@ const make = async () => {
   */
 }
 
+const main = async () => {
+  await download()
+  await make();
+};
+
 if (process.argv[1].endsWith('/covid19mhlw.mjs')) {
-  main()
-  make();
+  main();
 }
