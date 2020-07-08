@@ -5,12 +5,12 @@
 "Miyagi",7,0
 "Akita",0,0
 "Yamagata",4,0
-"Fukushima",1,0
+"Fukushima",0,-1
 "Ibaraki",14,-2
 "Tochigi",19,-2
 "Gunma",3,0
 "Saitama",199,17
-"Chiba",85,0
+"Chiba",95,10
 "Tokyo",847,-29
 "Kanagawa",127,-9
 "Niigata",1,0
