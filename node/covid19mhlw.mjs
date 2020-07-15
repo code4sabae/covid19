@@ -25,7 +25,8 @@ const download = async function () {
   for (const l of list) {
     const url = l;
     const fn = l.substring(l.lastIndexOf('/') + 1);
-    const csv = await (await fetch(url)).text();
+    // const csv = await (await fetch(url)).text(); // 2020-07-14分 SJIS交じる
+    const csv = await util.fetchText(url);
     console.log(csv, l)
   
     //fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
