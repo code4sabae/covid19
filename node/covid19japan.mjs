@@ -593,7 +593,11 @@ const mainV2 = async function () {
   */
   // const urlweb = 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html' // 感染症について
   // 報道
-  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
+  const now = new Date();
+//  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
+  const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth() + 1, 2)}.html`;
+  console.log(urlweb7);
+  //process.exit(0);
   const urlweb = await parseURLCovid19Latest(urlweb7)
   console.log(urlweb)
   /// process.exit(0);
