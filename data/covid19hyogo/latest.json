@@ -1,1 +1,1 @@
-{"name":"Hyogo","npatients":1312,"ncurrentpatients":312,"nseriouspatients":4,"nexits":955,"ndeaths":45,"lastUpdate":"2020-08-03T00:00:00","src_url":"https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","url_opendata":"http://open-data.pref.hyogo.lg.jp/?page_id=141"}
+{"name":"Hyogo","npatients":1312,"ncurrentpatients":4,"nseriouspatients":null,"nexits":955,"ndeaths":45,"lastUpdate":"2020-08-03T00:00:00","src_url":"https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","url_opendata":"http://open-data.pref.hyogo.lg.jp/?page_id=141"}
