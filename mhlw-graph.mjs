@@ -46,6 +46,8 @@ const main = async (parent) => {
   parent.style.display = "block";
 
   const chart = document.createElement("canvas");
+  chart.width = 600;
+  chart.height = 350;
   new Chart.Chart(chart, config);
   parent.appendChild(chart);
 
