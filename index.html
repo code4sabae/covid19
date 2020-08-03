@@ -736,7 +736,7 @@ const main = async function() {
 	}
 	const url_csv = makeCSVURL(url)
 	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
-	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「各都道府県の検査陽性者の状況」') + " → " + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP')
+	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（ベース）: " + link(json.srcurl_web, '厚生労働省「各都道府県の検査陽性者の状況」') + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP') + " / " + link("https://www.mhlw.go.jp/stf/covid-19/open-data.html", "厚労省オープンデータ");
 	datasrc.innerHTML += tx("<br>対策病床数: " + link('https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0', '都道府県発表 新型コロナウイルス対策病床数オープンデータ') + " &amp; " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省「感染症指定医療機関の指定状況」') + " → " + link(url_bed, "JSON") + "/" + link('https://code4sabae.github.io/bedforinfection/', 'APP'))
 
 	const url_link = makeURL('covid19pref.json')
@@ -1163,6 +1163,9 @@ const makeJapanHTML = function() {
 	</div>
 </div>
 
+<script type="module" src="mhlw-graph.mjs"></script>
+<mhlw-graph></mhlw-graph>
+
 <div id='datasrc'></div>
 <!--<button id=capture>cap</button>-->
 
@@ -1171,7 +1174,6 @@ const makeJapanHTML = function() {
 </div>
 
 <div class=pr>
-	<div id='pr2'>自治体、医療機関の方へ<br><a href='https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing'>新型コロナウイルス対策病床</a>の<a xhref='https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform?usp=sf_link' href=https://fukuno.jig.jp/2799>一次情報提供</a>をお願いします(<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録</a>)</div><br>
 	<!--
 	<div id='pr'>
 		「<a href=https://twitter.com/gov_online/status/1241917710134472706>正しい手洗い</a>＆<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html#kokumin>密を避けた外出を！</a>（<a href=https://nettv.gov-online.go.jp/prg/prg20434.html>政府広報動画</a>）」
@@ -1192,9 +1194,11 @@ const makeJapanHTML = function() {
 		<!--<a href=https://note.stopcovid19.jp/><img alt='コロナの専門家' src='img/notestopcovid19-banner.png'></a>-->
 		<a href=https://www.pandaid.jp/><img alt='PANDAID パンデミックから命をまもるために' src='img/pandaid-banner.png'></a>
 	</div>
+	<div id='pr2'>自治体、医療機関の方へ<br><a href='https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing'>新型コロナウイルス対策病床</a>の<a xhref='https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform?usp=sf_link' href=https://fukuno.jig.jp/2799>一次情報提供</a>をお願いします(<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録</a>)</div><br>
 </div>
 
 </div>
+
 
 <div id=credit class="credit">
 credit<br>
