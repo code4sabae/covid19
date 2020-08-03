@@ -52,6 +52,7 @@ const main = async (parent) => {
   parent.appendChild(chart);
 
   /*
+  if // attribute
   const div = document.createElement("div");
   div.style.textAlign = "center";
   div.innerHTML = "データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>（新型コロナウイルス感染症について）";
