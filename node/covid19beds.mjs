@@ -71,11 +71,11 @@ const parseLink = function(data, title) {
   return res
 }
 
-const text2csv = function (txt) {
+const text2csv = function (txt, lastUpdate, url) {
   const ss = txt.split('\n')
   console.log(ss)
   const list = []
-  list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数']);
+  list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
   for (let i = 0; i < PREF.length; i++) {
     const pref = PREF[i];
     console.log(pref);
@@ -83,7 +83,9 @@ const text2csv = function (txt) {
       const ss2 = ss[j].replace(/,/g, '').split(' ');
       if (ss2[1] == pref) {
         console.log(pref, ss2);
-        list.push(ss2)
+        ss2.push(lastUpdate);
+        ss2.push(url);
+        list.push(ss2);
         break;
       }
     }
@@ -114,8 +116,9 @@ const makeCovid19JapanBeds = async function () {
   const txt = await pdf2text.pdf2text(path + fn)
   console.log(txt)
 
-  const csv = text2csv(txt)
-  console.log(csv)
+  const csv = text2csv(txt, lastUpdate, url);
+  console.log(csv);
+
  
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
   //process.exit(0);
