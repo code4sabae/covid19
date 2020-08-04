@@ -538,7 +538,7 @@ const main = async function() {
 	const url_bed = makeURL('bedforinfection_summary.json')
 	const json_bed = await fetchJSON(url_bed)
 	console.log(json_bed)
-
+	/*
 	const url_bedc = makeURL('bedforinfection_current.json')
 	const json_bedc = await fetchJSON(url_bedc)
 	console.log(json_bedc)
@@ -552,6 +552,28 @@ const main = async function() {
 				a.sumc_src = cbed
 			}
 			json.area[j].bed = a
+		}
+	}
+	*/
+	const url_bedc = makeURL("covid19japan_beds/latest.json");
+//   list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
+	const json_bedc = await fetchJSON(url_bedc)
+	console.log(json_bedc)
+	for (let i = 0; i < json_bedc.length; i++) {
+		const cbed = json_bedc[i]
+		for (let j = 0; j < json_bed.area.length; j++) {
+			const a = json_bed.area[j]
+			if (a.name_ja == cbed['都道府県名']) {
+				const n1 = parseInt(cbed['入院患者受入確保病床']);
+				const n2 = parseInt(cbed['宿泊施設受入可能室数']);
+				a.sumc = n1 + n2;
+				a.sumc_src = {
+					出典: cbed['出典'],
+					発表日: cbed['更新日'],
+					備考: '医療機関' + n1 + '床+宿泊施設' + n2 + '室'
+				};
+			}
+			json.area[j].bed = a;
 		}
 	}
 
@@ -802,7 +824,7 @@ const showChart = async function(data) {
 	//console.log(data.data)
 	const bed = data.data.bed
 	if (bed && bed.sumc_src) {
-		//console.log(bed.sumc_src)
+		console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>対策病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス対策病床数オープンデータ</a>`)
 		if (bed.sumc_src['備考']) {
 			detaildesc.innerHTML += tx(` * ${bed.sumc_src['備考']}`)
@@ -1210,7 +1232,8 @@ APP (アプリ開発/提供): <a href=https://creativecommons.org/licenses/by/4.
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html>新型コロナウイルス感染症について - 厚生労働省</a>」→ <a href=https://www.stopcovid19.jp/data/covid19japan.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a> (集約版 <a href=https://www.stopcovid19.jp/data/covid19japan-all.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-all.json>JSON</a> / <a href=tableview.html>APP</a>)<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> <a href=https://www.stopcovid19.jp/>COVID-19 Japan 新型コロナウイルス対策ダッシュボード</a> <a href=https://www.stopcovid19.jp/data/covid19japan-trend.json>JSON</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.csv>CSV</a> / <a href=https://www.stopcovid19.jp/data/covid19japan-trend.txt>TXT</a>（厚生労働省、各都道府県公表データの集約）<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」<a href=data/covid19japan-fast.csv>CSV</a> / <a href=data/covid19japan-fast.json>JSON</a><br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス対策病床数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>
+DATA: <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html>療養状況等及び入院患者受入病床数等に関する調査について｜厚生労働省</a> → <a href=https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv>CSV</a>/<a href=https://www.stopcovid19.jp/data/covid19japan_beds/latest.json>JSON</a><br>
+<!--DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス対策病床数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>-->
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
 DATA: 許諾「<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)</a>」 （<a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>）<br>
