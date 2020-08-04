@@ -29,6 +29,7 @@ const main = async (parent) => {
   });
   data_dd.forEach((d, i) => data_dd[i] *= 10);
   */
+  date.forEach((d, i, ar) =>  ar[i] = parseInt(d.substring(5, 7)) + "/" + parseInt(d.substring(8, 10)));
   const config = {
     data: {
       labels: date,
@@ -43,7 +44,7 @@ const main = async (parent) => {
     options: {
       title: { display: true, text: "COVID-19 日本のPCR検査陽性者数・検査施件数、入院者数、死亡者数" },
       scales: {
-        xAxes: [{ scaleLabel: { display: true, labelString: "日付" } }],
+        xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
         yAxes: [
         { id: "yr", position: "right", scaleLabel: { display: true, labelString: "PCR 検査実施件数・現在入院治療を要する者" }, ticks: { beginAtZero: true } },
         { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数・累計死亡者数" }, ticks: { beginAtZero: true } },
@@ -54,6 +55,7 @@ const main = async (parent) => {
   };
 
   parent.style.display = "block";
+  parent.style.marginBottom = ".5em";
 
   const chart = document.createElement("canvas");
   chart.width = 600;
@@ -61,13 +63,16 @@ const main = async (parent) => {
   new Chart.Chart(chart, config);
   parent.appendChild(chart);
 
-  /*
-  if // attribute
-  const div = document.createElement("div");
-  div.style.textAlign = "center";
-  div.innerHTML = "データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>（新型コロナウイルス感染症について）";
-  parent.appendChild(div);
-  */
+  const atts = {};
+  for (const a of parent.attributes) {
+    atts[a.nodeName] = a.value;
+  }
+  if (atts["view-src"] && atts["view-src"]) {
+    const div = document.createElement("div");
+    div.style.textAlign = "center";
+    div.innerHTML = "データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>（新型コロナウイルス感染症について）";
+    parent.appendChild(div);
+  }
 };
 
 class MHLWGraph extends HTMLElement {
