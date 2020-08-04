@@ -19,19 +19,29 @@ const main = async (parent) => {
     data_c.push(d["入院治療を要する者"]);
     data_d.push(d["死亡者数"]);
   }
-
+  /*
+  const data_dd = data_d.map((n, i, a) => {
+    if (i === 0) {
+      return a[0];
+    } else {
+      return a[i] - a[i - 1];
+    }
+  });
+  data_dd.forEach((d, i) => data_dd[i] *= 10);
+  */
   const config = {
     data: {
       labels: date,
       datasets: [
         { type: "line", label: "PCR 検査陽性者数", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "line", label: "入院治療を要する者", data: data_c, borderColor: 'rgb(80, 80, 205)', fill: false, lineTension: 0, yAxisID: "yr" },
-        { type: "line", label: "死亡者数", data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
+        // { type: "line", label: "死亡者数", data: data_dd, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
+        { type: "line", label: "累計死亡者数", data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "bar", label: "PCR 検査実施件数", data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" }
       ]
     },
     options: {
-      title: { display: true, text: "COVID-19 日本のPCR検査陽性者数と実施件数" },
+      title: { display: true, text: "COVID-19 日本のPCR検査陽性者数・検査施件数、入院者数、死亡者数" },
       scales: {
         xAxes: [{ scaleLabel: { display: true, labelString: "日付" } }],
         yAxes: [
