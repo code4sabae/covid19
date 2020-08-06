@@ -68,6 +68,7 @@ const make = async () => {
   console.log(data2);
   const csv = util.json2csv(data2);
   csv.sort((a, b) => a - b);
+  console.log(csv[csv.length - 1]);
   util.writeCSV(path + "covid19", csv);
 
   /*
