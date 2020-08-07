@@ -8,23 +8,12 @@ import pdf2text from './pdf2text.mjs'
 const PREF = util.JAPAN_PREF
 const PREF_EN = util.JAPAN_PREF_EN
 
-const getCovid19Data = async function() {
-  return await util.getWebWithCache(URL, PATH)
-}
-const getLastUpdate = function(fn) {
-  return util.getLastUpdateOfCache(URL, PATH)
-}
-const getCovid19DataJSON = async function(type) {
-  cachetime = CACHE_TIME
-  const data = await util.getCache(async function() {
-    return await fetchCovid19DataJSON(type, cachetime)
-  }, 'data/covid19japan/', '-' + (type ? type : "default") + '.json', cachetime)
-  return JSON.parse(data)
-}
-const startUpdate = function() {
-  setInterval(async function() {
-    await util.getWebWithCache(URL, PATH, CACHE_TIME)
-  }, CACHE_TIME)
+const parseURLCovid19Latest = async function (urlweb) {
+  const html = await (await fetch(urlweb)).text();
+  // console.log(html)
+  const title = "新型コロナウイルス感染症患者の療養状況等及び入院患者受入病床数等に関する調査結果";
+  const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
+  return parseLink(html, title, baseurl);
 }
 
 const parseWeek = function(s) {
@@ -35,28 +24,26 @@ const parseWeek = function(s) {
 // '国内事例における都道府県別の患者報告数（2020年3月13日12時時点）' -> 2020/03/09 09:00
 const parseDate = function(s) {
   const fix0 = util.fix0
-  //const num = s.match(/国内事例における都道府県別の患者報告数（(\d+)年(\d+)月(\d+)日(\d+)時時点）/)
   s = s.substring(s.lastIndexOf('（'))
-  let num = s.match(/（(\d+)年(\d+)月(\d+)日(\d+)時時点）/)
+  s = util.toHalf(s);
+  console.log(s);
+  let num = s.match(/(\d+)月(\d+)日(\d+)時時点\)/)
   if (num) {
-    const y = parseInt(num[1])
-    const m = parseInt(num[2])
-    const d = parseInt(num[3])
-    const h = parseInt(num[4])
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = parseInt(num[1]);
+    if (now.getMonth() === 0 && m === 12) {
+      y--;
+    }
+    const d = parseInt(num[2])
+    const h = parseInt(num[3])
     return y + "-" + fix0(m, 2) + "-" + fix0(d, 2) + "T" + fix0(h, 2) + ":00"
-  }
-  num = s.match(/（(\d+)年(\d+)月(\d+)日掲載分）/)
-  if (num) {
-    const y = parseInt(num[1])
-    const m = parseInt(num[2])
-    const d = parseInt(num[3])
-    return y + "-" + fix0(m, 2) + "-" + fix0(d, 2)
   }
   return "--"
 //  console.log(s, num)
 }
 
-const parseLink = function(data, title) {
+const parseLink = function(data, title, baseurl) {
   const dom = cheerio.load(data)
   let res = null
   dom('a').each((idx, ele) => {
@@ -65,7 +52,7 @@ const parseLink = function(data, title) {
       res = {}
       res.dt = parseDate(text)
       const href = dom(ele).attr("href")
-      res.url = href.startsWith("https://") ? href : BASEURL + href
+      res.url = href.startsWith("https://") ? href : baseurl + href
     }
   })
   return res
@@ -96,16 +83,19 @@ const text2csv = function (txt, lastUpdate, url) {
 
 const makeCovid19JapanBeds = async function () {
   const urltop = "https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html";
-  const url = "https://www.mhlw.go.jp/content/10900000/000655343.pdf"; //await parseURLCovid19Latest(urltop)
-  console.log(url)
-  // process.exit(0);
+  //const url = "https://www.mhlw.go.jp/content/10900000/000655343.pdf"; //await parseURLCovid19Latest(urltop)
+  const latest = await parseURLCovid19Latest(urltop)
+  console.log(latest)
+  const url = latest.url;
+  const lastUpdate = latest.dt;
+  //process.exit(0);
 
   const path = '../data/covid19japan_beds/'
   let fn = null // '000630627.pdf'
 
-  const fetchdata = false
-  fn = "000655343.pdf";
-  const lastUpdate = "2020-07-29";
+  const fetchdata = true;
+  // fn = "000655343.pdf";
+  // const lastUpdate = "2020-07-29";
   //const fetchdata = true
   if (fetchdata) {
     fn = url.substring(url.lastIndexOf('/') + 1)
