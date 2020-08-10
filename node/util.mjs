@@ -111,22 +111,42 @@ exports.encodeCSV = function(csvar) {
   }
   return s.join('\n')
 }
-exports.csv2json = function(csv) {
+exports.csv2json = function(csv, withcomma) {
 	const res = []
-	const head = csv[0]
+  const head = csv[0]
+  const trim = s => {
+    const spc = " 　\t\r\n";
+    let st = 0;
+    for (;;) {
+      if (spc.indexOf(s.charAt(st)) === -1)
+        break;
+      st++;
+    }
+    let ed = s.length -1;
+    for (;;) {
+      if (spc.indexOf(s.charAt(ed)) === -1)
+        break;
+      ed--;
+    }
+    return s.substring(st, ed + 1);
+  };
 	for (let i = 0; i < head.length; i++) {
-		const h = head[i]
-		const n = h.indexOf('(')
-		const m = h.indexOf('（')
-		let l = -1
-		if (n == -1) {
-			l = m
-		} else if (m == -1) {
-			l = n
-		} else {
-			l = Math.min(n, m)
-		}
-		head[i] = (l > 0 ? h.substring(0, l) : h).trim()
+    const h = trim(head[i]);
+    if (withcomma) {
+      head[i] = h;
+    } else {
+      const n = h.indexOf('(')
+      const m = h.indexOf('（')
+      let l = -1
+      if (n == -1) {
+        l = m
+      } else if (m == -1) {
+        l = n
+      } else {
+        l = Math.min(n, m)
+      }
+      head[i] = (l > 0 ? h.substring(0, l) : h).trim()
+    }
 	}
 	for (let i = 1; i < csv.length; i++) {
 		const d = {}

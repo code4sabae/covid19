@@ -50,11 +50,11 @@ const parseJSON = function(pref, json, url, url_opendata) {
   const res = { name: pref }
   const latest = json[json.length - 1]
   const lastUpdate = latest['発表年月日'] + ' ' + latest['発表時間']
-  res.npatients = parseInt(latest['陽性者数'])
-  res.ncurrentpatients = parseInt(latest['入院中'])
-  res.nseriouspatients = parseInt(latest['重症'])
-  res.nexits = parseInt(latest['退院'])
-  res.ndeaths = parseInt(latest['死亡'])
+  res.npatients = parseInt(latest['陽性者数（累計）'])
+  res.ncurrentpatients = parseInt(latest['入院中（合計）'])
+  res.nseriouspatients = parseInt(latest['入院中（重症）'])
+  res.nexits = parseInt(latest['退院（累計）'])
+  res.ndeaths = parseInt(latest['死亡（累計）'])
   res.lastUpdate = util.formatYMDHMS(parseDateTime(lastUpdate))
   console.log(lastUpdate, res.lastUpdate)
 
@@ -91,7 +91,7 @@ const main = async function() {
 
   const sh = await getSheetXlsx(url)
   const csv = xlsx2csv(sh)
-  const json = util.csv2json(csv)
+  const json = util.csv2json(csv, true)
   const res = parseJSON(pref, json)
   res.src_url = url
   res.url_opendata = url_opendata
