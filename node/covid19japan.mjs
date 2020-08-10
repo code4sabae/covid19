@@ -512,6 +512,16 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
         return y + '-' + fix0(m, 2) + '-' + fix0(d, 2)
       }
     }
+    {
+      const num = s.match(/(20\d+)\/(\d+)\/(\d+)/)
+      if (num) {
+        const y = parseInt(num[1])
+        const m = parseInt(num[2])
+        const d = parseInt(num[3])
+        return y + '-' + fix0(m, 2) + '-' + fix0(d, 2)
+      }
+    }
+    console.log(s, "can't parse date!!");
     return '--'
   }
 

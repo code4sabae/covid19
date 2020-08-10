@@ -47,7 +47,8 @@ const fetchAndSave = async function (url) {
 }
 const getSheetXlsx = async function (url) {
   const fn = await fetchAndSave(url)
-  // const fn = 'temp/1588943159486.xlsx'
+  // console.log(fn);
+  // const fn = 'temp/1597060642149.xlsx'
   const workbook = xlsx.readFile(fn)
   // fs.unlinkSync(fn)
 
@@ -63,16 +64,18 @@ const getSheetXlsx = async function (url) {
 const main = async function () {
   const pref = 'Nara'
   const url = 'http://www.pref.nara.jp/secure/227221/%E5%A5%88%E8%89%AF%E7%9C%8C_02%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A%E3%82%A6%E3%82%A4%E3%83%AB%E3%82%B9%E6%84%9F%E6%9F%93%E8%80%85_%E6%82%A3%E8%80%85%E9%9B%86%E8%A8%88%E8%A1%A8.xlsx'
+  //const url = "https://www.city.nara.lg.jp/site/coronavirus/";
   const urlOpendata = 'http://www.pref.nara.jp/55168.htm'
 
   const sh = await getSheetXlsx(url)
   let csv = xlsx2csv.xlsx2csv(sh)
-  // util.writeFileSync('temp/test.csv', util.addBOM(util.encodeCSV(csv)))
-  csv = csv.splice(1)
+  util.writeFileSync('temp/test-nara.csv', util.addBOM(util.encodeCSV(csv)))
+  csv = csv.splice(1);
 
-  const json = util.csv2json(csv)
+  const json = util.csv2json(csv);
   console.log(json)
   const res = parseJSON(pref, json)
+  process.exit(0);
   res.src_url = url
   res.url_opendata = urlOpendata
 

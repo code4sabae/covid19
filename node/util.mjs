@@ -115,6 +115,8 @@ exports.csv2json = function(csv, withcomma) {
 	const res = []
   const head = csv[0]
   const trim = s => {
+    if (s.length === 0)
+      return s;
     const spc = " 　\t\r\n";
     let st = 0;
     for (;;) {

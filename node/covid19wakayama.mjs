@@ -59,9 +59,14 @@ const parseV1 = function (res, sh) {
 const parseV2 = function (res, sh) {
   const csv = xlsx2csv.xlsx2csv(sh)
   res.lastUpdate = util.formatYMDHMS(parseDateTime(csv[0][1]))
-  const chk = ['陽性の方', '新規感染者', '入院中', '退院済みの方', '健康観察中', '社会復帰', '死亡']
+  // const chk = ['陽性の方', '新規感染者', '入院中', '退院済みの方', '健康観察中', '社会復帰', '死亡']
+  const chk = ['入院患者数', '新規感染者', '入院中', '退院済みの方', '健康観察中', '社会復帰', '死亡']
   for (let i = 0; i < chk.length; i++) {
-    if (csv[2 + i][0].trim() !== chk[i]) { return false }
+    const h = csv[2 + i][0].trim();
+    if (h !== chk[i]) {
+      console.log(h, chk[i]);
+      return false;
+    }
   }
   const getLatest = num => parseInt(csv[num][csv[num].length - 1])
   res.ncurrentpatients = getLatest(4 - 2)

@@ -36,24 +36,28 @@ const main = async function () {
   console.log(dt)
   // const chk = ['検査実施人数', '陽性者数', '現在の感染者数', '退院・療養終了', '死亡']
   const chk = [
-    '陽性者数\n            （累積）',
+    '陽性者数（累積）\n            ()内は新規感染',
     '現在の感染者数',
     '退院・療養終了',
     '死亡'
   ]
   for (let i = 0; i < chk.length; i++) {
     if (!data[i].startsWith(chk[i])) {
+      console.log(data[i]);
       console.log('****!! err cant parse data')
       process.exit(1)
     }
   }
   const res = {}
   res.name = pref
+  const pi = s => {
+    return parseInt(s.replace(/,/g, ""));
+  };
   try {
     res.lastUpdate = dt
-    res.npatients = parseInt(data[4])
-    res.nexits = parseInt(data[6])
-    res.ndeaths = parseInt(data[7])
+    res.npatients = pi(data[4])
+    res.nexits = pi(data[6])
+    res.ndeaths = pi(data[7])
     /*
     res.npatients = parseInt(data[6])
     res.nexits = parseInt(data[8])
