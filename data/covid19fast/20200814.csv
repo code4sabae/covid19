@@ -3,7 +3,6 @@
 "Fukushima",101,12,89,0,"2020-08-13T19:10:42","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200813.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,
 "Chiba",2304,497,1752,55,"2020-08-13","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",,,,
 "Tokyo",16680,3494,12848,338,"2020-08-13T19:45","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,,
-"Fukui",154,16,130,8,"2020-08-13T14:52:59","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",,,,
 "Nagano",140,29,111,0,"2020-08-14T10:00:14","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",,,,
 "Osaka",6178,1674,4406,98,"2020-08-13T13:03","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",,,,
 "Hyogo",1776,210,1464,47,"2020-08-14T00:00:00","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","http://open-data.pref.hyogo.lg.jp/?page_id=141",14,,,
