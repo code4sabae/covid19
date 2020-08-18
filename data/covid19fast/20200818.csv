@@ -1,10 +1,10 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients"
 "Hokkaido",1632,129,1400,103,"2020-08-17T19:43:57","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",
 "Fukushima",109,19,90,0,"2020-08-18T18:57:26","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200818.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",
-"Chiba",2495,506,1931,58,"2020-08-17","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",
+"Chiba",2532,482,1992,58,"2020-08-18","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",
 "Tokyo",17875,3519,14015,341,"2020-08-17T19:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",
 "Fukui",155,14,133,8,"2020-08-18T15:12:28","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",
-"Nagano",149,30,119,0,"2020-08-18T13:00:08","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",
+"Nagano",150,28,122,0,"2020-08-18T20:03:22","https://www.pref.nagano.lg.jp//hoken-shippei/kenko/kenko/kansensho/joho/documents/200000_nagano_covid19_patients.csv","https://www.pref.nagano.lg.jp/hoken-shippei/kenko/kenko/kansensho/joho/corona-doko.html",
 "Osaka",6845,1690,5049,106,"2020-08-18T12:03","https://raw.githubusercontent.com/codeforosaka/covid19/development/data/data.json","https://github.com/codeforosaka/covid19",
 "Hyogo",1924,224,1596,48,"2020-08-18T00:00:00","https://web.pref.hyogo.lg.jp/kk03/documents/yousei.xlsx","http://open-data.pref.hyogo.lg.jp/?page_id=141",11
 "Wakayama",207,32,171,4,"2020-08-18T13:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",
