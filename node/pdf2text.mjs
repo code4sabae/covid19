@@ -15,9 +15,9 @@ const normalizeText = function(s) {
 	return s
 }
 
-exports.pdf2text = async function(fn) {
+exports.pdf2text = async function(fn, page) {
 	return new Promise((resolve, reject) => {
-		const cmd = 'pdftotext -layout -raw -nopgbrk ' + fn + ' -'
+		const cmd = 'pdftotext -layout -raw -nopgbrk ' + (page ? `-f ${page} -l ${page} ` : "") + fn + ' -'
 		child_process.exec(cmd, function(error, stdout, stderr) {
 			if (error) {
 				reject(error)

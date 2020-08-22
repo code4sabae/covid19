@@ -605,6 +605,7 @@ const mainV2 = async function () {
   // 報道
   const now = new Date();
 //  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
+//  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202008.html";
   const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth() + 1, 2)}.html`;
   console.log(urlweb7);
   //process.exit(0);
@@ -641,7 +642,7 @@ const mainV2 = async function () {
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   }
 
-  const txt = await pdf2text.pdf2text(path + fn)
+  const txt = await pdf2text.pdf2text(path + fn, 2)
   console.log(txt)
   const csv = text2csvWithCurrentPatients2(txt)
   console.log(csv)
