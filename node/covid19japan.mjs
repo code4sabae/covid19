@@ -642,7 +642,14 @@ const mainV2 = async function () {
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   }
 
-  const txt = await pdf2text.pdf2text(path + fn, 2)
+  const pdfToTxt = async (fn) => {
+    try {
+      return await pdf2text.pdf2text(fn, 2)
+    } catch (e) {
+      return await pdf2text.pdf2text(fn)
+    }
+  };
+  const txt = await pdfToTxt(path + fn);
   console.log(txt)
   const csv = text2csvWithCurrentPatients2(txt)
   console.log(csv)
