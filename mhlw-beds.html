@@ -1,0 +1,149 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>新型コロナウイルス感染症患者の療養状況 病床使用率 - 厚労省発表データ</title>
+<link rel="apple-touch-icon" href="mhlw-beds.png"/>
+<meta property="og:image" content="mhlw-beds.png">
+<meta name="format-detection" content="telephone=no"/>
+<script type='module'>
+
+import util from 'https://taisukef.github.io/util/util.mjs'
+import tabularmaps from './tabularmapsjapan.mjs'
+
+window.onload = async () => {
+	const url = "https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv";
+	const data = await util.fetchCSVtoJSON(url);
+	console.log(data);
+	lastUpdate.textContent = "更新日: " + data[0].更新日;
+
+	const shownames = ["入院患者病床使用率", "重症患者病床使用率", "宿泊療養施設居室使用率"];
+	shownames.forEach((n) => {
+		const opt = document.createElement("option");
+		opt.value = n;
+		opt.textContent = n;
+		sel.appendChild(opt);
+	});
+	const showunit = "%";
+
+	const show = () => {
+		const showname = sel.value;
+		const getKPI = (pname, cname) => {
+			const p = data.find(a => a.都道府県名 === cname);
+			const kpi = p[showname];
+			const unit = showunit;
+			if (kpi.endsWith(unit)) {
+				return [kpi.substring(0, kpi.length - unit.length), unit];
+			}
+			return [kpi, unit];
+		};
+		const colorTabularMaps = (pname, tmap) => {
+			let min = 0;
+			let max = 100;
+			/*
+			for (const c of tmap.children) {
+				const cname = c.cellname;
+				if (cname !== "-") {
+					const [kpi, _] = getKPI(pname, cname);
+					if (isNaN(kpi)) continue;
+					if (kpi < min) { min = kpi; }
+					if (kpi > max) { max = kpi; }
+				}
+			}
+			*/
+			for (const c of tmap.children) {
+				const cname = c.cellname;
+				if (cname !== "-") {
+					const [kpi, _] = getKPI(pname, cname);
+					if (isNaN(kpi)) continue;
+					const n = (parseFloat(kpi) - min) / (max - min);
+					const h = 0;
+					const s = 80;
+					const l = 100 - n * 50;
+					const col = `hsl(${h},${s}%,${l}%)`;
+					//const col = `rgba(200,50,50,${l / 100 * .5})`;
+					c.style.backgroundColor = col;
+					c.style.color = "black";
+					//c.appendChild(val);
+					//console.log(kpi, l, col);
+				}
+			}
+		};
+		const setCellContent = (c, pname, cname) => {
+			c.textContent = "";
+			const cr = tag => document.createElement(tag);
+			const div = cr("div");
+			div.className = "name";
+			div.textContent = cname;
+			c.appendChild(div);
+			const div2 = cr("div");
+			div2.className = "val";
+			const [kpi, unit] = getKPI(pname, cname);
+			div2.textContent = (isNaN(kpi) ? "-" : kpi) + unit;
+			c.appendChild(div2);
+		};
+		tabularmaps.showJapan(setCellContent, colorTabularMaps, true);
+	}
+	show();
+	sel.onchange = show;
+};
+
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	text-align: center;
+}
+h1 {
+	font-size: 3vw;
+	margin-top: 2vw;
+}
+/* tabularmaps */
+#tmapc span {
+	font-size: 2.0vmax;
+	align-items: center;
+	justify-content: center;
+	border-radius: .5vmax;
+	border: .1vmax solid #333;
+	padding: .2vmax .2vmax;
+	margin: .2vmax;
+}
+/* other */
+#sel {
+	font-size: 130%;
+	margin: .3em;
+}
+#banner {
+	width: 80vw;
+	margin: 1vw;
+}
+/* credit */
+.credit {
+	margin: 20px;
+	text-align: center;
+	font-size: 80%;
+}
+a {
+	color: #666 !important;
+}
+</style>
+</head>
+<body>
+
+<h1>新型コロナウイルス感染症患者の療養状況 病床使用率</h1>
+
+<select id="sel"></select>
+<div id="tmapc"></div>
+<div id=lastUpdate></div>
+
+<a href="https://www.stopcovid19.jp/"><img id="banner" src="img/stopcovid19_banner.png"><br>
+毎日更新「COVID-19 新型コロナウイルス対策ダッシュボード」もどうぞ</a>
+
+<div class="credit">
+APP: CC BY <a href=https://fukuno.jig.jp/2923>@taisukef 福野泰介</a><br>
+DATA: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html">新型コロナウイルス感染症患者の療養状況、病床数等に関する調査結果</a> → (CSV化 by <a href="https://www.stopcovid19.jp/">COVID-19 新型コロナウイルス対策ダッシュボード</a>)<br>
+LAYOUT: <a href=tabularmaps_japan.csv>TabularMaps Japan - 日本カラム地図 CSV</a> CC0 <a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a><br>
+LIB: <a href=util.mjs>util.mjs</a> CC BY <a href=https://fukuno.jig.jp/2819>@taisukef</a><br>
+</div>
+
+</body>
+</html>
