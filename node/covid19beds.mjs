@@ -62,12 +62,13 @@ const text2csv = function (txt, lastUpdate, url) {
   const ss = txt.split('\n')
   console.log(ss)
   const list = []
-  list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
+  // list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
+  list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者フェーズ', '入院患者受入確保病床', '入院患者病床使用率', '入院患者即応病床数（最終フェーズ）'/*旧 入院患者受入確保想定病床数*/, 'うち重症者数', '重症者フェーズ', '重症患者受入確保病床数', '重症患者病床使用率', '重症患者即応病床数（最終フェーズ）'/*旧 重症患者受入確保想定病床数*/, '宿泊療養者数', '宿泊療養フェーズ', '宿泊施設受入可能室数', '宿泊療養施設居室使用率', '宿泊療養施設施設居室（最終フェーズ）', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
   for (let i = 0; i < PREF.length; i++) {
     const pref = PREF[i];
     console.log(pref);
     for (let j = 0; j < ss.length; j++) {
-      const ss2 = ss[j].replace(/,/g, '').split(' ');
+      const ss2 = ss[j].replace(/,/g, '').split(' ').filter(s => util.toHalf(s).replace(/\s/g, ''));
       if (ss2[1] == pref) {
         console.log(pref, ss2);
         ss2.push(lastUpdate);
@@ -87,7 +88,14 @@ const makeCovid19JapanBeds = async function () {
   const latest = await parseURLCovid19Latest(urltop)
   console.log(latest)
   const url = latest.url;
-  const lastUpdate = latest.dt;
+  const cutT = (s) => {
+    if (s.endsWith("T00:00")) {
+      const s2 = s.substring(0, s.length - 6);
+      return s2;
+    }
+    return s;
+  };
+  const lastUpdate = cutT(latest.dt);
   //process.exit(0);
 
   const path = '../data/covid19japan_beds/'

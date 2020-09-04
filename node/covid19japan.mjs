@@ -666,11 +666,43 @@ const mainV2 = async function () {
   fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
 
   // }
-}
+};
+const mainV2_hand = () => {
+  const path = '../data/covid19japan/';
+  const fn = "000668093.pdf";
+  const txt = "2020/9/3 24時時点";
+  const url = "https://www.mhlw.go.jp/content/10906000/000668093.pdf";
+  const urlweb = "https://www.mhlw.go.jp/stf/newpage_13380.html";
+  const csv = util.decodeCSV(util.removeBOM(fs.readFileSync(path + fn + '.csv', "utf-8")));
+
+  const pi = (s) => {
+    const n = parseInt(s);
+    if (isNaN(n)) {
+      console.log(n);
+      return s;
+    }
+    return n;
+  };
+  for (let i = 0; i < csv.length; i++) {
+    for (let j = 0; j < csv[i].length; j++) {
+      csv[i][j] = pi(csv[i][j]);
+    }
+  }
+
+  const json = makeCurrentPatientsJSON(txt, csv, url, urlweb)
+  const scsv = util.addBOM(util.encodeCSV(util.json2csv(json.area)))
+  console.log(path + json.lastUpdate + '.csv')
+  fs.writeFileSync(path + json.lastUpdate + '.csv', scsv, 'utf-8')
+  fs.writeFileSync(path + fn + '.json', JSON.stringify(json), 'utf-8')
+
+  fs.writeFileSync(path + '../covid19japan.csv', scsv, 'utf-8')
+  fs.writeFileSync(path + '../covid19japan.json', JSON.stringify(json), 'utf-8')
+};
 
 const main = async () => {
   // await mainV1()
-  await mainV2()
+  // await mainV2()
+  mainV2_hand();
   makeCovid19JapanList()
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
