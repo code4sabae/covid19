@@ -701,8 +701,8 @@ const mainV2_hand = () => {
 
 const main = async () => {
   // await mainV1()
-  await mainV2()
-  //mainV2_hand();
+  //await mainV2()
+  mainV2_hand();
   makeCovid19JapanList()
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
