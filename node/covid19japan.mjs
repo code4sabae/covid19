@@ -669,9 +669,9 @@ const mainV2 = async function () {
 };
 const mainV2_hand = () => {
   const path = '../data/covid19japan/';
-  const fn = "000668093.pdf";
-  const txt = "2020/9/3 24時時点";
-  const url = "https://www.mhlw.go.jp/content/10906000/000668093.pdf";
+  const fn = "000668310.pdf";
+  const txt = "2020/9/4 24時時点";
+  const url = "https://www.mhlw.go.jp/content/10906000/" + fn;
   const urlweb = "https://www.mhlw.go.jp/stf/newpage_13380.html";
   const csv = util.decodeCSV(util.removeBOM(fs.readFileSync(path + fn + '.csv', "utf-8")));
 
