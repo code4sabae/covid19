@@ -1,7 +1,7 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients","ncurrentpatients_hospital","ncurrentpatients_hotel","nheavycurrentpatients"
-"Hokkaido",1845,81,1659,105,"2020-09-08T20:25:02","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
+"Hokkaido",1849,74,1670,105,"2020-09-09T21:46:38","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
 "Fukushima",186,52,134,0,"2020-09-09T19:11:44","http://www.pref.fukushima.lg.jp/w4/covid19/patients/070009_fukushima_covid19_patients_200909.csv","http://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,
-"Chiba",3258,294,2900,64,"2020-09-08","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",,,,
+"Chiba",3281,283,2933,65,"2020-09-09","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",,,,
 "Tokyo",22168,2202,19587,379,"2020-09-09T19:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,,
 "Toyama",407,28,354,25,"2020-09-08","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv",,,,
 "Fukui",244,52,184,8,"2020-09-09T14:01:24","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",,,,
