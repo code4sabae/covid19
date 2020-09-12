@@ -5,7 +5,7 @@ const oneDayBefore = function (d) {
   return new Date(d.getTime() - (1000 * 60 * 60 * 24))
 }
 const makeTrendFromFast = async function () {
-  const DEBUG = true; //false;
+  const DEBUG = false;
   const now = DEBUG ? oneDayBefore(new Date()) : new Date();
   const yesterday = oneDayBefore(now)
   const src1 = '../data/covid19fast/' + util.getYMD(yesterday) + '.json'
