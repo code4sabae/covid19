@@ -9,7 +9,7 @@
   "author": "Taisuke Fukuno <fukuno@jig.jp> (https://fukuno.jig.jp/)",
   "license": "ISC",
   "dependencies": {
-    "jimp": "^0.10.3",
+    "jimp": "^0.16.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
     "webdriverio": "^6.5.0"
   }
