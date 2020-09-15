@@ -11,6 +11,6 @@
   "dependencies": {
     "jimp": "^0.10.3",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "webdriverio": "^6.4.7"
+    "webdriverio": "^6.5.0"
   }
 }

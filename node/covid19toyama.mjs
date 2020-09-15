@@ -94,3 +94,4 @@ const main = async function () {
   util.writeFileSync('../data/covid19' + lpref + '/latest.json', JSON.stringify(res))
 }
 main()
+

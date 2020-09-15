@@ -7,7 +7,8 @@ import dateparser from './dateparser.mjs'
 import covid19fast from './covid19fast.mjs'
 
 const main = async function() {
-  const url_opendata = 'http://www.pref.fukushima.lg.jp/w4/covid19/patients/'
+  //const url_opendata = 'http://www.pref.fukushima.lg.jp/w4/covid19/patients/'
+  const url_opendata = 'https://www.pref.fukushima.lg.jp/w4/covid19/patients/'
   const pref = "Fukushima"
 
   const lpref = pref.toLowerCase()
@@ -26,11 +27,11 @@ const main = async function() {
   //const html = fs.readFileSync(fn, 'utf-8')
   const html = await (await fetch(url_opendata)).text()
   //fs.writeFileSync(fn, html, 'utf-8')
-  //console.log(html)
+  console.log(html)
 
   const dom = cheerio.load(html)
   const tbls = htmlparser.parseTables(dom)
-  //console.log(tbls)
+  console.log(tbls)
   
   const json = util.csv2json(tbls[0])
   let latest = null
