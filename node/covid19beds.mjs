@@ -73,7 +73,7 @@ const text2csv = function (txt, lastUpdate, url) {
         console.log(pref, ss2);
         ss2.push(lastUpdate);
         ss2.push(url);
-        list.push(ss2);
+        list.push(ss2.filter((s) => !s.startsWith("注")));
         break;
       }
     }
