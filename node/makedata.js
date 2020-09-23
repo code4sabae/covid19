@@ -80,7 +80,10 @@ const makeCovid19Pref = async function() {
     json[i].pref = PREF_EN[i]
   }
   */
-  util.writeCSV('../data/covid19pref', util.json2csv(json))
+  //console.log("json.length", json.length);
+  if (json.length === 47) {
+    util.writeCSV('../data/covid19pref', util.json2csv(json))
+  }
 
   //console.log(JSON.stringify(json))
   //fs.writeFileSync('covid19pref.json', JSON.stringify(json))
