@@ -1,7 +1,8 @@
-const fs = require('fs')
-const fetch = require('node-fetch')
-const util = require('./util.js')
-const jimp = require("jimp")
+import fs from "fs";
+import fetch from "node-fetch";
+import util from "./util.mjs";
+import jimp from "jimp";
+import pdf2png from "./pdf2png.mjs";
 
 const img2num = async (img) => {
   let res = 0;
@@ -192,18 +193,26 @@ const collect = [
   { name_ja: 46, npatients: 2200 }
 ];
 
-const DEBUG = false;
+const DEBUG = true;
 const MAKE_POS_IMAGE = false;
 const MAKE_NUM_IMAGE = false;
-const getNums = async (fn) => { // 枠線自動認識させたい
+const getNums = async (fn) => { // 枠線自動認識させたい -> 罫線認識ないと使えない・・・
   const png = await jimp.read(fn)
+  png.contrast(.3);
+  png.posterize(.05);
+
+  /*
   png.contrast(.2);
   png.posterize(.8);
-
   const offxs = [409, 532, 662, 805, 929, 1096, 1287];
   const offy = 418; 
   const boxws = [114, 122, 134, 114, 158,  152,  116];
   const steph = 31.61;
+  */
+  const offxs = [409, 532, 660, 802, 926, 1093, 1284];
+  const offy = 423; 
+  const boxws = [114, 122, 134, 114, 158,  152,  116];
+  const steph = 31.67;
 
   const res = []
   let idx = 0;
@@ -225,9 +234,11 @@ const getNums = async (fn) => { // 枠線自動認識させたい
         const num = await img2num(imgc)
         if (DEBUG) {
           imgc.write('_num/' + idx++ + '.png');
+          /*
           if (collect[i].npatients !== num) {
             console.log("error! ", collect[i].npatients, num);
           }
+          */
         }
         line.push(num);
       }
@@ -243,7 +254,7 @@ const checkSum = (data) => {
       const c = data[j][i];
       sum += c === "-" ? 0 : parseInt(c);
     }
-    const chk = data[data.length - 1][i];
+    const chk = parseInt(data[data.length - 1][i]);
     if (sum !== chk) {
       console.log("not match sum:", sum, "must be", chk);
       throw new Error();
@@ -251,14 +262,34 @@ const checkSum = (data) => {
     console.log("ok!", sum, chk);
   }
 };
-const main = async () => {
-  const fn = "../data/covid19japan/000668310.png";
-  const res = await getNums(fn);
+const ocrNums = async (fnpdf) => {
+  /*
+  await pdf2png.pdf2png(fnpdf);
+  const path = fnpdf.substring(0, fnpdf.lastIndexOf("/") + 1);
+  const png1 = path + "0001.png";
+  const png2 = fnpdf.substring(fnpdf.lastIndexOf("/") + 1, fnpdf.length - 3) + "png";
+  fs.renameSync(png1, path + png2);
+  console.log(png1);
+  console.log(png2);
+  const res = await getNums(path + png2);
+  */
+  // 変換エラーがある時は、手動で直した temp/test.csv を使う
+  const res = util.decodeCSV(util.removeBOM(fs.readFileSync("temp/test.csv", "utf-8")));
+  
   console.log(res);
   checkSum(res);
+  return res;
+};
+const main = async () => {
+  // const fn = "../data/covid19japan/000668310.png";
+  const fn = "../data/covid19japan/000675159.png";
+  const res = await getNums(fn);
+  console.log(res);
   fs.writeFileSync("temp/test.csv", util.addBOM(util.encodeCSV(res)));
+  checkSum(res);
 }
-if (require.main === module) {
-  main()
-} else {
-}
+//if (require.main === module) {
+// main()
+//}
+
+export { ocrNums };

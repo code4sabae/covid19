@@ -5,6 +5,8 @@ import util from './util.mjs'
 import pdf2text from './pdf2text.mjs'
 //import pdf2text from './pdf2text.js'
 
+import { ocrNums } from "./covid19japan_ocr.mjs";
+
 //const CACHE_TIME = 1 * 60 * 60 * 1000 // 1hour
 const CACHE_TIME = 10 * 1000 // 10min
 //const CACHE_TIME = 1 * 60 * 1000 // 1min
@@ -586,6 +588,15 @@ const parseURLCovid19 = async function (urlweb) {
   }
   return url.url
 }
+const pi = (s) => {
+  const n = parseInt(s);
+  if (isNaN(n)) {
+    console.log(n);
+    return s;
+  }
+  return n;
+};
+
 const bklist = `https://www.mhlw.go.jp/content/10906000/000628667.pdf
 https://www.mhlw.go.jp/content/10906000/000628697.pdf
 https://www.mhlw.go.jp/content/10906000/000628917.pdf
@@ -650,8 +661,21 @@ const mainV2 = async function () {
     }
   };
   const txt = await pdfToTxt(path + fn);
-  console.log(txt)
-  const csv = text2csvWithCurrentPatients2(txt)
+  console.log("txt", txt, txt.length)
+  let csv = null;
+  if (txt.length === 0) {
+    console.log("OCR mode!");
+    const corecsv = await ocrNums(path + fn);
+    csv = util.decodeCSV(util.removeBOM(fs.readFileSync("../data/covid19japan/000674737.pdf.csv", "utf-8")));
+    console.log(csv.length, corecsv.length);
+    for (let i = 0; i < corecsv.length - 2; i++) {
+      for (let j = 0; j < csv[i + 1].length - 1; j++) {
+        csv[i + 1][j + 1] = pi(corecsv[i][j]);
+      }
+    }
+  } else {
+    csv = text2csvWithCurrentPatients2(txt)
+  }
   console.log(csv)
  
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
@@ -675,14 +699,6 @@ const mainV2_hand = () => {
   const urlweb = "https://www.mhlw.go.jp/stf/newpage_13380.html";
   const csv = util.decodeCSV(util.removeBOM(fs.readFileSync(path + fn + '.csv', "utf-8")));
 
-  const pi = (s) => {
-    const n = parseInt(s);
-    if (isNaN(n)) {
-      console.log(n);
-      return s;
-    }
-    return n;
-  };
   for (let i = 0; i < csv.length; i++) {
     for (let j = 0; j < csv[i].length; j++) {
       csv[i][j] = pi(csv[i][j]);
