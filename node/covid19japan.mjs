@@ -664,7 +664,8 @@ const mainV2 = async function () {
   console.log("txt", txt, txt.length)
   let csv = null;
   if (txt.length === 0) {
-    console.log("OCR mode!");
+    console.log("OCR mode! must set lastUpdate");
+    Deno.exit(0);
     const corecsv = await ocrNums(path + fn);
     csv = util.decodeCSV(util.removeBOM(fs.readFileSync("../data/covid19japan/000674737.pdf.csv", "utf-8")));
     console.log(csv.length, corecsv.length);
