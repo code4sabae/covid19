@@ -1,5 +1,5 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata","nseriouspatients","ncurrentpatients_hospital","ncurrentpatients_hotel","nheavycurrentpatients"
-"Hokkaido",2141,135,1899,107,"2020-10-02T20:41:24","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
+"Hokkaido",2159,136,1916,107,"2020-10-03T20:28:30","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,,
 "Chiba",3968,292,3604,72,"2020-10-02","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html","https://www.pref.chiba.lg.jp/shippei/press/2019/ncov-index.html",,,,
 "Tokyo",26376,2067,23898,411,"2020-10-03T19:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,,
 "Fukui",244,2,231,11,"2020-10-03T14:22:58","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",,,,
