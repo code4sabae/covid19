@@ -45,4 +45,4 @@
 "大分県","Oita","https://www.pref.oita.jp/site/covid19-oita/","https://data.bodik.jp/dataset/_covid19","https://data.bodik.jp/dataset/_covid19/resource/3714d264-70f3-4518-a57a-8391e0851d7d","http://data.bodik.jp/dataset/f632f467-716c-46aa-8838-0d535f98b291/resource/3714d264-70f3-4518-a57a-8391e0851d7d/download/440001oitacovid19patients.csv",,,,,,,,,,,"退院数不明、退院フラグが更新されていない"
 "宮崎県","Miyazaki","https://www.pref.miyazaki.lg.jp/kansensho-taisaku/kenko/hoken/covid19.html",,,,,,,,,,,,,,"オープンデータなし"
 "鹿児島県","Kagoshima","https://www.pref.kagoshima.jp/ae06/kenko-fukushi/kenko-iryo/kansen/kansensho/coronavirus.html",,,,,,,,,,,,,,"オープンデータなし"
-"沖縄県","Okinawa","https://www.pref.okinawa.jp/site/hoken/chiikihoken/kekkaku/covid19_hasseijoukyou.html",,,,,,,,,,,,,,"オープンデータなし"
+"沖縄県","Okinawa","https://www.pref.okinawa.jp/site/hoken/chiikihoken/kekkaku/covid19_hasseijoukyou.html",,,"https://www.pref.okinawa.lg.jp/site/hoken/chiikihoken/kekkaku/press/documents/youseisyaitiran.csv",,,,,,,,,,,"オープンデータなし"
