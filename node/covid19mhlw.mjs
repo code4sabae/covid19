@@ -54,6 +54,7 @@ const make = async () => {
     console.log(fn);
     const csv = util.readCSV(path + fn);
     const json = util.csv2json(csv);
+    console.log(path + fn);
     for (const d of json) {
       const dt = d.日付 = normalizeDate(d.日付);
       const a = data[dt];
