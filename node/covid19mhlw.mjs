@@ -46,6 +46,9 @@ const make = async () => {
   const normalizeDate = d => {
     console.log(d);
     const num = d.match(/(\d+)\/(\d+)\/(\d+)/);
+    if (!num || num.length < 4) {
+      return null;
+    }
     return `${num[1]}-${util.fix0(num[2], 2)}-${util.fix0(num[3], 2)}`;
   };
   for (const l of list2_daily) {
@@ -56,7 +59,11 @@ const make = async () => {
     const json = util.csv2json(csv);
     console.log(path + fn);
     for (const d of json) {
-      const dt = d.日付 = normalizeDate(d.日付);
+      const dt = normalizeDate(d.日付);
+      if (!dt) {
+        continue;
+      }
+      d.日付 = dt;
       const a = data[dt];
       if (a) {
         Object.assign(a, d);
