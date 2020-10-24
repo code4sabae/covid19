@@ -84,7 +84,7 @@ const json2txt = function (json) {
     }
   }
   res.unshift(res.length)
-  return res.join('\r\n')
+  return res.join('\r\n') + "\r\n";
 }
 const main = async function () {
   const dstfnbase = '../data/covid19japan-trend'
