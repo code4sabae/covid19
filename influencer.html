@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162141832-1"></script>
+<script>
+window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-162141832-1')
+</script>
+<meta charset="utf-8">
+	<title>全国インフルエンザ報告数（厚労省）</title>
+<style>
+body {
+	text-align: center;
+}
+a {
+	color: gray !important;
+}
+</style>
+</head><body>
+<h1>全国インフルエンザ報告数（厚労省データ使用）</h1>
+<script type="module">
+
+import Chart from "https://code4sabae.github.io/kafumon/lib/Chart.mjs";
+
+const showChart = (chart, data) => {
+	const labels = [];
+	for (let i = 0; i < data.length; i++) {
+		const d = data[i];
+		labels.push(d.開始日);
+	}
+	const data1 = [];
+	const data2 = [];
+	for (let i = 0; i < data.length; i++) {
+		const d = data[i];
+		data1.push(d.総数);
+		data2.push(d["昨年同期（総数）"]);
+	}
+	const makeColor = hue => {
+		return `hsla(${hue},60%,50%,100%)`;
+	};
+	const datasets = [];
+	datasets.push({ type: "line", label: "2020年度", fill: false, borderColor: makeColor(0), lineTension: 0, data: data1 });
+	datasets.push({ type: "line", label: "2019年度", fill: false, borderColor: makeColor(30), lineTension: 0, data: data2 });
+	
+  const config = {
+    data: { labels, datasets },
+    options: {
+      scales: {
+        xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
+        yAxes: [{ scaleLabel: { display: true, labelString: "報告数総数" }, ticks: { beginAtZero: true } }],
+      },
+      legend: { display: true }
+    }
+	};
+	
+  chart.width = 600;
+  chart.height = 320;
+  new Chart.Chart(chart, config);
+};
+
+window.onload = async () => {
+	const data = await (await fetch("https://www.stopcovid19.jp/data/covid19influ.json")).json();
+	console.log(data);
+	showChart(canvas, data);
+
+};
+</script>
+<canvas id="canvas"></canvas>
+<div>
+	Data: CC BY <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou_00008.html>インフルエンザ定点当たり報告数・都道府県別（厚労省）PDF</a>→<a href=https://www.stopcovid19.jp/data/covid19influ.csv>CSV</a>/<a href=https://www.stopcovid19.jp/data/covid19influ.json>JSON</a><br>
+	App: CC BY <a href=https://fukuno.jig.jp/3002>厚労省発表 都道府県別インフルエンザ報告数をCSV/JSONでチェックする 福野泰介の一日一創</a><br>
+</div>
+
+<div style="margin:1em">
+	<a href="https://www.stopcovid19.jp/">
+	<img src=img/stopcovid19_banner.png style="width:70vw"><br>
+	「COVID-19 JAPAN 新型コロナウイルス対策ダッシュボード」<br>
+	</a>
+</div>
+
+</body><html>
