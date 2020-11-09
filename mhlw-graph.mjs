@@ -34,11 +34,11 @@ const main = async (parent) => {
     data: {
       labels: date,
       datasets: [
-        { type: "line", label: "PCR 検査陽性者数", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "line", label: "入院治療を要する者", data: data_c, borderColor: 'rgb(80, 80, 205)', fill: false, lineTension: 0, yAxisID: "yr" },
+        { type: "line", label: "PCR 検査陽性者数", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
         // { type: "line", label: "死亡者数", data: data_dd, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "line", label: "累計死亡者数", data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
-        { type: "bar", label: "PCR 検査実施件数", data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" }
+        { type: "bar", label: "PCR 検査実施件数", hidden: true, data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" }
       ]
     },
     options: {
