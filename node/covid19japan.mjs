@@ -444,6 +444,42 @@ const writeCSVbyJSON = function (fn, json) {
   const scsv = util.encodeCSV(util.json2csv(json))
   fs.writeFileSync(fn, util.addBOM(scsv))
 }
+const makeCovid19JapanPrefs = () => {
+  const path = '../data/covid19japan/';
+  const dstpath = '../data/covid19japan/pref/';
+  const flist = fs.readdirSync(path)
+
+  flist.sort();
+  const pref = {};
+  for (const f of flist) {
+    if (!f.endsWith(".csv") || f.endsWith(".pdf.csv")) {
+      continue;
+    }
+    const data = util.csv2json(util.decodeCSV(util.removeBOM(fs.readFileSync(path + f, "utf-8"))));
+    const date = f.substring(0, f.length - 4)
+    //console.log(date);
+    for (const p of data) {
+      //console.log(p);
+      const name = p.name;
+      let pp = pref[name];
+      if (!pp) {
+        pp = pref[name] = [];
+      }
+      const p2 = { date };
+      delete p.name;
+      delete p.name_jp;
+      Object.assign(p2, p);
+      pp.push(p2);
+    }
+  }
+  for (const p in pref) {
+    // console.log(pref[p]);
+    const data = util.addBOM(util.encodeCSV(util.json2csv(pref[p])));
+    const dstname = dstpath + p + ".csv";
+    fs.writeFileSync(dstname, data);
+    console.log(dstname, p, data.length);
+  }
+};
 const mainV1 = async function () {
   // await makeCovid19JapanByPDF('https://www.mhlw.go.jp/content/10900000/000622869.pdf', '../data/covid19japan/000622869.pdf')
 
@@ -717,10 +753,12 @@ const mainV2_hand = () => {
 };
 
 const main = async () => {
-  // await mainV1()
-  await mainV2()
-  //mainV2_hand();
-  makeCovid19JapanList()
+  // await mainV1() // old
+  //mainV2_hand(); // old
+
+  // await mainV2();
+  // makeCovid19JapanList();
+  makeCovid19JapanPrefs();
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
   main()

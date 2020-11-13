@@ -19,8 +19,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png"/>
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20201112234223.png"/>
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20201112234223.png"/>
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20201113225618.png"/>
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20201113225618.png"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="format-detection" content="telephone=no"/>
@@ -865,12 +865,77 @@ const showChart = async function(data) {
 		window.open(data.url)
 		e.stopPropagation()
 	}
+	// 推移
+	detail_graph.innerHTML = "";
+	showAreaMapGraph(detail_graph, data.data.name);
 
+	// 東京
 	detail_areamap.innerHTML = ''
 	if (data.data.name == 'Tokyo') {
 		await showAreaMapTokyo()
 	}
 }
+// 推移グラフ
+const showAreaMapGraph = async (parent, pref) => {
+	const fn = `data/covid19japan/pref/${pref}.csv`;
+	const json = await fetchCSV(fn);
+	console.log(fn, json);
+
+  const date = [];
+  const data1 = [];
+  const data2 = [];
+  const data_c = [];
+	const data_d = [];
+	let bkis = null;
+  for (const d of json) {
+		date.push(d.date);
+		data_c.push(d.ncurrentpatients);
+		data_d.push(d.ndeaths);
+		if (d.ninspections === undefined) {
+			data2.push(0);
+		} else {
+			const n = parseInt(d.ninspections);
+			if (bkis === null) {
+				data2.push(n);
+			} else {
+				data2.push(n - bkis);
+			}
+			bkis = n;
+		}
+  }
+	const config = {
+    data: {
+      labels: date,
+      datasets: [
+        { type: "line", label: "入院治療を要する者", data: data_c, borderColor: 'rgb(80, 80, 205)', fill: false, lineTension: 0, yAxisID: "yr" },
+        //{ type: "line", label: "PCR 検査陽性者数", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
+        // { type: "line", label: "死亡者数", data: data_dd, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
+        { type: "line", label: "累計死亡者数", data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
+        //{ type: "bar", label: "PCR 検査実施件数", hidden: false /*true*/, data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" }
+      ]
+    },
+    options: {
+      scales: {
+        xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
+        yAxes: [
+        { id: "yr", position: "right", scaleLabel: { display: true, labelString: /*"PCR 検査実施件数・*/ "現在入院治療を要する者" }, ticks: { beginAtZero: true } },
+        { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数・累計死亡者数" }, ticks: { beginAtZero: true } },
+        ],
+      },
+      legend: { display: true }
+    }
+  };
+
+  parent.style.display = "block";
+  parent.style.marginBottom = ".5em";
+
+  const chart = document.createElement("canvas");
+  chart.width = 600;
+  chart.height = 350;
+  new Chart.Chart(chart, config);
+  parent.appendChild(chart);
+};
+// 東京マップ
 const TOKYO_CITY_MAP = `奥多摩町 青梅市 武蔵村山市 東村山市 清瀬市 板橋区 北区 足立区
 日の出町 瑞穂町 立川市 東大和市 東久留米市 練馬区 文京区 荒川区
 あきる野市 羽村市 国分寺市 小平市 西東京市 中野区 千代田区 台東区
@@ -1131,7 +1196,8 @@ const makeJapanHTML = function() {
 	<canvas id='chart'></canvas>
 	<div id="detaildesc"></div>
 	<div id="detailvent"></div>
-	<div id='detail_areamap'></div>
+	<div id="detail_graph"></div>
+	<div id="detail_areamap"></div>
 	<div id='detailbtns'>
 		<button id='btnclose'>とじる</button>
 		<button id='btnapp'>アプリへ</button>
