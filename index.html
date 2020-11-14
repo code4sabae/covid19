@@ -877,6 +877,9 @@ const showChart = async function(data) {
 }
 // 推移グラフ
 const showAreaMapGraph = async (parent, pref) => {
+	if (!pref) {
+		return;
+	}
 	const fn = `data/covid19japan/pref/${pref}.csv`;
 	const json = await fetchCSV(fn);
 	console.log(fn, json);
