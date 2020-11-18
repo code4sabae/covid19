@@ -2,8 +2,8 @@ import Chart from "https://code4sabae.github.io/kafumon/lib/Chart.mjs";
 import util from "https://taisukef.github.io/util/util.mjs";
 
 const main = async (parent) => {
-  //const url = "https://www.stopcovid19.jp/data/mhlw_go_jp/opendata/covid19.csv";
-  const url = "data/covid19forecast/google/latest.csv";
+  const url = "https://www.stopcovid19.jp/data/covid19forecast/google/latest.csv";
+  // const url = "data/covid19forecast/google/latest.csv";
 
   const json = await util.fetchCSVtoJSON(url);
   console.log(json);
@@ -14,7 +14,16 @@ const main = async (parent) => {
   }
 
 };
+const getAttributes = (parent) => {
+  const atts = {};
+  for (const a of parent.attributes) {
+    atts[a.nodeName] = a.value;
+  }
+  return atts;
+};
 const makeGraph = async (json, prefcode, parent) => {
+  const atts = getAttributes(parent);
+
   const date = [];
   const data1 = [];
   const data_c = [];
@@ -35,6 +44,13 @@ const makeGraph = async (json, prefcode, parent) => {
     name = d.prefecture_name_kanji;
     nameen = d.prefecture_name;
   }
+
+  if (atts["view-pref"]) {
+    if (atts["view-pref"].toUpperCase() !== nameen.toUpperCase()) {
+      return;
+    }
+  }
+
   /*
   const data_dd = data_d.map((n, i, a) => {
     if (i === 0) {
@@ -88,11 +104,7 @@ const makeGraph = async (json, prefcode, parent) => {
   new Chart.Chart(chart, config);
   parent.appendChild(chart);
 
-  const atts = {};
-  for (const a of parent.attributes) {
-    atts[a.nodeName] = a.value;
-  }
-  if (atts["view-src"] && atts["view-src"]) {
+  if (atts["view-src"]) {
     const div = document.createElement("div");
     div.style.textAlign = "center";
     div.innerHTML = "データ出典：<a href='https://datastudio.google.com/reporting/8224d512-a76e-4d38-91c1-935ba119eb8f/page/4KwoB'>Japan: COVID-19 Public Forecasts › 日本語 - Japan COVID-19 Forecast Dashboard</a>";
