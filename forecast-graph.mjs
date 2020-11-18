@@ -20,6 +20,7 @@ const makeGraph = async (json, prefcode, parent) => {
   const data_c = [];
   const data_d = [];
   let name = null;
+  let nameen = null;
   for (const d of json) {
     if (d.japan_prefecture_code !== prefcode) {
       continue;
@@ -32,6 +33,7 @@ const makeGraph = async (json, prefcode, parent) => {
     data_c.push(d.hospitalized_patients); // ["入院治療を要する者"]);
     data_d.push(d.new_deaths); // ["死亡者数"]); 累計ではない
     name = d.prefecture_name_kanji;
+    nameen = d.prefecture_name;
   }
   /*
   const data_dd = data_d.map((n, i, a) => {
@@ -72,7 +74,10 @@ const makeGraph = async (json, prefcode, parent) => {
   const h2 = document.createElement("h2");
   h2.textContent = title;
   h2.style.textAlign = "center";
-  parent.appendChild(h2);
+  const a = document.createElement("a");
+  a.name = nameen;
+  a.appendChild(h2);
+  parent.appendChild(a);
 
   parent.style.display = "block";
   parent.style.marginBottom = ".5em";
