@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162141832-1"></script>
+<script>
+window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-162141832-1')
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	text-align: center;
+}
+h1 {
+	font-size: 4vw;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>COVID-19 Japan 都道府県別感染者予測</h1>
+<script type="module" src="forecast-graph.mjs"></script>
+<forecast-graph view-src=true></forecast-graph>
+
+<div>App: <a href=https://fukuno.jig.jp/>一日一創 福野泰介</a>
+</div>
+
+<div style="margin:1em;text-align:center;">
+	<a href="https://www.stopcovid19.jp/">
+	<img src=img/stopcovid19_banner.png style="width:70vw"><br>
+	「COVID-19 JAPAN 新型コロナウイルス対策ダッシュボード」<br>
+	</a>
+</div>
+
+</body>
+</html>
