@@ -658,7 +658,7 @@ const mainV2 = async function () {
   //process.exit(0);
   const urlweb = await parseURLCovid19Latest(urlweb7)
   console.log(urlweb)
-  /// process.exit(0);
+  //process.exit(0);
 
 
   //const urlweb = "https://www.mhlw.go.jp/stf/newpage_12236.html";
@@ -756,7 +756,7 @@ const main = async () => {
   // await mainV1() // old
   //mainV2_hand(); // old
 
-  // await mainV2();
+  await mainV2();
   // makeCovid19JapanList();
   makeCovid19JapanPrefs();
 }
