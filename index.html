@@ -884,6 +884,17 @@ const showChart = async function(data) {
 	if (data.data.name == 'Tokyo') {
 		await showAreaMapTokyo()
 	}
+
+	// hash
+	{
+		const pref = data.data.name;
+		const hash = document.location.hash;
+		if (hash.indexOf('en') >= 0) {
+			document.location.hash = pref + ",en";
+		} else {
+			document.location.hash = pref;
+		}
+	}
 }
 // 推移グラフ
 const showAreaMapGraph = async (parent, pref) => {
