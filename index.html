@@ -784,6 +784,16 @@ const main = async function() {
 		downloadImage('covid19japan.png', canvas.toDataURL())
 	}
 	*/
+
+	// hash
+	for (let i = 0; i < PREF_EN.length; i++) {
+		const pref = PREF_EN[i];
+		if (document.location.hash.indexOf(pref) >= 0) {
+			const div = get("jp" + (i + 1));
+			showChart(div);
+			break;
+		}
+	}
 }
 document.addEventListener("DOMContentLoaded", main)
 
