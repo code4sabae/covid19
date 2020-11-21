@@ -757,7 +757,7 @@ const main = async () => {
   //mainV2_hand(); // old
 
   await mainV2();
-  // makeCovid19JapanList();
+  makeCovid19JapanList();
   makeCovid19JapanPrefs();
 }
 if (process.argv[1].endsWith('/covid19japan.mjs')) {
