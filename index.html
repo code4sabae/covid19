@@ -841,7 +841,7 @@ const showChart = async function(data) {
 	const bed = data.data.bed
 	if (bed && bed.sumc_src) {
 		console.log(bed.sumc_src)
-		detaildesc.innerHTML += tx(`<br>対策病床数 出典元: <a href="${bed.sumc_src['出典']}">新型コロナウイルス対策病床数オープンデータ</a>`)
+		detaildesc.innerHTML += tx(`<br>対策病床数 出典元: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html" xhref="${bed.sumc_src['出典']}">新型コロナウイルス対策病床数オープンデータ</a>`)
 		if (bed.sumc_src['備考']) {
 			detaildesc.innerHTML += tx(` * ${bed.sumc_src['備考']}`)
 		}
@@ -1260,8 +1260,8 @@ const makeJapanHTML = function() {
 				<label><input type=checkbox id='bedk'>二種(結核)</label>
 				<label><input type=checkbox id='beds'>二種(一般/精神)</label>
 			</div>
-			<label><input type=checkbox id='usebednow' checked>「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス対策病床数オープンデータ</a>」を使用</label><br>
-			<label><input type=checkbox id='usepatientsnow' checked>「<a href=https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing>新型コロナウイルス患者数オープンデータ</a>」を使用(速報)</label><br>
+			<label><input type=checkbox id='usebednow' checked>「<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html" xhref=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit?usp=sharing>新型コロナウイルス対策病床数オープンデータ</a>」を使用</label><br>
+			<label><input type=checkbox id='usepatientsnow' checked>「<a href="https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit?usp=sharing">新型コロナウイルス患者数オープンデータ</a>」を使用(速報)</label><br>
 			<!--<label><input type=checkbox id='usepatientspeek'><a href=https://www.jmari.med.or.jp/>日本医師会総合政策研究機構</a>「<a href=https://www.jmari.med.or.jp/research/research/wr_697.html>ピーク時予測患者数</a>」を表示</label><label><input type=checkbox id=usepatientspeekh>（重症患者のみ）</label></label><br>-->
 		</div>
 	</div>
@@ -1273,7 +1273,7 @@ const makeJapanHTML = function() {
 <div class='description'>
 	<div id="description"></div>
 	<div id='description2'>
-	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href=https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00034.html>詳細</a>）
+	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00034.html">詳細</a>）
 	<!--現在患者数や現在新型コロナ対策病床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております--><br>
 	<!--（現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>-->
 	（現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より減少）<br>
