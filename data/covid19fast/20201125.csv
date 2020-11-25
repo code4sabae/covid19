@@ -2,7 +2,7 @@
 "Hokkaido",7585,2359,5068,158,"2020-11-24T20:39:57","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html",,,
 "Tokyo",38598,3711,34405,482,"2020-11-25T20:00","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc",,,
 "Fukui",305,29,265,11,"2020-11-25T13:08:52","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html",,,
-"Osaka",18141,3230,14629,282,"2020-11-25T13:24","https://raw.githubusercontent.com/codeforosaka/covid19/master/data/data.json","https://github.com/codeforosaka/covid19",,,
+"Osaka",18459,3316,14858,285,"2020-11-25T20:41","https://raw.githubusercontent.com/codeforosaka/covid19/master/data/data.json","https://github.com/codeforosaka/covid19",,,
 "Wakayama",402,77,321,4,"2020-11-25T13:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html",,,
 "Yamaguchi",353,121,230,2,"2020-11-24T12:01:13","https://yamaguchi-opendata.jp/ckan/dataset/f6e5cff9-ae43-4cd9-a398-085187277edf/resource/1a5f9bca-3216-45df-8a99-5c591df8f628/download/350001_yamaguchi_covid19_hospitalization.csv","https://yamaguchi-opendata.jp/ckan/dataset/f6e5cff9-ae43-4cd9-a398-085187277edf ",,,
 "Ehime",265,130,129,6,"2020-11-25T09:00","https://www.pref.ehime.jp/h25500/kansen/documents/kennai_link.pdf","https://www.pref.ehime.jp/h25500/kansen/covid19.html",24,56,3
