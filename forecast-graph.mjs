@@ -1,8 +1,12 @@
 import Chart from "https://code4sabae.github.io/kafumon/lib/Chart.mjs";
 import util from "https://taisukef.github.io/util/util.mjs";
+import { CSV } from "https://code4sabae.github.io/js/CSV.js";
 
 const main = async (parent) => {
-  const url = "https://www.stopcovid19.jp/data/covid19forecast/google/latest.csv";
+  const atts = getAttributes(parent);
+
+  const fn = atts.date || "latest";
+  const url = "https://www.stopcovid19.jp/data/covid19forecast/google/" + fn + ".csv";
   // const url = "data/covid19forecast/google/latest.csv";
 
   const json = await util.fetchCSVtoJSON(url);
@@ -85,6 +89,11 @@ const makeGraph = async (json, prefcode, parent) => {
       legend: { display: true }
     }
   };
+  if (atts.date) {
+    const actual = await getActualData(atts["view-pref"]);
+    console.log(actual);
+    config.data.datasets.push({type: "bar", label: "入院を要する者（実測）", data: actual, yAxisID: "yr" });
+  }
 
   const title = "COVID-19 " + name + "のPCR検査陽性者数、入院者数 予測値";
   const h2 = document.createElement("h2");
@@ -110,6 +119,35 @@ const makeGraph = async (json, prefcode, parent) => {
     div.innerHTML = "データ出典：<a href='https://datastudio.google.com/reporting/8224d512-a76e-4d38-91c1-935ba119eb8f/page/4KwoB'>Japan: COVID-19 Public Forecasts › 日本語 - Japan COVID-19 Forecast Dashboard</a>";
     parent.appendChild(div);
   }
+};
+const getActualData = async (pref) => {
+	const fn = `data/covid19japan/pref/${pref}.csv`;
+	const json = await CSV.fetch(fn);
+	console.log(fn, json);
+
+  const date = [];
+  const data1 = [];
+  const data2 = [];
+  const data_c = [];
+	const data_d = [];
+	let bkis = null;
+  for (const d of json) {
+		date.push(d.date);
+		data_c.push(d.ncurrentpatients);
+		data_d.push(d.ndeaths);
+		if (d.ninspections === undefined) {
+			data2.push(0);
+		} else {
+			const n = parseInt(d.ninspections);
+			if (bkis === null) {
+				data2.push(n);
+			} else {
+				data2.push(n - bkis);
+			}
+			bkis = n;
+		}
+  }
+  return data_c;
 };
 
 class ForecastGraph extends HTMLElement {
