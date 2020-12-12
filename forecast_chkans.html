@@ -36,43 +36,32 @@ h2 {
 
 <script type="module">
 import { PREF, PREF_EN } from "./japan.js";
+import { CSV } from "https://code4sabae.github.io/js/CSV.js";
 
-const appendOptions = (sel, ar) => {
-	for (const d of ar) {
-		const opt = document.createElement("option");
-		opt.textContent = d;
-		sel.appendChild(opt);
+window.onload = async () => {
+	const appendOptions = (sel, ar) => {
+		for (const d of ar) {
+			const opt = document.createElement("option");
+			opt.textContent = d;
+			sel.appendChild(opt);
+		}
+	};
+
+	const dates = await CSV.fetch("data/covid19forecast/google/list.csv");
+	dates.shift();
+	appendOptions(seldate, dates);
+	console.log(dates);
+
+	appendOptions(selpref, PREF);
+	seldate.onchange = selpref.onchange = () => {
+		const pref = PREF_EN[PREF.indexOf(selpref.value)];
+		main.innerHTML = `<forecast-graph view-src=true view-pref="${pref}" date="${seldate.value}"></forecast-graph>`;
+	};
+	if (document.location.hash.length > 1) {
+		selpref.value = PREF[PREF_EN.indexOf(document.location.hash.substring(1))];
 	}
+	selpref.onchange();
 };
-
-appendOptions(seldate, [
-"2020-11-15",
-"2020-11-16",
-"2020-11-17",
-"2020-11-18",
-"2020-11-19",
-"2020-11-20",
-"2020-11-22",
-"2020-11-23",
-"2020-11-24",
-"2020-11-25",
-"2020-11-26",
-"2020-11-28",
-"2020-11-30",
-"2020-12-01",
-"2020-12-02",
-"2020-12-03",
-]);
-
-appendOptions(selpref, PREF);
-seldate.onchange = selpref.onchange = () => {
-	const pref = PREF_EN[PREF.indexOf(selpref.value)];
-	main.innerHTML = `<forecast-graph view-src=true view-pref="${pref}" date="${seldate.value}"></forecast-graph>`;
-};
-if (document.location.hash.length > 1) {
-	selpref.value = PREF[PREF_EN.indexOf(document.location.hash.substring(1))];
-}
-selpref.onchange();
 </script>
 
 <div id="main">
