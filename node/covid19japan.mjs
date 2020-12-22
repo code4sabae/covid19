@@ -729,12 +729,51 @@ const mainV2 = async function () {
 
   // }
 };
-const mainV2_hand = () => {
+const pdf2csv = async (path, fn) => {
+  const pdfToTxt = async (fn) => {
+    try {
+      return await pdf2text.pdf2text(fn, 2)
+    } catch (e) {
+      return await pdf2text.pdf2text(fn)
+    }
+  };
+  const txt = await pdfToTxt(path + fn);
+  console.log("txt", txt, txt.length)
+  let csv = null;
+  if (txt.length === 0) {
+    console.log("OCR mode! must set lastUpdate");
+    Deno.exit(0);
+    const corecsv = await ocrNums(path + fn);
+    csv = util.decodeCSV(util.removeBOM(fs.readFileSync("../data/covid19japan/000674737.pdf.csv", "utf-8")));
+    console.log(csv.length, corecsv.length);
+    for (let i = 0; i < corecsv.length - 2; i++) {
+      for (let j = 0; j < csv[i + 1].length - 1; j++) {
+        csv[i + 1][j + 1] = pi(corecsv[i][j]);
+      }
+    }
+  } else {
+    csv = text2csvWithCurrentPatients2(txt)
+  }
+  console.log(csv)
+ 
+  fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
+};
+const mainV2_hand = async () => {
   const path = '../data/covid19japan/';
-  const fn = "000668310.pdf";
-  const txt = "2020/9/4 24時時点";
+  //17
+  
+  const fn = "000706505.pdf";
+  const txt = "2020/12/17 24時時点";
+  const urlweb = "https://www.mhlw.go.jp/stf/newpage_15597.html";
+  
+  //16
+  /*
+  const fn = "000708650.pdf";
+  const txt = "2020/12/16 24時時点";
+  const urlweb = "https://www.mhlw.go.jp/stf/newpage_15561.html";
+*/
   const url = "https://www.mhlw.go.jp/content/10906000/" + fn;
-  const urlweb = "https://www.mhlw.go.jp/stf/newpage_13380.html";
+  await pdf2csv(path, fn);
   const csv = util.decodeCSV(util.removeBOM(fs.readFileSync(path + fn + '.csv', "utf-8")));
 
   for (let i = 0; i < csv.length; i++) {
@@ -755,8 +794,8 @@ const mainV2_hand = () => {
 
 const main = async () => {
   // await mainV1() // old
-  //mainV2_hand(); // old
-
+  //await mainV2_hand();
+  
   await mainV2();
   makeCovid19JapanList();
   makeCovid19JapanPrefs();
