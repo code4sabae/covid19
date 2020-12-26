@@ -11,9 +11,12 @@ const PREF_EN = util.JAPAN_PREF_EN
 const parseURLCovid19Latest = async function (urlweb) {
   const html = await (await fetch(urlweb)).text();
   // console.log(html)
-  const title = "新型コロナウイルス感染症患者の療養状況等及び入院患者受入病床数等に関する調査結果";
+  //const title = "新型コロナウイルス感染症患者の療養状況等及び入院患者受入病床数等に関する調査結果";
+  const title = "PDF形式";
   const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
-  return parseLink(html, title, baseurl);
+  const res = parseLink(html, title, baseurl);
+  res.dt = "2020-12-23";
+  return res;
 }
 
 const parseWeek = function(s) {
