@@ -9,7 +9,11 @@
   "author": "Taisuke Fukuno <fukuno@jig.jp> (https://fukuno.jig.jp/)",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "iconv-lite": "^0.6.2",
     "jimp": "^0.16.1",
+    "live-server": "^1.2.1",
+    "node-fetch": "^2.6.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
     "webdriverio": "^6.5.0"
   }

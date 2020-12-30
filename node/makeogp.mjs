@@ -4,6 +4,9 @@ import Jimp from 'jimp'
 import util from './util.mjs'
 import cmd from './cmd.mjs'
 
+// const url = 'http://localhost:8888/fukunojigjp/app/covid19/#ja'
+const url = 'http://127.0.0.1:8080/#ja'
+
 const { Builder, By, until } = webdriver
 
 const capabilities = webdriver.Capabilities.chrome()
@@ -64,7 +67,6 @@ const main = async function () {
     await saveOGP(url, dstfn)
     //await cmd.cmd('open ' + dstfn)
   } else {
-    const url = 'http://localhost:8888/fukunojigjp/app/covid19/#ja'
     const debug = false
     const path = debug ? 'temp/' : '../ogp/'
     const dstfn = 'covid19japan_ogp_' + util.getYMDHMS() + '.png'
