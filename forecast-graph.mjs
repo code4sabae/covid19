@@ -92,7 +92,7 @@ const makeGraph = async (json, prefcode, parent) => {
   };
   if (atts.date) {
     const actual = await getActualData(atts["view-pref"], date.map(stdDate));
-    console.log(actual);
+    // console.log(actual);
     config.data.datasets.push({type: "bar", label: "入院を要する者（結果）", backgroundColor: 'rgb(80, 80, 205, .2)', data: actual, yAxisID: "yr" });
   }
 
@@ -133,25 +133,25 @@ const stdDate = (dt) => {
   const d = new Date();
   const month = n[1];
   const day = n[2];
-  const year = d.getFullYear() + (month < 8 ? 1 : 0);
-  return year + "-" + fix0(month, 2) + "-" + fix0(day, 2);
+  const year = d.getFullYear() - (month < 8 ? 0 : 1);
+  const res = year + "-" + fix0(month, 2) + "-" + fix0(day, 2);
+  return res;
 };
 const getActualData = async (pref, date) => {
 	const fn = `data/covid19japan/pref/${pref}.csv`;
 	const json = CSV.toJSON(await CSV.fetch(fn));
-	console.log(fn, json);
 
   const data1 = [];
   const data2 = [];
   const data_c = [];
 	const data_d = [];
-	let bkis = null;
+  let bkis = null;
   for (const dt of date) {
     const d = json.find((d) => d.date == dt);
     if (!d) {
       continue;
     }
-    console.log(dt, d);
+    // console.log(dt, d);
 		data_c.push(d.ncurrentpatients);
 		data_d.push(d.ndeaths);
 		if (d.ninspections === undefined) {
