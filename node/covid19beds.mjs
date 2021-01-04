@@ -15,8 +15,9 @@ const parseURLCovid19Latest = async function (urlweb) {
   const title = "PDF形式";
   const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
   const res = parseLink(html, title, baseurl);
+  console.log(res);
   // res.dt = "2020-12-23";
-  Deno.exit(0);
+  process.exit(0);
   return res;
 }
 
