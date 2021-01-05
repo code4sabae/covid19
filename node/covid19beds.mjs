@@ -8,6 +8,20 @@ import pdf2text from './pdf2text.mjs'
 const PREF = util.JAPAN_PREF
 const PREF_EN = util.JAPAN_PREF_EN
 
+const parseLastUpdate = (txt) => {
+  const n = txt.match(/（(\d+)月(\d+)日0時時点）/);
+  if (n) {
+    const m = parseInt(n[1]);
+    const d = parseInt(n[2]);
+    const nowm = new Date().getMonth() + 1;
+    const y = new Date().getFullYear() - (nowm == 1 ? 1 : 0);
+    return util.fix0(y, 4) + "-" + util.fix0(m, 2) + "-" + util.fix0(d, 2);
+  }
+  return null;
+};
+//console.log(parseLastUpdate(["新型コロナウイルス感染症患者の療養状況、病床数等に関する調査結果（12月30日0時時点）"]));
+//process.exit(0);
+
 const parseURLCovid19Latest = async function (urlweb) {
   const html = await (await fetch(urlweb)).text();
   // console.log(html)
@@ -17,7 +31,7 @@ const parseURLCovid19Latest = async function (urlweb) {
   const res = parseLink(html, title, baseurl);
   console.log(res);
   // res.dt = "2020-12-23";
-  process.exit(0);
+  // process.exit(0);
   return res;
 }
 
@@ -100,7 +114,7 @@ const makeCovid19JapanBeds = async function () {
     }
     return s;
   };
-  const lastUpdate = cutT(latest.dt);
+  //const lastUpdate = cutT(latest.dt);
   //process.exit(0);
 
   const path = '../data/covid19japan_beds/'
@@ -116,8 +130,14 @@ const makeCovid19JapanBeds = async function () {
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   }
 
-  const txt = await pdf2text.pdf2text(path + fn)
-  console.log(txt)
+  const txt = await pdf2text.pdf2text(path + fn);
+  console.log(txt);
+  const lastUpdate = latest.dt != "--" ? cutT(latest.dt) : parseLastUpdate(txt);
+  console.log("lastUpdate", lastUpdate);
+  if (!lastUpdate) {
+    console.log("err: can't find last update");
+    process.exit(1);
+  }
 
   const csv = text2csv(txt, lastUpdate, url);
   console.log(csv);
