@@ -602,6 +602,8 @@ const makeCurrentPatientsJSON = function (txt, csv, url, urlweb) {
     res.nunknowns += pi(a.nunknowns)
     res.ncurrentpatients += pi(a.ncurrentpatients)
     res.ninspections += pi(a.ninspections)
+    
+    a["ISO3155-2"] = "JP-" + util.fix0(i + 1, 2);
   }
   res.area = area
   return res

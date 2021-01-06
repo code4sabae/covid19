@@ -769,10 +769,10 @@ const main = async function() {
 
 	const url_link = makeURL('covid19pref.json')
 	const json_link = await fetchJSON(url_link)
-	const url_cio = makeURL('covid19cio.json')
-	const json_cio = await fetchJSON(url_cio)
-	console.log(json_cio)
-	showAreas(json_link, url_link, json_cio, json, json_bed.total, getBedCount)
+	//const url_cio = makeURL('covid19cio.json')
+	//const json_cio = await fetchJSON(url_cio)
+	//console.log(json_cio)
+	showAreas(json_link, url_link, json, json_bed.total, getBedCount)
 	//description.textContent = json.description
 
 	//datasrc.innerHTML += tx("<br><a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>")
@@ -1043,16 +1043,10 @@ const showAreas = function(json, url, jsonapp, data_patients, bed_total, getBedC
 	//console.log(bed_total)
 	//jsonapp = { area: [] }
 
-	jsonapp.area.push({ name_jp: "東京都", url: "https://stopcovid19.metro.tokyo.lg.jp/" })
 	for (let i = 0; i < json.length; i++) {
 		const div = get('jp' + (i + 1))
 		const a = json[i]
-		for (let j = 0; j < jsonapp.area.length; j++) {
-			if (jsonapp.area[j].name_jp == a.pref_ja) {
-				div.appurl = jsonapp.area[j].url
-				break
-			}
-		}
+		div.appurl = a.url_app;
 		div.url = a.url
 		div.onclick = async function() {
 			//window.open(this.url)
@@ -1342,7 +1336,7 @@ DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<
 DATA: <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html>療養状況等及び入院患者受入病床数等に関する調査について｜厚生労働省</a> → <a href=https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv>CSV</a>/<a href=https://www.stopcovid19.jp/data/covid19japan_beds/latest.json>JSON</a><br>
 <!--DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a> 「<a href=https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0>新型コロナウイルス対策病床数オープンデータ</a> - <a href=https://www.stopcovid19.jp/>COVID-19 Japan</a>」 <a href=data/bedforinfection_current.json>JSON</a> / <a href=data/bedforinfection_current.csv>CSV</a> (<a href=https://docs.google.com/forms/d/e/1FAIpQLSfksR-2rImboT8gAoiERyLeJ3YtvTlrWP6hF1a5ssgT2vuaoQ/viewform>登録フォーム</a>)<br>-->
 DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html>感染症指定医療機関の指定状況（平成31年4月1日現在）｜厚生労働省</a>」をJSONに加工（<a href=https://code4sabae.github.io/bedforinfection/>感染症病床 都道府県別一覧アプリ</a>）<br>
-DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>
+<!--DATA: <a href=https://creativecommons.org/licenses/by/4.0/deed.ja>CC BY</a>「<a href=https://cio.go.jp/node/2581>東京都のオープンソースを活用した新型コロナウイルス感染症対策サイトの紹介 | 政府CIOポータル</a>」をJSONに加工 (<a href=https://github.com/code4sabae/app_sabae_cc>src on GitHub</a>)<br>-->
 DATA: 許諾「<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>都道府県別 治療用人工呼吸器の取扱台数等 (2020年2月調査時)</a>」 （<a href=http://square.umin.ac.jp/jrcm/index.html>一般社団法人 日本呼吸療法医学会</a>　<a href=https://www.ja-ces.or.jp/>公益社団法人 日本臨床工学技士会</a>）<br>
 LAYOUT: <a href=https://creativecommons.org/share-your-work/public-domain/cc0>CC0</a> <a href=https://hackmd.io/7m2A33zJSWq6DA9lYbvtpQ>カラム地図</a> (<a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a> / <a href=https://fukuno.jig.jp/2434>7x7都道府県</a>)<br>
 DOMAIN: <a href=https://www.code4japan.org/>Code for Japan</a> - 新型コロナウイルス感染症対策プロジェクト <a href="https://twitter.com/search?q=%23StopCOVID19JP">#StopCOVID19JP</a><br>
