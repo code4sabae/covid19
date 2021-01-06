@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+<title>兵庫県／ご指定のページは見つかりませんでした</title>
+
+<meta name="author" content="兵庫県" />
+<meta name="viewport" content="width=device-width, maximum-scale=3.0" />
+<meta name="format-detection" content="telephone=no" />
+<link href="/shared/style/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/style/shared.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/style/color/color0.css" rel="stylesheet" type="text/css" media="all" id="tmp_color" title="default" class="tmp_color" />
+<link href="/shared/style/color/color1.css" rel="alternate stylesheet" type="text/css" media="all" title="darkblue" class="tmp_color" />
+<link href="/shared/style/color/color2.css" rel="alternate stylesheet" type="text/css" media="all" title="yellow" class="tmp_color" />
+<link href="/shared/style/color/color3.css" rel="alternate stylesheet" type="text/css" media="all" title="black" class="tmp_color" />
+<link href="/shared/style/font/normal.css" rel="stylesheet" type="text/css" id="tmp_font" media="all" title="default" class="tmp_font" />
+<link href="/shared/style/font/small.css" rel="alternate stylesheet" type="text/css" media="all" title="small" class="tmp_font" />
+<link href="/shared/style/font/big.css" rel="alternate stylesheet" type="text/css" media="all" title="big" class="tmp_font" />
+<link href="/shared/style/font/big2.css" rel="alternate stylesheet" type="text/css" media="all" title="big2" class="tmp_font" />
+<link href="/shared/templates/free/style/edit.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/shared/style/tablet.css" rel="stylesheet" media="only screen and (min-width : 641px) and (max-width : 1279px)" type="text/css" id="tmp_tablet_css" />
+<link href="/shared/style/smartphone.css" rel="stylesheet" media="only screen and (max-width : 640px)" type="text/css" id="tmp_smartphone_css" />
+<link href="/shared/images/favicon/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+<link href="/shared/images/favicon/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed" />
+<script type="text/javascript" src="/shared/js/jquery.js"></script>
+<script type="text/javascript" src="/shared/js/gd.js"></script>
+<script type="text/javascript" src="/shared/js/setting_head.js"></script>
+<script type="text/javascript" src="/shared/system/js/furigana/ysruby.js"></script>
+<script type="text/javascript" src="/shared/readspeaker/ReadSpeaker.js?pids=embhl"></script>
+
+
+
+
+
+
+<script type="text/javascript" src="/shared/js/ga.js"></script>
+</head>
+<body class="format_free no_javascript">
+<script type="text/javascript" src="/shared/js/setting_body.js"></script>
+<div id="tmp_wrapper">
+<noscript>
+<p>このサイトではJavaScriptを使用したコンテンツ・機能を提供しています。JavaScriptを有効にするとご利用いただけます。</p>
+</noscript>
+<p><a href="#tmp_honbun" class="skip">本文へスキップします。</a></p>
+
+<div id="tmp_header">
+<div id="tmp_hlogo">
+<p><a href="/index.html"><span>兵庫県</span></a></p>
+</div>
+<div id="tmp_means">
+<div id="tmp_means_primary">
+<div class="head_search">
+<p><a href="/org/index.html">組織から探す</a></p>
+<p lang="en" xml:lang="en"><a href="/fl/index.html">Foreign<br />
+Languages</a></p>
+</div>
+<div id="tmp_free_head">
+<ul>
+    <li><a id="furigana" href="javascript:">ふりがな表示</a> </li>
+    <li><a href="/howto/moji.html">文字サイズ・色合いの変更</a></li>
+    <li id="tmp_read_btn"><a accesskey="L" onclick="readpage(this.href, 'tmp_readspeaker'); return false;" target="_blank" href="https://app-as.readspeaker.com/cgi-bin/rsent?customerid=8960&amp;lang=ja_jp&amp;readid=tmp_contents&amp;url=">音声読み上げ</a> </li>
+</ul>
+<div id="tmp_head_search">
+<div id="tmp_form_search">
+<form id="tmp_gsearch" action="/search/results.html" name="tmp_gsearch">
+    <p><label for="tmp_query"><img width="16" height="16" alt="サイト内検索" src="/shared/images/icon/search_icon.png" /></label><input id="tmp_query" type="text" size="27" value="" name="q" /></p>
+    <p><input id="tmp_func_sch_btn" type="submit" value="検索" name="sa" /></p>
+    <p id="tmp_search_hidden"> <input type="hidden" value="016145232941732995403:kz3o2ig-nkm" name="cx" /> <input type="hidden" value="UTF-8" name="ie" /> <input type="hidden" value="FORID:9" name="cof" /> </p>
+</form>
+</div>
+<p id="tmp_head_search_item"><a href="/search/about.html"><span>検索の仕方</span></a></p>
+</div>
+</div>
+</div>
+</div>
+<ul id="tmp_hnavi_s">
+    <li id="tmp_hnavi_lmenu"><a href="javascript:void(0);"><span>メニュー</span></a></li>
+</ul>
+</div>
+<div id="tmp_gnavi">
+<ul>
+    <li id="tmp_glist1"><a href="/index.html"><span>ホーム</span></a></li>
+    <li id="tmp_glist2"><a href="/safe/index.html"><span>防災・安心・安全</span></a></li>
+    <li id="tmp_glist3"><a href="/life/index.html"><span>暮らし・教育</span></a></li>
+    <li id="tmp_glist4"><a href="/town/index.html"><span>まちづくり・環境</span></a></li>
+    <li id="tmp_glist5"><a href="/work/index.html"><span>しごと・産業</span></a></li>
+    <li id="tmp_glist6"><a href="/aff/index.html"><span>食・農林水産</span></a></li>
+    <li id="tmp_glist7"><a href="/interaction/index.html"><span>地域・交流・観光</span></a></li>
+    <li id="tmp_glist8"><a href="/pref/index.html"><span>県政情報・統計</span></a></li>
+</ul>
+</div>
+
+<div id="tmp_pankuzu">
+<p><a href="/index.html">ホーム</a> &gt; ご指定のページは見つかりませんでした</p>
+</div>
+<div id="tmp_wrap_main" class="column_cnt">
+<div id="tmp_main">
+<div class="col_main">
+<p id="tmp_honbun" class="skip">ここから本文です。</p>
+<div id="tmp_readspeaker" class="rs_preserve"></div>
+<div id="tmp_contents">
+<div id="tmp_wrap_custom_update">
+<div id="tmp_custom_update">
+
+
+
+</div>
+</div>
+
+
+<h1>ご指定のページは見つかりませんでした</h1>
+<p>&nbsp;</p>
+<p>兵庫県ホームページは、2016年11月1日にリニューアルをしました。</p>
+<p>ご指定のページが移動または削除されている場合があり、<span class="txt_blue">Google検索エンジンに まだ最新の情報が反映されていない可能性があります。</span><br />
+お手数ですが、ホーム（トップページ）にお戻り頂き、「暮らし・教育」などの カテゴリよりお探しくださいますようお願いいたします。&nbsp;</p>
+<p>もしくは、混雑のため表示できない場合があります。ブラウザで再読み込みを行ってください。&nbsp;</p>
+<p><a href="/index.html">ホームへ</a><br />
+<img alt="" width="100" height="141" src="/images/106.gif" /></p>
+
+
+</div>
+
+
+</div>
+</div>
+</div>
+<div id="tmp_footer">
+<div class="footer_center">
+<ul id="tmp_fnavi">
+    <li><a href="/about_link.html">リンク・著作権・免責事項</a> </li>
+    <li><a href="/about_handing.html">個人情報の取扱いについて</a> </li>
+    <li><a href="/accessibility/index.html">ウェブアクセシビリティ方針</a> </li>
+    <li><a href="/sitemap.html">サイトマップ</a> </li>
+    <li id="tmp_fnavi_map"><a href="/map.html">県庁までの交通案内</a> </li>
+    <li id="tmp_fnavi_map2"><a href="/pref/cate3_610.html">庁舎案内</a> </li>
+</ul>
+<div id="tmp_footer_cnt">
+<address>
+<p>兵庫県庁　法人番号8000020280003<br />
+〒650-8567　兵庫県神戸市中央区下山手通5丁目10番1号　電話番号：078-341-7711（代表）</p>
+</address>
+<div class="pnavi">
+<p class="ptop"><a href="#tmp_header"><span>トップへ戻る</span></a></p>
+</div>
+</div>
+</div>
+<div id="tmp_copyright">
+<p lang="en" xml:lang="en" class="footer_center">Copyright &copy; Hyogo Prefectural Government. All rights reserved.</p>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="/shared/js/setting_onload.js"></script>
+</body>
+</html>
