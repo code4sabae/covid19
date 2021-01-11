@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="apple-touch-icon" href="ishikawa.png"/>
+<meta property="og:image" content="ishikawa.png"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>COVID-19 Ishikawa - 石川県 新型コロナウイルスオープンデータサマリー</title>
+<script type='module'>
+
+import tabularmap from './tabularmap.mjs'
+import util from './util.mjs'
+
+// 
+const SRC_TABULAR_MAP = `
+輪島市	穴水町	能登町	珠洲市
+志賀町	羽咋市	中能登町	七尾市
+内灘町	かほく市	宝達志水町	津幡町
+白山市	川北町	野々市市	金沢市
+加賀市	小松市	能美市	県外`
+
+const fetchCSVtoJSON = async url => util.csv2json(util.decodeCSV(await (await fetch(url)).text()))
+
+async function update() {
+  var noft = window.document.getElementById("noftication_refreshed")
+  if (noft) {
+    noft.textContent = "更新しています...."
+  }
+
+  /*
+  const url = "https://app.sabae.cc/api/covid19ishikawa.json"
+  const data = await (await fetch(url)).json()
+  console.log(data)
+  dump(data)
+  */
+  const url = 'data/covid19ishikawa/index.csv'
+  const list = await fetchCSVtoJSON(url)
+  console.log(list)
+  const target = list[list.length - 1]
+  const data = await fetchCSVtoJSON('data/covid19ishikawa/' + target.csv)
+  console.log(data)
+
+  const total = data[data.length - 1]
+
+  const ncontacts = 0 // data.summary.ncontacts
+  const nquerents = 0 // data.summary.nquerents
+  const npatients = total['感染者']
+  const ncurrentpatients = total['治療中']
+  const ninspections = 0 // data.summary.ninspections
+  const ndeath = 0 // data.main_summary.children[0].children[2].value
+  const nlight = 0 // data.main_summary.children[0].children[0].children[0].value
+  const nheavy = 0 // data.main_summary.children[0].children[0].children[1].value
+  const nexit = total['退院'] // data.main_summary.children[0].children[1].value // == ndischarges + ndeath
+  const lastUpdate = target.lastUpdate
+
+  const { addComma, fixfloat } = util
+  tbl.innerHTML = `
+    <table>
+      <tr><td>現在患者数</td><td>${addComma(ncurrentpatients)}人</td></tr>
+      <tr><td>累計退院数</td><td>${addComma(nexit)}人</td></tr>
+      <tr><td>累計陽性患者数</td><td>${addComma(npatients)}人</td></tr>
+      <!--
+      <tr><td>検査実施人数</td><td>${addComma(ninspections)}人</td></tr>
+      <tr><td>陽性率（陽性患者数/検査実施人数）</td><td>${fixfloat(npatients * 100 / ninspections, 2)}%</td></tr>
+      <tr><td>新型コロナコールセンター相談件数</td><td>${addComma(ncontacts)}件</td></tr>
+      <tr><td>帰国者・接触者電話相談センター相談件数</td><td>${addComma(nquerents)}件</td></tr>
+      <tr><td>死亡数（死亡数/陽性患者数）</td><td>${addComma(ndeath)}人(${fixfloat(ndeath * 100 / npatients, 2)}%)</td></tr>
+      <tr><td>重症（入院中）（死亡数/陽性患者数）</td><td>${addComma(nheavy)}人(${fixfloat(nheavy * 100 / npatients, 2)}%)</td></tr>
+      <tr><td>軽症・中等症（入院中）（軽症・中等症数/陽性患者数）</td><td>${addComma(nlight)}人(${fixfloat(nlight * 100 / npatients, 2)}%)</td></tr>
+      -->
+      <tr><td>最終更新日時</td><td>${lastUpdate}</td></tr>
+    </table>
+  `
+
+  tabmap.innerHTML = ''
+  const map = tabularmap.makeTabularMap(SRC_TABULAR_MAP)
+  tabmap.appendChild(map)
+  let maxcp = 0
+  for (const d of data) {
+    if (d['市町'] == '計')
+      continue
+    if (d['治療中'] > maxcp) {
+      maxcp = d['治療中']
+    }
+  }
+  for (const d of data) {
+    let city = d['市町']
+    const n = map.areas.indexOf(city)
+    if (n >= 0) {
+      const a = map.children[n]
+      a.innerHTML += `<br>${d['治療中']}<br>(${d['感染者']} / ${d['退院']} / ${0})`
+      const p = 100 * (1 - d['治療中'] / maxcp * .4)
+      if (p >= 50)
+        a.style.backgroundColor = `hsl(0, 100%, ${p}%)`
+    }
+  }
+
+  //console.log(ncontacts, nquerents, npatients, npatients2, ndischarges, ndischarges2)
+  if (noft) {
+    noft.textContent = "更新しました！"
+    setTimeout(function() {
+      noft.textContent = ""
+    }, 3000)
+  }
+}
+window.onload = update
+setInterval(update, 10 * 60 * 1000)
+
+</script>
+<style>
+body {
+	font-family: sans-serif;
+	margin: 0;
+  word-wrap: break-word;
+  --main-color: #A8943A;
+}
+h1 {
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 8vw;
+	text-align: center;
+}
+h2 {
+  font-size: 3vw;
+}
+.subtitle {
+	text-align: center;
+	margin: 0;
+	padding: .3em;
+	background-color: var(--main-color);
+	color: white;
+	font-size: 3vw;
+}
+/* tabular map */
+.tabmapc {
+  display: inline-block;
+  width: 90vw;
+  text-align: center;
+}
+.tabularmap {
+  margin: 1em auto;
+}
+.tabularmap > span {
+  border: 1px solid gray;
+  margin: 0 -1px -1px 0;
+  padding: .4vh 0;
+  font-size: 90%;
+}
+/* main */
+
+#main, #link {
+  text-align: center;
+}
+table {
+  margin: .5em;
+  display: inline-block;
+  border-collapse: collapse;
+}
+td {
+  border: 4px solid var(--main-color);
+  padding: .2em .5em;
+}
+td:first-child {
+  text-align: left;
+}
+td:nth-child(2) {
+  text-align: right;
+}
+#debug {
+  border: 1px solid black;
+  margin: 1em;
+  padding: 0.5em;
+  font-size: 70%;
+}
+#src {
+	margin: .5em;
+}
+a {
+	color: gray !important;
+}
+.buttons{
+  text-align: center;
+}
+#button_of_refresh {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  border:4px solid var(--main-color);
+  font:16px sans-serif;
+  color: #333;
+  line-height: 50px;
+  overflow: hidden;
+  width:200px;
+}
+#noftication_refreshed{
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1 id=title>COVID-19 Ishikawa</h1><div class=subtitle>石川県 新型コロナウイルスオープンデータサマリー</div>
+<div id="main">
+  <div class='tabmapc'>
+    <h2>石川県 市町別 現在患者数 / (累積陽性者/累積退院者/累積死者数)</h2>
+    <div id='tabmap'></div>
+  </div>
+  <div id='tbl'></div>
+</div>
+<div class="buttons">
+  <button type="button" onclick="update()" id="button_of_refresh">クリックで更新</button>
+</div>
+<p id="noftication_refreshed">　</p>
+<div id="link">
+
+<div id="src">
+DATA: CC BY 「<a href=https://www.pref.ishikawa.lg.jp/kansen/coronakennai.html>石川県／新型コロナウイルス感染症の県内の患者発生状況</a>」を <a href=data/covid19ishikawa/index.csv>CSV形式</a>に加工<br>
+APP：CC BY <a href='https://fukuno.jig.jp/2787'>fukuno.jig.jp</a> <a href=https://github.com/code4sabae/covid19>src on GitHub</a><br>
+</div>
+<img id=qrcode><script>addEventListener("load", () => qrcode.src = "https://chart.apis.google.com/chart?chs=140x140&cht=qr&chl=" + encodeURIComponent(document.location))</script><br>
+
+</div>
+
+</body>
+</html>
