@@ -30,8 +30,6 @@ const parseURLCovid19Latest = async function (urlweb) {
   const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
   const res = parseLink(html, title, baseurl);
   console.log(res);
-  // res.dt = "2020-12-23";
-  // process.exit(0);
   return res;
 }
 
@@ -74,6 +72,8 @@ const parseLink = function(data, title, baseurl) {
       res.url = href.startsWith("https://") ? href : baseurl + href
     }
   })
+  const dt = parseDate(dom(dom(".m-grid__col1 li")[0]).text());
+  res.dt = dt;
   return res
 }
 
