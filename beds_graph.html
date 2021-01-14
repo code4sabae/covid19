@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162141832-1"></script>
+<script>
+window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-162141832-1')
+</script>
+<meta charset="utf-8">
+	<title>新型コロナ対策病床数推移（厚労省）</title>
+<style>
+body {
+	text-align: center;
+}
+a {
+	color: gray !important;
+}
+</style>
+</head><body>
+<h1>新型コロナ対策病床数推移（厚労省）</h1>
+<script type="module">
+
+import Chart from "https://code4sabae.github.io/kafumon/lib/Chart.mjs";
+import { CSV } from "https://code4sabae.github.io/js/CSV.js";
+import { JAPAN_PREF } from "https://code4sabae.github.io/js/JAPAN_PREF.js";
+
+let chartobj = null;
+const showChart = (chart, data) => {
+	if (chartobj) {
+		chartobj.destroy();
+	}
+	const filterDate = (d) => {
+		if (d.endsWith("T00:00"))
+			return d.substring(0, d.length - 6);
+		return d;
+	}
+	for (let i = 0; i < data.length; i++) {
+		const d = data[i];
+		d.更新日 = filterDate(d.更新日);
+	}
+	const pref = sel.value;
+	const labels = [];
+	for (let i = 0; i < data.length; i++) {
+		const d = data[i];
+		labels.push(d.更新日);
+	}
+	const show = ["入院患者受入確保病床", "宿泊療養施設施設居室", "入院者数", "宿泊療養者数", "確認中の人数", "自宅療養者数", "社会福祉施設等療養者数"];
+	const makeColor = hue => {
+		return `hsla(${hue},60%,50%,100%)`;
+	};
+	const datasets = [];
+	let idx = 0;
+	for (const type of show) {
+		const val = [];
+		for (const date of labels) {
+			const d = data.find(d => d.更新日 == date && d.都道府県名 == pref);
+			if (d) {
+				val.push(d[type]);
+			} else {
+				console.log(d, date, pref)
+			}
+		}
+		datasets.push({ type: "line", label: type, fill: false, borderColor: makeColor(idx++ * 40), lineTension: 0, data: val });
+	}
+	
+	const config = {
+		data: { labels, datasets },
+		options: {
+			scales: {
+			xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
+			yAxes: [{ scaleLabel: { display: true, labelString: "数" }, ticks: { beginAtZero: true } }],
+			},
+			legend: { display: true }
+		}
+	};
+
+	chart.width = 600;
+	chart.height = 320;
+	chartobj = new Chart.Chart(chart, config);
+};
+
+window.onload = async () => {
+	for (const p of JAPAN_PREF) {
+		const op = document.createElement("option");
+		op.textContent = p;
+		if (p == "東京都") {
+			op.selected = true;
+		}
+		sel.appendChild(op);
+	}
+
+	const url = "data/covid19japan_beds/all.csv";
+	const data = CSV.toJSON(await CSV.fetch(url));
+	console.log(data);
+	showChart(canvas, data);
+	sel.onchange = () => {
+		showChart(canvas, data);
+	};
+};
+</script>
+<select id=sel></select><br>
+<canvas id="canvas"></canvas>
+<div>
+	Data: CC BY <a href=https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html>療養状況等及び入院患者受入病床数等に関する調査について｜厚生労働省</a> PDF/XLSX→<a href=https://www.stopcovid19.jp/data/covid19japan_beds/all.csv>CSV</a><br>
+	App: CC BY <a href=https://fukuno.jig.jp/3095>厚労省オープンデータでチェックする、対策病床数は増えているか？ 福野泰介の一日一創</a><br>
+</div>
+
+<div style="margin:1em">
+	<a href="https://www.stopcovid19.jp/">
+	<img src=img/stopcovid19_banner.png style="width:70vw"><br>
+	「COVID-19 JAPAN 新型コロナウイルス対策ダッシュボード」<br>
+	</a>
+</div>
+
+</body><html>
