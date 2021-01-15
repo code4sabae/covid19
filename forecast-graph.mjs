@@ -43,7 +43,7 @@ const makeGraph = async (json, prefcode, parent) => {
       continue;
     }
     date.push(d.target_prediction_date);
-    data1.push(d.new_confirmed); // PCR 検査陽性者数
+    data1.push(d.new_confirmed < 0 ? 0 : d.new_confirmed); // PCR 検査陽性者数
     data_c.push(d.hospitalized_patients); // ["入院治療を要する者"]);
     data_d.push(d.new_deaths); // ["死亡者数"]); 累計ではない
     name = d.prefecture_name_kanji;
@@ -71,8 +71,8 @@ const makeGraph = async (json, prefcode, parent) => {
     data: {
       labels: date,
       datasets: [
-        { type: "line", label: "PCR 検査陽性者数（予測）", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
-        { type: "line", label: "入院治療を要する者（予測）", data: data_c, borderColor: 'rgb(80, 80, 205)', fill: false, lineTension: 0, yAxisID: "yr" },
+        { type: "line", label: "PCR検査陽性者数(予測)", data: data1, borderColor: 'rgb(255, 99, 132)', fill: false, lineTension: 0, yAxisID: "yl" },
+        { type: "line", label: "入院治療を要する者(予測)", data: data_c, borderColor: 'rgb(80, 80, 205)', fill: false, lineTension: 0, yAxisID: "yr" },
         // { type: "line", label: "死亡者数", data: data_dd, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
         //{ type: "line", label: "死亡者数", data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yr" },
         // { type: "bar", label: "PCR 検査実施件数", hidden: true, data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" }
@@ -83,8 +83,8 @@ const makeGraph = async (json, prefcode, parent) => {
       scales: {
         xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
         yAxes: [
-        { id: "yr", position: "right", scaleLabel: { display: true, labelString: "現在入院治療を要する者" }, ticks: { beginAtZero: true } },
-        { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数" }, ticks: { beginAtZero: true } },
+          { id: "yr", position: "right", scaleLabel: { display: true, labelString: "現在入院治療を要する者" }, ticks: { beginAtZero: true } },
+          { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数" }, ticks: { beginAtZero: true } },
         ],
       },
       legend: { display: true }
@@ -93,7 +93,8 @@ const makeGraph = async (json, prefcode, parent) => {
   if (atts.date) {
     const actual = await getActualData(atts["view-pref"], date.map(stdDate));
     // console.log(actual);
-    config.data.datasets.push({type: "bar", label: "入院を要する者（結果）", backgroundColor: 'rgb(80, 80, 205, .2)', data: actual, yAxisID: "yr" });
+    config.data.datasets.push({type: "bar", label: "入院治療を要する者(結果)", backgroundColor: 'rgb(80, 80, 205, .2)', data: actual.data_c, yAxisID: "yr" });
+    config.data.datasets.push({type: "bar", label: "PCR検査結果陽性者(結果)", backgroundColor: 'rgb(255, 99, 132, .2)', data: actual.data_p, yAxisID: "yl" });
   }
 
   const title = "COVID-19 " + name + "のPCR検査陽性者数と入院者数 " + (atts.date ? atts.date + "時点 予測値と結果" : "予測値");
@@ -137,15 +138,26 @@ const stdDate = (dt) => {
   const res = year + "-" + fix0(month, 2) + "-" + fix0(day, 2);
   return res;
 };
+const toISOString = (d) => {
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  const res = year + "-" + fix0(month, 2) + "-" + fix0(day, 2);
+  return res;
+};
 const getActualData = async (pref, date) => {
 	const fn = `data/covid19japan/pref/${pref}.csv`;
-	const json = CSV.toJSON(await CSV.fetch(fn));
+  const json = CSV.toJSON(await CSV.fetch(fn));
+  console.log(json)
 
-  const data1 = [];
+  const data_p = [];
   const data2 = [];
   const data_c = [];
 	const data_d = [];
-  let bkis = null;
+  const daybefore = toISOString(new Date(new Date(date[0]).getTime() - 24 * 60 * 60 * 1000));
+  const before = json.find(d => d.date == daybefore);
+  let bkis = before.ninspections ? parseInt(before.ninspections) : null;
+  let bknp = before.npatients ? parseInt(before.npatients) : null;
   for (const dt of date) {
     const d = json.find((d) => d.date == dt);
     if (!d) {
@@ -164,9 +176,20 @@ const getActualData = async (pref, date) => {
 				data2.push(n - bkis);
 			}
 			bkis = n;
-		}
+    }
+    if (d.npatients === undefined) {
+      data_p.push(0);
+    } else {
+      const n = parseInt(d.npatients);
+      if (bknp === null) {
+        data_p.push(n);
+      } else {
+        data_p.push(n - bknp);
+      }
+      bknp = n;
+    }
   }
-  return data_c;
+  return { data_p, data_c };
 };
 
 class ForecastGraph extends HTMLElement {

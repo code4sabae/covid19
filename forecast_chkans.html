@@ -46,13 +46,34 @@ window.onload = async () => {
 			sel.appendChild(opt);
 		}
 	};
+	const selectDate = (sel, days) => {
+		const viewd = new Date().getTime() - days * 24 * 60 * 60 * 1000;
+		for (const op of sel.children) {
+			const od = new Date(op.textContent).getTime();
+			console.log(op.textContent, od);
+			if (od > viewd) {
+				op.selected = true;
+				break;
+			}
+		}
+	};
+	const selectValue = (sel, val) => {
+		for (const op of sel.children) {
+			if (op.textContent == val) {
+				op.selected = true;
+				break;
+			}
+		}
+	};
 
 	const dates = await CSV.fetch("data/covid19forecast/google/list.csv");
 	dates.shift();
 	appendOptions(seldate, dates);
 	console.log(dates);
+	selectDate(seldate, 30);
 
 	appendOptions(selpref, PREF);
+	selectValue(selpref, "東京都");
 	seldate.onchange = selpref.onchange = () => {
 		const pref = PREF_EN[PREF.indexOf(selpref.value)];
 		main.innerHTML = `<forecast-graph view-src=true view-pref="${pref}" date="${seldate.value}"></forecast-graph>`;
