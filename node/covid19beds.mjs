@@ -3,7 +3,11 @@ import fetch from 'node-fetch'
 import cheerio from 'cheerio'
 import util from './util.mjs'
 import pdf2text from './pdf2text.mjs'
+import xlsx from 'xlsx'
+import xlsx2csv from "./xlsx2csv.mjs"
 //import pdf2text from './pdf2text.js'
+
+const urltop = "https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html";
 
 const PREF = util.JAPAN_PREF
 const PREF_EN = util.JAPAN_PREF_EN
@@ -26,7 +30,8 @@ const parseURLCovid19Latest = async function (urlweb) {
   const html = await (await fetch(urlweb)).text();
   // console.log(html)
   //const title = "新型コロナウイルス感染症患者の療養状況等及び入院患者受入病床数等に関する調査結果";
-  const title = "PDF形式";
+  //const title = "PDF形式";
+  const title = "エクセル版";
   const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
   const res = parseLink(html, title, baseurl);
   console.log(res);
@@ -101,8 +106,16 @@ const text2csv = function (txt, lastUpdate, url) {
   return list;
 }
 
+const readXlsxSheet = (fn) => {
+  const workbook = xlsx.readFile(fn);
+  for (const shname in workbook.Sheets) {
+    const sh = workbook.Sheets[shname];
+    return sh;
+  }
+  return null;
+};
+
 const makeCovid19JapanBeds = async function () {
-  const urltop = "https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html";
   //const url = "https://www.mhlw.go.jp/content/10900000/000655343.pdf"; //await parseURLCovid19Latest(urltop)
   const latest = await parseURLCovid19Latest(urltop)
   console.log(latest)
@@ -129,8 +142,19 @@ const makeCovid19JapanBeds = async function () {
     const pdf = await (await fetch(url)).arrayBuffer()
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   }
-
-  const txt = await pdf2text.pdf2text(path + fn);
+  const getText = async (fn) => {
+    if (fn.endsWith(".pdf")) {
+      return await pdf2text.pdf2text(fn);
+    } else {
+      console.log(fn);
+      const sheet = readXlsxSheet(fn);
+      const csv = xlsx2csv.xlsx2csv(sheet);
+      console.log(csv);
+      process.exit(0);
+      return "";
+    }
+  };
+  const txt = getText(path + fn);
   console.log(txt);
   const lastUpdate = latest.dt != "--" ? cutT(latest.dt) : parseLastUpdate(txt);
   console.log("lastUpdate", lastUpdate);
