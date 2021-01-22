@@ -80,8 +80,14 @@ const make = async (pdffn) => {
 
 const makeAll = async () => {
   const path = "../data/covid19influ/";
-  const list = fs.readdirSync(path).filter((path) => path.endsWith(".pdf")).sort();
-  console.log(list);
+  const json = fs.readdirSync(path)
+    .filter((path) => path.endsWith(".json"))
+    .map(fn => JSON.parse(fs.readFileSync(path + fn)))
+    .sort((a, b) => new Date(a[0].開始日).getTime() - new Date(b[0].開始日).getTime())
+    .flat();
+  console.log(json);
+  //process.exit(0);
+  /*
   const res = [];
   list.forEach(async (pdffn) => {
     const fn = path + pdffn;
@@ -95,14 +101,14 @@ const makeAll = async () => {
     }
   });
   const json = res.flat();
-  console.log(json);
+  */
   const fnall = "../data/covid19influ";
   fs.writeFileSync(fnall + ".json", JSON.stringify(json));
   fs.writeFileSync(fnall + ".csv", util.addBOM(util.encodeCSV(util.json2csv(json))));
 };
 
 const main = async () => {
-  await download()
+  //await download()
   await makeAll();
 };
 
