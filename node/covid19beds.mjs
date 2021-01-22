@@ -18,7 +18,7 @@ const parseLastUpdate = (txt) => {
     const m = parseInt(n[1]);
     const d = parseInt(n[2]);
     const nowm = new Date().getMonth() + 1;
-    const y = new Date().getFullYear() - (nowm == 1 ? 1 : 0);
+    const y = new Date().getFullYear();// - (nowm == 1 ? 1 : 0);
     return util.fix0(y, 4) + "-" + util.fix0(m, 2) + "-" + util.fix0(d, 2);
   }
   return null;
@@ -142,29 +142,59 @@ const makeCovid19JapanBeds = async function () {
     const pdf = await (await fetch(url)).arrayBuffer()
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
   }
-  const getText = async (fn) => {
+  const getLastUpdateCSV = async (fn) => {
     if (fn.endsWith(".pdf")) {
-      return await pdf2text.pdf2text(fn);
+      const txt = await pdf2text.pdf2text(fn);
+      console.log(txt);
+      const lastUpdate = latest.dt != "--" ? cutT(latest.dt) : parseLastUpdate(txt);
+      console.log("lastUpdate", lastUpdate);
+      if (!lastUpdate) {
+        console.log("err: can't find last update");
+        process.exit(1);
+      }
+    
+      const csv = text2csv(txt, lastUpdate, url);
+      console.log(csv);
+      return [lastUpdate, csv];
     } else {
       console.log(fn);
       const sheet = readXlsxSheet(fn);
       const csv = xlsx2csv.xlsx2csv(sheet);
       console.log(csv);
-      process.exit(0);
-      return "";
+      const lastUpdate = parseLastUpdate(csv[0][2]);
+      console.log(lastUpdate);
+      const list = [];
+      const head = ['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者フェーズ', '入院患者受入確保病床', '入院患者病床使用率', '入院患者即応病床数（最終フェーズ）'/*旧 入院患者受入確保想定病床数*/, 'うち重症者数', '重症者フェーズ', '重症患者受入確保病床数', '重症患者病床使用率', '重症患者即応病床数（最終フェーズ）'/*旧 重症患者受入確保想定病床数*/, '宿泊療養者数', '宿泊療養フェーズ', '宿泊施設受入可能室数', '宿泊療養施設居室使用率', '宿泊療養施設施設居室（最終フェーズ）', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典'];
+      list.push(head);
+      for (let i = 1; i <= 47; i++) {
+        const d = csv.find(d => parseInt(d[0]) == i);
+        d.shift();
+        d[0] = d[1].substring(0, 2);
+        d[1] = d[1].substring(3).trim();
+        for (let i = 2; i < d.length; i++) {
+          let s = d[i].trim();
+          s = s.replace(/,/g, '')
+          let n = s.lastIndexOf(" ");
+          if (n >= 0) {
+            s = s.substring(n + 1);
+          }
+          d[i] = s;
+        }
+        //console.log(d.length, head.length);
+        for (let i = 0; i < d.length - head.length + 6; i++) {
+          d.pop();
+        }
+        d.push(lastUpdate);
+        d.push(url);
+        list.push(d);
+      }
+      //console.log(list);
+      //fs.writeFileSync("_temp.csv", util.addBOM(util.encodeCSV(list)), 'utf-8')
+      return [lastUpdate, list];
     }
   };
-  const txt = getText(path + fn);
-  console.log(txt);
-  const lastUpdate = latest.dt != "--" ? cutT(latest.dt) : parseLastUpdate(txt);
-  console.log("lastUpdate", lastUpdate);
-  if (!lastUpdate) {
-    console.log("err: can't find last update");
-    process.exit(1);
-  }
 
-  const csv = text2csv(txt, lastUpdate, url);
-  console.log(csv);
+  const [lastUpdate, csv] = await getLastUpdateCSV(path + fn);
 
  
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
