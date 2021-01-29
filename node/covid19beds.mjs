@@ -181,12 +181,18 @@ const makeCovid19JapanBeds = async function () {
           d[i] = s;
         }
         //console.log(d.length, head.length);
+        const d2 = [];
+        for (let i = 0; i < head.length - 2; i++) {
+          d2[i] = d[i];
+        }
+        /*
         for (let i = 0; i < d.length - head.length + 6; i++) {
           d.pop();
         }
-        d.push(lastUpdate);
-        d.push(url);
-        list.push(d);
+        */
+        d2.push(lastUpdate);
+        d2.push(url);
+        list.push(d2);
       }
       //console.log(list);
       //fs.writeFileSync("_temp.csv", util.addBOM(util.encodeCSV(list)), 'utf-8')
