@@ -6,7 +6,7 @@
 "秋田県","Akita","https://www.pref.akita.lg.jp/pages/archive/47957",,,,,,,,,,,"1","1","2020/05/12","厚労省データとのズレあり公式サイトHTMLをスクレイピング",,"JP-05"
 "山形県","Yamagata","https://www.pref.yamagata.jp/ou/bosai/020072/kochibou/coronavirus/coronavirus.html",,,,,,,,,,,,,,"オープンデータなし",,"JP-06"
 "福島県","Fukushima","https://www.pref.fukushima.lg.jp/sec/21045c/coronavirus-list.html","https://www.pref.fukushima.lg.jp/sec/21045c/covid19-opendata.html","https://www.pref.fukushima.lg.jp/w4/covid19/patients/",,,,,,,,,"1","0","ok","最新日付ファイルを取得必要→9/19 退院数、死亡数不明に","https://fukushima-covid19.firebaseapp.com/","JP-07"
-"茨城県","Ibaraki","https://www.pref.ibaraki.jp/hokenfukushi/yobo/kiki/yobo/kansen/idwr/information/other/documents/20200130-corona.html",,,,,,,,,,,,,,"オープンデータなし","https://stopcovid19.pref.gunma.jp/","JP-08"
+"茨城県","Ibaraki","https://www.pref.ibaraki.jp/hokenfukushi/yobo/kiki/yobo/kansen/idwr/information/other/documents/20200130-corona.html",,,,,,,,,,,,,,"オープンデータなし","https://ibaraki.stopcovid19.jp/","JP-08"
 "栃木県","Tochigi","http://www.pref.tochigi.lg.jp/e04/welfare/hoken-eisei/kansen/hp/coronakensahasseijyoukyou.html",,,,,,,,,,,,,,"オープンデータなし",,"JP-09"
 "群馬県","Gunma","https://www.pref.gunma.jp/02/d29g_00243.html",,,"http://stopcovid19.pref.gunma.jp/csv/01kanja.csv",,,,,,"1",,,"0","ok","アプリ公式運用、5/8 退院数がnullになり形式が変わる","http://stopcovid19.pref.gunma.jp/","JP-10"
 "埼玉県","Saitama","https://www.pref.saitama.lg.jp/a0701/shingatacoronavirus.html","https://opendata.pref.saitama.lg.jp/data/dataset/covid19-jokyo","https://opendata.pref.saitama.lg.jp/data/dataset/covid19-jokyo",,,,,,,,,"1","0","2020/05/02","退院数不明 → HTMLからパース（HTML変更で対応必要）→HTML変更（一時停止）2020-05-23","https://saitama.stopcovid19.jp/","JP-11"
