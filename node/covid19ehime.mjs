@@ -116,6 +116,9 @@ const main = async function () {
   res.url_opendata = urlWeb
   console.log(res)
 
+  // 2021.2.7 データ形式変更のため休止
+  return;
+
   //util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + '.html', html, 'utf-8')
   //util.writeFileSync('../data/covid19' + lpref + '/latest.html', html, 'utf-8')
   util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + '.json', JSON.stringify(res))
