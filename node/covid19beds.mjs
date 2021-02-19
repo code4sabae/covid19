@@ -128,7 +128,6 @@ const makeCovid19JapanBeds = async function () {
     return s;
   };
   //const lastUpdate = cutT(latest.dt);
-  //process.exit(0);
 
   const path = '../data/covid19japan_beds/'
   let fn = null // '000630627.pdf'
@@ -161,7 +160,8 @@ const makeCovid19JapanBeds = async function () {
       const sheet = readXlsxSheet(fn);
       const csv = xlsx2csv.xlsx2csv(sheet);
       console.log(csv);
-      const lastUpdate = parseLastUpdate(csv[0][2]);
+      console.log(csv[0].find(d => d !=""));
+      const lastUpdate = parseLastUpdate(csv[0].find(d => d !=""));
       console.log(lastUpdate);
       const list = [];
       const head = ['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者フェーズ', '入院患者受入確保病床', '入院患者病床使用率', '入院患者即応病床数（最終フェーズ）'/*旧 入院患者受入確保想定病床数*/, 'うち重症者数', '重症者フェーズ', '重症患者受入確保病床数', '重症患者病床使用率', '重症患者即応病床数（最終フェーズ）'/*旧 重症患者受入確保想定病床数*/, '宿泊療養者数', '宿泊療養フェーズ', '宿泊施設受入可能室数', '宿泊療養施設居室使用率', '宿泊療養施設施設居室（最終フェーズ）', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典'];
