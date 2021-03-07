@@ -1,5 +1,5 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata"
-"Hokkaido",19388,559,18138,691,"2021-03-06T23:51:58","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
+"Hokkaido",19472,603,18176,693,"2021-03-07T22:09:35","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
 "Tokyo",113455,2896,109097,1462,"2021-03-07T17:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
 "Fukui",545,2,518,25,"2021-03-07T14:30:30","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
 "Osaka",47670,1364,45171,1135,"2021-03-07T17:50","https://raw.githubusercontent.com/codeforosaka/covid19/master/data/data.json","https://github.com/codeforosaka/covid19"
