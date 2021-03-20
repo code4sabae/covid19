@@ -12,19 +12,129 @@ const urltop = "https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html";
 const PREF = util.JAPAN_PREF
 const PREF_EN = util.JAPAN_PREF_EN
 
-const parseLastUpdate = (txt) => {
+const parseLastUpdate = (txt, dt) => {
   const n = txt.match(/（(\d+)月(\d+)日0時時点）/);
   if (n) {
     const m = parseInt(n[1]);
     const d = parseInt(n[2]);
     const nowm = new Date().getMonth() + 1;
-    const y = new Date().getFullYear();// - (nowm == 1 ? 1 : 0);
+    const y = dt ? new Date(dt).getFullYear() : new Date().getFullYear();// - (nowm == 1 ? 1 : 0);
     return util.fix0(y, 4) + "-" + util.fix0(m, 2) + "-" + util.fix0(d, 2);
   }
   return null;
 };
 //console.log(parseLastUpdate(["新型コロナウイルス感染症患者の療養状況、病床数等に関する調査結果（12月30日0時時点）"]));
 //process.exit(0);
+
+const parseLinks = function(data, title, baseurl) {
+  const dom = cheerio.load(data)
+  const res = [];
+  dom('a').each((idx, ele) => {
+    const text = dom(ele).text()
+    if (text && text.indexOf(title) >= 0) {
+      const link = {};
+      link.dt = parseDate(text)
+      const href = dom(ele).attr("href")
+      link.url = href.startsWith("https://") ? href : baseurl + href
+      res.push(link);
+    }
+  })
+  return res;
+}
+
+const makeOld = async () => {
+  const list = [
+    ["000633758", "2020-04-28"],
+    ["000633756", "2020-05-01"],
+    ["000633754", "2020-05-07"],
+  ];
+  const path = '../data/covid19japan_beds/';
+  for (const file of list) {
+    //const [lastUpdate, csv] = await getCSVviaPDF(path + fn, url, file.dt);
+    const lastUpdate = file[1];
+    const pdf = path + file[0] + ".pdf";
+    const txt = await pdf2text.pdf2text(pdf);
+    console.log(txt);
+    const url = "https://www.mhlw.go.jp/content/10900000/" + file[0] + ".pdf";
+    const csv = text2csv(txt, lastUpdate, url);
+    //console.log(csv);
+    //return [lastUpdate, csv];
+    
+    const json = util.csv2json(csv);
+    const scsv = util.addBOM(util.encodeCSV(csv));
+    console.log(path + lastUpdate + '.csv');
+    fs.writeFileSync(path + lastUpdate + '.csv', scsv, 'utf-8');
+    fs.writeFileSync(path + lastUpdate + '.json', JSON.stringify(json), 'utf-8');
+    /*
+    try {
+      fs.readFileSync(path + lastUpdate + ".csv");
+      console.log("ok", fn);
+    } catch (e) {
+    }
+    */
+  }
+};
+
+const parseURLcovid19All = async () => {
+  const urlweb = urltop;
+  const html = await (await fetch(urlweb)).text();
+  const title = "新型コロナウイルス感染症患者の療養状況等及び入院患者受入病床数等に関する調査結果";
+  const baseurl = urlweb.substring(0, urlweb.indexOf("/", 8));
+  const res = parseLinks(html, title, baseurl);
+  console.log(res);
+  return res;
+};
+const getCSVviaPDF = async (fn, url, dt) => {
+  const txt = await pdf2text.pdf2text(fn);
+  //console.log(txt);
+  //const lastUpdate = dt != "--" ? cutT(dt) : parseLastUpdate(txt);
+  const lastUpdate = parseLastUpdate(txt, dt);
+  console.log("lastUpdate", lastUpdate, dt);
+  if (!lastUpdate) {
+    console.log("err: can't find last update", url, dt);
+    process.exit(1);
+  }
+
+  const csv = text2csv(txt, lastUpdate, url);
+  //console.log(csv);
+  return [lastUpdate, csv];
+}
+const saveCovid19Beds = async () => {
+  const list = await parseURLcovid19All();
+  for (const file of list) {
+    const url = file.url;
+    const fn = url.substring(url.lastIndexOf('/') + 1);
+    const path = '../data/covid19japan_beds/'
+    const fn2 = path + fn;
+    try {
+      fs.readFileSync(fn2);
+      //console.log("ok", fn2)
+    } catch (e) {
+      const pdf = await (await fetch(url)).arrayBuffer();
+      fs.writeFileSync(fn2, new Buffer.from(pdf), 'binary');
+      //console.log("fetch", fn2)
+    }
+    //
+    const [lastUpdate, csv] = await getCSVviaPDF(path + fn, url, file.dt);
+    try {
+      fs.readFileSync(path + fn + ".csv");
+      //console.log("ok", fn);
+    } catch (e) {
+      //console.log("err", path + fn + ".csv");
+      fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
+    }
+    try {
+      fs.readFileSync(path + lastUpdate + ".csv");
+      console.log("ok", fn);
+    } catch (e) {
+      const json = util.csv2json(csv);
+      const scsv = util.addBOM(util.encodeCSV(csv));
+      console.log(path + lastUpdate + '.csv')
+      fs.writeFileSync(path + lastUpdate + '.csv', scsv, 'utf-8')
+      fs.writeFileSync(path + lastUpdate + '.json', JSON.stringify(json), 'utf-8')
+    }
+  }
+}
 
 const parseURLCovid19Latest = async function (urlweb) {
   const html = await (await fetch(urlweb)).text();
@@ -49,16 +159,16 @@ const parseDate = function(s) {
   s = s.substring(s.lastIndexOf('（'))
   s = util.toHalf(s);
   console.log(s);
-  let num = s.match(/(\d+)月(\d+)日(\d+)時時点\)/)
+  let num = s.match(/(\d+)年(\d+)月(\d+)日(\d+)時時点\)/)
   if (num) {
     const now = new Date();
-    const y = now.getFullYear();
-    const m = parseInt(num[1]);
+    const y = parseInt(num[1]); //now.getFullYear();
+    const m = parseInt(num[2]);
     if (now.getMonth() === 0 && m === 12) {
       y--;
     }
-    const d = parseInt(num[2])
-    const h = parseInt(num[3])
+    const d = parseInt(num[3])
+    const h = parseInt(num[4])
     return y + "-" + fix0(m, 2) + "-" + fix0(d, 2) + "T" + fix0(h, 2) + ":00"
   }
   return "--"
@@ -84,17 +194,17 @@ const parseLink = function(data, title, baseurl) {
 
 const text2csv = function (txt, lastUpdate, url) {
   const ss = txt.split('\n')
-  console.log(ss)
+  //console.log(ss)
   const list = []
   // list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
   list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者フェーズ', '入院患者受入確保病床', '入院患者病床使用率', '入院患者即応病床数（最終フェーズ）'/*旧 入院患者受入確保想定病床数*/, 'うち重症者数', '重症者フェーズ', '重症患者受入確保病床数', '重症患者病床使用率', '重症患者即応病床数（最終フェーズ）'/*旧 重症患者受入確保想定病床数*/, '宿泊療養者数', '宿泊療養フェーズ', '宿泊施設受入可能室数', '宿泊療養施設居室使用率', '宿泊療養施設施設居室（最終フェーズ）', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
   for (let i = 0; i < PREF.length; i++) {
     const pref = PREF[i];
-    console.log(pref);
+    //console.log(pref);
     for (let j = 0; j < ss.length; j++) {
       const ss2 = ss[j].replace(/,/g, '').split(' ').filter(s => util.toHalf(s).replace(/\s/g, ''));
       if (ss2[1] == pref) {
-        console.log(pref, ss2);
+        //console.log(pref, ss2);
         ss2.push(lastUpdate);
         ss2.push(url);
         list.push(ss2.filter((s) => !s.startsWith("注")));
@@ -115,18 +225,19 @@ const readXlsxSheet = (fn) => {
   return null;
 };
 
+const cutT = (s) => {
+  if (s.endsWith("T00:00")) {
+    const s2 = s.substring(0, s.length - 6);
+    return s2;
+  }
+  return s;
+};
+
 const makeCovid19JapanBeds = async function () {
   //const url = "https://www.mhlw.go.jp/content/10900000/000655343.pdf"; //await parseURLCovid19Latest(urltop)
   const latest = await parseURLCovid19Latest(urltop)
   console.log(latest)
   const url = latest.url;
-  const cutT = (s) => {
-    if (s.endsWith("T00:00")) {
-      const s2 = s.substring(0, s.length - 6);
-      return s2;
-    }
-    return s;
-  };
   //const lastUpdate = cutT(latest.dt);
 
   const path = '../data/covid19japan_beds/'
@@ -219,7 +330,10 @@ const makeCovid19JapanBeds = async function () {
 
 const main = async () => {
   //await mainV2()
-  makeCovid19JapanBeds();
+  // latest
+  //makeCovid19JapanBeds();
+  //await saveCovid19Beds();
+  await makeOld();
 }
 if (process.argv[1].endsWith('/covid19beds.mjs')) {
   main()
