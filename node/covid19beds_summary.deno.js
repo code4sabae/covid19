@@ -1,7 +1,6 @@
 // https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html
 
 import { CSV } from "https://code4sabae.github.io/js/CSV.js";
-import { fix0 } from "https://code4sabae.github.io/js/fix0.js";
 
 const path = "../data/covid19japan_beds/";
 

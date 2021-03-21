@@ -44,9 +44,12 @@ const parseLinks = function(data, title, baseurl) {
 
 const makeOld = async () => {
   const list = [
+    /*
     ["000633758", "2020-04-28"],
     ["000633756", "2020-05-01"],
     ["000633754", "2020-05-07"],
+    */
+    ["000633754-p2", "2020-05-08"],
   ];
   const path = '../data/covid19japan_beds/';
   for (const file of list) {
@@ -331,9 +334,11 @@ const makeCovid19JapanBeds = async function () {
 const main = async () => {
   //await mainV2()
   // latest
-  //makeCovid19JapanBeds();
+  makeCovid19JapanBeds();
+
+  // to make old data
   //await saveCovid19Beds();
-  await makeOld();
+  //await makeOld();
 }
 if (process.argv[1].endsWith('/covid19beds.mjs')) {
   main()
