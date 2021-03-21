@@ -40,6 +40,7 @@ const showChart = (chart, data) => {
 		d.更新日 = filterDate(d.更新日);
 	}
 	const pref = sel.value;
+	document.location.hash = "#" + pref;
 	const labels = [];
 	for (let i = 0; i < data.length; i++) {
 		const d = data[i];
@@ -81,10 +82,11 @@ const showChart = (chart, data) => {
 };
 
 window.onload = async () => {
+	const pref = document.location.hash.length > 0 ? decodeURIComponent(document.location.hash.substring(1)) : "東京都";
 	for (const p of JAPAN_PREF) {
 		const op = document.createElement("option");
 		op.textContent = p;
-		if (p == "東京都") {
+		if (p == pref) {
 			op.selected = true;
 		}
 		sel.appendChild(op);
