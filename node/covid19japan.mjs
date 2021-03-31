@@ -656,6 +656,7 @@ const mainV2 = async function () {
 //  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
 //  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202012.html";
   const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth() + 1, 2)}.html`;
+  //const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth(), 2)}.html`;
   console.log(urlweb7);
   //process.exit(0);
   const urlweb = await parseURLCovid19Latest(urlweb7)
