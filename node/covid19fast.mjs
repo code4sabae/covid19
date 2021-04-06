@@ -73,6 +73,14 @@ const makeData = async function(pref, url, url_opendata) {
     csv.splice(0, 1)
   }
 
+  // for 空行データ行削除
+  for (let i = 0; i < csv.length; i++) {
+    if (csv[i].join("").length == 0) {
+      csv.splice(i, 1);
+      i--;
+    }
+  }
+
   //csv.splice(0, 1)
   const json = util.csv2json(csv)
   //console.log(json)
@@ -120,6 +128,15 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
 
   //console.log(scsv)
   const csv = util.decodeCSV(scsv)
+
+  // for 空行データ行削除
+  for (let i = 0; i < csv.length; i++) {
+    if (csv[i].join("").length == 0) {
+      csv.splice(i, 1);
+      i--;
+    }
+  }
+
   //csv.splice(0, 1)
   const json = util.csv2json(csv)
   //console.log(json)
