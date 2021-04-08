@@ -1,5 +1,5 @@
 ﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata"
-"Hokkaido",21433,872,19797,764,"2021-04-07T21:46:25","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
+"Hokkaido",21512,898,19846,768,"2021-04-08T21:52:42","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
 "Tokyo",124450,3924,118732,1794,"2021-04-08T19:30","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
 "Toyama",994,68,897,29,"2021-04-07","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv"
 "Fukui",639,73,539,27,"2021-04-08T17:01:44","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
