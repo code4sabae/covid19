@@ -54,8 +54,8 @@ const saveOGP = async function (url, dstfn) {
 const editOGP = function (fn) {
   const srcfn = '../index.html'
   let html = fs.readFileSync(srcfn, 'utf-8')
-  html = html.replace(/<meta property="og:image"\s\scontent=".+"\/>/, `<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/${fn}"/>`)
-  html = html.replace(/<meta name="twitter:image" content=".+"\/>/, `<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/${fn}"/>`)
+  html = html.replace(/<meta property="og:image"\s\scontent=".+">/, `<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/${fn}">`)
+  html = html.replace(/<meta name="twitter:image" content=".+">/, `<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/${fn}">`)
   fs.writeFileSync(srcfn, html, 'utf-8')
 }
 const main = async function () {
