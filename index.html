@@ -860,12 +860,12 @@ const showChart = async function(data) {
 	detail.style.display = "block"
 	detail.style.animation = "fadein .2s ease 0s 1 normal"
 
-	detail.onclick = btnclose.onclick = function() {
+	/*detail.onclick = */btnclose2.onclick = btnclose.onclick = function() {
 		detail.style.animation = "fadeout .2s ease 0s 1 normal"
 		setTimeout(function() {
 			detail.style.display = "none"
 		}, 150)
-	}
+	};
 
 	if (data.appurl) {
 		btnapp.style.display = "inline"
@@ -1216,6 +1216,7 @@ const makeJapanHTML = function() {
 <div id=contents>
 
 <div id="detail">
+	<div id="btnclose2" style="display: inline-block; position:absolute; right:10px; top: 10px; font-size: 3em;">✕</div>
 	<div id="detailtitle"></div>
 	<canvas id='chart'></canvas>
 	<div id="detaildesc"></div>
