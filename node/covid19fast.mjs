@@ -2,6 +2,7 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import util from './util.mjs'
 import cmd from './cmd.mjs'
+import { CSV } from "./CSV.mjs";
 
 const makeDataFromDataJSON = async function(pref, url_datajson, url_opendata) {
   const url = url_datajson // 'https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json'
@@ -75,7 +76,7 @@ const makeData = async function(pref, url, url_opendata) {
 
   // for 空行データ行削除
   for (let i = 0; i < csv.length; i++) {
-    if (csv[i].join("").length == 0) {
+    if (csv[i].join("").length == 0 || csv[i].length < 4) {
       csv.splice(i, 1);
       i--;
     }
@@ -131,14 +132,18 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
 
   // for 空行データ行削除
   for (let i = 0; i < csv.length; i++) {
-    if (csv[i].join("").length == 0) {
+    console.log(csv[i].length);
+    if (csv[i].join("").length == 0 || csv[i].length < 4) {
       csv.splice(i, 1);
       i--;
     }
   }
+  //console.log(csv, csv[csv.length - 1]);
+  //process.exit(1);
 
   //csv.splice(0, 1)
   const json = util.csv2json(csv)
+  const scsv2 = CSV.encode(CSV.fromJSON(json));
   //console.log(json)
 
   checkJSON(json)
@@ -177,8 +182,8 @@ const makeDataFromAlt = async function(pref, url, url_opendata) {
   res.url_opendata = url_opendata
   console.log(res)
   const lpref = pref.toLowerCase()
-  util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", util.addBOM(scsv))
-  util.writeFileSync('../data/covid19' + lpref + '/latest.csv', util.addBOM(scsv))
+  util.writeFileSync('../data/covid19' + lpref + '/' + date2s(res.lastUpdate) + ".csv", scsv2);
+  util.writeFileSync('../data/covid19' + lpref + '/latest.csv', scsv2);
   util.writeFileSync('../data/covid19' + lpref + '/latest.json', JSON.stringify(res))
   return res
 }
@@ -216,7 +221,7 @@ const main = async function () {
 
   const data = []
   for (const d of list) {
-    // if (d.pref !== 'Fukui') { continue }
+    if (d.pref !== 'Yamaguchi') { continue }
 
     console.log(d)
     if (d.data_canuse == 1) {
