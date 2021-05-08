@@ -221,7 +221,7 @@ const main = async function () {
 
   const data = []
   for (const d of list) {
-    if (d.pref !== 'Yamaguchi') { continue }
+    //if (d.pref !== 'Yamaguchi') { continue }
 
     console.log(d)
     if (d.data_canuse == 1) {
