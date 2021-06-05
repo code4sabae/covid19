@@ -20,8 +20,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png">
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210604225827.png">
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210604225827.png">
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210606000839.png">
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210606000839.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -529,20 +529,20 @@ const main = async function() {
 		p.lastUpdate = json_mhlw.lastUpdate
 		p.url_opendata = json_mhlw.srcurl_pdf
 	}
-	console.log(json_mhlw)
+	//console.log(json_mhlw)
 
 	const url_trend = makeURL('covid19japan-trend.json')
 	const json_trend = await fetchJSON(url_trend)
 	for (const p of json_mhlw.area) {
 		p.trend = json_trend.find(i => i.name === p.name)
 	}
-	console.log(json_mhlw)
+	//console.log(json_mhlw)
 
 	let json = json_mhlw
 
 	const url_bed = makeURL('bedforinfection_summary.json')
 	const json_bed = await fetchJSON(url_bed)
-	console.log(json_bed)
+	//console.log("json_bed", json_bed)
 	/*
 	const url_bedc = makeURL('bedforinfection_current.json')
 	const json_bedc = await fetchJSON(url_bedc)
@@ -563,7 +563,7 @@ const main = async function() {
 	const url_bedc = makeURL("covid19japan_beds/latest.json");
 //   list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
 	const json_bedc = await fetchJSON(url_bedc)
-	console.log(json_bedc)
+	//console.log("json_bedc", json_bedc)
 	for (let i = 0; i < json_bedc.length; i++) {
 		const cbed = json_bedc[i]
 		for (let j = 0; j < json_bed.area.length; j++) {
@@ -600,7 +600,7 @@ const main = async function() {
 
 	const url_vent = makeURL('ventilator-20200306.csv')
 	const json_vent = await fetchCSV(url_vent)
-	console.log(json_vent)
+	//console.log(json_vent)
 	for (let i = 0; i < json.area.length; i++) {
 		json.area[i].vent = json_vent[i]
 	}
@@ -668,7 +668,7 @@ const main = async function() {
 	{
 		const url_fast = makeURL('covid19japan-fast.json')
 		const json_fast = await (await fetch(url_fast)).json()
-		console.log('fast', json_fast)
+		//console.log('fast', json_fast)
 		for (const json of json_fast) {
 			const pref = json_now.area[PREF_EN.indexOf(json.name)]
 			for (const name in json) {
@@ -676,7 +676,7 @@ const main = async function() {
 			}
 			// if nbeds exists
 			if (pref.nbeds) {
-				console.log('nbeds', pref)
+				//console.log('nbeds', pref)
 				const bed = json_bed.area.find(a => a.name === pref.name)
 				bed.sumc = pref.nbeds
 				bed.sumc_src = { 出典: pref.src_url, 発表日: pref.lastUpdate }
@@ -700,7 +700,7 @@ const main = async function() {
 		const url_peek = makeURL('jmari_med_or_jp/patients_peek.csv')
 		const scsv = await (await fetch(url_peek)).text()
 		const json_p = csv2json(decodeCSV(scsv))
-		console.log('peek', json_p)
+		//console.log('peek', json_p)
 		const sum = function(d, ar) {
 			let n = 0
 			for (const name of ar) {
@@ -720,7 +720,7 @@ const main = async function() {
 			a.lastUpdate = date
 		}
 		json_peek.lastUpdateNow = date
-		console.log(json_peek)
+		//console.log(json_peek)
 	}
 
 	const update = function() {
@@ -810,7 +810,7 @@ const downloadImage = function(fn, data) {
 }
 
 const showChart = async function(data) {
-	console.log('showChart', data.data)
+	//console.log('showChart', data.data)
 
 	const npatients_c = data.data.ncurrentpatients
 	const nbed = data.getBedCount()
@@ -844,7 +844,7 @@ const showChart = async function(data) {
 	//console.log(data.data)
 	const bed = data.data.bed
 	if (bed && bed.sumc_src) {
-		console.log(bed.sumc_src)
+		//console.log(bed.sumc_src)
 		detaildesc.innerHTML += tx(`<br>対策病床数 出典元: <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html" xhref="${bed.sumc_src['出典']}">新型コロナウイルス対策病床数オープンデータ</a>`)
 		if (bed.sumc_src['備考']) {
 			detaildesc.innerHTML += tx(` * ${bed.sumc_src['備考']}`)
@@ -908,7 +908,7 @@ const showAreaMapGraph = async (parent, pref) => {
 	}
 	const fn = `data/covid19japan/pref/${pref}.csv`;
 	const json = await fetchCSV(fn);
-	console.log(fn, json);
+	//console.log(fn, json);
 
   const date = [];
   const data1 = [];
@@ -1007,7 +1007,7 @@ const showAreaMapTokyo = async function() {
 	const url_detail = "https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/patient.json"
 	
   const data_detail_json = await (await fetch(url_detail)).json()
-  console.log(data_detail_json)
+  //console.log(data_detail_json)
   const data_detail = data_detail_json.datasets.data
   let max = 0
   for (let i = 0; i < data_detail.length - 1; i++) {
