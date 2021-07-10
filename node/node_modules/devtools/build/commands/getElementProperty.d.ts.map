@@ -1,0 +1,1 @@
+{"version":3,"file":"getElementProperty.d.ts","sourceRoot":"","sources":["../../src/commands/getElementProperty.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,cAAc,MAAM,mBAAmB,CAAA;AAEnD;;;;;;;;GAQG;AACH,wBAA8B,kBAAkB,CAC5C,IAAI,EAAE,cAAc,EACpB,EAAE,SAAS,EAAE,IAAI,EAAE,EAAE;IAAE,SAAS,EAAE,MAAM,CAAC;IAAC,IAAI,EAAE,MAAM,CAAA;CAAE,oBAc3D"}

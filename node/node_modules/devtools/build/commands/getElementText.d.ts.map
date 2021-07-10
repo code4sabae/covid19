@@ -1,0 +1,1 @@
+{"version":3,"file":"getElementText.d.ts","sourceRoot":"","sources":["../../src/commands/getElementText.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,cAAc,MAAM,mBAAmB,CAAA;AAEnD;;;;;;;;;GASG;AACH,wBAA8B,cAAc,CACxC,IAAI,EAAE,cAAc,EACpB,EAAE,SAAS,EAAE,EAAE;IAAE,SAAS,EAAE,MAAM,CAAA;CAAE,mBASvC"}
