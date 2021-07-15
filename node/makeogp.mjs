@@ -15,7 +15,7 @@ capabilities.set('chromeOptions', {
     '--headless',
     '--no-sandbox',
     '--disable-gpu',
-    '--window-size=820,640'
+    '--window-size=840,640'
   ]
 })
 
