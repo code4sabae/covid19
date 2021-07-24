@@ -47,7 +47,7 @@ const TX = {
 	'集約版': { 'en': 'summary' },
 	'感染症病床数は': { 'en': 'Hospital beds for infectious diseases from' },
 	'を使用': { 'en' : '' },
-	'推定病床残数': { 'en': 'Remain of bed for infection' },
+	'想定病床残数': { 'en': 'Tentative remain of bed for infection' },
 	'感染症病床数': { 'en': 'Hospital beds for infectious diseases' },
 	'新型コロナ対策病床数': { 'en': 'Hospital beds for COVID-19' },
 	'対策病床数': { 'en': 'Hospital beds for COVID-19' },
