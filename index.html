@@ -774,7 +774,7 @@ const main = async function() {
 		return url.substring(0, url.length - 4) + 'csv'
 	}
 	const url_csv = makeCSVURL(url)
-	description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
+	//description.innerHTML = tx('新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数（累積陽性者/累積退院者/累積死者数）')
 	datasrc.innerHTML = tx('データ出典<br>現在患者数（速報）: ' + link('https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0', fastprefs.length + '都道府県発表 新型コロナウイルス患者数オープンデータ(' + fastprefs.join("/") + ')') + '→' + link("https://www.stopcovid19.jp/data/covid19japan-fast.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan-fast.json", "JSON") + "<br>現在患者数（日次更新、ベース）: " + link(json.srcurl_web, '厚生労働省「各都道府県の検査陽性者の状況」') + link(json.srcurl_pdf, 'PDF') + " → " + link(url_csv, 'CSV') + '/' + link(url, 'JSON')) + '/' + link('tableview.html', 'APP') + " / " + link("https://www.mhlw.go.jp/stf/covid-19/open-data.html", "厚労省オープンデータ");
 	//datasrc.innerHTML += tx("<br>対策病床数: " + link('https://docs.google.com/spreadsheets/d/1u0Ul8TgJDqoZMnqFrILyXzTHvuHMht1El7wDZeVrpp8/edit#gid=0', '都道府県発表 新型コロナウイルス対策病床数オープンデータ') + " &amp; " + link('https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou15/02-02.html', '厚生労働省「感染症指定医療機関の指定状況」') + " → " + link(url_bed, "JSON") + "/" + link('https://code4sabae.github.io/bedforinfection/', 'APP'))
 	datasrc.innerHTML += tx("<br>対策病床数（週次更新）: " + link("https://www.mhlw.go.jp/stf/seisakunitsuite/newpage_00023.html", "療養状況等及び入院患者受入病床数等に関する調査について｜厚生労働省") + " → " + link("https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv", "CSV") + "/" + link("https://www.stopcovid19.jp/data/covid19japan_beds/latest.json", "JSON") + "/" + link("./mhlw-beds.html", "APP"));
@@ -829,7 +829,7 @@ const showChart = async function(data) {
 	detail.chart = new Chart(chart, {
 		type: 'pie',
 		data: {
-			labels: [ tx("現在患者数(" + npatients_c + ")"), tx("推定病床残数(" + (nbed - npatients_c) + ")") ],
+			labels: [ tx("現在患者数(" + npatients_c + ")"), tx("想定病床残数(" + (nbed - npatients_c) + ")") ],
 			datasets: [{
 					backgroundColor: [ 'red', '#ccc' ],
 					data: [ npatients_c, nbed - npatients_c < 0 ? 0 : nbed - npatients_c ],
@@ -1288,7 +1288,7 @@ const makeJapanHTML = function() {
 <div class='description'>
 	<div id="description"></div>
 	<div id='description2'>
-	※軽症者等は自宅療養など、病床を使用しないことがあります（<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html">詳細</a>）
+		新型コロナウイルス感染症（国内事例） 現在患者数 / 対策病床数 ※軽症者等は自宅療養など、病床を使用しないことがあります（<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000164708_00001.html">詳細</a>）
 	<!--現在患者数や現在新型コロナ対策病床数が確認できるデータを<a href=https://fukuno.jig.jp/2799>募集</a>しております--><br>
 	<!--（現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より5%以上増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より5%以上減少）<br>-->
 	（現在患者数 <img class=trendarrow src=img/trendarrow01.svg> 前日より増加 <img class=trendarrow src=img/trendarrow03.svg style='transform:scale(1,-1)'> 前日より減少）<br>
