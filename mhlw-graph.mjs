@@ -18,13 +18,16 @@ const main = async (parent) => {
   const data_d = [];
 
   const data_em = [];
+  const names = ["日付", "PCR 検査陽性者数", "PCR 検査実施件数", "入院治療を要する者", "死亡者数"];
+  const datas = [date, data1, data2, data_c, data_d];
   for (const d of json) {
-    date.push(d["日付"]);
-    data1.push(d["PCR 検査陽性者数"]);
-    data2.push(d["PCR 検査実施件数"]);
-    data_c.push(d["入院治療を要する者"]);
-    data_d.push(d["死亡者数"]);
-
+    if (names.reduce((pre, name) => pre || !d[name], false)) {
+      continue;
+    }
+    for (let i = 0; i < names.length; i++) {
+      datas[i].push(d[names[i]]);
+    }
+    
     data_em.push(json2.find(e => d.日付 == e.終了日)?.救急搬送困難事案数);
     //data_em.push(json2.find(e => new Day(d.日付).includes(new Day(e.開始日), new Day(e.終了日)))?.救急搬送困難事案数);
   }
