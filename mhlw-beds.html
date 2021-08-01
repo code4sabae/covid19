@@ -1,9 +1,10 @@
-
-<!DOCTYPE html><html><head><meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <title>新型コロナウイルス感染症患者の療養状況 病床使用率 - 厚労省発表データ</title>
-<link rel="apple-touch-icon" href="mhlw-beds.png"/>
-<meta property="og:image" content="mhlw-beds.png">
+<meta property="og:title" content="新型コロナウイルス感染症患者の療養状況 病床使用率 - 厚労省発表データ">
+<link rel="apple-touch-icon" href="mhlw-beds.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.stopcovid19.jp/mhlw-ogp/20210801135120.png">
+<meta name="twitter:image" content="https://www.stopcovid19.jp/mhlw-ogp/20210801135120.png">
 <meta name="format-detection" content="telephone=no"/>
 <script type='module'>
 
@@ -11,7 +12,8 @@ import util from 'https://taisukef.github.io/util/util.mjs'
 import tabularmaps from './tabularmapsjapan.mjs'
 
 window.onload = async () => {
-	const url = "https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv";
+	//const url = "https://www.stopcovid19.jp/data/covid19japan_beds/latest.csv";
+	const url = "./data/covid19japan_beds/latest.csv";
 	const data = await util.fetchCSVtoJSON(url);
 	console.log(data);
 	lastUpdate.textContent = "更新日: " + data[0].更新日;
@@ -83,8 +85,18 @@ window.onload = async () => {
 		};
 		tabularmaps.showJapan(setCellContent, colorTabularMaps, true);
 	}
+	const nsel = document.location.hash.substring(1) || 0;
+	sel.selectedIndex = nsel;
 	show();
-	sel.onchange = show;
+	sel.onchange = () => {
+		const nsel = sel.selectedIndex;
+		if (nsel) {
+			document.location.hash = "#" + nsel;
+		} else {
+			history.replaceState(null, null, " ");
+		}
+		show();
+	};
 };
 
 </script>
@@ -94,12 +106,17 @@ body {
 	text-align: center;
 }
 h1 {
-	font-size: 3vw;
-	margin-top: 2vw;
+	font-size: 2.8vw;
+	margin: 1vw 0 0vw 0;
+	padding: 0;
 }
 /* tabularmaps */
+#tmapc {
+	max-width: 700px;
+	margin: 0 auto;
+}
 #tmapc span {
-	font-size: 2.0vmax;
+	font-size: min(2.0vmax, 20px);
 	align-items: center;
 	justify-content: center;
 	border-radius: .5vmax;
