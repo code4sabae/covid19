@@ -82,6 +82,10 @@ window.onload = async () => {
 			const [kpi, unit] = getKPI(pname, cname);
 			div2.textContent = (isNaN(kpi) ? "-" : kpi) + unit;
 			c.appendChild(div2);
+			c.onclick = () => {
+				const url = "https://www.stopcovid19.jp/beds_graph.html#" + cname;
+				window.open(url, "_blank");
+			};
 		};
 		tabularmaps.showJapan(setCellContent, colorTabularMaps, true);
 	}
