@@ -41,11 +41,12 @@ const showChart = (chart, data) => {
 	}
 	const pref = sel.value;
 	document.location.hash = "#" + pref;
-	const labels = [];
+	const setlabels = new Set();
 	for (let i = 0; i < data.length; i++) {
 		const d = data[i];
-		labels.push(d.更新日);
+		setlabels.add(d.更新日);
 	}
+	const labels = Array.from(setlabels.values());
 	const show = ["入院患者受入確保病床", "宿泊施設受入可能室数", "入院者数", "宿泊療養者数", "確認中の人数", "自宅療養者数", "社会福祉施設等療養者数"];
 	const makeColor = hue => {
 		return `hsla(${hue},60%,50%,100%)`;
@@ -64,7 +65,6 @@ const showChart = (chart, data) => {
 		}
 		datasets.push({ type: "line", label: type, fill: false, borderColor: makeColor(idx++ * 40), lineTension: 0, data: val });
 	}
-	
 	const config = {
 		data: { labels, datasets },
 		options: {
