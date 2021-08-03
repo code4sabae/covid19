@@ -64,7 +64,7 @@ const main = async (parent) => {
     const div = document.createElement("div");
     div.style.textAlign = "center";
     div.style.fontSize = "80%";
-    div.innerHTML = "データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>、<a href=https://www.fdma.go.jp/disaster/coronavirus/post-1.html>新型コロナウイルス感染症に伴う救急搬送困難事案に係る状況調査について<!--（救急企画室） | 新型コロナウイルス感染症関連--> | 総務省消防庁</a>";
+    div.innerHTML = `データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>→<a href=${url}>CSV</a>`;
     parent.appendChild(div);
   }
 };
