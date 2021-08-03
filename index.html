@@ -20,8 +20,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png">
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210803224554.png">
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210803224554.png">
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210803224959.png">
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20210803224959.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -1142,7 +1142,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		//const img = ''
 		//c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${addComma(cntt)}/${addComma(a.nexits)}/${addComma(a.ndeaths)})</div>`)
 		//c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><span class=npatients>${cnt}</span><span class=nbed>/${nbed}</span><div class=pcr>(${cntt}/${a.nexits}/${a.ndeaths})</div>`)
-		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><div>${(cnt / nbed * 100).toFixed(1)}%</div><span class=npatients>${addComma(cnt)}</span><span class=nbed>/${addComma(nbed)}</span>`)
+		c.innerHTML = tx(`<div class=prefname>${PREF_S[i - 1]}${trendimg}</div><div>${calcRatio(cnt, nbed)}%</div><span class=npatients>${addComma(cnt)}</span><span class=nbed>/${addComma(nbed)}</span>`)
 		// AD232F
 		const r = nbed ? cnt / nbed : 0
 		setColor(c, r)
