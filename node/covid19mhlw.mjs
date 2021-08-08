@@ -156,8 +156,8 @@ const make = async () => {
 };
 
 const main = async () => {
-  //await download()
-  //await merge();
+  await download()
+  await merge();
   await make();
 };
 
