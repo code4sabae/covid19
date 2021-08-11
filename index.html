@@ -423,7 +423,7 @@ h1 {
 <script defer src='Chart.bundle.min.js' xsrc="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <!--<script defer src='html2canvas.min.js'></script>-->
 <script src='translation.js'></script>
-<script>"use strict"
+<script type="module">
 
 const getLang = function() {
 	const hash = document.location.hash
@@ -836,7 +836,8 @@ const showChart = async function(data) {
 			}]
 		}
 	})
-	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 現在患者数/対策病床数 ' + calcRatio(npatients_c, nbed) + "%")
+	detailtitle.innerHTML = tx((data.data.name_jp ? data.data.name_jp : "全国") + ' 現在患者数/対策病床数 ' + calcRatio(npatients_c, nbed) + "%");
+	const voice = (data.data.name_jp ? data.data.name_jp : "全国") + "の現在患者数は、" + npatients_c + "人、対策病床数は" + nbed + "、その割合は" + calcRatio(npatients_c, nbed) + "%です";
 	detaildesc.innerHTML = "<span class=sum>" + tx(`累積陽性者: ${addComma(data.data.npatients)}人 累積退院者: ${addComma(data.data.nexits)}人<br> 累積死者: ${addComma(data.data.ndeaths)}人 対策病床数: ${addComma(nbed)}床`) + "</span>";
 	if (data.data.src_url) {
 		detaildesc.innerHTML += tx(`<br>現在患者数 出典: <a href=${data.data.url_opendata}>${data.data.name_jp} 新型コロナウイルス患者数オープンデータ</a>(更新日: ${data.data.lastUpdate})`)
@@ -910,6 +911,13 @@ const showChart = async function(data) {
 			document.location.hash = pref;
 		}
 	}
+
+	// 読み上げ
+	detailtitle.style.cursor = "pointer";
+	detailtitle.onclick = async () => {
+		globalThis.voiceOver = globalThis.voiceOver || (await import("./voiceOver.js")).voiceOver;
+		voiceOver(voice);
+	};
 }
 // 推移グラフ
 const showAreaMapGraph = async (parent, pref) => {
