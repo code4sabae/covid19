@@ -41,6 +41,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/9,Kochi,10,61,0
 2020/5/9,Fukuoka,178,451,0
 2020/5/9,Saga,22,21,2
+2020/5/9,Nagasaki,2,14,0
 2020/5/9,Kumamoto,27,18,0
 2020/5/9,Oita,0,51,8
 2020/5/9,Miyazaki,5,12,0
@@ -88,6 +89,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/10,Kochi,7,64,0
 2020/5/10,Fukuoka,162,468,0
 2020/5/10,Saga,21,22,2
+2020/5/10,Nagasaki,2,14,0
 2020/5/10,Kumamoto,27,18,0
 2020/5/10,Oita,0,52,7
 2020/5/10,Miyazaki,5,12,0
@@ -135,6 +137,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/11,Kochi,6,65,0
 2020/5/11,Fukuoka,162,468,0
 2020/5/11,Saga,20,23,2
+2020/5/11,Nagasaki,2,14,0
 2020/5/11,Kumamoto,22,23,0
 2020/5/11,Oita,0,54,5
 2020/5/11,Miyazaki,5,12,0
@@ -182,6 +185,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/12,Kochi,6,65,0
 2020/5/12,Fukuoka,153,477,1
 2020/5/12,Saga,20,23,2
+2020/5/12,Nagasaki,2,14,0
 2020/5/12,Kumamoto,21,24,0
 2020/5/12,Oita,5,54,0
 2020/5/12,Miyazaki,5,12,0
@@ -229,6 +233,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/13,Kochi,5,66,0
 2020/5/13,Fukuoka,137,494,1
 2020/5/13,Saga,17,27,2
+2020/5/13,Nagasaki,1,15,0
 2020/5/13,Kumamoto,20,25,0
 2020/5/13,Oita,4,55,0
 2020/5/13,Miyazaki,5,12,0
@@ -276,6 +281,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/14,Kochi,5,66,0
 2020/5/14,Fukuoka,121,510,1
 2020/5/14,Saga,17,27,2
+2020/5/14,Nagasaki,1,15,0
 2020/5/14,Kumamoto,14,31,0
 2020/5/14,Oita,3,55,1
 2020/5/14,Miyazaki,5,12,0
@@ -323,6 +329,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/15,Kochi,5,66,0
 2020/5/15,Fukuoka,110,522,0
 2020/5/15,Saga,15,29,2
+2020/5/15,Nagasaki,1,15,0
 2020/5/15,Kumamoto,14,31,0
 2020/5/15,Oita,3,56,0
 2020/5/15,Miyazaki,4,13,0
@@ -370,6 +377,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/16,Kochi,5,66,0
 2020/5/16,Fukuoka,94,538,0
 2020/5/16,Saga,16,29,2
+2020/5/16,Nagasaki,1,15,0
 2020/5/16,Kumamoto,14,31,0
 2020/5/16,Oita,3,56,0
 2020/5/16,Miyazaki,3,14,0
@@ -417,6 +425,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/17,Kochi,4,67,0
 2020/5/17,Fukuoka,89,543,0
 2020/5/17,Saga,15,30,2
+2020/5/17,Nagasaki,1,15,0
 2020/5/17,Kumamoto,10,35,3
 2020/5/17,Oita,3,56,0
 2020/5/17,Miyazaki,3,14,0
@@ -464,6 +473,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/18,Kochi,4,67,0
 2020/5/18,Fukuoka,83,550,0
 2020/5/18,Saga,15,30,2
+2020/5/18,Nagasaki,0,16,0
 2020/5/18,Kumamoto,10,35,0
 2020/5/18,Oita,3,56,0
 2020/5/18,Miyazaki,3,14,0
@@ -511,6 +521,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/19,Kochi,4,67,0
 2020/5/19,Fukuoka,80,553,0
 2020/5/19,Saga,14,31,2
+2020/5/19,Nagasaki,0,16,0
 2020/5/19,Kumamoto,10,35,0
 2020/5/19,Oita,3,56,0
 2020/5/19,Miyazaki,3,14,0
@@ -558,6 +569,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/20,Kochi,3,68,0
 2020/5/20,Fukuoka,63,570,0
 2020/5/20,Saga,14,31,2
+2020/5/20,Nagasaki,0,16,0
 2020/5/20,Kumamoto,10,35,0
 2020/5/20,Oita,2,57,0
 2020/5/20,Miyazaki,3,14,0
@@ -605,6 +617,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/21,Kochi,3,68,0
 2020/5/21,Fukuoka,60,573,0
 2020/5/21,Saga,13,32,2
+2020/5/21,Nagasaki,0,16,0
 2020/5/21,Kumamoto,10,35,0
 2020/5/21,Oita,2,57,0
 2020/5/21,Miyazaki,3,14,0
@@ -652,6 +665,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/22,Kochi,2,69,0
 2020/5/22,Fukuoka,47,586,0
 2020/5/22,Saga,13,32,2
+2020/5/22,Nagasaki,0,16,0
 2020/5/22,Kumamoto,10,35,0
 2020/5/22,Oita,2,57,0
 2020/5/22,Miyazaki,3,14,0
@@ -699,6 +713,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/23,Kochi,2,69,0
 2020/5/23,Fukuoka,41,592,0
 2020/5/23,Saga,12,33,2
+2020/5/23,Nagasaki,0,16,0
 2020/5/23,Kumamoto,8,37,0
 2020/5/23,Oita,2,57,0
 2020/5/23,Miyazaki,2,15,0
@@ -746,6 +761,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/24,Kochi,2,69,0
 2020/5/24,Fukuoka,44,593,0
 2020/5/24,Saga,12,33,2
+2020/5/24,Nagasaki,0,16,0
 2020/5/24,Kumamoto,8,37,0
 2020/5/24,Oita,2,57,0
 2020/5/24,Miyazaki,2,15,0
@@ -793,6 +809,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/25,Kochi,2,69,0
 2020/5/25,Fukuoka,45,596,0
 2020/5/25,Saga,11,34,2
+2020/5/25,Nagasaki,0,16,0
 2020/5/25,Kumamoto,8,37,0
 2020/5/25,Oita,2,57,0
 2020/5/25,Miyazaki,1,16,0
@@ -840,6 +857,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/26,Kochi,1,70,0
 2020/5/26,Fukuoka,51,596,0
 2020/5/26,Saga,10,35,2
+2020/5/26,Nagasaki,0,16,0
 2020/5/26,Kumamoto,7,38,0
 2020/5/26,Oita,2,57,0
 2020/5/26,Miyazaki,0,17,0
@@ -887,6 +905,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/27,Kochi,1,70,0
 2020/5/27,Fukuoka,42,607,0
 2020/5/27,Saga,10,35,2
+2020/5/27,Nagasaki,0,16,0
 2020/5/27,Kumamoto,7,38,0
 2020/5/27,Oita,1,58,0
 2020/5/27,Miyazaki,0,17,0
@@ -934,6 +953,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/28,Kochi,1,70,0
 2020/5/28,Fukuoka,43,614,0
 2020/5/28,Saga,10,35,2
+2020/5/28,Nagasaki,0,16,0
 2020/5/28,Kumamoto,6,39,0
 2020/5/28,Oita,1,58,0
 2020/5/28,Miyazaki,0,17,0
@@ -981,6 +1001,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/29,Kochi,1,70,0
 2020/5/29,Fukuoka,61,616,0
 2020/5/29,Saga,8,37,2
+2020/5/29,Nagasaki,0,16,0
 2020/5/29,Kumamoto,6,39,0
 2020/5/29,Oita,1,58,0
 2020/5/29,Miyazaki,0,17,0
@@ -1028,6 +1049,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/30,Kochi,1,70,0
 2020/5/30,Fukuoka,84,619,0
 2020/5/30,Saga,8,37,2
+2020/5/30,Nagasaki,0,16,0
 2020/5/30,Kumamoto,3,42,0
 2020/5/30,Oita,1,58,0
 2020/5/30,Miyazaki,0,17,0
@@ -1075,6 +1097,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/5/31,Kochi,0,71,0
 2020/5/31,Fukuoka,100,620,0
 2020/5/31,Saga,8,37,2
+2020/5/31,Nagasaki,0,16,0
 2020/5/31,Kumamoto,2,43,0
 2020/5/31,Oita,1,58,0
 2020/5/31,Miyazaki,0,17,0
@@ -1122,6 +1145,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/1,Kochi,0,71,0
 2020/6/1,Fukuoka,107,625,0
 2020/6/1,Saga,3,42,2
+2020/6/1,Nagasaki,0,16,0
 2020/6/1,Kumamoto,2,43,0
 2020/6/1,Oita,1,58,0
 2020/6/1,Miyazaki,0,17,0
@@ -1169,6 +1193,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/2,Kochi,0,71,0
 2020/6/2,Fukuoka,121,626,0
 2020/6/2,Saga,0,45,2
+2020/6/2,Nagasaki,0,16,0
 2020/6/2,Kumamoto,1,44,0
 2020/6/2,Oita,1,58,0
 2020/6/2,Miyazaki,0,17,0
@@ -1216,6 +1241,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/3,Kochi,0,71,0
 2020/6/3,Fukuoka,125,628,0
 2020/6/3,Saga,0,45,2
+2020/6/3,Nagasaki,0,16,0
 2020/6/3,Kumamoto,1,44,0
 2020/6/3,Oita,1,58,0
 2020/6/3,Miyazaki,0,17,0
@@ -1263,6 +1289,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/4,Kochi,0,71,0
 2020/6/4,Fukuoka,127,632,0
 2020/6/4,Saga,0,45,2
+2020/6/4,Nagasaki,0,16,0
 2020/6/4,Kumamoto,1,44,0
 2020/6/4,Oita,1,58,0
 2020/6/4,Miyazaki,0,17,0
@@ -1310,6 +1337,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/5,Kochi,0,71,0
 2020/6/5,Fukuoka,132,633,0
 2020/6/5,Saga,0,45,2
+2020/6/5,Nagasaki,0,16,0
 2020/6/5,Kumamoto,1,44,0
 2020/6/5,Oita,1,58,0
 2020/6/5,Miyazaki,0,17,0
@@ -1357,6 +1385,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/6,Kochi,0,71,0
 2020/6/6,Fukuoka,129,641,0
 2020/6/6,Saga,0,45,2
+2020/6/6,Nagasaki,0,16,0
 2020/6/6,Kumamoto,1,44,0
 2020/6/6,Oita,1,58,0
 2020/6/6,Miyazaki,0,17,0
@@ -1404,6 +1433,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/7,Kochi,0,71,0
 2020/6/7,Fukuoka,131,641,0
 2020/6/7,Saga,0,45,2
+2020/6/7,Nagasaki,0,16,0
 2020/6/7,Kumamoto,1,44,0
 2020/6/7,Oita,1,58,0
 2020/6/7,Miyazaki,0,17,0
@@ -1451,6 +1481,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/8,Kochi,0,71,0
 2020/6/8,Fukuoka,133,642,0
 2020/6/8,Saga,0,45,2
+2020/6/8,Nagasaki,0,16,0
 2020/6/8,Kumamoto,1,44,0
 2020/6/8,Oita,1,58,0
 2020/6/8,Miyazaki,0,17,0
@@ -1498,6 +1529,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/9,Kochi,0,71,0
 2020/6/9,Fukuoka,133,645,0
 2020/6/9,Saga,0,45,2
+2020/6/9,Nagasaki,0,16,0
 2020/6/9,Kumamoto,1,44,0
 2020/6/9,Oita,0,59,0
 2020/6/9,Miyazaki,0,17,0
@@ -1545,6 +1577,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/10,Kochi,0,71,0
 2020/6/10,Fukuoka,131,650,0
 2020/6/10,Saga,0,45,2
+2020/6/10,Nagasaki,0,16,0
 2020/6/10,Kumamoto,1,44,0
 2020/6/10,Oita,0,59,0
 2020/6/10,Miyazaki,0,17,0
@@ -1592,6 +1625,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/11,Kochi,0,71,0
 2020/6/11,Fukuoka,111,671,0
 2020/6/11,Saga,0,47,0
+2020/6/11,Nagasaki,0,16,0
 2020/6/11,Kumamoto,0,45,0
 2020/6/11,Oita,0,59,0
 2020/6/11,Miyazaki,0,17,0
@@ -1639,6 +1673,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/12,Kochi,0,71,0
 2020/6/12,Fukuoka,102,682,0
 2020/6/12,Saga,0,47,0
+2020/6/12,Nagasaki,0,16,0
 2020/6/12,Kumamoto,0,45,0
 2020/6/12,Oita,0,59,0
 2020/6/12,Miyazaki,0,17,0
@@ -1686,6 +1721,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/13,Kochi,0,71,0
 2020/6/13,Fukuoka,87,706,0
 2020/6/13,Saga,0,47,0
+2020/6/13,Nagasaki,0,16,0
 2020/6/13,Kumamoto,0,45,0
 2020/6/13,Oita,0,59,0
 2020/6/13,Miyazaki,0,17,0
@@ -1733,6 +1769,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/14,Kochi,0,71,0
 2020/6/14,Fukuoka,57,737,0
 2020/6/14,Saga,0,47,0
+2020/6/14,Nagasaki,0,16,0
 2020/6/14,Kumamoto,0,45,0
 2020/6/14,Oita,0,59,0
 2020/6/14,Miyazaki,0,17,0
@@ -1780,6 +1817,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/15,Kochi,0,71,0
 2020/6/15,Fukuoka,55,742,0
 2020/6/15,Saga,0,47,0
+2020/6/15,Nagasaki,0,16,0
 2020/6/15,Kumamoto,0,45,0
 2020/6/15,Oita,0,59,0
 2020/6/15,Miyazaki,0,17,0
@@ -1827,6 +1865,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/16,Kochi,0,71,0
 2020/6/16,Fukuoka,46,752,0
 2020/6/16,Saga,0,47,0
+2020/6/16,Nagasaki,0,16,0
 2020/6/16,Kumamoto,0,45,0
 2020/6/16,Oita,0,59,0
 2020/6/16,Miyazaki,0,17,0
@@ -1874,6 +1913,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/17,Kochi,0,71,0
 2020/6/17,Fukuoka,40,759,0
 2020/6/17,Saga,0,47,0
+2020/6/17,Nagasaki,0,16,0
 2020/6/17,Kumamoto,0,45,0
 2020/6/17,Oita,0,59,0
 2020/6/17,Miyazaki,0,17,0
@@ -1921,6 +1961,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/18,Kochi,0,71,0
 2020/6/18,Fukuoka,39,763,0
 2020/6/18,Saga,0,47,0
+2020/6/18,Nagasaki,0,16,0
 2020/6/18,Kumamoto,0,45,0
 2020/6/18,Oita,0,59,0
 2020/6/18,Miyazaki,0,17,0
@@ -1968,6 +2009,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/19,Kochi,0,71,0
 2020/6/19,Fukuoka,29,776,0
 2020/6/19,Saga,0,47,0
+2020/6/19,Nagasaki,0,16,0
 2020/6/19,Kumamoto,0,45,0
 2020/6/19,Oita,0,59,0
 2020/6/19,Miyazaki,0,17,0
@@ -2015,6 +2057,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/20,Kochi,0,71,0
 2020/6/20,Fukuoka,29,781,0
 2020/6/20,Saga,0,47,0
+2020/6/20,Nagasaki,0,16,0
 2020/6/20,Kumamoto,0,45,0
 2020/6/20,Oita,0,59,0
 2020/6/20,Miyazaki,0,17,0
@@ -2062,6 +2105,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/21,Kochi,0,71,0
 2020/6/21,Fukuoka,26,784,0
 2020/6/21,Saga,0,47,0
+2020/6/21,Nagasaki,0,16,0
 2020/6/21,Kumamoto,0,45,0
 2020/6/21,Oita,0,59,0
 2020/6/21,Miyazaki,0,17,0
@@ -2109,6 +2153,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/22,Kochi,0,71,0
 2020/6/22,Fukuoka,26,784,0
 2020/6/22,Saga,0,47,0
+2020/6/22,Nagasaki,0,16,0
 2020/6/22,Kumamoto,0,45,0
 2020/6/22,Oita,0,59,0
 2020/6/22,Miyazaki,0,17,0
@@ -2156,6 +2201,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/23,Kochi,0,71,0
 2020/6/23,Fukuoka,22,783,0
 2020/6/23,Saga,0,47,0
+2020/6/23,Nagasaki,0,16,0
 2020/6/23,Kumamoto,1,45,0
 2020/6/23,Oita,0,59,0
 2020/6/23,Miyazaki,0,17,0
@@ -2203,6 +2249,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/24,Kochi,0,71,0
 2020/6/24,Fukuoka,22,786,0
 2020/6/24,Saga,0,47,0
+2020/6/24,Nagasaki,0,16,0
 2020/6/24,Kumamoto,1,45,0
 2020/6/24,Oita,0,59,0
 2020/6/24,Miyazaki,0,17,0
@@ -2250,6 +2297,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/25,Kochi,0,71,0
 2020/6/25,Fukuoka,21,788,0
 2020/6/25,Saga,0,47,0
+2020/6/25,Nagasaki,0,16,0
 2020/6/25,Kumamoto,1,45,0
 2020/6/25,Oita,0,59,0
 2020/6/25,Miyazaki,0,17,0
@@ -2297,6 +2345,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/26,Kochi,0,71,0
 2020/6/26,Fukuoka,22,789,0
 2020/6/26,Saga,0,47,0
+2020/6/26,Nagasaki,0,16,0
 2020/6/26,Kumamoto,1,45,0
 2020/6/26,Oita,0,59,0
 2020/6/26,Miyazaki,0,17,0
@@ -2344,6 +2393,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/27,Kochi,0,71,0
 2020/6/27,Fukuoka,16,795,0
 2020/6/27,Saga,0,47,0
+2020/6/27,Nagasaki,0,16,0
 2020/6/27,Kumamoto,1,45,0
 2020/6/27,Oita,0,59,0
 2020/6/27,Miyazaki,0,17,0
@@ -2391,6 +2441,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/28,Kochi,0,71,0
 2020/6/28,Fukuoka,14,798,0
 2020/6/28,Saga,0,47,0
+2020/6/28,Nagasaki,0,16,0
 2020/6/28,Kumamoto,1,45,0
 2020/6/28,Oita,0,59,0
 2020/6/28,Miyazaki,0,17,0
@@ -2438,6 +2489,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/29,Kochi,0,71,0
 2020/6/29,Fukuoka,13,799,0
 2020/6/29,Saga,0,47,0
+2020/6/29,Nagasaki,0,16,0
 2020/6/29,Kumamoto,1,45,0
 2020/6/29,Oita,0,59,0
 2020/6/29,Miyazaki,0,17,0
@@ -2485,6 +2537,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/6/30,Kochi,0,71,0
 2020/6/30,Fukuoka,13,800,0
 2020/6/30,Saga,0,47,0
+2020/6/30,Nagasaki,0,16,0
 2020/6/30,Kumamoto,1,45,0
 2020/6/30,Oita,0,59,0
 2020/6/30,Miyazaki,0,17,0
@@ -2532,6 +2585,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/1,Kochi,0,71,0
 2020/7/1,Fukuoka,16,801,0
 2020/7/1,Saga,0,47,0
+2020/7/1,Nagasaki,0,16,0
 2020/7/1,Kumamoto,1,45,0
 2020/7/1,Oita,0,59,0
 2020/7/1,Miyazaki,0,17,0
@@ -2579,6 +2633,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/2,Kochi,0,71,0
 2020/7/2,Fukuoka,19,802,0
 2020/7/2,Saga,0,47,0
+2020/7/2,Nagasaki,0,16,0
 2020/7/2,Kumamoto,0,46,0
 2020/7/2,Oita,0,59,0
 2020/7/2,Miyazaki,0,17,0
@@ -2626,6 +2681,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/3,Kochi,0,71,0
 2020/7/3,Fukuoka,22,803,0
 2020/7/3,Saga,0,47,0
+2020/7/3,Nagasaki,0,16,0
 2020/7/3,Kumamoto,0,46,0
 2020/7/3,Oita,0,59,0
 2020/7/3,Miyazaki,0,17,0
@@ -2673,6 +2729,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/4,Kochi,0,71,0
 2020/7/4,Fukuoka,23,806,0
 2020/7/4,Saga,0,47,0
+2020/7/4,Nagasaki,0,16,0
 2020/7/4,Kumamoto,0,46,0
 2020/7/4,Oita,0,59,0
 2020/7/4,Miyazaki,0,17,0
@@ -2720,6 +2777,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/5,Kochi,0,71,0
 2020/7/5,Fukuoka,28,807,0
 2020/7/5,Saga,0,47,0
+2020/7/5,Nagasaki,0,16,0
 2020/7/5,Kumamoto,0,46,0
 2020/7/5,Oita,0,59,0
 2020/7/5,Miyazaki,0,17,0
@@ -2767,6 +2825,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/6,Kochi,0,71,0
 2020/7/6,Fukuoka,37,807,0
 2020/7/6,Saga,0,47,0
+2020/7/6,Nagasaki,1,16,0
 2020/7/6,Kumamoto,0,46,0
 2020/7/6,Oita,0,59,0
 2020/7/6,Miyazaki,1,17,0
@@ -2814,6 +2873,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/7,Kochi,0,71,0
 2020/7/7,Fukuoka,31,814,0
 2020/7/7,Saga,0,47,0
+2020/7/7,Nagasaki,1,16,0
 2020/7/7,Kumamoto,0,46,0
 2020/7/7,Oita,0,59,0
 2020/7/7,Miyazaki,1,17,0
@@ -2861,6 +2921,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/8,Kochi,0,71,0
 2020/7/8,Fukuoka,38,814,0
 2020/7/8,Saga,0,47,0
+2020/7/8,Nagasaki,1,16,0
 2020/7/8,Kumamoto,0,46,0
 2020/7/8,Oita,0,59,0
 2020/7/8,Miyazaki,1,17,0
@@ -2908,6 +2969,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/9,Kochi,0,71,0
 2020/7/9,Fukuoka,49,816,0
 2020/7/9,Saga,0,47,0
+2020/7/9,Nagasaki,2,16,0
 2020/7/9,Kumamoto,0,46,0
 2020/7/9,Oita,0,59,0
 2020/7/9,Miyazaki,1,17,0
@@ -2955,6 +3017,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/10,Kochi,0,71,0
 2020/7/10,Fukuoka,53,816,0
 2020/7/10,Saga,0,47,0
+2020/7/10,Nagasaki,2,16,0
 2020/7/10,Kumamoto,0,46,0
 2020/7/10,Oita,0,59,0
 2020/7/10,Miyazaki,1,17,0
@@ -3002,6 +3065,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/11,Kochi,0,71,0
 2020/7/11,Fukuoka,58,817,0
 2020/7/11,Saga,0,47,0
+2020/7/11,Nagasaki,2,16,0
 2020/7/11,Kumamoto,0,46,0
 2020/7/11,Oita,0,59,0
 2020/7/11,Miyazaki,1,17,0
@@ -3049,6 +3113,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/12,Kochi,0,71,0
 2020/7/12,Fukuoka,66,818,0
 2020/7/12,Saga,0,47,0
+2020/7/12,Nagasaki,2,16,0
 2020/7/12,Kumamoto,0,46,0
 2020/7/12,Oita,0,59,0
 2020/7/12,Miyazaki,1,17,0
@@ -3096,6 +3161,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/13,Kochi,1,71,0
 2020/7/13,Fukuoka,67,822,0
 2020/7/13,Saga,0,47,0
+2020/7/13,Nagasaki,9,16,0
 2020/7/13,Kumamoto,0,46,0
 2020/7/13,Oita,0,59,0
 2020/7/13,Miyazaki,1,17,2
@@ -3143,6 +3209,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/14,Kochi,1,71,0
 2020/7/14,Fukuoka,64,827,0
 2020/7/14,Saga,0,47,0
+2020/7/14,Nagasaki,12,16,1
 2020/7/14,Kumamoto,0,46,0
 2020/7/14,Oita,0,59,0
 2020/7/14,Miyazaki,3,17,0
@@ -3190,6 +3257,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/15,Kochi,1,71,0
 2020/7/15,Fukuoka,62,833,0
 2020/7/15,Saga,0,47,0
+2020/7/15,Nagasaki,14,16,0
 2020/7/15,Kumamoto,0,46,0
 2020/7/15,Oita,0,59,0
 2020/7/15,Miyazaki,3,17,0
@@ -3237,6 +3305,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/16,Kochi,1,71,1
 2020/7/16,Fukuoka,67,837,0
 2020/7/16,Saga,0,47,0
+2020/7/16,Nagasaki,15,16,0
 2020/7/16,Kumamoto,0,46,0
 2020/7/16,Oita,0,59,0
 2020/7/16,Miyazaki,3,17,0
@@ -3284,6 +3353,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/17,Kochi,2,71,0
 2020/7/17,Fukuoka,72,848,0
 2020/7/17,Saga,0,47,0
+2020/7/17,Nagasaki,15,16,0
 2020/7/17,Kumamoto,1,46,0
 2020/7/17,Oita,0,59,0
 2020/7/17,Miyazaki,2,18,0
@@ -3331,6 +3401,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/18,Kochi,2,71,0
 2020/7/18,Fukuoka,85,854,0
 2020/7/18,Saga,0,47,0
+2020/7/18,Nagasaki,15,16,0
 2020/7/18,Kumamoto,1,46,0
 2020/7/18,Oita,0,59,0
 2020/7/18,Miyazaki,2,18,0
@@ -3378,6 +3449,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/19,Kochi,2,71,0
 2020/7/19,Fukuoka,100,863,0
 2020/7/19,Saga,0,47,0
+2020/7/19,Nagasaki,23,16,0
 2020/7/19,Kumamoto,1,46,0
 2020/7/19,Oita,0,59,0
 2020/7/19,Miyazaki,2,18,0
@@ -3425,6 +3497,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/20,Kochi,2,71,0
 2020/7/20,Fukuoka,131,864,0
 2020/7/20,Saga,1,47,0
+2020/7/20,Nagasaki,23,16,0
 2020/7/20,Kumamoto,1,46,0
 2020/7/20,Oita,0,59,0
 2020/7/20,Miyazaki,2,18,0
@@ -3472,6 +3545,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/21,Kochi,1,72,0
 2020/7/21,Fukuoka,157,870,0
 2020/7/21,Saga,2,47,0
+2020/7/21,Nagasaki,27,16,0
 2020/7/21,Kumamoto,2,46,0
 2020/7/21,Oita,0,59,0
 2020/7/21,Miyazaki,2,18,0
@@ -3519,6 +3593,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/22,Kochi,2,72,0
 2020/7/22,Fukuoka,203,877,0
 2020/7/22,Saga,8,47,0
+2020/7/22,Nagasaki,30,16,0
 2020/7/22,Kumamoto,3,46,0
 2020/7/22,Oita,0,59,0
 2020/7/22,Miyazaki,2,18,0
@@ -3566,6 +3641,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/23,Kochi,2,72,0
 2020/7/23,Fukuoka,251,890,0
 2020/7/23,Saga,10,47,0
+2020/7/23,Nagasaki,30,16,0
 2020/7/23,Kumamoto,8,46,0
 2020/7/23,Oita,0,59,0
 2020/7/23,Miyazaki,5,18,0
@@ -3613,6 +3689,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/24,Kochi,3,72,0
 2020/7/24,Fukuoka,314,893,0
 2020/7/24,Saga,16,47,0
+2020/7/24,Nagasaki,30,16,0
 2020/7/24,Kumamoto,8,46,0
 2020/7/24,Oita,0,59,0
 2020/7/24,Miyazaki,5,18,4
@@ -3660,6 +3737,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/25,Kochi,3,72,0
 2020/7/25,Fukuoka,357,902,0
 2020/7/25,Saga,19,47,0
+2020/7/25,Nagasaki,29,16,0
 2020/7/25,Kumamoto,9,46,0
 2020/7/25,Oita,0,59,0
 2020/7/25,Miyazaki,6,18,12
@@ -3707,6 +3785,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/26,Kochi,4,72,0
 2020/7/26,Fukuoka,400,909,0
 2020/7/26,Saga,20,47,0
+2020/7/26,Nagasaki,28,22,0
 2020/7/26,Kumamoto,22,47,0
 2020/7/26,Oita,0,59,0
 2020/7/26,Miyazaki,42,20,0
@@ -3754,6 +3833,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/27,Kochi,4,72,0
 2020/7/27,Fukuoka,466,933,0
 2020/7/27,Saga,20,47,0
+2020/7/27,Nagasaki,29,22,0
 2020/7/27,Kumamoto,50,47,0
 2020/7/27,Oita,0,59,0
 2020/7/27,Miyazaki,53,20,0
@@ -3801,6 +3881,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/28,Kochi,4,73,0
 2020/7/28,Fukuoka,496,952,0
 2020/7/28,Saga,21,48,0
+2020/7/28,Nagasaki,35,22,0
 2020/7/28,Kumamoto,64,47,0
 2020/7/28,Oita,2,59,0
 2020/7/28,Miyazaki,65,20,0
@@ -3848,6 +3929,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/29,Kochi,4,73,0
 2020/7/29,Fukuoka,510,992,0
 2020/7/29,Saga,23,49,0
+2020/7/29,Nagasaki,32,27,0
 2020/7/29,Kumamoto,106,48,0
 2020/7/29,Oita,2,59,0
 2020/7/29,Miyazaki,86,20,0
@@ -3895,6 +3977,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/30,Kochi,4,73,0
 2020/7/30,Fukuoka,587,1015,0
 2020/7/30,Saga,26,50,1
+2020/7/30,Nagasaki,37,27,0
 2020/7/30,Kumamoto,106,48,0
 2020/7/30,Oita,4,59,0
 2020/7/30,Miyazaki,86,20,0
@@ -3942,6 +4025,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/7/31,Kochi,4,73,0
 2020/7/31,Fukuoka,661,1062,0
 2020/7/31,Saga,33,53,4
+2020/7/31,Nagasaki,45,27,0
 2020/7/31,Kumamoto,140,48,0
 2020/7/31,Oita,6,59,0
 2020/7/31,Miyazaki,100,21,0
@@ -3989,6 +4073,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/1,Kochi,4,73,0
 2020/8/1,Fukuoka,791,1101,0
 2020/8/1,Saga,34,56,0
+2020/8/1,Nagasaki,55,32,0
 2020/8/1,Kumamoto,162,52,0
 2020/8/1,Oita,8,59,0
 2020/8/1,Miyazaki,120,21,16
@@ -4036,6 +4121,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/2,Kochi,5,73,0
 2020/8/2,Fukuoka,878,1135,0
 2020/8/2,Saga,36,59,0
+2020/8/2,Nagasaki,78,32,0
 2020/8/2,Kumamoto,182,52,0
 2020/8/2,Oita,8,59,0
 2020/8/2,Miyazaki,132,25,0
@@ -4083,6 +4169,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/3,Kochi,5,74,0
 2020/8/3,Fukuoka,993,1165,0
 2020/8/3,Saga,55,60,13
+2020/8/3,Nagasaki,83,32,0
 2020/8/3,Kumamoto,184,55,0
 2020/8/3,Oita,10,59,0
 2020/8/3,Miyazaki,132,25,38
@@ -4130,6 +4217,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/4,Kochi,5,74,0
 2020/8/4,Fukuoka,1033,1201,0
 2020/8/4,Saga,66,62,17
+2020/8/4,Nagasaki,83,32,18
 2020/8/4,Kumamoto,220,56,0
 2020/8/4,Oita,13,59,0
 2020/8/4,Miyazaki,148,27,32
@@ -4177,6 +4265,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/5,Kochi,3,76,0
 2020/8/5,Fukuoka,1014,1307,0
 2020/8/5,Saga,74,62,15
+2020/8/5,Nagasaki,101,32,5
 2020/8/5,Kumamoto,249,68,0
 2020/8/5,Oita,14,59,0
 2020/8/5,Miyazaki,150,37,0
@@ -4224,6 +4313,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/6,Kochi,3,76,0
 2020/8/6,Fukuoka,1073,1371,0
 2020/8/6,Saga,85,64,16
+2020/8/6,Nagasaki,110,32,0
 2020/8/6,Kumamoto,249,68,0
 2020/8/6,Oita,16,59,0
 2020/8/6,Miyazaki,144,51,0
@@ -4271,6 +4361,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/7,Kochi,3,77,0
 2020/8/7,Fukuoka,1099,1479,0
 2020/8/7,Saga,88,69,16
+2020/8/7,Nagasaki,115,32,0
 2020/8/7,Kumamoto,134,87,106
 2020/8/7,Oita,15,62,0
 2020/8/7,Miyazaki,133,75,0
@@ -4318,6 +4409,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/8,Kochi,3,77,0
 2020/8/8,Fukuoka,1158,1560,0
 2020/8/8,Saga,87,70,-12
+2020/8/8,Nagasaki,120,36,0
 2020/8/8,Kumamoto,131,90,115
 2020/8/8,Oita,17,62,0
 2020/8/8,Miyazaki,127,88,0
@@ -4365,6 +4457,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/9,Kochi,3,77,0
 2020/8/9,Fukuoka,1236,1630,0
 2020/8/9,Saga,95,80,21
+2020/8/9,Nagasaki,39,36,88
 2020/8/9,Kumamoto,148,126,75
 2020/8/9,Oita,23,63,0
 2020/8/9,Miyazaki,123,105,0
@@ -4412,6 +4505,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/10,Kochi,3,77,0
 2020/8/10,Fukuoka,1290,1685,0
 2020/8/10,Saga,82,94,19
+2020/8/10,Nagasaki,43,36,85
 2020/8/10,Kumamoto,148,126,78
 2020/8/10,Oita,28,63,0
 2020/8/10,Miyazaki,120,114,0
@@ -4459,6 +4553,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/11,Kochi,3,77,0
 2020/8/11,Fukuoka,1312,1734,0
 2020/8/11,Saga,79,97,14
+2020/8/11,Nagasaki,37,36,94
 2020/8/11,Kumamoto,138,146,72
 2020/8/11,Oita,29,63,0
 2020/8/11,Miyazaki,117,124,0
@@ -4506,6 +4601,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/12,Kochi,2,78,0
 2020/8/12,Fukuoka,1280,1820,0
 2020/8/12,Saga,72,105,3
+2020/8/12,Nagasaki,34,36,97
 2020/8/12,Kumamoto,128,158,80
 2020/8/12,Oita,27,65,0
 2020/8/12,Miyazaki,103,140,0
@@ -4553,6 +4649,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/13,Kochi,1,79,0
 2020/8/13,Fukuoka,1210,1967,0
 2020/8/13,Saga,72,106,3
+2020/8/13,Nagasaki,33,36,101
 2020/8/13,Kumamoto,112,176,87
 2020/8/13,Oita,25,67,0
 2020/8/13,Miyazaki,100,148,0
@@ -4600,6 +4697,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/14,Kochi,1,79,0
 2020/8/14,Fukuoka,1182,2138,0
 2020/8/14,Saga,69,117,6
+2020/8/14,Nagasaki,32,36,107
 2020/8/14,Kumamoto,112,176,87
 2020/8/14,Oita,19,74,0
 2020/8/14,Miyazaki,88,164,0
@@ -4647,6 +4745,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/15,Kochi,4,79,11
 2020/8/15,Fukuoka,1195,2250,0
 2020/8/15,Saga,76,117,3
+2020/8/15,Nagasaki,37,36,108
 2020/8/15,Kumamoto,94,211,82
 2020/8/15,Oita,20,76,0
 2020/8/15,Miyazaki,78,178,1
@@ -4694,6 +4793,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/16,Kochi,17,79,3
 2020/8/16,Fukuoka,1061,2459,0
 2020/8/16,Saga,68,128,1
+2020/8/16,Nagasaki,37,36,109
 2020/8/16,Kumamoto,94,235,72
 2020/8/16,Oita,22,80,0
 2020/8/16,Miyazaki,78,183,1
@@ -4741,6 +4841,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/17,Kochi,19,80,1
 2020/8/17,Fukuoka,1055,2537,0
 2020/8/17,Saga,67,133,2
+2020/8/17,Nagasaki,38,36,108
 2020/8/17,Kumamoto,98,247,61
 2020/8/17,Oita,32,80,0
 2020/8/17,Miyazaki,76,191,1
@@ -4788,6 +4889,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/18,Kochi,20,80,0
 2020/8/18,Fukuoka,1013,2628,0
 2020/8/18,Saga,50,150,1
+2020/8/18,Nagasaki,31,36,119
 2020/8/18,Kumamoto,95,252,63
 2020/8/18,Oita,36,83,0
 2020/8/18,Miyazaki,66,207,1
@@ -4835,6 +4937,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/19,Kochi,21,80,1
 2020/8/19,Fukuoka,922,2761,0
 2020/8/19,Saga,50,155,2
+2020/8/19,Nagasaki,26,36,124
 2020/8/19,Kumamoto,91,316,13
 2020/8/19,Oita,43,86,0
 2020/8/19,Miyazaki,66,207,1
@@ -4882,6 +4985,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/20,Kochi,19,83,0
 2020/8/20,Fukuoka,915,2869,0
 2020/8/20,Saga,51,158,2
+2020/8/20,Nagasaki,25,36,127
 2020/8/20,Kumamoto,91,316,28
 2020/8/20,Oita,46,87,0
 2020/8/20,Miyazaki,76,221,1
@@ -4929,6 +5033,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/21,Kochi,18,85,0
 2020/8/21,Fukuoka,856,2997,0
 2020/8/21,Saga,50,164,0
+2020/8/21,Nagasaki,25,36,128
 2020/8/21,Kumamoto,85,330,20
 2020/8/21,Oita,47,89,0
 2020/8/21,Miyazaki,78,225,1
@@ -4976,6 +5081,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/22,Kochi,18,86,0
 2020/8/22,Fukuoka,845,3095,0
 2020/8/22,Saga,45,174,1
+2020/8/22,Nagasaki,26,36,128
 2020/8/22,Kumamoto,98,349,12
 2020/8/22,Oita,48,89,0
 2020/8/22,Miyazaki,73,236,1
@@ -5023,6 +5129,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/23,Kochi,19,86,1
 2020/8/23,Fukuoka,866,3141,0
 2020/8/23,Saga,45,177,0
+2020/8/23,Nagasaki,28,36,134
 2020/8/23,Kumamoto,97,360,7
 2020/8/23,Oita,44,93,0
 2020/8/23,Miyazaki,81,236,1
@@ -5070,6 +5177,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/24,Kochi,15,91,0
 2020/8/24,Fukuoka,886,3182,0
 2020/8/24,Saga,42,182,0
+2020/8/24,Nagasaki,29,36,136
 2020/8/24,Kumamoto,97,360,7
 2020/8/24,Oita,46,93,0
 2020/8/24,Miyazaki,80,241,1
@@ -5117,6 +5225,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/25,Kochi,11,95,0
 2020/8/25,Fukuoka,886,3232,0
 2020/8/25,Saga,36,189,0
+2020/8/25,Nagasaki,29,36,137
 2020/8/25,Kumamoto,81,382,8
 2020/8/25,Oita,43,96,0
 2020/8/25,Miyazaki,74,251,1
@@ -5164,6 +5273,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/26,Kochi,19,96,0
 2020/8/26,Fukuoka,866,3303,0
 2020/8/26,Saga,36,192,1
+2020/8/26,Nagasaki,22,36,144
 2020/8/26,Kumamoto,81,391,3
 2020/8/26,Oita,40,102,0
 2020/8/26,Miyazaki,74,251,1
@@ -5211,6 +5321,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/27,Kochi,18,97,0
 2020/8/27,Fukuoka,868,3361,0
 2020/8/27,Saga,31,199,1
+2020/8/27,Nagasaki,25,36,155
 2020/8/27,Kumamoto,77,397,10
 2020/8/27,Oita,34,109,0
 2020/8/27,Miyazaki,65,265,1
@@ -5258,6 +5369,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/28,Kochi,15,101,0
 2020/8/28,Fukuoka,855,3438,0
 2020/8/28,Saga,30,206,1
+2020/8/28,Nagasaki,23,180,18
 2020/8/28,Kumamoto,73,402,16
 2020/8/28,Oita,23,120,0
 2020/8/28,Miyazaki,61,270,1
@@ -5305,6 +5417,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/29,Kochi,17,103,1
 2020/8/29,Fukuoka,846,3510,0
 2020/8/29,Saga,29,209,1
+2020/8/29,Nagasaki,23,180,23
 2020/8/29,Kumamoto,70,413,19
 2020/8/29,Oita,19,124,0
 2020/8/29,Miyazaki,44,289,1
@@ -5352,6 +5465,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/30,Kochi,19,103,0
 2020/8/30,Fukuoka,870,3558,0
 2020/8/30,Saga,27,211,1
+2020/8/30,Nagasaki,27,180,20
 2020/8/30,Kumamoto,70,420,14
 2020/8/30,Oita,17,127,0
 2020/8/30,Miyazaki,37,298,1
@@ -5399,6 +5513,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/8/31,Kochi,19,103,0
 2020/8/31,Fukuoka,904,3604,0
 2020/8/31,Saga,24,214,1
+2020/8/31,Nagasaki,24,184,20
 2020/8/31,Kumamoto,75,422,16
 2020/8/31,Oita,15,129,0
 2020/8/31,Miyazaki,35,301,1
@@ -5446,6 +5561,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/1,Kochi,19,104,2
 2020/9/1,Fukuoka,893,3643,0
 2020/9/1,Saga,18,220,1
+2020/9/1,Nagasaki,22,185,22
 2020/9/1,Kumamoto,68,435,14
 2020/9/1,Oita,15,130,0
 2020/9/1,Miyazaki,35,302,1
@@ -5493,6 +5609,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/2,Kochi,21,105,0
 2020/9/2,Fukuoka,831,3742,0
 2020/9/2,Saga,18,222,1
+2020/9/2,Nagasaki,22,186,21
 2020/9/2,Kumamoto,70,441,10
 2020/9/2,Oita,16,132,0
 2020/9/2,Miyazaki,30,308,1
@@ -5540,6 +5657,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/3,Kochi,18,109,0
 2020/9/3,Fukuoka,802,3819,0
 2020/9/3,Saga,17,223,1
+2020/9/3,Nagasaki,16,200,15
 2020/9/3,Kumamoto,62,450,15
 2020/9/3,Oita,14,135,0
 2020/9/3,Miyazaki,23,315,1
@@ -5587,6 +5705,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/4,Kochi,14,113,0
 2020/9/4,Fukuoka,734,3954,0
 2020/9/4,Saga,15,225,1
+2020/9/4,Nagasaki,24,201,6
 2020/9/4,Kumamoto,59,460,11
 2020/9/4,Oita,15,136,0
 2020/9/4,Miyazaki,22,316,1
@@ -5634,6 +5753,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/5,Kochi,12,116,0
 2020/9/5,Fukuoka,717,3997,0
 2020/9/5,Saga,10,230,0
+2020/9/5,Nagasaki,23,201,7
 2020/9/5,Kumamoto,57,468,8
 2020/9/5,Oita,19,136,0
 2020/9/5,Miyazaki,20,318,1
@@ -5681,6 +5801,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/6,Kochi,10,118,1
 2020/9/6,Fukuoka,717,3997,0
 2020/9/6,Saga,10,230,0
+2020/9/6,Nagasaki,21,201,9
 2020/9/6,Kumamoto,53,474,8
 2020/9/6,Oita,19,136,0
 2020/9/6,Miyazaki,21,318,1
@@ -5728,6 +5849,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/7,Kochi,8,121,0
 2020/9/7,Fukuoka,717,4031,0
 2020/9/7,Saga,7,234,0
+2020/9/7,Nagasaki,19,206,6
 2020/9/7,Kumamoto,58,474,7
 2020/9/7,Oita,18,137,0
 2020/9/7,Miyazaki,18,321,1
@@ -5775,6 +5897,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/8,Kochi,6,123,2
 2020/9/8,Fukuoka,696,4067,0
 2020/9/8,Saga,8,234,0
+2020/9/8,Nagasaki,19,208,4
 2020/9/8,Kumamoto,50,484,9
 2020/9/8,Oita,18,137,0
 2020/9/8,Miyazaki,18,321,1
@@ -5822,6 +5945,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/9,Kochi,7,124,0
 2020/9/9,Fukuoka,625,4145,1
 2020/9/9,Saga,5,237,0
+2020/9/9,Nagasaki,18,214,1
 2020/9/9,Kumamoto,41,495,10
 2020/9/9,Oita,18,138,0
 2020/9/9,Miyazaki,18,321,1
@@ -5869,6 +5993,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/10,Kochi,7,124,0
 2020/9/10,Fukuoka,601,4194,0
 2020/9/10,Saga,6,237,0
+2020/9/10,Nagasaki,13,217,1
 2020/9/10,Kumamoto,35,506,8
 2020/9/10,Oita,16,140,0
 2020/9/10,Miyazaki,11,328,1
@@ -5916,6 +6041,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/11,Kochi,10,124,0
 2020/9/11,Fukuoka,578,4238,0
 2020/9/11,Saga,6,238,0
+2020/9/11,Nagasaki,9,219,3
 2020/9/11,Kumamoto,35,509,12
 2020/9/11,Oita,15,141,0
 2020/9/11,Miyazaki,10,329,1
@@ -5963,6 +6089,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/12,Kochi,9,124,0
 2020/9/12,Fukuoka,473,4402,22
 2020/9/12,Saga,4,240,0
+2020/9/12,Nagasaki,8,219,5
 2020/9/12,Kumamoto,33,515,12
 2020/9/12,Oita,14,142,0
 2020/9/12,Miyazaki,9,331,1
@@ -6010,6 +6137,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/13,Kochi,7,126,0
 2020/9/13,Fukuoka,449,4402,2
 2020/9/13,Saga,4,240,0
+2020/9/13,Nagasaki,8,219,5
 2020/9/13,Kumamoto,38,520,3
 2020/9/13,Oita,13,143,0
 2020/9/13,Miyazaki,11,331,1
@@ -6057,6 +6185,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/14,Kochi,7,126,0
 2020/9/14,Fukuoka,355,4513,0
 2020/9/14,Saga,4,240,0
+2020/9/14,Nagasaki,8,224,1
 2020/9/14,Kumamoto,38,521,2
 2020/9/14,Oita,11,145,0
 2020/9/14,Miyazaki,10,332,1
@@ -6104,6 +6233,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/15,Kochi,7,126,0
 2020/9/15,Fukuoka,355,4513,0
 2020/9/15,Saga,4,240,0
+2020/9/15,Nagasaki,8,225,0
 2020/9/15,Kumamoto,36,523,3
 2020/9/15,Oita,8,148,0
 2020/9/15,Miyazaki,8,335,1
@@ -6151,6 +6281,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/16,Kochi,7,126,0
 2020/9/16,Fukuoka,318,4557,0
 2020/9/16,Saga,1,243,0
+2020/9/16,Nagasaki,8,226,1
 2020/9/16,Kumamoto,36,523,3
 2020/9/16,Oita,7,149,0
 2020/9/16,Miyazaki,6,338,1
@@ -6198,6 +6329,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/17,Kochi,4,129,0
 2020/9/17,Fukuoka,293,4589,0
 2020/9/17,Saga,1,243,0
+2020/9/17,Nagasaki,7,226,0
 2020/9/17,Kumamoto,30,532,0
 2020/9/17,Oita,5,151,0
 2020/9/17,Miyazaki,5,339,1
@@ -6245,6 +6377,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/18,Kochi,4,129,0
 2020/9/18,Fukuoka,293,4629,25
 2020/9/18,Saga,1,243,0
+2020/9/18,Nagasaki,6,227,0
 2020/9/18,Kumamoto,25,537,1
 2020/9/18,Oita,5,151,0
 2020/9/18,Miyazaki,4,340,1
@@ -6292,6 +6425,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/19,Kochi,4,129,0
 2020/9/19,Fukuoka,211,4695,0
 2020/9/19,Saga,2,244,1
+2020/9/19,Nagasaki,3,227,3
 2020/9/19,Kumamoto,24,539,0
 2020/9/19,Oita,5,151,0
 2020/9/19,Miyazaki,4,340,1
@@ -6339,6 +6473,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/20,Kochi,3,130,0
 2020/9/20,Fukuoka,185,4728,0
 2020/9/20,Saga,2,244,2
+2020/9/20,Nagasaki,3,227,3
 2020/9/20,Kumamoto,18,545,0
 2020/9/20,Oita,5,151,0
 2020/9/20,Miyazaki,4,340,1
@@ -6386,6 +6521,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/21,Kochi,1,132,0
 2020/9/21,Fukuoka,185,4734,6
 2020/9/21,Saga,2,244,2
+2020/9/21,Nagasaki,3,227,3
 2020/9/21,Kumamoto,18,545,0
 2020/9/21,Oita,5,151,0
 2020/9/21,Miyazaki,4,340,1
@@ -6433,6 +6569,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/22,Kochi,1,132,0
 2020/9/22,Fukuoka,179,4734,0
 2020/9/22,Saga,2,244,2
+2020/9/22,Nagasaki,3,227,3
 2020/9/22,Kumamoto,14,549,0
 2020/9/22,Oita,5,151,0
 2020/9/22,Miyazaki,4,340,1
@@ -6480,6 +6617,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/23,Kochi,1,132,0
 2020/9/23,Fukuoka,175,4740,0
 2020/9/23,Saga,2,244,2
+2020/9/23,Nagasaki,3,230,0
 2020/9/23,Kumamoto,12,551,0
 2020/9/23,Oita,4,152,0
 2020/9/23,Miyazaki,2,342,1
@@ -6527,6 +6665,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/24,Kochi,0,133,0
 2020/9/24,Fukuoka,160,4755,0
 2020/9/24,Saga,2,244,2
+2020/9/24,Nagasaki,3,230,0
 2020/9/24,Kumamoto,11,553,0
 2020/9/24,Oita,4,152,0
 2020/9/24,Miyazaki,2,342,1
@@ -6574,6 +6713,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/25,Kochi,0,133,0
 2020/9/25,Fukuoka,136,4786,0
 2020/9/25,Saga,2,244,2
+2020/9/25,Nagasaki,3,230,0
 2020/9/25,Kumamoto,9,555,0
 2020/9/25,Oita,3,153,0
 2020/9/25,Miyazaki,2,342,1
@@ -6621,6 +6761,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/26,Kochi,0,133,0
 2020/9/26,Fukuoka,136,4786,0
 2020/9/26,Saga,3,244,2
+2020/9/26,Nagasaki,3,230,0
 2020/9/26,Kumamoto,7,557,0
 2020/9/26,Oita,3,153,0
 2020/9/26,Miyazaki,2,342,1
@@ -6668,6 +6809,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/27,Kochi,1,133,0
 2020/9/27,Fukuoka,127,4801,0
 2020/9/27,Saga,2,245,2
+2020/9/27,Nagasaki,2,230,1
 2020/9/27,Kumamoto,7,557,0
 2020/9/27,Oita,3,153,0
 2020/9/27,Miyazaki,2,342,1
@@ -6715,6 +6857,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/28,Kochi,1,133,0
 2020/9/28,Fukuoka,117,4815,0
 2020/9/28,Saga,2,245,2
+2020/9/28,Nagasaki,2,231,0
 2020/9/28,Kumamoto,7,557,0
 2020/9/28,Oita,3,153,0
 2020/9/28,Miyazaki,1,343,1
@@ -6762,6 +6905,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/29,Kochi,1,133,0
 2020/9/29,Fukuoka,95,4837,0
 2020/9/29,Saga,2,245,2
+2020/9/29,Nagasaki,2,231,0
 2020/9/29,Kumamoto,6,559,0
 2020/9/29,Oita,3,153,0
 2020/9/29,Miyazaki,1,343,1
@@ -6809,6 +6953,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/9/30,Kochi,1,133,0
 2020/9/30,Fukuoka,93,4842,0
 2020/9/30,Saga,1,246,2
+2020/9/30,Nagasaki,1,231,1
 2020/9/30,Kumamoto,7,559,0
 2020/9/30,Oita,3,153,0
 2020/9/30,Miyazaki,1,343,1
@@ -6856,6 +7001,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/1,Kochi,1,133,0
 2020/10/1,Fukuoka,87,4855,0
 2020/10/1,Saga,1,246,2
+2020/10/1,Nagasaki,3,232,2
 2020/10/1,Kumamoto,8,559,3
 2020/10/1,Oita,3,153,0
 2020/10/1,Miyazaki,1,343,1
@@ -6903,6 +7049,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/2,Kochi,1,133,0
 2020/10/2,Fukuoka,86,4859,1
 2020/10/2,Saga,1,246,2
+2020/10/2,Nagasaki,1,232,2
 2020/10/2,Kumamoto,11,559,1
 2020/10/2,Oita,3,153,0
 2020/10/2,Miyazaki,1,343,1
@@ -6950,6 +7097,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/3,Kochi,1,133,0
 2020/10/3,Fukuoka,74,4881,0
 2020/10/3,Saga,2,246,2
+2020/10/3,Nagasaki,1,232,2
 2020/10/3,Kumamoto,13,559,8
 2020/10/3,Oita,2,154,0
 2020/10/3,Miyazaki,1,343,1
@@ -6997,6 +7145,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/4,Kochi,1,133,0
 2020/10/4,Fukuoka,74,4881,0
 2020/10/4,Saga,2,246,2
+2020/10/4,Nagasaki,1,232,2
 2020/10/4,Kumamoto,17,560,22
 2020/10/4,Oita,2,154,0
 2020/10/4,Miyazaki,1,343,1
@@ -7044,6 +7193,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/5,Kochi,0,134,0
 2020/10/5,Fukuoka,75,4883,0
 2020/10/5,Saga,1,247,2
+2020/10/5,Nagasaki,1,233,1
 2020/10/5,Kumamoto,31,560,27
 2020/10/5,Oita,2,154,0
 2020/10/5,Miyazaki,1,343,1
@@ -7091,6 +7241,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/6,Kochi,0,134,0
 2020/10/6,Fukuoka,71,4887,0
 2020/10/6,Saga,1,247,2
+2020/10/6,Nagasaki,1,233,1
 2020/10/6,Kumamoto,53,563,15
 2020/10/6,Oita,1,155,0
 2020/10/6,Miyazaki,1,343,1
@@ -7138,6 +7289,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/7,Kochi,0,134,0
 2020/10/7,Fukuoka,68,4894,0
 2020/10/7,Saga,3,247,2
+2020/10/7,Nagasaki,1,233,1
 2020/10/7,Kumamoto,56,570,8
 2020/10/7,Oita,1,155,0
 2020/10/7,Miyazaki,1,343,1
@@ -7185,6 +7337,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/8,Kochi,0,134,0
 2020/10/8,Fukuoka,71,4899,0
 2020/10/8,Saga,3,247,2
+2020/10/8,Nagasaki,1,233,1
 2020/10/8,Kumamoto,56,570,8
 2020/10/8,Oita,1,155,0
 2020/10/8,Miyazaki,1,343,1
@@ -7232,6 +7385,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/9,Kochi,0,134,0
 2020/10/9,Fukuoka,64,4925,11
 2020/10/9,Saga,3,247,2
+2020/10/9,Nagasaki,3,233,0
 2020/10/9,Kumamoto,57,566,21
 2020/10/9,Oita,1,155,0
 2020/10/9,Miyazaki,0,344,1
@@ -7279,6 +7433,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/10,Kochi,0,134,0
 2020/10/10,Fukuoka,76,4926,0
 2020/10/10,Saga,3,247,2
+2020/10/10,Nagasaki,4,233,1
 2020/10/10,Kumamoto,55,574,36
 2020/10/10,Oita,1,155,0
 2020/10/10,Miyazaki,0,344,1
@@ -7326,6 +7481,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/11,Kochi,1,134,0
 2020/10/11,Fukuoka,76,4926,0
 2020/10/11,Saga,3,247,2
+2020/10/11,Nagasaki,3,233,0
 2020/10/11,Kumamoto,70,590,22
 2020/10/11,Oita,1,155,0
 2020/10/11,Miyazaki,0,344,1
@@ -7373,6 +7529,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/12,Kochi,1,134,0
 2020/10/12,Fukuoka,69,4937,0
 2020/10/12,Saga,2,248,2
+2020/10/12,Nagasaki,3,233,2
 2020/10/12,Kumamoto,70,590,22
 2020/10/12,Oita,1,155,0
 2020/10/12,Miyazaki,0,344,1
@@ -7420,6 +7577,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/13,Kochi,1,134,0
 2020/10/13,Fukuoka,69,4937,0
 2020/10/13,Saga,3,248,2
+2020/10/13,Nagasaki,3,233,2
 2020/10/13,Kumamoto,66,606,34
 2020/10/13,Oita,1,155,0
 2020/10/13,Miyazaki,0,344,1
@@ -7467,6 +7625,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/14,Kochi,1,134,0
 2020/10/14,Fukuoka,70,4943,0
 2020/10/14,Saga,3,248,2
+2020/10/14,Nagasaki,3,233,2
 2020/10/14,Kumamoto,70,615,27
 2020/10/14,Oita,1,155,0
 2020/10/14,Miyazaki,0,344,1
@@ -7514,6 +7673,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/15,Kochi,2,134,0
 2020/10/15,Fukuoka,73,4953,0
 2020/10/15,Saga,3,248,2
+2020/10/15,Nagasaki,2,234,2
 2020/10/15,Kumamoto,74,625,19
 2020/10/15,Oita,1,155,0
 2020/10/15,Miyazaki,1,365,1
@@ -7561,6 +7721,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/16,Kochi,2,134,0
 2020/10/16,Fukuoka,66,4973,0
 2020/10/16,Saga,3,249,2
+2020/10/16,Nagasaki,2,235,1
 2020/10/16,Kumamoto,69,637,21
 2020/10/16,Oita,2,155,0
 2020/10/16,Miyazaki,1,365,1
@@ -7608,6 +7769,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/17,Kochi,1,135,0
 2020/10/17,Fukuoka,64,4976,0
 2020/10/17,Saga,5,249,2
+2020/10/17,Nagasaki,3,235,0
 2020/10/17,Kumamoto,68,652,12
 2020/10/17,Oita,2,155,0
 2020/10/17,Miyazaki,1,365,1
@@ -7655,6 +7817,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/18,Kochi,1,135,0
 2020/10/18,Fukuoka,64,4976,0
 2020/10/18,Saga,5,249,2
+2020/10/18,Nagasaki,3,235,0
 2020/10/18,Kumamoto,66,660,10
 2020/10/18,Oita,2,155,0
 2020/10/18,Miyazaki,1,365,1
@@ -7702,6 +7865,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/19,Kochi,1,135,0
 2020/10/19,Fukuoka,65,4977,0
 2020/10/19,Saga,5,249,2
+2020/10/19,Nagasaki,3,235,1
 2020/10/19,Kumamoto,60,669,9
 2020/10/19,Oita,1,155,0
 2020/10/19,Miyazaki,1,365,1
@@ -7749,6 +7913,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/20,Kochi,1,135,0
 2020/10/20,Fukuoka,63,4983,0
 2020/10/20,Saga,5,249,2
+2020/10/20,Nagasaki,3,236,3
 2020/10/20,Kumamoto,53,678,11
 2020/10/20,Oita,1,155,0
 2020/10/20,Miyazaki,1,365,0
@@ -7796,6 +7961,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/21,Kochi,1,135,0
 2020/10/21,Fukuoka,66,4987,0
 2020/10/21,Saga,5,250,2
+2020/10/21,Nagasaki,0,236,3
 2020/10/21,Kumamoto,49,686,11
 2020/10/21,Oita,1,155,0
 2020/10/21,Miyazaki,1,365,1
@@ -7843,6 +8009,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/22,Kochi,0,136,0
 2020/10/22,Fukuoka,65,4995,0
 2020/10/22,Saga,4,251,2
+2020/10/22,Nagasaki,0,236,3
 2020/10/22,Kumamoto,48,691,12
 2020/10/22,Oita,1,155,0
 2020/10/22,Miyazaki,1,365,1
@@ -7890,6 +8057,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/23,Kochi,0,136,0
 2020/10/23,Fukuoka,64,5009,0
 2020/10/23,Saga,4,251,2
+2020/10/23,Nagasaki,0,237,2
 2020/10/23,Kumamoto,44,701,14
 2020/10/23,Oita,1,155,0
 2020/10/23,Miyazaki,1,365,1
@@ -7937,6 +8105,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/24,Kochi,0,136,0
 2020/10/24,Fukuoka,63,5015,0
 2020/10/24,Saga,4,252,2
+2020/10/24,Nagasaki,2,237,0
 2020/10/24,Kumamoto,46,709,5
 2020/10/24,Oita,0,156,0
 2020/10/24,Miyazaki,1,365,1
@@ -7984,6 +8153,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/25,Kochi,2,136,0
 2020/10/25,Fukuoka,63,5015,0
 2020/10/25,Saga,4,252,2
+2020/10/25,Nagasaki,2,237,0
 2020/10/25,Kumamoto,46,709,5
 2020/10/25,Oita,0,156,0
 2020/10/25,Miyazaki,1,365,1
@@ -8031,6 +8201,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/26,Kochi,2,136,0
 2020/10/26,Fukuoka,66,5022,0
 2020/10/26,Saga,3,253,2
+2020/10/26,Nagasaki,2,239,0
 2020/10/26,Kumamoto,43,714,4
 2020/10/26,Oita,0,156,0
 2020/10/26,Miyazaki,1,366,1
@@ -8078,6 +8249,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/27,Kochi,3,136,0
 2020/10/27,Fukuoka,66,5022,0
 2020/10/27,Saga,2,254,2
+2020/10/27,Nagasaki,2,239,0
 2020/10/27,Kumamoto,37,724,5
 2020/10/27,Oita,0,156,0
 2020/10/27,Miyazaki,1,366,1
@@ -8125,6 +8297,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/28,Kochi,3,137,0
 2020/10/28,Fukuoka,67,5026,0
 2020/10/28,Saga,2,254,2
+2020/10/28,Nagasaki,2,239,0
 2020/10/28,Kumamoto,35,728,8
 2020/10/28,Oita,0,156,0
 2020/10/28,Miyazaki,1,366,1
@@ -8172,6 +8345,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/29,Kochi,3,137,0
 2020/10/29,Fukuoka,69,5037,0
 2020/10/29,Saga,1,255,2
+2020/10/29,Nagasaki,2,239,0
 2020/10/29,Kumamoto,33,736,9
 2020/10/29,Oita,0,156,0
 2020/10/29,Miyazaki,1,366,1
@@ -8219,6 +8393,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/30,Kochi,3,137,0
 2020/10/30,Fukuoka,75,5041,0
 2020/10/30,Saga,0,256,2
+2020/10/30,Nagasaki,1,240,0
 2020/10/30,Kumamoto,33,736,9
 2020/10/30,Oita,0,156,0
 2020/10/30,Miyazaki,1,366,1
@@ -8266,6 +8441,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/10/31,Kochi,2,138,0
 2020/10/31,Fukuoka,82,5042,0
 2020/10/31,Saga,0,256,2
+2020/10/31,Nagasaki,1,240,0
 2020/10/31,Kumamoto,33,736,9
 2020/10/31,Oita,0,156,0
 2020/10/31,Miyazaki,1,366,1
@@ -8313,6 +8489,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/1,Kochi,2,138,0
 2020/11/1,Fukuoka,82,5042,0
 2020/11/1,Saga,0,256,2
+2020/11/1,Nagasaki,1,240,0
 2020/11/1,Kumamoto,33,736,9
 2020/11/1,Oita,0,156,0
 2020/11/1,Miyazaki,1,366,1
@@ -8360,6 +8537,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/2,Kochi,2,138,0
 2020/11/2,Fukuoka,76,5057,0
 2020/11/2,Saga,2,256,2
+2020/11/2,Nagasaki,0,241,0
 2020/11/2,Kumamoto,41,748,11
 2020/11/2,Oita,0,156,0
 2020/11/2,Miyazaki,0,367,1
@@ -8407,6 +8585,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/3,Kochi,1,139,0
 2020/11/3,Fukuoka,74,5061,0
 2020/11/3,Saga,10,256,2
+2020/11/3,Nagasaki,0,241,0
 2020/11/3,Kumamoto,43,753,10
 2020/11/3,Oita,0,156,0
 2020/11/3,Miyazaki,2,367,1
@@ -8454,6 +8633,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/4,Kochi,1,139,0
 2020/11/4,Fukuoka,73,5070,0
 2020/11/4,Saga,12,256,2
+2020/11/4,Nagasaki,0,241,1
 2020/11/4,Kumamoto,45,755,16
 2020/11/4,Oita,0,156,0
 2020/11/4,Miyazaki,4,367,1
@@ -8501,6 +8681,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/5,Kochi,1,139,0
 2020/11/5,Fukuoka,70,5077,0
 2020/11/5,Saga,12,256,2
+2020/11/5,Nagasaki,0,241,1
 2020/11/5,Kumamoto,45,755,16
 2020/11/5,Oita,0,156,0
 2020/11/5,Miyazaki,3,368,1
@@ -8548,6 +8729,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/6,Kochi,1,139,0
 2020/11/6,Fukuoka,84,5080,0
 2020/11/6,Saga,13,256,2
+2020/11/6,Nagasaki,4,241,2
 2020/11/6,Kumamoto,54,766,14
 2020/11/6,Oita,1,156,0
 2020/11/6,Miyazaki,4,368,1
@@ -8595,6 +8777,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/7,Kochi,1,139,0
 2020/11/7,Fukuoka,87,5085,0
 2020/11/7,Saga,13,257,2
+2020/11/7,Nagasaki,4,241,2
 2020/11/7,Kumamoto,53,770,15
 2020/11/7,Oita,1,156,0
 2020/11/7,Miyazaki,4,368,1
@@ -8642,6 +8825,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/8,Kochi,1,139,0
 2020/11/8,Fukuoka,89,5087,0
 2020/11/8,Saga,12,257,2
+2020/11/8,Nagasaki,4,241,2
 2020/11/8,Kumamoto,51,776,18
 2020/11/8,Oita,2,156,0
 2020/11/8,Miyazaki,3,369,1
@@ -8689,6 +8873,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/9,Kochi,0,140,0
 2020/11/9,Fukuoka,90,5090,0
 2020/11/9,Saga,18,257,2
+2020/11/9,Nagasaki,4,241,1
 2020/11/9,Kumamoto,51,776,18
 2020/11/9,Oita,2,156,0
 2020/11/9,Miyazaki,4,369,1
@@ -8736,6 +8921,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/10,Kochi,0,140,0
 2020/11/10,Fukuoka,99,5104,0
 2020/11/10,Saga,18,257,2
+2020/11/10,Nagasaki,4,241,1
 2020/11/10,Kumamoto,51,788,12
 2020/11/10,Oita,2,156,0
 2020/11/10,Miyazaki,3,370,1
@@ -8783,6 +8969,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/11,Kochi,0,140,0
 2020/11/11,Fukuoka,111,5113,0
 2020/11/11,Saga,19,257,2
+2020/11/11,Nagasaki,4,241,1
 2020/11/11,Kumamoto,46,795,16
 2020/11/11,Oita,2,157,0
 2020/11/11,Miyazaki,3,370,1
@@ -8830,6 +9017,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/12,Kochi,0,140,0
 2020/11/12,Fukuoka,115,5125,0
 2020/11/12,Saga,20,257,2
+2020/11/12,Nagasaki,4,242,0
 2020/11/12,Kumamoto,47,806,15
 2020/11/12,Oita,3,157,0
 2020/11/12,Miyazaki,3,370,1
@@ -8877,6 +9065,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/13,Kochi,0,140,0
 2020/11/13,Fukuoka,113,5143,0
 2020/11/13,Saga,12,265,2
+2020/11/13,Nagasaki,3,242,1
 2020/11/13,Kumamoto,49,810,19
 2020/11/13,Oita,3,157,0
 2020/11/13,Miyazaki,3,370,1
@@ -8924,6 +9113,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/14,Kochi,0,140,0
 2020/11/14,Fukuoka,114,5156,7
 2020/11/14,Saga,13,266,2
+2020/11/14,Nagasaki,3,242,1
 2020/11/14,Kumamoto,54,815,25
 2020/11/14,Oita,3,158,0
 2020/11/14,Miyazaki,3,370,1
@@ -8971,6 +9161,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/15,Kochi,0,140,0
 2020/11/15,Fukuoka,106,5169,0
 2020/11/15,Saga,12,267,2
+2020/11/15,Nagasaki,3,242,1
 2020/11/15,Kumamoto,54,815,25
 2020/11/15,Oita,3,158,0
 2020/11/15,Miyazaki,3,370,1
@@ -9018,6 +9209,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/16,Kochi,0,140,0
 2020/11/16,Fukuoka,99,5184,0
 2020/11/16,Saga,11,269,2
+2020/11/16,Nagasaki,5,242,1
 2020/11/16,Kumamoto,60,820,25
 2020/11/16,Oita,7,158,0
 2020/11/16,Miyazaki,3,371,1
@@ -9065,6 +9257,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/17,Kochi,0,140,0
 2020/11/17,Fukuoka,97,5196,0
 2020/11/17,Saga,12,269,2
+2020/11/17,Nagasaki,5,243,0
 2020/11/17,Kumamoto,65,829,26
 2020/11/17,Oita,18,158,0
 2020/11/17,Miyazaki,3,372,1
@@ -9112,6 +9305,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/18,Kochi,0,140,0
 2020/11/18,Fukuoka,112,5203,0
 2020/11/18,Saga,16,269,2
+2020/11/18,Nagasaki,6,243,0
 2020/11/18,Kumamoto,67,834,28
 2020/11/18,Oita,28,158,0
 2020/11/18,Miyazaki,13,372,1
@@ -9159,6 +9353,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/19,Kochi,0,140,0
 2020/11/19,Fukuoka,119,5217,0
 2020/11/19,Saga,16,275,2
+2020/11/19,Nagasaki,6,243,1
 2020/11/19,Kumamoto,71,839,19
 2020/11/19,Oita,35,158,0
 2020/11/19,Miyazaki,16,372,1
@@ -9206,6 +9401,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/20,Kochi,0,140,0
 2020/11/20,Fukuoka,143,5228,0
 2020/11/20,Saga,15,276,2
+2020/11/20,Nagasaki,8,243,0
 2020/11/20,Kumamoto,76,841,23
 2020/11/20,Oita,45,160,0
 2020/11/20,Miyazaki,26,372,1
@@ -9253,6 +9449,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/21,Kochi,2,140,0
 2020/11/21,Fukuoka,169,5238,0
 2020/11/21,Saga,18,276,2
+2020/11/21,Nagasaki,11,243,3
 2020/11/21,Kumamoto,76,841,23
 2020/11/21,Oita,46,160,0
 2020/11/21,Miyazaki,42,372,1
@@ -9300,6 +9497,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/22,Kochi,2,140,0
 2020/11/22,Fukuoka,187,5250,0
 2020/11/22,Saga,17,277,2
+2020/11/22,Nagasaki,13,243,5
 2020/11/22,Kumamoto,75,861,19
 2020/11/22,Oita,55,161,0
 2020/11/22,Miyazaki,56,372,1
@@ -9347,6 +9545,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/23,Kochi,4,140,0
 2020/11/23,Fukuoka,187,5259,0
 2020/11/23,Saga,16,278,2
+2020/11/23,Nagasaki,14,243,6
 2020/11/23,Kumamoto,73,872,13
 2020/11/23,Oita,57,163,0
 2020/11/23,Miyazaki,61,372,1
@@ -9394,6 +9593,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/24,Kochi,4,140,0
 2020/11/24,Fukuoka,187,5259,0
 2020/11/24,Saga,18,280,2
+2020/11/24,Nagasaki,14,245,0
 2020/11/24,Kumamoto,71,881,10
 2020/11/24,Oita,61,164,0
 2020/11/24,Miyazaki,65,374,1
@@ -9441,6 +9641,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/25,Kochi,5,140,0
 2020/11/25,Fukuoka,203,5281,0
 2020/11/25,Saga,18,282,2
+2020/11/25,Nagasaki,14,245,1
 2020/11/25,Kumamoto,69,886,10
 2020/11/25,Oita,70,165,0
 2020/11/25,Miyazaki,75,374,1
@@ -9488,6 +9689,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/26,Kochi,5,140,0
 2020/11/26,Fukuoka,203,5281,0
 2020/11/26,Saga,18,283,2
+2020/11/26,Nagasaki,15,246,1
 2020/11/26,Kumamoto,67,891,14
 2020/11/26,Oita,68,175,0
 2020/11/26,Miyazaki,83,375,1
@@ -9535,6 +9737,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/27,Kochi,4,141,0
 2020/11/27,Fukuoka,231,5306,0
 2020/11/27,Saga,19,283,3
+2020/11/27,Nagasaki,17,247,2
 2020/11/27,Kumamoto,66,903,17
 2020/11/27,Oita,70,182,0
 2020/11/27,Miyazaki,93,384,1
@@ -9582,6 +9785,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/28,Kochi,3,142,0
 2020/11/28,Fukuoka,311,5340,0
 2020/11/28,Saga,25,284,3
+2020/11/28,Nagasaki,18,247,3
 2020/11/28,Kumamoto,65,914,14
 2020/11/28,Oita,80,190,0
 2020/11/28,Miyazaki,93,384,1
@@ -9629,6 +9833,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/29,Kochi,3,143,0
 2020/11/29,Fukuoka,339,5355,0
 2020/11/29,Saga,23,286,3
+2020/11/29,Nagasaki,19,247,4
 2020/11/29,Kumamoto,64,921,14
 2020/11/29,Oita,78,199,0
 2020/11/29,Miyazaki,93,384,1
@@ -9676,6 +9881,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/11/30,Kochi,5,143,0
 2020/11/30,Fukuoka,331,5388,0
 2020/11/30,Saga,24,287,3
+2020/11/30,Nagasaki,20,249,1
 2020/11/30,Kumamoto,64,921,14
 2020/11/30,Oita,89,203,0
 2020/11/30,Miyazaki,95,408,1
@@ -9723,6 +9929,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/1,Kochi,10,143,0
 2020/12/1,Fukuoka,332,5420,0
 2020/12/1,Saga,29,291,3
+2020/12/1,Nagasaki,19,253,4
 2020/12/1,Kumamoto,67,924,17
 2020/12/1,Oita,97,209,0
 2020/12/1,Miyazaki,92,421,1
@@ -9770,6 +9977,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/2,Kochi,14,143,4
 2020/12/2,Fukuoka,347,5446,0
 2020/12/2,Saga,34,292,3
+2020/12/2,Nagasaki,17,253,0
 2020/12/2,Kumamoto,67,940,25
 2020/12/2,Oita,104,217,0
 2020/12/2,Miyazaki,97,424,1
@@ -9817,6 +10025,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/3,Kochi,26,146,4
 2020/12/3,Fukuoka,357,5467,0
 2020/12/3,Saga,38,292,3
+2020/12/3,Nagasaki,17,255,2
 2020/12/3,Kumamoto,67,948,27
 2020/12/3,Oita,118,221,0
 2020/12/3,Miyazaki,90,437,1
@@ -9864,6 +10073,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/4,Kochi,43,146,3
 2020/12/4,Fukuoka,368,5500,0
 2020/12/4,Saga,41,293,3
+2020/12/4,Nagasaki,16,257,3
 2020/12/4,Kumamoto,71,954,25
 2020/12/4,Oita,127,230,0
 2020/12/4,Miyazaki,91,443,1
@@ -9911,6 +10121,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/5,Kochi,55,147,9
 2020/12/5,Fukuoka,368,5500,0
 2020/12/5,Saga,42,294,2
+2020/12/5,Nagasaki,14,257,1
 2020/12/5,Kumamoto,71,964,31
 2020/12/5,Oita,139,236,0
 2020/12/5,Miyazaki,96,449,1
@@ -9958,6 +10169,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/6,Kochi,61,150,18
 2020/12/6,Fukuoka,387,5564,0
 2020/12/6,Saga,41,298,4
+2020/12/6,Nagasaki,16,257,3
 2020/12/6,Kumamoto,77,969,26
 2020/12/6,Oita,151,243,0
 2020/12/6,Miyazaki,97,460,1
@@ -10005,6 +10217,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/7,Kochi,70,154,18
 2020/12/7,Fukuoka,387,5564,0
 2020/12/7,Saga,40,302,3
+2020/12/7,Nagasaki,16,260,3
 2020/12/7,Kumamoto,73,977,31
 2020/12/7,Oita,149,256,0
 2020/12/7,Miyazaki,103,463,1
@@ -10052,6 +10265,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/8,Kochi,88,156,15
 2020/12/8,Fukuoka,418,5598,0
 2020/12/8,Saga,43,305,3
+2020/12/8,Nagasaki,11,264,2
 2020/12/8,Kumamoto,79,986,33
 2020/12/8,Oita,144,271,0
 2020/12/8,Miyazaki,95,474,2
@@ -10099,6 +10313,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/9,Kochi,95,161,21
 2020/12/9,Fukuoka,442,5712,0
 2020/12/9,Saga,48,310,6
+2020/12/9,Nagasaki,9,265,0
 2020/12/9,Kumamoto,76,1004,40
 2020/12/9,Oita,152,284,0
 2020/12/9,Miyazaki,95,479,2
@@ -10146,6 +10361,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/10,Kochi,129,168,0
 2020/12/10,Fukuoka,485,5748,0
 2020/12/10,Saga,60,311,7
+2020/12/10,Nagasaki,11,265,1
 2020/12/10,Kumamoto,89,1012,38
 2020/12/10,Oita,161,300,0
 2020/12/10,Miyazaki,94,485,3
@@ -10193,6 +10409,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/11,Kochi,128,180,0
 2020/12/11,Fukuoka,485,5748,0
 2020/12/11,Saga,55,315,2
+2020/12/11,Nagasaki,21,265,1
 2020/12/11,Kumamoto,97,1020,54
 2020/12/11,Oita,168,319,0
 2020/12/11,Miyazaki,87,497,3
@@ -10240,6 +10457,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/12,Kochi,144,191,0
 2020/12/12,Fukuoka,609,5832,0
 2020/12/12,Saga,51,326,2
+2020/12/12,Nagasaki,25,265,3
 2020/12/12,Kumamoto,116,1030,51
 2020/12/12,Oita,175,330,0
 2020/12/12,Miyazaki,87,497,3
@@ -10287,6 +10505,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/13,Kochi,153,200,0
 2020/12/13,Fukuoka,649,5863,0
 2020/12/13,Saga,52,327,2
+2020/12/13,Nagasaki,32,265,10
 2020/12/13,Kumamoto,116,1030,51
 2020/12/13,Oita,158,355,0
 2020/12/13,Miyazaki,87,497,3
@@ -10334,6 +10553,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/14,Kochi,148,216,0
 2020/12/14,Fukuoka,668,5901,0
 2020/12/14,Saga,53,330,2
+2020/12/14,Nagasaki,43,268,7
 2020/12/14,Kumamoto,130,1056,68
 2020/12/14,Oita,149,370,0
 2020/12/14,Miyazaki,94,518,3
@@ -10381,6 +10601,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/15,Kochi,159,241,0
 2020/12/15,Fukuoka,690,5948,0
 2020/12/15,Saga,54,336,3
+2020/12/15,Nagasaki,56,272,3
 2020/12/15,Kumamoto,144,1071,70
 2020/12/15,Oita,146,385,0
 2020/12/15,Miyazaki,80,536,3
@@ -10428,6 +10649,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/16,Kochi,173,255,0
 2020/12/16,Fukuoka,792,5987,0
 2020/12/16,Saga,54,346,5
+2020/12/16,Nagasaki,56,273,6
 2020/12/16,Kumamoto,157,1072,87
 2020/12/16,Oita,137,403,0
 2020/12/16,Miyazaki,72,550,4
@@ -10475,6 +10697,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/17,Kochi,173,277,0
 2020/12/17,Fukuoka,792,5987,0
 2020/12/17,Saga,53,353,6
+2020/12/17,Nagasaki,61,276,5
 2020/12/17,Kumamoto,161,1085,94
 2020/12/17,Oita,138,415,0
 2020/12/17,Miyazaki,72,560,4
@@ -10522,6 +10745,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/18,Kochi,166,294,0
 2020/12/18,Fukuoka,841,6046,0
 2020/12/18,Saga,48,359,5
+2020/12/18,Nagasaki,65,277,7
 2020/12/18,Kumamoto,161,1085,94
 2020/12/18,Oita,117,438,0
 2020/12/18,Miyazaki,78,569,4
@@ -10569,6 +10793,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/19,Kochi,163,310,0
 2020/12/19,Fukuoka,908,6116,0
 2020/12/19,Saga,51,360,5
+2020/12/19,Nagasaki,70,277,2
 2020/12/19,Kumamoto,166,1097,106
 2020/12/19,Oita,110,452,0
 2020/12/19,Miyazaki,85,573,4
@@ -10616,6 +10841,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/20,Kochi,173,323,0
 2020/12/20,Fukuoka,1042,6210,0
 2020/12/20,Saga,42,369,5
+2020/12/20,Nagasaki,79,277,7
 2020/12/20,Kumamoto,172,1128,101
 2020/12/20,Oita,100,469,0
 2020/12/20,Miyazaki,84,582,4
@@ -10663,6 +10889,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/21,Kochi,177,336,0
 2020/12/21,Fukuoka,1042,6210,0
 2020/12/21,Saga,41,372,5
+2020/12/21,Nagasaki,89,288,20
 2020/12/21,Kumamoto,166,1150,117
 2020/12/21,Oita,89,482,0
 2020/12/21,Miyazaki,82,587,5
@@ -10710,6 +10937,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/22,Kochi,190,353,0
 2020/12/22,Fukuoka,1021,6411,0
 2020/12/22,Saga,42,377,5
+2020/12/22,Nagasaki,110,289,17
 2020/12/22,Kumamoto,172,1185,98
 2020/12/22,Oita,78,497,0
 2020/12/22,Miyazaki,82,587,5
@@ -10757,6 +10985,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/23,Kochi,189,378,0
 2020/12/23,Fukuoka,1021,6411,0
 2020/12/23,Saga,45,381,5
+2020/12/23,Nagasaki,124,295,23
 2020/12/23,Kumamoto,156,1256,89
 2020/12/23,Oita,77,505,0
 2020/12/23,Miyazaki,71,606,5
@@ -10804,6 +11033,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/24,Kochi,191,395,0
 2020/12/24,Fukuoka,1140,6595,0
 2020/12/24,Saga,53,382,5
+2020/12/24,Nagasaki,132,295,27
 2020/12/24,Kumamoto,157,1286,87
 2020/12/24,Oita,73,518,0
 2020/12/24,Miyazaki,73,613,5
@@ -10851,6 +11081,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/25,Kochi,183,415,0
 2020/12/25,Fukuoka,1140,6595,0
 2020/12/25,Saga,52,389,5
+2020/12/25,Nagasaki,155,298,1
 2020/12/25,Kumamoto,156,1307,134
 2020/12/25,Oita,69,529,0
 2020/12/25,Miyazaki,73,622,5
@@ -10898,6 +11129,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/26,Kochi,161,451,0
 2020/12/26,Fukuoka,1190,6688,0
 2020/12/26,Saga,52,393,5
+2020/12/26,Nagasaki,168,298,12
 2020/12/26,Kumamoto,151,1337,165
 2020/12/26,Oita,74,538,0
 2020/12/26,Miyazaki,73,622,5
@@ -10945,6 +11177,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/27,Kochi,159,461,0
 2020/12/27,Fukuoka,1273,6765,0
 2020/12/27,Saga,53,394,5
+2020/12/27,Nagasaki,175,298,19
 2020/12/27,Kumamoto,151,1337,165
 2020/12/27,Oita,75,540,0
 2020/12/27,Miyazaki,72,638,5
@@ -10992,6 +11225,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/28,Kochi,158,470,0
 2020/12/28,Fukuoka,1303,6872,0
 2020/12/28,Saga,49,403,5
+2020/12/28,Nagasaki,193,311,50
 2020/12/28,Kumamoto,172,1384,167
 2020/12/28,Oita,90,544,0
 2020/12/28,Miyazaki,68,647,5
@@ -11039,6 +11273,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/29,Kochi,146,490,0
 2020/12/29,Fukuoka,1360,7107,0
 2020/12/29,Saga,54,405,5
+2020/12/29,Nagasaki,201,311,96
 2020/12/29,Kumamoto,172,1384,167
 2020/12/29,Oita,96,553,0
 2020/12/29,Miyazaki,68,647,5
@@ -11086,6 +11321,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/30,Kochi,138,510,0
 2020/12/30,Fukuoka,1462,7193,0
 2020/12/30,Saga,60,406,5
+2020/12/30,Nagasaki,205,311,91
 2020/12/30,Kumamoto,178,1408,197
 2020/12/30,Oita,102,560,0
 2020/12/30,Miyazaki,68,647,5
@@ -11133,6 +11369,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2020/12/31,Kochi,116,540,0
 2020/12/31,Fukuoka,1573,7272,190
 2020/12/31,Saga,61,409,5
+2020/12/31,Nagasaki,217,311,79
 2020/12/31,Kumamoto,196,1466,195
 2020/12/31,Oita,122,561,0
 2020/12/31,Miyazaki,91,668,5
@@ -11180,6 +11417,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/1,Kochi,107,554,0
 2021/1/1,Fukuoka,1573,7272,190
 2021/1/1,Saga,62,409,5
+2021/1/1,Nagasaki,225,311,71
 2021/1/1,Kumamoto,196,1466,195
 2021/1/1,Oita,121,573,0
 2021/1/1,Miyazaki,91,668,5
@@ -11227,6 +11465,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/2,Kochi,95,573,0
 2021/1/2,Fukuoka,1573,7272,190
 2021/1/2,Saga,53,424,6
+2021/1/2,Nagasaki,226,311,162
 2021/1/2,Kumamoto,196,1495,194
 2021/1/2,Oita,126,579,0
 2021/1/2,Miyazaki,91,668,5
@@ -11274,6 +11513,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/3,Kochi,96,582,0
 2021/1/3,Fukuoka,1573,7272,190
 2021/1/3,Saga,52,428,6
+2021/1/3,Nagasaki,234,311,153
 2021/1/3,Kumamoto,205,1539,182
 2021/1/3,Oita,126,588,0
 2021/1/3,Miyazaki,91,668,5
@@ -11321,6 +11561,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/4,Kochi,89,591,0
 2021/1/4,Fukuoka,1722,7633,0
 2021/1/4,Saga,70,432,5
+2021/1/4,Nagasaki,233,444,21
 2021/1/4,Kumamoto,200,1580,179
 2021/1/4,Oita,127,597,0
 2021/1/4,Miyazaki,186,692,9
@@ -11368,6 +11609,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/5,Kochi,82,604,0
 2021/1/5,Fukuoka,1762,7780,0
 2021/1/5,Saga,73,440,6
+2021/1/5,Nagasaki,241,467,44
 2021/1/5,Kumamoto,200,1580,179
 2021/1/5,Oita,136,604,0
 2021/1/5,Miyazaki,216,700,9
@@ -11415,6 +11657,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/6,Kochi,75,615,0
 2021/1/6,Fukuoka,1975,7882,0
 2021/1/6,Saga,78,448,8
+2021/1/6,Nagasaki,249,488,69
 2021/1/6,Kumamoto,208,1620,186
 2021/1/6,Oita,155,611,0
 2021/1/6,Miyazaki,286,710,9
@@ -11462,6 +11705,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/7,Kochi,80,622,0
 2021/1/7,Fukuoka,1975,7882,0
 2021/1/7,Saga,97,450,8
+2021/1/7,Nagasaki,259,500,89
 2021/1/7,Kumamoto,212,1650,211
 2021/1/7,Oita,151,634,0
 2021/1/7,Miyazaki,286,710,9
@@ -11509,6 +11753,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/8,Kochi,81,630,0
 2021/1/8,Fukuoka,2264,7978,1
 2021/1/8,Saga,114,457,8
+2021/1/8,Nagasaki,256,517,75
 2021/1/8,Kumamoto,219,1680,245
 2021/1/8,Oita,160,642,0
 2021/1/8,Miyazaki,445,728,10
@@ -11556,6 +11801,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/9,Kochi,79,635,0
 2021/1/9,Fukuoka,2495,8113,0
 2021/1/9,Saga,124,460,8
+2021/1/9,Nagasaki,267,517,64
 2021/1/9,Kumamoto,221,1719,303
 2021/1/9,Oita,156,658,0
 2021/1/9,Miyazaki,445,728,10
@@ -11603,6 +11849,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/10,Kochi,75,645,0
 2021/1/10,Fukuoka,2495,8113,0
 2021/1/10,Saga,144,464,10
+2021/1/10,Nagasaki,277,517,214
 2021/1/10,Kumamoto,231,1742,359
 2021/1/10,Oita,154,667,0
 2021/1/10,Miyazaki,531,767,10
@@ -11650,6 +11897,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/11,Kochi,71,651,0
 2021/1/11,Fukuoka,2917,8300,0
 2021/1/11,Saga,146,469,10
+2021/1/11,Nagasaki,269,517,222
 2021/1/11,Kumamoto,246,1767,382
 2021/1/11,Oita,152,677,0
 2021/1/11,Miyazaki,536,791,10
@@ -11697,6 +11945,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/12,Kochi,72,656,0
 2021/1/12,Fukuoka,3037,8391,0
 2021/1/12,Saga,169,478,10
+2021/1/12,Nagasaki,272,628,148
 2021/1/12,Kumamoto,246,1767,382
 2021/1/12,Oita,156,687,0
 2021/1/12,Miyazaki,504,836,10
@@ -11744,6 +11993,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/13,Kochi,77,665,0
 2021/1/13,Fukuoka,3112,8512,0
 2021/1/13,Saga,192,488,11
+2021/1/13,Nagasaki,278,639,153
 2021/1/13,Kumamoto,252,1823,394
 2021/1/13,Oita,158,702,0
 2021/1/13,Miyazaki,539,885,53
@@ -11791,6 +12041,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/14,Kochi,72,673,0
 2021/1/14,Fukuoka,3192,8683,0
 2021/1/14,Saga,202,504,11
+2021/1/14,Nagasaki,290,662,154
 2021/1/14,Kumamoto,271,1901,514
 2021/1/14,Oita,158,718,0
 2021/1/14,Miyazaki,506,923,11
@@ -11838,6 +12089,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/15,Kochi,59,690,0
 2021/1/15,Fukuoka,3234,8979,0
 2021/1/15,Saga,226,516,12
+2021/1/15,Nagasaki,290,692,163
 2021/1/15,Kumamoto,271,1901,514
 2021/1/15,Oita,150,737,0
 2021/1/15,Miyazaki,485,990,11
@@ -11885,6 +12137,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/16,Kochi,53,700,0
 2021/1/16,Fukuoka,3234,8979,0
 2021/1/16,Saga,237,524,13
+2021/1/16,Nagasaki,283,692,169
 2021/1/16,Kumamoto,285,1982,584
 2021/1/16,Oita,154,752,0
 2021/1/16,Miyazaki,470,990,4
@@ -11932,6 +12185,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/17,Kochi,52,705,0
 2021/1/17,Fukuoka,3234,8979,0
 2021/1/17,Saga,224,551,14
+2021/1/17,Nagasaki,292,692,159
 2021/1/17,Kumamoto,281,2034,586
 2021/1/17,Oita,151,764,0
 2021/1/17,Miyazaki,456,990,18
@@ -11979,6 +12233,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/18,Kochi,52,714,0
 2021/1/18,Fukuoka,3811,9470,0
 2021/1/18,Saga,231,573,15
+2021/1/18,Nagasaki,270,843,117
 2021/1/18,Kumamoto,281,2034,586
 2021/1/18,Oita,142,780,0
 2021/1/18,Miyazaki,433,1130,4
@@ -12026,6 +12281,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/19,Kochi,57,721,0
 2021/1/19,Fukuoka,3900,9580,0
 2021/1/19,Saga,239,584,15
+2021/1/19,Nagasaki,265,879,102
 2021/1/19,Kumamoto,293,2176,519
 2021/1/19,Oita,136,792,0
 2021/1/19,Miyazaki,362,1230,6
@@ -12073,6 +12329,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/20,Kochi,63,731,0
 2021/1/20,Fukuoka,3840,9832,0
 2021/1/20,Saga,238,605,15
+2021/1/20,Nagasaki,261,920,103
 2021/1/20,Kumamoto,273,2243,515
 2021/1/20,Oita,140,803,0
 2021/1/20,Miyazaki,368,1275,7
@@ -12120,6 +12377,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/21,Kochi,67,733,0
 2021/1/21,Fukuoka,3819,10126,0
 2021/1/21,Saga,253,616,15
+2021/1/21,Nagasaki,265,937,114
 2021/1/21,Kumamoto,273,2243,515
 2021/1/21,Oita,159,817,0
 2021/1/21,Miyazaki,367,1304,7
@@ -12167,6 +12425,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/22,Kochi,64,738,0
 2021/1/22,Fukuoka,3735,10492,0
 2021/1/22,Saga,237,652,17
+2021/1/22,Nagasaki,385,981,25
 2021/1/22,Kumamoto,273,2243,515
 2021/1/22,Oita,169,831,0
 2021/1/22,Miyazaki,350,1339,8
@@ -12214,6 +12473,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/23,Kochi,61,744,0
 2021/1/23,Fukuoka,3793,10666,0
 2021/1/23,Saga,214,684,16
+2021/1/23,Nagasaki,381,981,21
 2021/1/23,Kumamoto,273,2243,515
 2021/1/23,Oita,165,853,0
 2021/1/23,Miyazaki,350,1339,8
@@ -12261,6 +12521,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/24,Kochi,64,746,0
 2021/1/24,Fukuoka,3377,11516,0
 2021/1/24,Saga,202,712,19
+2021/1/24,Nagasaki,329,981,29
 2021/1/24,Kumamoto,273,2243,515
 2021/1/24,Oita,162,865,0
 2021/1/24,Miyazaki,316,1339,26
@@ -12308,6 +12569,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/25,Kochi,56,756,0
 2021/1/25,Fukuoka,3377,11516,0
 2021/1/25,Saga,195,723,11
+2021/1/25,Nagasaki,311,1087,11
 2021/1/25,Kumamoto,272,2497,404
 2021/1/25,Oita,159,873,0
 2021/1/25,Miyazaki,271,1457,9
@@ -12355,6 +12617,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/26,Kochi,52,763,0
 2021/1/26,Fukuoka,2907,12137,0
 2021/1/26,Saga,187,744,11
+2021/1/26,Nagasaki,298,1116,16
 2021/1/26,Kumamoto,283,2635,289
 2021/1/26,Oita,173,890,0
 2021/1/26,Miyazaki,264,1489,10
@@ -12402,6 +12665,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/27,Kochi,40,776,0
 2021/1/27,Fukuoka,2839,12358,0
 2021/1/27,Saga,177,761,11
+2021/1/27,Nagasaki,268,1155,11
 2021/1/27,Kumamoto,264,2714,247
 2021/1/27,Oita,184,893,0
 2021/1/27,Miyazaki,255,1515,10
@@ -12449,6 +12713,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/28,Kochi,30,791,0
 2021/1/28,Fukuoka,2839,12358,0
 2021/1/28,Saga,164,781,11
+2021/1/28,Nagasaki,287,1162,28
 2021/1/28,Kumamoto,255,2777,208
 2021/1/28,Oita,190,909,0
 2021/1/28,Miyazaki,246,1541,10
@@ -12496,6 +12761,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/29,Kochi,35,792,0
 2021/1/29,Fukuoka,2839,12358,0
 2021/1/29,Saga,146,801,11
+2021/1/29,Nagasaki,268,1199,18
 2021/1/29,Kumamoto,252,2815,192
 2021/1/29,Oita,188,931,0
 2021/1/29,Miyazaki,230,1571,10
@@ -12543,6 +12809,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/30,Kochi,37,795,0
 2021/1/30,Fukuoka,2522,13192,0
 2021/1/30,Saga,138,815,11
+2021/1/30,Nagasaki,273,1199,24
 2021/1/30,Kumamoto,233,2862,177
 2021/1/30,Oita,183,945,0
 2021/1/30,Miyazaki,204,1571,16
@@ -12590,6 +12857,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/1/31,Kochi,35,798,0
 2021/1/31,Fukuoka,2466,13523,0
 2021/1/31,Saga,120,838,11
+2021/1/31,Nagasaki,247,1199,1
 2021/1/31,Kumamoto,226,2910,142
 2021/1/31,Oita,181,960,0
 2021/1/31,Miyazaki,184,1571,36
@@ -12637,6 +12905,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/1,Kochi,35,802,0
 2021/2/1,Fukuoka,2466,13523,0
 2021/2/1,Saga,104,857,12
+2021/2/1,Nagasaki,240,1262,4
 2021/2/1,Kumamoto,213,2943,124
 2021/2/1,Oita,169,980,0
 2021/2/1,Miyazaki,177,1652,13
@@ -12684,6 +12953,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/2,Kochi,33,804,0
 2021/2/2,Fukuoka,2163,13883,0
 2021/2/2,Saga,85,880,12
+2021/2/2,Nagasaki,235,1271,7
 2021/2/2,Kumamoto,208,2961,121
 2021/2/2,Oita,152,1008,0
 2021/2/2,Miyazaki,173,1673,13
@@ -12731,6 +13001,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/3,Kochi,29,808,0
 2021/2/3,Fukuoka,1967,14153,0
 2021/2/3,Saga,81,895,17
+2021/2/3,Nagasaki,222,1286,3
 2021/2/3,Kumamoto,188,3005,104
 2021/2/3,Oita,152,1022,0
 2021/2/3,Miyazaki,180,1679,13
@@ -12778,6 +13049,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/4,Kochi,28,810,0
 2021/2/4,Fukuoka,1924,14310,0
 2021/2/4,Saga,79,903,18
+2021/2/4,Nagasaki,219,1292,3
 2021/2/4,Kumamoto,175,3052,78
 2021/2/4,Oita,154,1034,0
 2021/2/4,Miyazaki,167,1699,13
@@ -12825,6 +13097,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/5,Kochi,20,818,0
 2021/2/5,Fukuoka,1924,14310,0
 2021/2/5,Saga,76,912,18
+2021/2/5,Nagasaki,217,1302,9
 2021/2/5,Kumamoto,162,3087,59
 2021/2/5,Oita,145,1052,0
 2021/2/5,Miyazaki,151,1721,13
@@ -12872,6 +13145,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/6,Kochi,24,819,0
 2021/2/6,Fukuoka,1899,14310,25
 2021/2/6,Saga,67,921,18
+2021/2/6,Nagasaki,210,1302,4
 2021/2/6,Kumamoto,173,3112,23
 2021/2/6,Oita,135,1070,0
 2021/2/6,Miyazaki,141,1721,3
@@ -12919,6 +13193,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/7,Kochi,18,827,0
 2021/2/7,Fukuoka,1924,14310,0
 2021/2/7,Saga,65,925,18
+2021/2/7,Nagasaki,193,1302,13
 2021/2/7,Kumamoto,173,3135,0
 2021/2/7,Oita,132,1076,0
 2021/2/7,Miyazaki,132,1721,6
@@ -12966,6 +13241,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/8,Kochi,16,830,0
 2021/2/8,Fukuoka,1769,14852,0
 2021/2/8,Saga,64,929,18
+2021/2/8,Nagasaki,187,1343,2
 2021/2/8,Kumamoto,136,3146,37
 2021/2/8,Oita,131,1084,0
 2021/2/8,Miyazaki,116,1760,13
@@ -13013,6 +13289,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/9,Kochi,15,832,0
 2021/2/9,Fukuoka,1697,14976,0
 2021/2/9,Saga,61,937,18
+2021/2/9,Nagasaki,169,1365,4
 2021/2/9,Kumamoto,123,3163,36
 2021/2/9,Oita,118,1101,0
 2021/2/9,Miyazaki,115,1749,7
@@ -13060,6 +13337,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/10,Kochi,14,833,0
 2021/2/10,Fukuoka,1594,15149,0
 2021/2/10,Saga,62,943,19
+2021/2/10,Nagasaki,154,1387,7
 2021/2/10,Kumamoto,109,3187,30
 2021/2/10,Oita,110,1114,0
 2021/2/10,Miyazaki,104,1775,7
@@ -13107,6 +13385,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/11,Kochi,15,836,0
 2021/2/11,Fukuoka,1601,15240,0
 2021/2/11,Saga,52,954,19
+2021/2/11,Nagasaki,135,1387,12
 2021/2/11,Kumamoto,109,3209,8
 2021/2/11,Oita,105,1126,0
 2021/2/11,Miyazaki,104,1775,7
@@ -13154,6 +13433,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/12,Kochi,20,836,0
 2021/2/12,Fukuoka,1592,15358,0
 2021/2/12,Saga,48,959,19
+2021/2/12,Nagasaki,135,1412,2
 2021/2/12,Kumamoto,94,3226,16
 2021/2/12,Oita,95,1138,0
 2021/2/12,Miyazaki,102,1775,9
@@ -13201,6 +13481,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/13,Kochi,18,839,0
 2021/2/13,Fukuoka,1536,15497,0
 2021/2/13,Saga,41,967,19
+2021/2/13,Nagasaki,134,1412,1
 2021/2/13,Kumamoto,97,3234,5
 2021/2/13,Oita,94,1149,0
 2021/2/13,Miyazaki,99,1775,12
@@ -13248,6 +13529,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/14,Kochi,17,842,0
 2021/2/14,Fukuoka,1456,15637,0
 2021/2/14,Saga,39,971,21
+2021/2/14,Nagasaki,101,1412,32
 2021/2/14,Kumamoto,97,3243,4
 2021/2/14,Oita,86,1158,0
 2021/2/14,Miyazaki,96,1775,15
@@ -13295,6 +13577,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/15,Kochi,18,842,0
 2021/2/15,Fukuoka,1361,15799,0
 2021/2/15,Saga,36,974,21
+2021/2/15,Nagasaki,99,1450,0
 2021/2/15,Kumamoto,87,3247,9
 2021/2/15,Oita,82,1163,0
 2021/2/15,Miyazaki,73,1834,7
@@ -13342,6 +13625,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/16,Kochi,20,845,0
 2021/2/16,Fukuoka,1177,16024,0
 2021/2/16,Saga,31,979,21
+2021/2/16,Nagasaki,90,1460,1
 2021/2/16,Kumamoto,78,3252,18
 2021/2/16,Oita,73,1176,0
 2021/2/16,Miyazaki,68,1841,7
@@ -13389,6 +13673,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/17,Kochi,19,846,0
 2021/2/17,Fukuoka,1110,16133,0
 2021/2/17,Saga,27,982,21
+2021/2/17,Nagasaki,83,1469,2
 2021/2/17,Kumamoto,72,3252,31
 2021/2/17,Oita,69,1184,0
 2021/2/17,Miyazaki,62,1848,7
@@ -13436,6 +13721,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/18,Kochi,20,847,0
 2021/2/18,Fukuoka,1080,16224,0
 2021/2/18,Saga,24,985,21
+2021/2/18,Nagasaki,68,1486,2
 2021/2/18,Kumamoto,68,3284,6
 2021/2/18,Oita,65,1191,0
 2021/2/18,Miyazaki,55,1857,7
@@ -13483,6 +13769,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/19,Kochi,17,850,0
 2021/2/19,Fukuoka,1066,16338,0
 2021/2/19,Saga,16,994,21
+2021/2/19,Nagasaki,49,1508,3
 2021/2/19,Kumamoto,69,3290,1
 2021/2/19,Oita,61,1199,0
 2021/2/19,Miyazaki,50,1865,7
@@ -13530,6 +13817,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/20,Kochi,9,858,0
 2021/2/20,Fukuoka,999,16457,0
 2021/2/20,Saga,18,1000,21
+2021/2/20,Nagasaki,42,1508,4
 2021/2/20,Kumamoto,69,3296,5
 2021/2/20,Oita,60,1203,0
 2021/2/20,Miyazaki,43,1865,14
@@ -13577,6 +13865,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/21,Kochi,8,859,0
 2021/2/21,Fukuoka,1004,16519,0
 2021/2/21,Saga,26,1000,21
+2021/2/21,Nagasaki,45,1508,1
 2021/2/21,Kumamoto,69,3299,8
 2021/2/21,Oita,59,1206,0
 2021/2/21,Miyazaki,42,1865,15
@@ -13624,6 +13913,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/22,Kochi,4,863,0
 2021/2/22,Fukuoka,978,16572,0
 2021/2/22,Saga,29,1001,21
+2021/2/22,Nagasaki,43,1526,0
 2021/2/22,Kumamoto,64,3299,2
 2021/2/22,Oita,52,1213,0
 2021/2/22,Miyazaki,42,1876,7
@@ -13671,6 +13961,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/23,Kochi,4,863,0
 2021/2/23,Fukuoka,913,16659,0
 2021/2/23,Saga,38,1003,21
+2021/2/23,Nagasaki,40,1526,6
 2021/2/23,Kumamoto,64,3299,2
 2021/2/23,Oita,53,1214,0
 2021/2/23,Miyazaki,36,1876,13
@@ -13718,6 +14009,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/24,Kochi,1,866,0
 2021/2/24,Fukuoka,867,16748,0
 2021/2/24,Saga,41,1004,21
+2021/2/24,Nagasaki,38,1535,0
 2021/2/24,Kumamoto,55,3299,12
 2021/2/24,Oita,49,1218,0
 2021/2/24,Miyazaki,31,1890,7
@@ -13765,6 +14057,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/25,Kochi,1,866,0
 2021/2/25,Fukuoka,814,16821,0
 2021/2/25,Saga,50,1006,20
+2021/2/25,Nagasaki,37,1536,0
 2021/2/25,Kumamoto,48,3320,2
 2021/2/25,Oita,40,1228,0
 2021/2/25,Miyazaki,27,1896,7
@@ -13812,6 +14105,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/26,Kochi,1,866,0
 2021/2/26,Fukuoka,774,16898,0
 2021/2/26,Saga,58,1006,20
+2021/2/26,Nagasaki,36,1537,0
 2021/2/26,Kumamoto,44,3324,1
 2021/2/26,Oita,38,1230,0
 2021/2/26,Miyazaki,27,1896,7
@@ -13859,6 +14153,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/27,Kochi,1,866,0
 2021/2/27,Fukuoka,767,16954,0
 2021/2/27,Saga,59,1007,20
+2021/2/27,Nagasaki,35,1539,0
 2021/2/27,Kumamoto,44,3328,5
 2021/2/27,Oita,33,1237,0
 2021/2/27,Miyazaki,25,1896,9
@@ -13906,6 +14201,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/2/28,Kochi,1,866,0
 2021/2/28,Fukuoka,711,17040,0
 2021/2/28,Saga,60,1009,20
+2021/2/28,Nagasaki,36,1540,0
 2021/2/28,Kumamoto,44,3330,7
 2021/2/28,Oita,33,1239,0
 2021/2/28,Miyazaki,24,1896,10
@@ -13953,6 +14249,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/1,Kochi,1,866,0
 2021/3/1,Fukuoka,608,17162,0
 2021/3/1,Saga,65,1010,20
+2021/3/1,Nagasaki,35,1541,0
 2021/3/1,Kumamoto,37,3334,1
 2021/3/1,Oita,32,1240,0
 2021/3/1,Miyazaki,23,1896,11
@@ -14000,6 +14297,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/2,Kochi,4,866,0
 2021/3/2,Fukuoka,548,17237,0
 2021/3/2,Saga,64,1014,19
+2021/3/2,Nagasaki,33,1543,0
 2021/3/2,Kumamoto,34,3340,1
 2021/3/2,Oita,25,1248,0
 2021/3/2,Miyazaki,20,1905,7
@@ -14047,6 +14345,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/3,Kochi,4,866,0
 2021/3/3,Fukuoka,501,17295,0
 2021/3/3,Saga,58,1022,19
+2021/3/3,Nagasaki,29,1546,0
 2021/3/3,Kumamoto,32,3343,1
 2021/3/3,Oita,24,1250,0
 2021/3/3,Miyazaki,22,1905,5
@@ -14094,6 +14393,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/4,Kochi,13,866,0
 2021/3/4,Fukuoka,485,17346,0
 2021/3/4,Saga,52,1031,19
+2021/3/4,Nagasaki,18,1557,0
 2021/3/4,Kumamoto,31,3347,0
 2021/3/4,Oita,22,1253,0
 2021/3/4,Miyazaki,16,1930,14
@@ -14141,6 +14441,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/5,Kochi,17,866,0
 2021/3/5,Fukuoka,472,17396,0
 2021/3/5,Saga,54,1034,19
+2021/3/5,Nagasaki,13,1562,0
 2021/3/5,Kumamoto,32,3347,4
 2021/3/5,Oita,20,1255,0
 2021/3/5,Miyazaki,16,1930,14
@@ -14188,6 +14489,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/6,Kochi,18,866,0
 2021/3/6,Fukuoka,427,17466,0
 2021/3/6,Saga,52,1036,19
+2021/3/6,Nagasaki,11,1564,0
 2021/3/6,Kumamoto,32,3347,4
 2021/3/6,Oita,20,1255,0
 2021/3/6,Miyazaki,16,1930,14
@@ -14235,6 +14537,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/7,Kochi,19,866,0
 2021/3/7,Fukuoka,426,17496,0
 2021/3/7,Saga,57,1043,19
+2021/3/7,Nagasaki,9,1566,0
 2021/3/7,Kumamoto,32,3356,5
 2021/3/7,Oita,18,1257,0
 2021/3/7,Miyazaki,16,1930,14
@@ -14282,6 +14585,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/8,Kochi,19,866,0
 2021/3/8,Fukuoka,428,17527,0
 2021/3/8,Saga,57,1047,19
+2021/3/8,Nagasaki,7,1568,0
 2021/3/8,Kumamoto,30,3357,3
 2021/3/8,Oita,16,1259,0
 2021/3/8,Miyazaki,12,1913,7
@@ -14329,6 +14633,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/9,Kochi,19,866,0
 2021/3/9,Fukuoka,397,17571,0
 2021/3/9,Saga,68,1055,19
+2021/3/9,Nagasaki,6,1570,0
 2021/3/9,Kumamoto,27,3361,1
 2021/3/9,Oita,13,1262,0
 2021/3/9,Miyazaki,11,1913,8
@@ -14376,6 +14681,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/10,Kochi,20,866,0
 2021/3/10,Fukuoka,388,17614,0
 2021/3/10,Saga,76,1059,19
+2021/3/10,Nagasaki,4,1572,0
 2021/3/10,Kumamoto,27,3365,2
 2021/3/10,Oita,9,1266,0
 2021/3/10,Miyazaki,9,1915,8
@@ -14423,6 +14729,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/11,Kochi,18,869,0
 2021/3/11,Fukuoka,411,17638,0
 2021/3/11,Saga,80,1060,20
+2021/3/11,Nagasaki,3,1573,0
 2021/3/11,Kumamoto,31,3366,3
 2021/3/11,Oita,7,1268,0
 2021/3/11,Miyazaki,7,1918,7
@@ -14470,6 +14777,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/12,Kochi,18,871,0
 2021/3/12,Fukuoka,404,17675,0
 2021/3/12,Saga,78,1068,20
+2021/3/12,Nagasaki,3,1573,0
 2021/3/12,Kumamoto,28,3366,2
 2021/3/12,Oita,7,1268,0
 2021/3/12,Miyazaki,6,1918,7
@@ -14517,6 +14825,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/13,Kochi,13,876,0
 2021/3/13,Fukuoka,400,17720,0
 2021/3/13,Saga,81,1068,20
+2021/3/13,Nagasaki,3,1573,0
 2021/3/13,Kumamoto,28,3372,4
 2021/3/13,Oita,8,1268,0
 2021/3/13,Miyazaki,6,1918,7
@@ -14564,6 +14873,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/14,Kochi,13,877,0
 2021/3/14,Fukuoka,417,17742,0
 2021/3/14,Saga,83,1070,20
+2021/3/14,Nagasaki,3,1573,0
 2021/3/14,Kumamoto,28,3373,5
 2021/3/14,Oita,8,1268,0
 2021/3/14,Miyazaki,6,1918,7
@@ -14611,6 +14921,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/15,Kochi,9,881,0
 2021/3/15,Fukuoka,433,17763,0
 2021/3/15,Saga,79,1074,21
+2021/3/15,Nagasaki,3,1573,0
 2021/3/15,Kumamoto,26,3377,3
 2021/3/15,Oita,9,1268,0
 2021/3/15,Miyazaki,6,1918,7
@@ -14658,6 +14969,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/16,Kochi,9,881,0
 2021/3/16,Fukuoka,402,17805,0
 2021/3/16,Saga,67,1088,21
+2021/3/16,Nagasaki,2,1574,0
 2021/3/16,Kumamoto,24,3379,3
 2021/3/16,Oita,9,1268,0
 2021/3/16,Miyazaki,1,1923,7
@@ -14705,6 +15017,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/17,Kochi,9,882,0
 2021/3/17,Fukuoka,391,17841,0
 2021/3/17,Saga,65,1094,21
+2021/3/17,Nagasaki,1,1575,0
 2021/3/17,Kumamoto,27,3382,2
 2021/3/17,Oita,9,1268,0
 2021/3/17,Miyazaki,0,1924,7
@@ -14752,6 +15065,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/18,Kochi,10,882,0
 2021/3/18,Fukuoka,410,17863,0
 2021/3/18,Saga,63,1097,21
+2021/3/18,Nagasaki,0,1576,0
 2021/3/18,Kumamoto,27,3383,2
 2021/3/18,Oita,9,1269,0
 2021/3/18,Miyazaki,0,1924,7
@@ -14799,6 +15113,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/19,Kochi,11,882,0
 2021/3/19,Fukuoka,425,17891,0
 2021/3/19,Saga,60,1105,21
+2021/3/19,Nagasaki,1,1576,0
 2021/3/19,Kumamoto,26,3387,2
 2021/3/19,Oita,9,1269,0
 2021/3/19,Miyazaki,0,1924,7
@@ -14846,6 +15161,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/20,Kochi,11,882,0
 2021/3/20,Fukuoka,421,17934,0
 2021/3/20,Saga,58,1110,21
+2021/3/20,Nagasaki,1,1576,0
 2021/3/20,Kumamoto,26,3392,7
 2021/3/20,Oita,9,1269,0
 2021/3/20,Miyazaki,0,1924,7
@@ -14893,6 +15209,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/21,Kochi,10,883,0
 2021/3/21,Fukuoka,419,17972,0
 2021/3/21,Saga,49,1123,21
+2021/3/21,Nagasaki,2,1576,0
 2021/3/21,Kumamoto,26,3392,7
 2021/3/21,Oita,10,1269,0
 2021/3/21,Miyazaki,0,1924,7
@@ -14940,6 +15257,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/22,Kochi,10,883,0
 2021/3/22,Fukuoka,426,17999,0
 2021/3/22,Saga,46,1127,21
+2021/3/22,Nagasaki,3,1576,1
 2021/3/22,Kumamoto,23,3396,2
 2021/3/22,Oita,10,1269,0
 2021/3/22,Miyazaki,0,1924,7
@@ -14987,6 +15305,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/23,Kochi,10,884,0
 2021/3/23,Fukuoka,417,18021,0
 2021/3/23,Saga,44,1129,21
+2021/3/23,Nagasaki,4,1576,1
 2021/3/23,Kumamoto,24,3397,2
 2021/3/23,Oita,8,1271,0
 2021/3/23,Miyazaki,0,1924,7
@@ -15034,6 +15353,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/24,Kochi,11,884,0
 2021/3/24,Fukuoka,403,18070,0
 2021/3/24,Saga,38,1136,21
+2021/3/24,Nagasaki,3,1576,0
 2021/3/24,Kumamoto,24,3398,3
 2021/3/24,Oita,7,1273,0
 2021/3/24,Miyazaki,0,1924,7
@@ -15081,6 +15401,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/25,Kochi,11,884,0
 2021/3/25,Fukuoka,392,18105,0
 2021/3/25,Saga,34,1140,21
+2021/3/25,Nagasaki,10,1576,2
 2021/3/25,Kumamoto,22,3398,0
 2021/3/25,Oita,7,1273,0
 2021/3/25,Miyazaki,0,1924,7
@@ -15128,6 +15449,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/26,Kochi,10,885,0
 2021/3/26,Fukuoka,387,18137,0
 2021/3/26,Saga,26,1146,20
+2021/3/26,Nagasaki,13,1576,2
 2021/3/26,Kumamoto,21,3398,2
 2021/3/26,Oita,9,1273,0
 2021/3/26,Miyazaki,0,1924,7
@@ -15175,6 +15497,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/27,Kochi,9,886,0
 2021/3/27,Fukuoka,377,18174,0
 2021/3/27,Saga,32,1146,20
+2021/3/27,Nagasaki,14,1576,2
 2021/3/27,Kumamoto,21,3398,2
 2021/3/27,Oita,6,1276,0
 2021/3/27,Miyazaki,0,1924,7
@@ -15222,6 +15545,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/28,Kochi,9,886,0
 2021/3/28,Fukuoka,394,18194,0
 2021/3/28,Saga,42,1147,20
+2021/3/28,Nagasaki,14,1577,2
 2021/3/28,Kumamoto,21,3405,5
 2021/3/28,Oita,6,1277,0
 2021/3/28,Miyazaki,1,1924,7
@@ -15269,6 +15593,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/29,Kochi,9,886,0
 2021/3/29,Fukuoka,397,18214,0
 2021/3/29,Saga,38,1153,21
+2021/3/29,Nagasaki,14,1577,1
 2021/3/29,Kumamoto,21,3405,2
 2021/3/29,Oita,8,1277,0
 2021/3/29,Miyazaki,1,1924,7
@@ -15316,6 +15641,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/30,Kochi,11,886,0
 2021/3/30,Fukuoka,369,18255,0
 2021/3/30,Saga,32,1160,21
+2021/3/30,Nagasaki,15,1577,1
 2021/3/30,Kumamoto,21,3407,2
 2021/3/30,Oita,9,1277,0
 2021/3/30,Miyazaki,8,1924,7
@@ -15363,6 +15689,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/3/31,Kochi,10,888,0
 2021/3/31,Fukuoka,373,18280,0
 2021/3/31,Saga,35,1162,21
+2021/3/31,Nagasaki,18,1577,0
 2021/3/31,Kumamoto,25,3407,0
 2021/3/31,Oita,10,1277,0
 2021/3/31,Miyazaki,13,1924,7
@@ -15410,6 +15737,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/1,Kochi,11,889,0
 2021/4/1,Fukuoka,370,18312,0
 2021/4/1,Saga,43,1163,21
+2021/4/1,Nagasaki,21,1578,0
 2021/4/1,Kumamoto,25,3407,0
 2021/4/1,Oita,14,1278,0
 2021/4/1,Miyazaki,19,1924,1
@@ -15457,6 +15785,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/2,Kochi,11,889,0
 2021/4/2,Fukuoka,351,18358,0
 2021/4/2,Saga,49,1165,21
+2021/4/2,Nagasaki,26,1578,0
 2021/4/2,Kumamoto,27,3416,0
 2021/4/2,Oita,15,1278,0
 2021/4/2,Miyazaki,20,1924,0
@@ -15504,6 +15833,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/3,Kochi,13,889,0
 2021/4/3,Fukuoka,358,18389,0
 2021/4/3,Saga,56,1165,20
+2021/4/3,Nagasaki,26,1580,0
 2021/4/3,Kumamoto,27,3416,0
 2021/4/3,Oita,19,1279,0
 2021/4/3,Miyazaki,20,1924,0
@@ -15551,6 +15881,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/4,Kochi,15,889,0
 2021/4/4,Fukuoka,373,18413,0
 2021/4/4,Saga,59,1166,19
+2021/4/4,Nagasaki,26,1580,0
 2021/4/4,Kumamoto,27,3416,0
 2021/4/4,Oita,21,1279,0
 2021/4/4,Miyazaki,20,1924,0
@@ -15598,6 +15929,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/5,Kochi,23,889,0
 2021/4/5,Fukuoka,384,18429,0
 2021/4/5,Saga,64,1166,19
+2021/4/5,Nagasaki,26,1580,0
 2021/4/5,Kumamoto,32,3415,0
 2021/4/5,Oita,21,1280,0
 2021/4/5,Miyazaki,21,1924,1
@@ -15645,6 +15977,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/6,Kochi,29,889,0
 2021/4/6,Fukuoka,362,18465,0
 2021/4/6,Saga,60,1179,19
+2021/4/6,Nagasaki,24,1583,0
 2021/4/6,Kumamoto,33,3419,0
 2021/4/6,Oita,24,1280,0
 2021/4/6,Miyazaki,21,1924,1
@@ -15692,6 +16025,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/7,Kochi,29,889,0
 2021/4/7,Fukuoka,393,18485,0
 2021/4/7,Saga,67,1179,19
+2021/4/7,Nagasaki,19,1588,0
 2021/4/7,Kumamoto,30,3426,0
 2021/4/7,Oita,24,1282,0
 2021/4/7,Miyazaki,21,1924,1
@@ -15739,6 +16073,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/8,Kochi,36,890,0
 2021/4/8,Fukuoka,396,18523,0
 2021/4/8,Saga,63,1187,19
+2021/4/8,Nagasaki,21,1588,0
 2021/4/8,Kumamoto,34,3422,0
 2021/4/8,Oita,29,1282,0
 2021/4/8,Miyazaki,12,1930,7
@@ -15786,6 +16121,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/9,Kochi,32,895,0
 2021/4/9,Fukuoka,416,18550,0
 2021/4/9,Saga,68,1191,19
+2021/4/9,Nagasaki,21,1590,0
 2021/4/9,Kumamoto,30,3427,0
 2021/4/9,Oita,33,1282,0
 2021/4/9,Miyazaki,10,1930,9
@@ -15833,6 +16169,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/10,Kochi,24,903,0
 2021/4/10,Fukuoka,440,18580,0
 2021/4/10,Saga,62,1204,18
+2021/4/10,Nagasaki,23,1591,0
 2021/4/10,Kumamoto,30,3427,0
 2021/4/10,Oita,37,1283,0
 2021/4/10,Miyazaki,8,1930,11
@@ -15880,6 +16217,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/11,Kochi,24,903,0
 2021/4/11,Fukuoka,487,18614,0
 2021/4/11,Saga,66,1204,18
+2021/4/11,Nagasaki,24,1597,0
 2021/4/11,Kumamoto,30,3427,0
 2021/4/11,Oita,37,1285,0
 2021/4/11,Miyazaki,16,1930,3
@@ -15927,6 +16265,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/12,Kochi,17,910,0
 2021/4/12,Fukuoka,513,18638,0
 2021/4/12,Saga,70,1212,19
+2021/4/12,Nagasaki,32,1597,0
 2021/4/12,Kumamoto,28,3434,0
 2021/4/12,Oita,39,1287,0
 2021/4/12,Miyazaki,53,1938,7
@@ -15974,6 +16313,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/13,Kochi,17,910,0
 2021/4/13,Fukuoka,503,18677,0
 2021/4/13,Saga,76,1218,19
+2021/4/13,Nagasaki,37,1598,0
 2021/4/13,Kumamoto,25,3452,0
 2021/4/13,Oita,39,1292,0
 2021/4/13,Miyazaki,58,1938,7
@@ -16021,6 +16361,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/14,Kochi,15,913,0
 2021/4/14,Fukuoka,526,18725,0
 2021/4/14,Saga,76,1226,18
+2021/4/14,Nagasaki,46,1598,0
 2021/4/14,Kumamoto,42,3445,0
 2021/4/14,Oita,36,1300,0
 2021/4/14,Miyazaki,62,1938,3
@@ -16068,6 +16409,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/15,Kochi,15,917,0
 2021/4/15,Fukuoka,648,18759,0
 2021/4/15,Saga,68,1239,18
+2021/4/15,Nagasaki,64,1599,0
 2021/4/15,Kumamoto,52,3453,0
 2021/4/15,Oita,38,1301,0
 2021/4/15,Miyazaki,62,1938,3
@@ -16115,6 +16457,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/16,Kochi,10,924,0
 2021/4/16,Fukuoka,721,18793,0
 2021/4/16,Saga,64,1250,18
+2021/4/16,Nagasaki,85,1601,0
 2021/4/16,Kumamoto,67,3450,0
 2021/4/16,Oita,41,1304,0
 2021/4/16,Miyazaki,71,1943,7
@@ -16162,6 +16505,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/17,Kochi,17,924,0
 2021/4/17,Fukuoka,812,18840,0
 2021/4/17,Saga,79,1255,20
+2021/4/17,Nagasaki,108,1602,0
 2021/4/17,Kumamoto,67,3450,0
 2021/4/17,Oita,42,1309,0
 2021/4/17,Miyazaki,70,1943,8
@@ -16209,6 +16553,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/18,Kochi,19,925,0
 2021/4/18,Fukuoka,903,18885,0
 2021/4/18,Saga,88,1256,20
+2021/4/18,Nagasaki,126,1604,0
 2021/4/18,Kumamoto,67,3450,0
 2021/4/18,Oita,43,1313,0
 2021/4/18,Miyazaki,68,1943,10
@@ -16256,6 +16601,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/19,Kochi,20,926,0
 2021/4/19,Fukuoka,956,18942,0
 2021/4/19,Saga,96,1265,22
+2021/4/19,Nagasaki,131,1608,0
 2021/4/19,Kumamoto,67,3450,0
 2021/4/19,Oita,39,1318,0
 2021/4/19,Miyazaki,60,1986,15
@@ -16303,6 +16649,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/20,Kochi,25,926,0
 2021/4/20,Fukuoka,1012,19003,0
 2021/4/20,Saga,120,1278,21
+2021/4/20,Nagasaki,140,1612,0
 2021/4/20,Kumamoto,152,3472,0
 2021/4/20,Oita,41,1322,0
 2021/4/20,Miyazaki,52,1986,7
@@ -16350,6 +16697,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/21,Kochi,25,929,0
 2021/4/21,Fukuoka,1103,19061,0
 2021/4/21,Saga,151,1277,21
+2021/4/21,Nagasaki,147,1620,0
 2021/4/21,Kumamoto,176,3474,0
 2021/4/21,Oita,70,1322,0
 2021/4/21,Miyazaki,49,1986,4
@@ -16397,6 +16745,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/22,Kochi,24,932,0
 2021/4/22,Fukuoka,1287,19121,0
 2021/4/22,Saga,179,1280,20
+2021/4/22,Nagasaki,188,1624,0
 2021/4/22,Kumamoto,203,3487,0
 2021/4/22,Oita,105,1328,0
 2021/4/22,Miyazaki,56,1995,7
@@ -16444,6 +16793,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/23,Kochi,28,933,0
 2021/4/23,Fukuoka,1506,19168,2
 2021/4/23,Saga,179,1280,20
+2021/4/23,Nagasaki,220,1633,6
 2021/4/23,Kumamoto,203,3487,0
 2021/4/23,Oita,147,1331,0
 2021/4/23,Miyazaki,58,2001,8
@@ -16491,6 +16841,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/24,Kochi,27,936,0
 2021/4/24,Fukuoka,1678,19237,0
 2021/4/24,Saga,179,1280,20
+2021/4/24,Nagasaki,254,1635,6
 2021/4/24,Kumamoto,203,3487,0
 2021/4/24,Oita,213,1333,8
 2021/4/24,Miyazaki,86,2008,8
@@ -16538,6 +16889,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/25,Kochi,32,938,0
 2021/4/25,Fukuoka,1875,19360,0
 2021/4/25,Saga,218,1318,25
+2021/4/25,Nagasaki,278,1640,11
 2021/4/25,Kumamoto,203,3487,0
 2021/4/25,Oita,282,1335,0
 2021/4/25,Miyazaki,99,2011,8
@@ -16585,6 +16937,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/26,Kochi,39,938,0
 2021/4/26,Fukuoka,2138,19431,0
 2021/4/26,Saga,210,1329,17
+2021/4/26,Nagasaki,276,1662,11
 2021/4/26,Kumamoto,354,3522,0
 2021/4/26,Oita,310,1340,0
 2021/4/26,Miyazaki,102,2013,8
@@ -16632,6 +16985,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/27,Kochi,51,940,0
 2021/4/27,Fukuoka,2198,19523,0
 2021/4/27,Saga,213,1341,17
+2021/4/27,Nagasaki,307,1674,11
 2021/4/27,Kumamoto,398,3524,0
 2021/4/27,Oita,356,1345,0
 2021/4/27,Miyazaki,107,2018,8
@@ -16679,6 +17033,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/28,Kochi,57,941,0
 2021/4/28,Fukuoka,2385,19612,0
 2021/4/28,Saga,216,1356,16
+2021/4/28,Nagasaki,306,1695,11
 2021/4/28,Kumamoto,419,3557,0
 2021/4/28,Oita,386,1349,0
 2021/4/28,Miyazaki,125,2021,8
@@ -16726,6 +17081,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/29,Kochi,63,944,0
 2021/4/29,Fukuoka,2723,19712,0
 2021/4/29,Saga,214,1374,17
+2021/4/29,Nagasaki,324,1703,11
 2021/4/29,Kumamoto,419,3557,0
 2021/4/29,Oita,419,1356,0
 2021/4/29,Miyazaki,125,2021,8
@@ -16773,6 +17129,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/4/30,Kochi,69,951,0
 2021/4/30,Fukuoka,2723,19712,0
 2021/4/30,Saga,220,1387,16
+2021/4/30,Nagasaki,336,1711,11
 2021/4/30,Kumamoto,453,3579,0
 2021/4/30,Oita,464,1366,0
 2021/4/30,Miyazaki,148,2034,8
@@ -16820,6 +17177,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/1,Kochi,79,953,0
 2021/5/1,Fukuoka,2987,20087,0
 2021/5/1,Saga,220,1387,16
+2021/5/1,Nagasaki,348,1729,10
 2021/5/1,Kumamoto,467,3605,0
 2021/5/1,Oita,489,1392,0
 2021/5/1,Miyazaki,173,2043,8
@@ -16867,6 +17225,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/2,Kochi,92,955,0
 2021/5/2,Fukuoka,3123,20301,0
 2021/5/2,Saga,220,1387,16
+2021/5/2,Nagasaki,331,1779,10
 2021/5/2,Kumamoto,477,3654,0
 2021/5/2,Oita,499,1425,0
 2021/5/2,Miyazaki,173,2043,8
@@ -16914,6 +17273,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/3,Kochi,95,962,0
 2021/5/3,Fukuoka,3324,20512,0
 2021/5/3,Saga,225,1455,16
+2021/5/3,Nagasaki,317,1808,1
 2021/5/3,Kumamoto,498,3683,0
 2021/5/3,Oita,497,1479,1
 2021/5/3,Miyazaki,173,2043,8
@@ -16961,6 +17321,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/4,Kochi,102,968,0
 2021/5/4,Fukuoka,3416,20702,0
 2021/5/4,Saga,225,1479,16
+2021/5/4,Nagasaki,336,1850,1
 2021/5/4,Kumamoto,521,3694,0
 2021/5/4,Oita,488,1533,0
 2021/5/4,Miyazaki,173,2043,8
@@ -17008,6 +17369,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/5,Kochi,96,981,0
 2021/5/5,Fukuoka,3454,20903,0
 2021/5/5,Saga,244,1497,16
+2021/5/5,Nagasaki,357,1865,1
 2021/5/5,Kumamoto,502,3742,0
 2021/5/5,Oita,504,1567,0
 2021/5/5,Miyazaki,173,2043,8
@@ -17055,6 +17417,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/6,Kochi,100,986,0
 2021/5/6,Fukuoka,3605,21089,0
 2021/5/6,Saga,258,1520,16
+2021/5/6,Nagasaki,380,1883,1
 2021/5/6,Kumamoto,505,3774,0
 2021/5/6,Oita,517,1601,0
 2021/5/6,Miyazaki,280,2095,8
@@ -17102,6 +17465,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/7,Kochi,94,999,0
 2021/5/7,Fukuoka,3646,21304,0
 2021/5/7,Saga,236,1533,52
+2021/5/7,Nagasaki,416,1907,2
 2021/5/7,Kumamoto,488,3844,0
 2021/5/7,Oita,542,1654,0
 2021/5/7,Miyazaki,331,2101,8
@@ -17149,6 +17513,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/8,Kochi,84,1013,0
 2021/5/8,Fukuoka,3835,21583,0
 2021/5/8,Saga,250,1549,98
+2021/5/8,Nagasaki,456,1932,3
 2021/5/8,Kumamoto,488,3844,0
 2021/5/8,Oita,593,1696,0
 2021/5/8,Miyazaki,331,2101,8
@@ -17196,6 +17561,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/9,Kochi,77,1024,0
 2021/5/9,Fukuoka,4071,21864,529
 2021/5/9,Saga,297,1588,53
+2021/5/9,Nagasaki,479,1959,3
 2021/5/9,Kumamoto,488,3844,0
 2021/5/9,Oita,641,1722,0
 2021/5/9,Miyazaki,331,2101,8
@@ -17243,6 +17609,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/10,Kochi,68,1035,0
 2021/5/10,Fukuoka,4319,22080,434
 2021/5/10,Saga,339,1588,55
+2021/5/10,Nagasaki,515,1972,3
 2021/5/10,Kumamoto,641,4006,0
 2021/5/10,Oita,679,1759,0
 2021/5/10,Miyazaki,405,2168,8
@@ -17290,6 +17657,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/11,Kochi,58,1048,0
 2021/5/11,Fukuoka,4517,22314,403
 2021/5/11,Saga,339,1625,62
+2021/5/11,Nagasaki,514,2006,3
 2021/5/11,Kumamoto,670,4044,0
 2021/5/11,Oita,688,1807,0
 2021/5/11,Miyazaki,439,2186,8
@@ -17337,6 +17705,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/12,Kochi,54,1058,0
 2021/5/12,Fukuoka,4534,22647,688
 2021/5/12,Saga,364,1650,62
+2021/5/12,Nagasaki,523,2037,3
 2021/5/12,Kumamoto,691,4140,0
 2021/5/12,Oita,682,1878,0
 2021/5/12,Miyazaki,457,2207,8
@@ -17384,6 +17753,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/13,Kochi,53,1066,0
 2021/5/13,Fukuoka,5022,22845,497
 2021/5/13,Saga,377,1685,50
+2021/5/13,Nagasaki,546,2059,3
 2021/5/13,Kumamoto,771,4169,0
 2021/5/13,Oita,749,1886,0
 2021/5/13,Miyazaki,479,2221,9
@@ -17431,6 +17801,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/14,Kochi,46,1078,0
 2021/5/14,Fukuoka,5303,23061,468
 2021/5/14,Saga,393,1710,51
+2021/5/14,Nagasaki,528,2105,3
 2021/5/14,Kumamoto,853,4179,0
 2021/5/14,Oita,632,1978,126
 2021/5/14,Miyazaki,461,2269,9
@@ -17478,6 +17849,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/15,Kochi,45,1083,0
 2021/5/15,Fukuoka,5469,23363,515
 2021/5/15,Saga,379,1754,51
+2021/5/15,Nagasaki,527,2137,2
 2021/5/15,Kumamoto,853,4179,0
 2021/5/15,Oita,783,2014,0
 2021/5/15,Miyazaki,461,2269,9
@@ -17525,6 +17897,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/16,Kochi,44,1086,0
 2021/5/16,Fukuoka,5790,23557,504
 2021/5/16,Saga,383,1790,38
+2021/5/16,Nagasaki,519,2156,3
 2021/5/16,Kumamoto,853,4179,0
 2021/5/16,Oita,764,2091,0
 2021/5/16,Miyazaki,461,2269,9
@@ -17572,6 +17945,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/17,Kochi,50,1088,0
 2021/5/17,Fukuoka,6037,23746,351
 2021/5/17,Saga,362,1824,51
+2021/5/17,Nagasaki,472,2215,1
 2021/5/17,Kumamoto,1038,4291,0
 2021/5/17,Oita,758,2125,0
 2021/5/17,Miyazaki,425,2381,9
@@ -17619,6 +17993,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/18,Kochi,62,1091,0
 2021/5/18,Fukuoka,5941,24187,344
 2021/5/18,Saga,340,1895,28
+2021/5/18,Nagasaki,465,2255,1
 2021/5/18,Kumamoto,912,4484,0
 2021/5/18,Oita,717,2208,0
 2021/5/18,Miyazaki,374,2459,9
@@ -17666,6 +18041,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/19,Kochi,72,1096,0
 2021/5/19,Fukuoka,5763,24637,572
 2021/5/19,Saga,306,1950,49
+2021/5/19,Nagasaki,430,2304,1
 2021/5/19,Kumamoto,912,4484,0
 2021/5/19,Oita,661,2313,0
 2021/5/19,Miyazaki,354,2499,9
@@ -17713,6 +18089,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/20,Kochi,80,1098,0
 2021/5/20,Fukuoka,5988,24980,394
 2021/5/20,Saga,296,2009,20
+2021/5/20,Nagasaki,397,2350,1
 2021/5/20,Kumamoto,879,4717,0
 2021/5/20,Oita,615,2403,0
 2021/5/20,Miyazaki,354,2535,10
@@ -17760,6 +18137,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/21,Kochi,89,1106,0
 2021/5/21,Fukuoka,5783,25579,382
 2021/5/21,Saga,283,2061,16
+2021/5/21,Nagasaki,337,2413,0
 2021/5/21,Kumamoto,893,4783,0
 2021/5/21,Oita,626,2439,0
 2021/5/21,Miyazaki,310,2594,10
@@ -17807,6 +18185,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/22,Kochi,109,1113,0
 2021/5/22,Fukuoka,5355,26389,304
 2021/5/22,Saga,265,2110,1
+2021/5/22,Nagasaki,289,2467,0
 2021/5/22,Kumamoto,907,4837,0
 2021/5/22,Oita,611,2489,0
 2021/5/22,Miyazaki,306,2594,14
@@ -17854,6 +18233,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/23,Kochi,127,1119,0
 2021/5/23,Fukuoka,5353,26695,258
 2021/5/23,Saga,255,2144,6
+2021/5/23,Nagasaki,268,2493,0
 2021/5/23,Kumamoto,930,4880,0
 2021/5/23,Oita,571,2555,0
 2021/5/23,Miyazaki,285,2594,35
@@ -17901,6 +18281,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/24,Kochi,136,1125,0
 2021/5/24,Fukuoka,5249,27057,189
 2021/5/24,Saga,250,2177,23
+2021/5/24,Nagasaki,255,2513,0
 2021/5/24,Kumamoto,896,4962,0
 2021/5/24,Oita,532,2625,0
 2021/5/24,Miyazaki,266,2674,10
@@ -17948,6 +18329,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/25,Kochi,154,1136,0
 2021/5/25,Fukuoka,5087,27408,194
 2021/5/25,Saga,226,2210,16
+2021/5/25,Nagasaki,227,2547,0
 2021/5/25,Kumamoto,811,5077,0
 2021/5/25,Oita,518,2675,0
 2021/5/25,Miyazaki,261,2696,10
@@ -17995,6 +18377,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/26,Kochi,165,1152,0
 2021/5/26,Fukuoka,4774,27915,209
 2021/5/26,Saga,207,2238,13
+2021/5/26,Nagasaki,209,2570,0
 2021/5/26,Kumamoto,761,5178,0
 2021/5/26,Oita,509,2720,0
 2021/5/26,Miyazaki,228,2739,10
@@ -18042,6 +18425,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/27,Kochi,188,1167,0
 2021/5/27,Fukuoka,4572,28326,172
 2021/5/27,Saga,192,2272,12
+2021/5/27,Nagasaki,191,2603,0
 2021/5/27,Kumamoto,727,5263,0
 2021/5/27,Oita,419,2830,0
 2021/5/27,Miyazaki,188,2785,10
@@ -18089,6 +18473,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/28,Kochi,199,1179,0
 2021/5/28,Fukuoka,4361,28709,187
 2021/5/28,Saga,182,2297,20
+2021/5/28,Nagasaki,175,2626,0
 2021/5/28,Kumamoto,678,5368,0
 2021/5/28,Oita,390,2874,0
 2021/5/28,Miyazaki,184,2800,10
@@ -18136,6 +18521,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/29,Kochi,206,1197,0
 2021/5/29,Fukuoka,4190,29067,181
 2021/5/29,Saga,172,2321,18
+2021/5/29,Nagasaki,155,2657,0
 2021/5/29,Kumamoto,667,5418,0
 2021/5/29,Oita,354,2932,0
 2021/5/29,Miyazaki,172,2800,22
@@ -18183,6 +18569,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/30,Kochi,218,1210,0
 2021/5/30,Fukuoka,4081,29357,151
 2021/5/30,Saga,159,2342,20
+2021/5/30,Nagasaki,152,2673,0
 2021/5/30,Kumamoto,628,5487,0
 2021/5/30,Oita,350,2959,0
 2021/5/30,Miyazaki,157,2800,37
@@ -18230,6 +18617,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/5/31,Kochi,219,1229,0
 2021/5/31,Fukuoka,4002,29587,58
 2021/5/31,Saga,152,2356,24
+2021/5/31,Nagasaki,140,2687,0
 2021/5/31,Kumamoto,589,5552,0
 2021/5/31,Oita,330,2992,0
 2021/5/31,Miyazaki,125,2872,10
@@ -18277,6 +18665,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/1,Kochi,234,1239,0
 2021/6/1,Fukuoka,3846,29801,77
 2021/6/1,Saga,142,2374,25
+2021/6/1,Nagasaki,137,2703,0
 2021/6/1,Kumamoto,556,5596,0
 2021/6/1,Oita,311,3028,0
 2021/6/1,Miyazaki,109,2890,10
@@ -18324,6 +18713,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/2,Kochi,241,1259,0
 2021/6/2,Fukuoka,3509,30215,111
 2021/6/2,Saga,124,2396,26
+2021/6/2,Nagasaki,123,2726,0
 2021/6/2,Kumamoto,512,5671,0
 2021/6/2,Oita,280,3078,0
 2021/6/2,Miyazaki,91,2910,10
@@ -18371,6 +18761,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/3,Kochi,227,1292,0
 2021/6/3,Fukuoka,3336,30499,97
 2021/6/3,Saga,114,2411,26
+2021/6/3,Nagasaki,123,2743,0
 2021/6/3,Kumamoto,493,5704,0
 2021/6/3,Oita,270,3098,0
 2021/6/3,Miyazaki,85,2921,10
@@ -18418,6 +18809,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/4,Kochi,207,1325,0
 2021/6/4,Fukuoka,3102,30830,72
 2021/6/4,Saga,108,2424,29
+2021/6/4,Nagasaki,134,2748,0
 2021/6/4,Kumamoto,437,5778,0
 2021/6/4,Oita,236,3133,0
 2021/6/4,Miyazaki,73,2937,10
@@ -18465,6 +18857,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/5,Kochi,195,1356,0
 2021/6/5,Fukuoka,2918,31086,82
 2021/6/5,Saga,99,2437,29
+2021/6/5,Nagasaki,155,2756,0
 2021/6/5,Kumamoto,385,5839,0
 2021/6/5,Oita,212,3165,0
 2021/6/5,Miyazaki,73,2937,10
@@ -18512,6 +18905,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/6,Kochi,198,1381,0
 2021/6/6,Fukuoka,2853,31233,78
 2021/6/6,Saga,82,2456,31
+2021/6/6,Nagasaki,168,2758,0
 2021/6/6,Kumamoto,343,5892,0
 2021/6/6,Oita,202,3182,0
 2021/6/6,Miyazaki,73,2937,10
@@ -18559,6 +18953,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/7,Kochi,188,1401,0
 2021/6/7,Fukuoka,2802,31362,24
 2021/6/7,Saga,81,2460,35
+2021/6/7,Nagasaki,158,2775,0
 2021/6/7,Kumamoto,322,5919,0
 2021/6/7,Oita,188,3196,0
 2021/6/7,Miyazaki,73,2937,10
@@ -18606,6 +19001,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/8,Kochi,164,1432,0
 2021/6/8,Fukuoka,2579,31609,55
 2021/6/8,Saga,68,2474,31
+2021/6/8,Nagasaki,161,2784,0
 2021/6/8,Kumamoto,301,5945,0
 2021/6/8,Oita,158,3227,0
 2021/6/8,Miyazaki,40,2972,10
@@ -18653,6 +19049,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/9,Kochi,155,1450,0
 2021/6/9,Fukuoka,2111,32132,61
 2021/6/9,Saga,61,2482,32
+2021/6/9,Nagasaki,158,2791,0
 2021/6/9,Kumamoto,257,6002,0
 2021/6/9,Oita,129,3262,0
 2021/6/9,Miyazaki,34,2979,10
@@ -18700,6 +19097,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/10,Kochi,153,1463,0
 2021/6/10,Fukuoka,2009,32295,40
 2021/6/10,Saga,57,2491,36
+2021/6/10,Nagasaki,151,2811,0
 2021/6/10,Kumamoto,224,6045,0
 2021/6/10,Oita,115,3280,0
 2021/6/10,Miyazaki,34,2980,10
@@ -18747,6 +19145,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/11,Kochi,140,1484,0
 2021/6/11,Fukuoka,1906,32438,58
 2021/6/11,Saga,47,2503,35
+2021/6/11,Nagasaki,146,2825,0
 2021/6/11,Kumamoto,209,6069,0
 2021/6/11,Oita,98,3303,0
 2021/6/11,Miyazaki,36,2983,10
@@ -18794,6 +19193,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/12,Kochi,127,1504,0
 2021/6/12,Fukuoka,1818,32584,45
 2021/6/12,Saga,43,2505,33
+2021/6/12,Nagasaki,146,2837,0
 2021/6/12,Kumamoto,185,6100,0
 2021/6/12,Oita,92,3316,0
 2021/6/12,Miyazaki,36,2983,10
@@ -18841,6 +19241,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/13,Kochi,117,1523,0
 2021/6/13,Fukuoka,1738,32709,36
 2021/6/13,Saga,38,2515,37
+2021/6/13,Nagasaki,145,2852,0
 2021/6/13,Kumamoto,159,6134,0
 2021/6/13,Oita,86,3322,0
 2021/6/13,Miyazaki,40,2983,6
@@ -18888,6 +19289,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/14,Kochi,109,1536,0
 2021/6/14,Fukuoka,1658,32825,22
 2021/6/14,Saga,32,2520,36
+2021/6/14,Nagasaki,124,2876,0
 2021/6/14,Kumamoto,152,6142,0
 2021/6/14,Oita,82,3327,0
 2021/6/14,Miyazaki,40,2983,6
@@ -18935,6 +19337,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/15,Kochi,102,1558,0
 2021/6/15,Fukuoka,1527,32978,32
 2021/6/15,Saga,26,2527,37
+2021/6/15,Nagasaki,108,2894,0
 2021/6/15,Kumamoto,142,6152,0
 2021/6/15,Oita,71,3339,0
 2021/6/15,Miyazaki,40,2983,6
@@ -18982,6 +19385,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/16,Kochi,97,1569,0
 2021/6/16,Fukuoka,1334,33203,34
 2021/6/16,Saga,19,2535,35
+2021/6/16,Nagasaki,95,2913,0
 2021/6/16,Kumamoto,113,6195,0
 2021/6/16,Oita,65,3348,0
 2021/6/16,Miyazaki,40,2983,6
@@ -19029,6 +19433,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/17,Kochi,93,1583,0
 2021/6/17,Fukuoka,1096,33475,34
 2021/6/17,Saga,17,2537,34
+2021/6/17,Nagasaki,90,2928,0
 2021/6/17,Kumamoto,105,6209,0
 2021/6/17,Oita,60,3355,0
 2021/6/17,Miyazaki,25,3000,10
@@ -19076,6 +19481,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/18,Kochi,88,1594,0
 2021/6/18,Fukuoka,958,33647,23
 2021/6/18,Saga,17,2539,37
+2021/6/18,Nagasaki,94,2935,0
 2021/6/18,Kumamoto,103,6218,0
 2021/6/18,Oita,52,3363,0
 2021/6/18,Miyazaki,27,3003,10
@@ -19123,6 +19529,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/19,Kochi,85,1607,0
 2021/6/19,Fukuoka,879,33749,47
 2021/6/19,Saga,14,2542,34
+2021/6/19,Nagasaki,94,2943,0
 2021/6/19,Kumamoto,103,6218,0
 2021/6/19,Oita,52,3367,0
 2021/6/19,Miyazaki,24,3003,13
@@ -19170,6 +19577,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/20,Kochi,87,1615,0
 2021/6/20,Fukuoka,902,33773,34
 2021/6/20,Saga,14,2543,35
+2021/6/20,Nagasaki,94,2949,0
 2021/6/20,Kumamoto,103,6218,0
 2021/6/20,Oita,50,3370,0
 2021/6/20,Miyazaki,24,3003,13
@@ -19217,6 +19625,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/21,Kochi,88,1622,0
 2021/6/21,Fukuoka,884,33825,17
 2021/6/21,Saga,17,2543,38
+2021/6/21,Nagasaki,89,2957,0
 2021/6/21,Kumamoto,84,6243,0
 2021/6/21,Oita,52,3373,0
 2021/6/21,Miyazaki,24,3003,13
@@ -19264,6 +19673,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/22,Kochi,96,1629,0
 2021/6/22,Fukuoka,816,33910,35
 2021/6/22,Saga,13,2546,37
+2021/6/22,Nagasaki,83,2965,0
 2021/6/22,Kumamoto,75,6262,0
 2021/6/22,Oita,47,3378,0
 2021/6/22,Miyazaki,18,3014,10
@@ -19311,6 +19721,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/23,Kochi,99,1640,0
 2021/6/23,Fukuoka,764,33997,29
 2021/6/23,Saga,11,2548,34
+2021/6/23,Nagasaki,73,2981,0
 2021/6/23,Kumamoto,83,6261,0
 2021/6/23,Oita,45,3380,0
 2021/6/23,Miyazaki,15,3018,10
@@ -19358,6 +19769,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/24,Kochi,92,1652,0
 2021/6/24,Fukuoka,708,34082,36
 2021/6/24,Saga,16,2548,35
+2021/6/24,Nagasaki,71,2990,0
 2021/6/24,Kumamoto,85,6266,0
 2021/6/24,Oita,44,3383,0
 2021/6/24,Miyazaki,17,3018,10
@@ -19405,6 +19817,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/25,Kochi,90,1663,0
 2021/6/25,Fukuoka,588,34238,32
 2021/6/25,Saga,17,2549,37
+2021/6/25,Nagasaki,72,2998,0
 2021/6/25,Kumamoto,85,6266,0
 2021/6/25,Oita,41,3388,0
 2021/6/25,Miyazaki,20,3019,10
@@ -19452,6 +19865,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/26,Kochi,93,1671,0
 2021/6/26,Fukuoka,514,34344,37
 2021/6/26,Saga,17,2549,36
+2021/6/26,Nagasaki,82,3002,0
 2021/6/26,Kumamoto,85,6266,0
 2021/6/26,Oita,36,3393,0
 2021/6/26,Miyazaki,20,3019,10
@@ -19499,6 +19913,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/27,Kochi,94,1679,0
 2021/6/27,Fukuoka,509,34386,25
 2021/6/27,Saga,16,2550,36
+2021/6/27,Nagasaki,83,3011,0
 2021/6/27,Kumamoto,85,6266,0
 2021/6/27,Oita,34,3395,0
 2021/6/27,Miyazaki,20,3019,10
@@ -19546,6 +19961,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/28,Kochi,99,1686,0
 2021/6/28,Fukuoka,491,34429,16
 2021/6/28,Saga,16,2551,37
+2021/6/28,Nagasaki,78,3019,0
 2021/6/28,Kumamoto,74,6287,0
 2021/6/28,Oita,32,3397,0
 2021/6/28,Miyazaki,20,3019,10
@@ -19593,6 +20009,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/29,Kochi,103,1692,0
 2021/6/29,Fukuoka,440,34496,26
 2021/6/29,Saga,14,2553,36
+2021/6/29,Nagasaki,85,3024,0
 2021/6/29,Kumamoto,70,6292,0
 2021/6/29,Oita,29,3399,0
 2021/6/29,Miyazaki,20,3019,10
@@ -19640,6 +20057,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/6/30,Kochi,103,1696,0
 2021/6/30,Fukuoka,399,34563,43
 2021/6/30,Saga,14,2553,36
+2021/6/30,Nagasaki,82,3035,1
 2021/6/30,Kumamoto,62,6306,0
 2021/6/30,Oita,25,3403,0
 2021/6/30,Miyazaki,15,3025,23
@@ -19687,6 +20105,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/1,Kochi,93,1713,0
 2021/7/1,Fukuoka,389,34616,26
 2021/7/1,Saga,14,2553,30
+2021/7/1,Nagasaki,86,3043,1
 2021/7/1,Kumamoto,62,6306,0
 2021/7/1,Oita,21,3408,0
 2021/7/1,Miyazaki,17,3027,23
@@ -19734,6 +20153,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/2,Kochi,97,1718,0
 2021/7/2,Fukuoka,368,34663,23
 2021/7/2,Saga,16,2555,32
+2021/7/2,Nagasaki,91,3046,1
 2021/7/2,Kumamoto,60,6308,0
 2021/7/2,Oita,17,3412,0
 2021/7/2,Miyazaki,20,3028,24
@@ -19781,6 +20201,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/3,Kochi,87,1731,0
 2021/7/3,Fukuoka,360,34694,35
 2021/7/3,Saga,17,2558,34
+2021/7/3,Nagasaki,88,3056,1
 2021/7/3,Kumamoto,60,6308,0
 2021/7/3,Oita,16,3414,0
 2021/7/3,Miyazaki,20,3028,24
@@ -19828,6 +20249,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/4,Kochi,81,1744,0
 2021/7/4,Fukuoka,357,34732,28
 2021/7/4,Saga,16,2561,36
+2021/7/4,Nagasaki,88,3060,1
 2021/7/4,Kumamoto,60,6308,0
 2021/7/4,Oita,15,3415,0
 2021/7/4,Miyazaki,20,3028,24
@@ -19875,6 +20297,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/5,Kochi,72,1753,0
 2021/7/5,Fukuoka,357,34760,15
 2021/7/5,Saga,18,2561,38
+2021/7/5,Nagasaki,77,3072,1
 2021/7/5,Kumamoto,52,6322,0
 2021/7/5,Oita,15,3415,0
 2021/7/5,Miyazaki,12,3035,27
@@ -19922,6 +20345,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/6,Kochi,65,1767,0
 2021/7/6,Fukuoka,332,34800,42
 2021/7/6,Saga,16,2563,36
+2021/7/6,Nagasaki,67,3082,1
 2021/7/6,Kumamoto,42,6331,0
 2021/7/6,Oita,15,3416,0
 2021/7/6,Miyazaki,29,3036,10
@@ -19969,6 +20393,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/7,Kochi,67,1774,0
 2021/7/7,Fukuoka,345,34829,43
 2021/7/7,Saga,18,2563,36
+2021/7/7,Nagasaki,59,3092,1
 2021/7/7,Kumamoto,32,6343,0
 2021/7/7,Oita,13,3419,0
 2021/7/7,Miyazaki,21,3046,10
@@ -20016,6 +20441,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/8,Kochi,66,1784,0
 2021/7/8,Fukuoka,354,34863,41
 2021/7/8,Saga,19,2563,36
+2021/7/8,Nagasaki,59,3096,1
 2021/7/8,Kumamoto,28,6347,0
 2021/7/8,Oita,18,3419,0
 2021/7/8,Miyazaki,22,3048,10
@@ -20063,6 +20489,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/9,Kochi,64,1789,0
 2021/7/9,Fukuoka,365,34893,58
 2021/7/9,Saga,21,2563,38
+2021/7/9,Nagasaki,57,3100,1
 2021/7/9,Kumamoto,27,6349,0
 2021/7/9,Oita,19,3421,0
 2021/7/9,Miyazaki,22,3048,10
@@ -20110,6 +20537,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/10,Kochi,68,1794,0
 2021/7/10,Fukuoka,378,34938,54
 2021/7/10,Saga,19,2563,36
+2021/7/10,Nagasaki,50,3110,0
 2021/7/10,Kumamoto,27,6349,0
 2021/7/10,Oita,18,3422,0
 2021/7/10,Miyazaki,19,3048,13
@@ -20157,6 +20585,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/11,Kochi,70,1799,0
 2021/7/11,Fukuoka,412,34958,35
 2021/7/11,Saga,18,2564,36
+2021/7/11,Nagasaki,40,3120,0
 2021/7/11,Kumamoto,27,6349,0
 2021/7/11,Oita,18,3422,0
 2021/7/11,Miyazaki,19,3048,13
@@ -20204,6 +20633,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/12,Kochi,65,1806,0
 2021/7/12,Fukuoka,428,34977,44
 2021/7/12,Saga,15,2568,36
+2021/7/12,Nagasaki,36,3124,0
 2021/7/12,Kumamoto,26,6355,0
 2021/7/12,Oita,19,3422,0
 2021/7/12,Miyazaki,17,3057,10
@@ -20251,6 +20681,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/13,Kochi,63,1814,0
 2021/7/13,Fukuoka,432,35017,49
 2021/7/13,Saga,12,2573,37
+2021/7/13,Nagasaki,31,3132,0
 2021/7/13,Kumamoto,24,6358,0
 2021/7/13,Oita,19,3423,0
 2021/7/13,Miyazaki,16,3060,11
@@ -20298,6 +20729,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/14,Kochi,64,1822,0
 2021/7/14,Fukuoka,470,35028,95
 2021/7/14,Saga,11,2575,35
+2021/7/14,Nagasaki,29,3138,0
 2021/7/14,Kumamoto,27,6359,0
 2021/7/14,Oita,18,3425,0
 2021/7/14,Miyazaki,17,3062,11
@@ -20345,6 +20777,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/15,Kochi,63,1831,0
 2021/7/15,Fukuoka,500,35093,70
 2021/7/15,Saga,12,2576,31
+2021/7/15,Nagasaki,35,3141,1
 2021/7/15,Kumamoto,27,6362,0
 2021/7/15,Oita,19,3431,0
 2021/7/15,Miyazaki,18,3062,11
@@ -20392,6 +20825,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/16,Kochi,69,1839,0
 2021/7/16,Fukuoka,531,35132,58
 2021/7/16,Saga,16,2578,28
+2021/7/16,Nagasaki,44,3145,2
 2021/7/16,Kumamoto,31,6366,0
 2021/7/16,Oita,25,3431,0
 2021/7/16,Miyazaki,14,3066,11
@@ -20439,6 +20873,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/17,Kochi,71,1845,0
 2021/7/17,Fukuoka,554,35167,59
 2021/7/17,Saga,22,2582,34
+2021/7/17,Nagasaki,49,3148,2
 2021/7/17,Kumamoto,31,6366,0
 2021/7/17,Oita,28,3431,0
 2021/7/17,Miyazaki,11,3066,14
@@ -20486,6 +20921,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/18,Kochi,74,1852,0
 2021/7/18,Fukuoka,584,35196,79
 2021/7/18,Saga,24,2582,33
+2021/7/18,Nagasaki,55,3150,2
 2021/7/18,Kumamoto,31,6366,0
 2021/7/18,Oita,28,3435,0
 2021/7/18,Miyazaki,12,3066,13
@@ -20533,6 +20969,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/19,Kochi,69,1862,0
 2021/7/19,Fukuoka,633,35226,44
 2021/7/19,Saga,27,2582,28
+2021/7/19,Nagasaki,63,3152,2
 2021/7/19,Kumamoto,47,6366,0
 2021/7/19,Oita,31,3435,0
 2021/7/19,Miyazaki,19,3070,11
@@ -20580,6 +21017,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/20,Kochi,72,1867,0
 2021/7/20,Fukuoka,616,35287,91
 2021/7/20,Saga,34,2582,26
+2021/7/20,Nagasaki,70,3154,2
 2021/7/20,Kumamoto,44,6375,0
 2021/7/20,Oita,41,3437,0
 2021/7/20,Miyazaki,21,3073,11
@@ -20627,6 +21065,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/21,Kochi,71,1873,0
 2021/7/21,Fukuoka,649,35345,136
 2021/7/21,Saga,43,2583,29
+2021/7/21,Nagasaki,77,3155,2
 2021/7/21,Kumamoto,48,6380,0
 2021/7/21,Oita,41,3438,0
 2021/7/21,Miyazaki,28,3073,11
@@ -20674,6 +21113,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/22,Kochi,74,1877,0
 2021/7/22,Fukuoka,731,35399,139
 2021/7/22,Saga,51,2583,29
+2021/7/22,Nagasaki,84,3157,2
 2021/7/22,Kumamoto,48,6380,0
 2021/7/22,Oita,41,3440,0
 2021/7/22,Miyazaki,35,3073,4
@@ -20721,6 +21161,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/23,Kochi,74,1884,0
 2021/7/23,Fukuoka,803,35466,151
 2021/7/23,Saga,57,2584,32
+2021/7/23,Nagasaki,92,3161,2
 2021/7/23,Kumamoto,48,6380,0
 2021/7/23,Oita,45,3441,0
 2021/7/23,Miyazaki,32,3073,7
@@ -20768,6 +21209,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/24,Kochi,63,1897,0
 2021/7/24,Fukuoka,940,35480,99
 2021/7/24,Saga,59,2586,33
+2021/7/24,Nagasaki,88,3165,1
 2021/7/24,Kumamoto,48,6380,0
 2021/7/24,Oita,53,3444,0
 2021/7/24,Miyazaki,38,3073,1
@@ -20815,6 +21257,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/25,Kochi,61,1904,0
 2021/7/25,Fukuoka,972,35547,162
 2021/7/25,Saga,62,2587,35
+2021/7/25,Nagasaki,90,3174,1
 2021/7/25,Kumamoto,48,6380,0
 2021/7/25,Oita,52,3448,0
 2021/7/25,Miyazaki,44,3073,5
@@ -20862,6 +21305,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/26,Kochi,58,1912,0
 2021/7/26,Fukuoka,1045,35636,171
 2021/7/26,Saga,55,2596,34
+2021/7/26,Nagasaki,90,3182,1
 2021/7/26,Kumamoto,141,6399,0
 2021/7/26,Oita,57,3449,0
 2021/7/26,Miyazaki,51,3078,11
@@ -20909,6 +21353,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/27,Kochi,56,1924,0
 2021/7/27,Fukuoka,1149,35703,233
 2021/7/27,Saga,54,2601,24
+2021/7/27,Nagasaki,105,3187,1
 2021/7/27,Kumamoto,166,6418,0
 2021/7/27,Oita,65,3453,0
 2021/7/27,Miyazaki,62,3080,11
@@ -20956,6 +21401,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/28,Kochi,72,1930,0
 2021/7/28,Fukuoka,1334,35751,405
 2021/7/28,Saga,56,2609,15
+2021/7/28,Nagasaki,119,3198,2
 2021/7/28,Kumamoto,205,6435,0
 2021/7/28,Oita,69,3461,0
 2021/7/28,Miyazaki,66,3086,11
@@ -21003,6 +21449,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/29,Kochi,91,1936,0
 2021/7/29,Fukuoka,1633,35857,366
 2021/7/29,Saga,63,2618,6
+2021/7/29,Nagasaki,126,3211,1
 2021/7/29,Kumamoto,252,6450,0
 2021/7/29,Oita,87,3463,0
 2021/7/29,Miyazaki,79,3089,11
@@ -21050,6 +21497,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/30,Kochi,101,1943,0
 2021/7/30,Fukuoka,1929,35927,478
 2021/7/30,Saga,73,2625,2
+2021/7/30,Nagasaki,152,3224,1
 2021/7/30,Kumamoto,332,6461,0
 2021/7/30,Oita,98,3473,0
 2021/7/30,Miyazaki,91,3098,5
@@ -21097,6 +21545,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/7/31,Kochi,107,1951,0
 2021/7/31,Fukuoka,2291,36043,504
 2021/7/31,Saga,101,2631,9
+2021/7/31,Nagasaki,159,3234,1
 2021/7/31,Kumamoto,332,6461,0
 2021/7/31,Oita,119,3475,0
 2021/7/31,Miyazaki,95,3098,1
@@ -21144,6 +21593,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/1,Kochi,110,1959,0
 2021/8/1,Fukuoka,2662,36176,433
 2021/8/1,Saga,108,2641,13
+2021/8/1,Nagasaki,187,3240,1
 2021/8/1,Kumamoto,332,6461,0
 2021/8/1,Oita,147,3476,0
 2021/8/1,Miyazaki,103,3098,7
@@ -21191,6 +21641,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/2,Kochi,115,1964,0
 2021/8/2,Fukuoka,2975,36296,357
 2021/8/2,Saga,125,2646,13
+2021/8/2,Nagasaki,192,3247,1
 2021/8/2,Kumamoto,498,6477,0
 2021/8/2,Oita,160,3480,0
 2021/8/2,Miyazaki,116,3113,11
@@ -21238,6 +21689,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/3,Kochi,120,1973,0
 2021/8/3,Fukuoka,3229,36399,509
 2021/8/3,Saga,142,2648,13
+2021/8/3,Nagasaki,229,3254,1
 2021/8/3,Kumamoto,545,6540,0
 2021/8/3,Oita,168,3494,0
 2021/8/3,Miyazaki,143,3119,11
@@ -21285,6 +21737,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/4,Kochi,114,1985,0
 2021/8/4,Fukuoka,3554,36583,751
 2021/8/4,Saga,164,2650,6
+2021/8/4,Nagasaki,248,3263,1
 2021/8/4,Kumamoto,622,6579,0
 2021/8/4,Oita,193,3503,0
 2021/8/4,Miyazaki,171,3120,11
@@ -21332,6 +21785,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/5,Kochi,115,1997,0
 2021/8/5,Fukuoka,4059,36829,718
 2021/8/5,Saga,176,2655,21
+2021/8/5,Nagasaki,281,3281,1
 2021/8/5,Kumamoto,674,6654,0
 2021/8/5,Oita,210,3517,0
 2021/8/5,Miyazaki,193,3133,12
@@ -21379,6 +21833,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/6,Kochi,114,2021,0
 2021/8/6,Fukuoka,4531,37075,839
 2021/8/6,Saga,207,2671,8
+2021/8/6,Nagasaki,309,3297,0
 2021/8/6,Kumamoto,764,6692,0
 2021/8/6,Oita,235,3543,0
 2021/8/6,Miyazaki,209,3150,12
@@ -21426,6 +21881,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/7,Kochi,114,2033,0
 2021/8/7,Fukuoka,5152,37293,741
 2021/8/7,Saga,223,2687,14
+2021/8/7,Nagasaki,345,3316,0
 2021/8/7,Kumamoto,823,6784,0
 2021/8/7,Oita,266,3560,0
 2021/8/7,Miyazaki,222,3150,1
@@ -21473,6 +21929,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/8,Kochi,109,2047,0
 2021/8/8,Fukuoka,5637,37549,701
 2021/8/8,Saga,233,2714,10
+2021/8/8,Nagasaki,364,3334,0
 2021/8/8,Kumamoto,904,6785,0
 2021/8/8,Oita,288,3580,0
 2021/8/8,Miyazaki,243,3150,22
@@ -21520,6 +21977,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/9,Kochi,100,2056,0
 2021/8/9,Fukuoka,5939,37948,623
 2021/8/9,Saga,246,2722,13
+2021/8/9,Nagasaki,391,3345,0
 2021/8/9,Kumamoto,921,6851,0
 2021/8/9,Oita,319,3588,0
 2021/8/9,Miyazaki,267,3150,46
@@ -21567,6 +22025,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/10,Kochi,97,2068,0
 2021/8/10,Fukuoka,6229,38281,455
 2021/8/10,Saga,262,2737,34
+2021/8/10,Nagasaki,415,3351,3
 2021/8/10,Kumamoto,935,6927,0
 2021/8/10,Oita,336,3609,0
 2021/8/10,Miyazaki,294,3204,12
@@ -21614,6 +22073,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/11,Kochi,100,2085,0
 2021/8/11,Fukuoka,6492,38473,733
 2021/8/11,Saga,267,2769,69
+2021/8/11,Nagasaki,409,3412,3
 2021/8/11,Kumamoto,922,7121,0
 2021/8/11,Oita,377,3629,0
 2021/8/11,Miyazaki,309,3233,12
@@ -21661,6 +22121,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/12,Kochi,113,2095,0
 2021/8/12,Fukuoka,6415,39283,1038
 2021/8/12,Saga,321,2787,86
+2021/8/12,Nagasaki,459,3435,3
 2021/8/12,Kumamoto,922,7121,0
 2021/8/12,Oita,421,3668,0
 2021/8/12,Miyazaki,317,3233,4
@@ -21708,6 +22169,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/13,Kochi,131,2103,0
 2021/8/13,Fukuoka,7155,39581,949
 2021/8/13,Saga,360,2848,80
+2021/8/13,Nagasaki,486,3471,3
 2021/8/13,Kumamoto,1077,7361,0
 2021/8/13,Oita,482,3702,0
 2021/8/13,Miyazaki,378,3289,12
@@ -21755,6 +22217,7 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/14,Kochi,144,2114,0
 2021/8/14,Fukuoka,7616,40069,887
 2021/8/14,Saga,405,2858,110
+2021/8/14,Nagasaki,522,3505,2
 2021/8/14,Kumamoto,1192,7438,0
 2021/8/14,Oita,530,3742,0
 2021/8/14,Miyazaki,391,3289,1
@@ -21802,8 +22265,57 @@ Date,Prefecture,Requiring inpatient care,Discharged from hospital or released fr
 2021/8/15,Kochi,158,2127,0
 2021/8/15,Fukuoka,7582,40990,681
 2021/8/15,Saga,413,2875,125
+2021/8/15,Nagasaki,519,3547,3
 2021/8/15,Kumamoto,1315,7473,0
 2021/8/15,Oita,588,3778,0
 2021/8/15,Miyazaki,389,3289,1
 2021/8/15,Kagoshima,944,4209,98
 2021/8/15,Okinawa,5607,26887,170
+2021/8/16,ALL,157758,979128,4350
+2021/8/16,Hokkaido,3824,44621,34
+2021/8/16,Aomori,362,2762,0
+2021/8/16,Iwate,337,2069,0
+2021/8/16,Miyagi,1347,10199,30
+2021/8/16,Akita,130,1042,0
+2021/8/16,Yamagata,273,2245,0
+2021/8/16,Fukushima,1035,6159,0
+2021/8/16,Ibaraki,2181,14030,0
+2021/8/16,Tochigi,1478,8832,0
+2021/8/16,Gunma,1537,9405,0
+2021/8/16,Saitama,21064,55818,0
+2021/8/16,Chiba,10283,52912,0
+2021/8/16,Tokyo,39318,240436,0
+2021/8/16,Kanagawa,14829,97309,0
+2021/8/16,Niigata,787,4377,0
+2021/8/16,Toyama,562,2436,0
+2021/8/16,Ishikawa,752,5427,10
+2021/8/16,Fukui,216,1779,0
+2021/8/16,Yamanashi,523,2736,6
+2021/8/16,Nagano,620,5611,30
+2021/8/16,Gifu,902,9930,0
+2021/8/16,Shizuoka,2808,11287,0
+2021/8/16,Aichi,5164,54085,0
+2021/8/16,Mie,1170,6071,172
+2021/8/16,Shiga,1300,6337,0
+2021/8/16,Kyoto,3642,18693,321
+2021/8/16,Osaka,14137,115134,1397
+2021/8/16,Hyogo,4393,45159,2
+2021/8/16,Nara,1039,9391,0
+2021/8/16,Wakayama,275,3111,81
+2021/8/16,Tottori,280,822,13
+2021/8/16,Shimane,138,798,0
+2021/8/16,Okayama,863,8233,894
+2021/8/16,Hiroshima,878,12458,252
+2021/8/16,Yamaguchi,413,3322,0
+2021/8/16,Tokushima,117,1781,0
+2021/8/16,Kagawa,541,2469,1
+2021/8/16,Ehime,568,3012,0
+2021/8/16,Kochi,162,2143,0
+2021/8/16,Fukuoka,7673,41580,681
+2021/8/16,Saga,473,2909,144
+2021/8/16,Nagasaki,520,3585,5
+2021/8/16,Kumamoto,1388,7551,0
+2021/8/16,Oita,647,3801,0
+2021/8/16,Miyazaki,394,3387,13
+2021/8/16,Kagoshima,1034,4259,109
+2021/8/16,Okinawa,5381,27466,155
