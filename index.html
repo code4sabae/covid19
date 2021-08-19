@@ -914,8 +914,8 @@ const showChart = async function(data) {
 	}
 
 	// 読み上げ
-	detailtitle.style.cursor = "pointer";
-	detailtitle.onclick = async () => {
+	btnsay.style.cursor = "pointer";
+	btnsay.onclick = async () => {
 		globalThis.voiceOver = globalThis.voiceOver || (await import("./voiceOver.js")).voiceOver;
 		voiceOver(voice);
 	};
@@ -1238,6 +1238,7 @@ const makeJapanHTML = function() {
 
 <div id="detail">
 	<div id="btnclose2" style="display: inline-block; position:absolute; right:10px; top: 10px; font-size: 3em;">✕</div>
+	<img id="btnsay" src="./img/say.svg" style="display: inline-block; position:absolute; left:15px; top: 15px; width: 2.5em; height: 2.5em">
 	<div id="detailtitle"></div>
 	<canvas id='chart'></canvas>
 	<div id="detaildesc"></div>
