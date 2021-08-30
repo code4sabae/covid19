@@ -215,6 +215,8 @@ const main = async function () {
   //const data = fs.readFileSync('../data/covid19fukui/20200409T151739.csv', 'utf-8')
   //fs.writeFileSync('../data/covid19fukui/20200409T151739-2.csv', util.addBOM(data))
 
+  // Google drive
+  // https://docs.google.com/spreadsheets/d/1SPqnO0yLn8ubax96sDJZVDcjAH8QT1suLCIgroPGVHY/edit#gid=0
   const url_official = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-OrSJv81VIWWrQ0W6vndw8HEjtztkWY39E97v-oFR0tYF0chwV-duQUkKIOSJPj57IbVuqGZO-C_K/pub?gid=0&single=true&output=csv'
   const list = await fetchCSVtoJSON(url_official)
   //const list = list_test
