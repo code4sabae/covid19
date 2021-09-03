@@ -8,6 +8,8 @@
   node covid19japan.mjs
   node covid19mhlw.mjs
   node covid19trend.mjs
+  node covid19beds.mjs
+  deno run -A covid19beds_summary.deno.js
   node makeogp.mjs
   
 #  git add ../data
