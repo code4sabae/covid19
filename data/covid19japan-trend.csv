@@ -1,5 +1,5 @@
 ﻿"name","ncurrentpatients","dcurrentpatients"
-"Hokkaido",483,-32
+"Hokkaido",439,-44
 "Aomori",275,-21
 "Iwate",27,0
 "Miyagi",235,-48
@@ -11,12 +11,12 @@
 "Gunma",207,-21
 "Saitama",2350,-114
 "Chiba",1417,-117
-"Tokyo",3532,-217
+"Tokyo",3306,-226
 "Kanagawa",1802,-151
 "Niigata",217,-10
 "Toyama",53,-14
 "Ishikawa",113,-7
-"Fukui",91,4
+"Fukui",84,-7
 "Yamanashi",120,-17
 "Nagano",102,-24
 "Gifu",352,-33
@@ -25,10 +25,10 @@
 "Mie",348,-34
 "Shiga",226,6
 "Kyoto",1377,-58
-"Osaka",5962,-540
+"Osaka",5683,-279
 "Hyogo",1547,-219
 "Nara",294,-48
-"Wakayama",59,-6
+"Wakayama",60,1
 "Tottori",15,-3
 "Shimane",45,4
 "Okayama",254,0
