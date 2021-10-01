@@ -5,6 +5,7 @@
   deno run -A covid19forecast.deno.js
   sh update_covid19vaccine.sh
   sh update_fdma.sh
+  deno run -A covid19japan2.js
   node covid19japan.mjs
   node covid19mhlw.mjs
   node covid19trend.mjs

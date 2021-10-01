@@ -655,8 +655,9 @@ const mainV2 = async function () {
   const now = new Date();
 //  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202007.html";
 //  const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202012.html";
-  const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth() + 1, 2)}.html`;
-  //const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth(), 2)}.html`;
+  //const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth() + 1, 2)}.html`;
+  //const urlweb7 = "https://www.mhlw.go.jp/stf/houdou/houdou_list_202109.html";
+  const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${util.fix0(now.getMonth(), 2)}.html`;
   console.log(urlweb7);
   //process.exit(0);
   const urlweb = await parseURLCovid19Latest(urlweb7)
@@ -799,7 +800,7 @@ const main = async () => {
   // await mainV1() // old
   //await mainV2_hand();
   
-  await mainV2();
+  //await mainV2();
   makeCovid19JapanList();
   makeCovid19JapanPrefs();
 }
