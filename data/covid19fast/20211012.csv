@@ -1,0 +1,7 @@
+﻿"name","npatients","ncurrentpatients","nexits","ndeaths","lastUpdate","src_url","url_opendata"
+"Hokkaido",60453,183,58801,1469,"2021-10-12T19:38:50","https://www.harp.lg.jp/opendata/dataset/1369/resource/2853/covid19_data.csv","https://www.harp.lg.jp/opendata/dataset/1369.html"
+"Tokyo",376902,1268,372590,3044,"2021-10-12T17:45","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
+"Toyama",4834,40,4743,51,"2021-10-11","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv"
+"Fukui",3091,25,3029,37,"2021-10-12T14:03:27","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
+"Osaka",201307,3301,194999,3007,"2021-10-12T17:27","https://raw.githubusercontent.com/codeforosaka/covid19/master/data/data.json","https://github.com/codeforosaka/covid19"
+"Wakayama",5176,21,5093,62,"2021-10-12T10:00:00","https://www.pref.wakayama.lg.jp/prefg/000200/covid19_d/fil/kansensuii.xlsx","https://www.pref.wakayama.lg.jp/prefg/041200/d00203387.html"
