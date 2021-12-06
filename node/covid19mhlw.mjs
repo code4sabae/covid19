@@ -5,6 +5,7 @@ import util from './util.mjs'
 import pdf2text from './pdf2text.mjs'
 //import pdf2text from './pdf2text.js'
 
+// https://www.mhlw.go.jp/stf/covid-19/open-data.html
 
 const path = "../data/mhlw_go_jp/opendata/";
 

@@ -1,10 +1,20 @@
 import Chart from "https://code4sabae.github.io/kafumon/lib/Chart.mjs";
 import util from "https://taisukef.github.io/util/util.mjs";
-//import { Day } from "https://code4fukui.github.io/day-es/Day.js";
+import { Day } from "https://code4fukui.github.io/day-es/Day.js";
 
 const main = async (parent) => {
-  const url = "https://www.stopcovid19.jp/data/mhlw_go_jp/opendata/covid19.csv";
-  const json = await util.fetchCSVtoJSON(url);
+  //const url = "https://www.stopcovid19.jp/data/mhlw_go_jp/opendata/covid19.csv";
+  const url = "https://www.stopcovid19.jp/data/mhlw_go_jp/opendata/requiring_inpatient_care_etc_daily.csv";
+  const json1 = await util.fetchCSVtoJSON(url);
+  console.log(json1);
+  const json = json1.map(d => {
+    return {
+      "日付": new Day(d.Date).toString(),
+      "退院者数": d["(ALL) Discharged from hospital or released from treatment"],
+      "入院治療を要する者": d["(ALL) Requiring inpatient care"],
+      "確認中": d["(ALL) To be confirmed"],
+    }
+  });
   console.log(json);
 
   const url2 = "https://code4fukui.github.io/fdma_go_jp/emergencytransport_difficult_all.csv";
@@ -21,9 +31,11 @@ const main = async (parent) => {
   const names = ["日付", "PCR 検査陽性者数", "PCR 検査実施件数", "入院治療を要する者", "死亡者数"];
   const datas = [date, data1, data2, data_c, data_d];
   for (const d of json) {
+    /*
     if (names.reduce((pre, name) => pre || !d[name], false)) {
       continue;
     }
+    */
     for (let i = 0; i < names.length; i++) {
       datas[i].push(d[names[i]]);
     }
@@ -60,7 +72,7 @@ const main = async (parent) => {
         xAxes: [{ scaleLabel: { display: false, labelString: "日付" } }],
         yAxes: [
         { id: "yr", position: "right", scaleLabel: { display: true, labelString: "PCR 検査実施件数・現在入院治療を要する者" }, ticks: { beginAtZero: true } },
-        { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数・累計死亡者数" }, ticks: { beginAtZero: true } },
+        { id: "yl", position: "left", scaleLabel: { display: true, labelString: "PCR 検査陽性者数・累計死亡者数・救急搬送困難事案数" }, ticks: { beginAtZero: true } },
         ],
       },
       legend: { display: true }
