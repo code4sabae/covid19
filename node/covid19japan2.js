@@ -239,6 +239,7 @@ const main = async function () {
   const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${fix0(now.getMonth() + 1, 2)}.html`;
   console.log(urlweb7);
   const urlweb = await parseURLCovid19Latest(urlweb7);
+  //const urlweb = "https://www.mhlw.go.jp/stf/newpage_22731.html";
   console.log(urlweb);
   //Deno.exit();
   // savePDF
