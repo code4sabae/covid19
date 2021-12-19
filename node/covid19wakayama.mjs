@@ -68,12 +68,22 @@ const parseV2 = function (res, sh) {
       return false;
     }
   }
-  const getLatest = num => parseInt(csv[num][csv[num].length - 1])
+  let last = csv[2].length - 1;
+  while (csv[2][last].length == 0) {
+    last--;
+  }
+  const getLatest = num => {
+    const s = csv[num][last];
+    if (s.length == 0) {
+      return null;
+    }
+    return parseInt(s)
+  };
   res.ncurrentpatients = getLatest(4 - 2)
   res.nexits = getLatest(7 - 2)
   res.ndeaths = getLatest(10 - 2)
   res.npatients = res.ncurrentpatients + res.nexits + res.ndeaths
-  return true
+  return res.ncurrentpatients != null && res.nexits != null && res.ndeaths != null && res.npatients != null;
 }
 
 const main = async function () {
