@@ -20,8 +20,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png">
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211216224406.png">
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211216224406.png">
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211219224549.png">
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211219224549.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -1114,7 +1114,7 @@ const showPrefs = function(data, data_bed, getBedCount) {
 		const c = get("jp" + i)
 		c.num = i - 1
 		const a = data.area[i - 1]
-		const cnt = a.ncurrentpatients
+		const cnt = a.ncurrentpatients || 0
 		const cntt = a.npatients
 		c.data_bed = data_bed.area[i - 1]
 		c.getBedCount = function() {
