@@ -20,8 +20,8 @@ gtag('config', 'UA-162141832-1')
 <link rel="apple-touch-icon" href="covid19japan-leargeicon.png">
 <meta name="msapplication-square310x310logo" content="covid19japan-leargeicon.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211223221207.png">
-<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211223221207.png">
+<meta property="og:image"  content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211224224138.png">
+<meta name="twitter:image" content="https://www.stopcovid19.jp/ogp/covid19japan_ogp_20211224224138.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
@@ -566,7 +566,7 @@ const main = async function() {
 	const url_bedc = makeURL("covid19japan_beds/latest.json");
 //   list.push(['都道府県番号', '都道府県名', 'PCR検査陽性者数', '入院者数', '入院患者受入確保病床', '入院患者受入確保想定病床数', 'うち重症者数', '重症患者受入確保病床数', '重症患者受入確保想定病床数', '宿泊療養者数', '宿泊施設受入可能室数', '自宅療養者数', '社会福祉施設等療養者数', '確認中の人数', '更新日', '出典']);
 	const json_bedc = await fetchJSON(url_bedc)
-	//console.log("json_bedc", json_bedc)
+	console.log("json_bedc", json_bedc)
 	for (let i = 0; i < json_bedc.length; i++) {
 		const cbed = json_bedc[i]
 		for (let j = 0; j < json_bed.area.length; j++) {
@@ -671,7 +671,7 @@ const main = async function() {
 	{
 		const url_fast = makeURL('covid19japan-fast.json')
 		const json_fast = await (await fetch(url_fast)).json()
-		//console.log('fast', json_fast)
+		console.log('fast', json_fast)
 		for (const json of json_fast) {
 			const pref = json_now.area[PREF_EN.indexOf(json.name)]
 			for (const name in json) {
@@ -698,6 +698,7 @@ const main = async function() {
 	}
 	// 病床数データ日付
 	const set = new Set();
+	console.log({json_now})
 	json_now.area.forEach(d => set.add(d.bed.sumc_src.発表日));
 	lastUpdateBed.textContent = Array.from(set.keys()).join(", ");
 
