@@ -68,6 +68,8 @@ const parseV2 = function (res, sh) {
       return false;
     }
   }
+  //fs.writeFileSync("wakayama_csv.csv", JSON.stringify(csv));
+
   let last = csv[2].length - 1;
   while (csv[2][last].length == 0) {
     last--;
@@ -79,6 +81,9 @@ const parseV2 = function (res, sh) {
     }
     return parseInt(s)
   };
+  for (let i = 0; i < 10; i++) {
+    console.log(last, csv[i][last]);
+  }
   res.ncurrentpatients = getLatest(4 - 2)
   res.nexits = getLatest(7 - 2)
   res.ndeaths = getLatest(10 - 2)
