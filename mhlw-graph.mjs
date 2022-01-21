@@ -63,7 +63,8 @@ const main = async (parent) => {
         // { type: "line", label: "死亡者数", data: data_dd, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "line", label: "累計死亡者数", hidden: false, data: data_d, borderColor: 'rgb(10, 10, 12)', fill: false, lineTension: 0, yAxisID: "yl" },
         { type: "bar", label: "PCR 検査実施件数", hidden: true, data: data2, backgroundColor: 'rgb(99, 255, 132)', fill: false, lineTension: 0, yAxisID: "yr" },
-        { type: "bar", label: "救急搬送困難事案数", hidden: false, data: data_em, backgroundColor: 'rgb(255, 0, 0)', borderWidth: 1, borderColor: "#777", fill: false, lineTension: 0, yAxisID: "yl" },
+        //{ type: "bar", label: "救急搬送困難事案数", hidden: false, data: data_em, backgroundColor: 'rgb(255, 0, 0)', borderWidth: 10, borderColor: "#777", fill: false, lineTension: 0, yAxisID: "yl" },
+        { type: "line", label: "救急搬送困難事案数", hidden: false, data: data_em, backgroundColor: 'rgb(255, 0, 0)', borderWidth: 1, borderColor: "#777", fill: false, lineTension: 0, yAxisID: "yl" },
       ]
     },
     options: {
@@ -96,7 +97,9 @@ const main = async (parent) => {
     const div = document.createElement("div");
     div.style.textAlign = "center";
     div.style.fontSize = "80%";
-    div.innerHTML = `データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>→<a href=${url}>CSV</a>、<a href=https://www.fdma.go.jp/disaster/coronavirus/post-1.html>新型コロナウイルス感染症に伴う救急搬送困難事案に係る状況調査について<!--（救急企画室） | 新型コロナウイルス感染症関連--> | 総務省消防庁</a>`;
+    div.innerHTML = `データ出典：<a href=https://www.mhlw.go.jp/stf/covid-19/open-data.html>オープンデータ｜厚生労働省</a>→<a href=${url}>CSV</a>、
+    <a href=https://www.fdma.go.jp/disaster/coronavirus/post-1.html>新型コロナウイルス感染症に伴う救急搬送困難事案に係る状況調査について<!--（救急企画室） | 新型コロナウイルス感染症関連--> | 総務省消防庁</a>
+     (<a href=https://code4fukui.github.io/fdma_go_jp/pref.html>都道府県別 救急搬送困難事案数</a>)`;
     parent.appendChild(div);
   }
 };
