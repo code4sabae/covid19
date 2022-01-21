@@ -237,21 +237,24 @@ const cutT = (s) => {
   return s;
 };
 
+const localcheck = false;
+//const localcheck = false
+const localfn = "000872068.xlsx";
+
 const makeCovid19JapanBeds = async function () {
   //const url = "https://www.mhlw.go.jp/content/10900000/000655343.pdf"; //await parseURLCovid19Latest(urltop)
   const latest = await parseURLCovid19Latest(urltop)
-  console.log(latest)
+  
   const url = latest.url;
   //const lastUpdate = cutT(latest.dt);
 
   const path = '../data/covid19japan_beds/'
-  let fn = null // '000630627.pdf'
+  //let fn = null // '000630627.pdf'
 
-  const fetchdata = true;
-  // fn = "000655343.pdf";
-  // const lastUpdate = "2020-07-29";
-  //const fetchdata = true
-  if (fetchdata) {
+  let fn = null;
+  if (localcheck) {
+    fn = localfn;
+  } else {
     fn = url.substring(url.lastIndexOf('/') + 1)
     const pdf = await (await fetch(url)).arrayBuffer()
     fs.writeFileSync(path + fn, new Buffer.from(pdf), 'binary')
@@ -274,7 +277,6 @@ const makeCovid19JapanBeds = async function () {
       console.log(fn);
       const sheet = readXlsxSheet(fn);
       const csv = xlsx2csv.xlsx2csv(sheet);
-      //console.log(csv);
       console.log(csv[0].find(d => d != ""));
       const lastUpdate = parseLastUpdate(csv[0].find(d => d !=""));
       console.log(lastUpdate);
@@ -328,8 +330,10 @@ const makeCovid19JapanBeds = async function () {
   fs.writeFileSync(path + fn + '.csv', util.addBOM(util.encodeCSV(csv)), 'utf-8')
   //process.exit(0);
 
+  const json = util.csv2json(csv, true); // ignore omit blacks // 2022-01-22
+  //console.log(csv[0], json[0]);
+  //process.exit(0);
 
-  const json = util.csv2json(csv);
   const scsv = util.addBOM(util.encodeCSV(csv));
   console.log(path + lastUpdate + '.csv')
   fs.writeFileSync(path + lastUpdate + '.csv', scsv, 'utf-8')
