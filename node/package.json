@@ -12,7 +12,7 @@
     "cheerio": "^1.0.0-rc.10",
     "iconv-lite": "^0.6.3",
     "jimp": "^0.16.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "pdf2json": "^1.2.5",
     "selenium-webdriver": "^4.0.0-beta.4",
     "webdriverio": "^7.7.3",
