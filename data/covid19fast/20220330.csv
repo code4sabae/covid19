@@ -1,0 +1,5 @@
+﻿"name","npatients","nexits","ndeaths","ncurrentpatients","lastUpdate","src_url","url_opendata"
+"Tokyo",1242659,1147545,4157,90957,"2022-03-30T19:15","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
+"Toyama",27293,24241,76,2976,"2022-03-29","http://opendata.pref.toyama.jp/dataset/covid19/resource/85d4c612-c174-4f73-be63-f8512d25361a","http://opendata.pref.toyama.jp/files/covid19/20200403/toyama_counts.csv"
+"Fukui",21057,19779,41,1237,"2022-03-30T14:01:38","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19_d/fil/covid19_hospitalization.csv","https://www.pref.fukui.lg.jp/doc/toukei-jouhou/covid-19.html"
+"Osaka",791075,749777,4643,36655,"2022-03-30T21:54","https://raw.githubusercontent.com/codeforosaka/covid19/master/data/data.json","https://github.com/codeforosaka/covid19"
