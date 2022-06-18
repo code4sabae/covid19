@@ -29,7 +29,8 @@ const pdf2json = async (pdffn, jsonfn) => {
 };
 
 const json2array = (json) => {
-  const t = json.formImage.Pages[0].Texts;
+  //const t = json.formImage.Pages[0].Texts;
+  const t = json.Pages[0].Texts;
   const ys = ArrayUtil.toUnique(t.map(t => t.y));
   
   ys.sort((a, b) => a - b);
@@ -280,5 +281,58 @@ const main = async function () {
   await Deno.writeTextFile(path + '../covid19japan.json', JSON.stringify(json));
 
 };
+
+const recover2 = async (urlweb) => {
+  console.log(urlweb);
+  //Deno.exit();
+  // savePDF
+  const path = '../data/covid19japan/'
+  const url = await parseURLCovid19(urlweb)
+  console.log(url)
+  if (!url) {
+    throw new Error("not found url: " + url);
+  }
+  const fn = url.substring(url.lastIndexOf('/') + 1);
+  const pdf = await fetchBin(url);
+  await Deno.writeFile(path + fn, pdf);
+
+  console.log("pdf:" + path + fn);
+  const tmpfn = "./temp/pdf2json.json";
+  await pdf2json(path + fn, tmpfn);
+  const json0 = JSON.parse(await Deno.readTextFile(tmpfn));
+  console.log(json0);
+
+  const ar = json2array(json0);
+  const txt = ar.map(a => a.join("")).join("\n");
+  const csv = array2csv(ar);
+  console.log(csv);
+  //Deno.exit(0);
+
+  const json = makeCurrentPatientsJSON(txt, csv, url, urlweb);
+  const scsv = CSV.stringify(json.area);
+  // util.addBOM(util.encodeCSV(util.json2csv(json.area)))
+
+  console.log(json);
+
+  console.log(path + json.lastUpdate + '.csv');
+  await Deno.writeTextFile(path + json.lastUpdate + '.csv', scsv);
+  await Deno.writeTextFile(path + fn + '.json', JSON.stringify(json));
+  await Deno.writeTextFile(path + fn + '.csv', CSV.encode(csv));
+};
+const recover = async () => {
+  //const urlweb = "https://www.mhlw.go.jp/stf/newpage_26173.html";
+  const urlwebs = [
+    "https://www.mhlw.go.jp/stf/newpage_26175.html",
+    "https://www.mhlw.go.jp/stf/newpage_26205.html",
+    "https://www.mhlw.go.jp/stf/newpage_26248.html",
+    "https://www.mhlw.go.jp/stf/newpage_26277.html",
+    "https://www.mhlw.go.jp/stf/newpage_26307.html",
+  ];
+  for (const urlweb of urlwebs) {
+    await recover2(urlweb);
+  }
+};
+
+//recover();
 
 main();
