@@ -651,7 +651,7 @@ const main = async function() {
 		ventvent.textContent = addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))
 		ventecmo.textContent = addComma(v['ECMO装置取扱（台）'])
 		const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
-		ventsrc.innerHTML = tx(`2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）`)
+		ventsrc.innerHTML = tx(`2020年2月回答 出典 <a href=${srcurl}>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>`)
 	}
 
 	/*
@@ -866,9 +866,9 @@ const showChart = async function(data) {
 	const v = data.data.vent
 	const pi = parseInt
 	detailvent.innerHTML = tx(`<br>(参考) 臨床工学技士:${addComma(v['総CE（名）'])}人 マスク専用含む人工呼吸器取扱:${addComma(pi(v['人工呼吸器取扱（台）']) + pi(v['マスク専用人工呼吸器取扱（台）']))}台 ECMO装置取扱:${addComma(v['ECMO装置取扱（台）'])}台`)
-	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典元（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
+	//detailvent.innerHTML += "<br>※総人工呼吸器取扱 = 人工呼吸器取扱 + マスク専用人工呼吸器取扱<br>データ出典：<a href=https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/>人工呼吸器およびECMO装置の取扱台数等に関する緊急調査の結果について | 公益社団法人　日本臨床工学技士会</a><br>出典（<a href=https://www.ja-ces.or.jp/>一般社団法人 日本呼吸療法医学会　公益社団法人 日本臨床工学技士会</a>）"
 	const srcurl = 'https://www.ja-ces.or.jp/info-ce/%e4%ba%ba%e5%b7%a5%e5%91%bc%e5%90%b8%e5%99%a8%e3%81%8a%e3%82%88%e3%81%b3ecmo%e8%a3%85%e7%bd%ae%e3%81%ae%e5%8f%96%e6%89%b1%e5%8f%b0%e6%95%b0%e7%ad%89%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%b7%8a/'
-	detailvent.innerHTML += tx(`<br>2020年2月回答 出典元（<a href=${srcurl}>一般社団法人 日本呼吸療法医学会 公益社団法人 日本臨床工学技士会</a>）`)
+	detailvent.innerHTML += tx(`<br>2020年2月回答 出典: <a href=${srcurl}>一般社団法人 日本呼吸療法医学会 公益社団法人 日本臨床工学技士会</a>`)
 
 	detail.style.display = "block"
 	detail.style.animation = "fadein .2s ease 0s 1 normal"
