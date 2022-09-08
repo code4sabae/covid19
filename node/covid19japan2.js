@@ -329,13 +329,14 @@ const recover = async () => {
     "https://www.mhlw.go.jp/stf/newpage_26277.html",
     "https://www.mhlw.go.jp/stf/newpage_26307.html",
     */
-    "https://www.mhlw.go.jp/stf/newpage_27299.html",
+    //"https://www.mhlw.go.jp/stf/newpage_27299.html",
+    "https://www.mhlw.go.jp/stf/newpage_27844.html",
   ];
   for (const urlweb of urlwebs) {
     await recover2(urlweb);
   }
 };
 
-//recover();
+recover();
 
-main();
+//main();
