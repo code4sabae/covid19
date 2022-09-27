@@ -1,2 +1,1 @@
-﻿"name","npatients","nexits","ndeaths","ncurrentpatients","lastUpdate","src_url","url_opendata"
-"Tokyo",3149428,3093983,5792,49653,"2022-09-26T19:15","https://raw.githubusercontent.com/tokyo-metropolitan-gov/covid19/master/data/data.json","https://catalog.data.metro.tokyo.lg.jp/organization/t000010?q=%E6%96%B0%E5%9E%8B%E3%82%B3%E3%83%AD%E3%83%8A&sort=score+desc%2C+metadata_modified+desc"
+﻿
