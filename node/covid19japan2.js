@@ -4,6 +4,7 @@ import { JAPAN_PREF_SHORT, JAPAN_PREF, JAPAN_PREF_EN,  } from "https://js.sabae.
 import { HTMLParser } from "https://js.sabae.cc/HTMLParser.js";
 import { fix0 } from "https://js.sabae.cc/fix0.js";
 import { fetchBin } from "https://js.sabae.cc/fetchBin.js";
+import { Day } from "https://js.sabae.cc/DateTime.js";
 
 const toHalf = function(s) {
   if (s === null || s === undefined)
@@ -120,7 +121,8 @@ const parseLink = (data, title, baseurl) => {
 
 const parseURLCovid19Latest = async (urlweb) => {
   const html = await (await fetch(urlweb)).text();
-  const title = "新型コロナウイルス感染症の現在の状況と厚生労働省の対応について";
+  //const title = "新型コロナウイルス感染症の現在の状況と厚生労働省の対応について";
+  const title = "新型コロナウイルス感染症の現在の状況について"; // 2022-09-27から変更 https://www.mhlw.go.jp/stf/newpage_28078.html
   let url = parseLink(html, title);
   return url.url;
 }
@@ -193,6 +195,11 @@ const makeCurrentPatientsJSON = (txt, csv, url, urlweb) => {
   res.srcurl_web = urlweb
   res.description = '各都道府県の検査陽性者の状況(空港検疫、チャーター便案件を除く国内事例)'
   res.lastUpdate = parseDate(txt)
+  if (txt.indexOf("0時時点") >= 0) {
+    res.lastUpdate = new Day(res.lastUpdate).dayBefore(1).toString();
+    //console.log(txt, res.lastUpdate)
+    //Deno.exit(0);
+  }
   res.npatients = 0
   res.nexits = 0
   res.ndeaths = 0
@@ -330,7 +337,12 @@ const recover = async () => {
     "https://www.mhlw.go.jp/stf/newpage_26307.html",
     */
     //"https://www.mhlw.go.jp/stf/newpage_27299.html",
-    "https://www.mhlw.go.jp/stf/newpage_27844.html",
+    //"https://www.mhlw.go.jp/stf/newpage_27844.html",
+    "https://www.mhlw.go.jp/stf/newpage_28193.html", // 9.26 25
+    //"https://www.mhlw.go.jp/stf/newpage_28078.html", // 9.27 26
+    //"https://www.mhlw.go.jp/stf/newpage_28240.html", // 9.28 28? -> 24時ではなく0時表記に変わった
+    //"https://www.mhlw.go.jp/stf/newpage_28193.html",
+    //"https://www.mhlw.go.jp/stf/newpage_28271.html", // 9.29 29
   ];
   for (const urlweb of urlwebs) {
     await recover2(urlweb);
