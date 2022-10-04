@@ -1,8 +1,8 @@
 #while :
 #do
-  node makedata.js
-  node covid19fast.mjs
-  deno run -A covid19forecast.deno.js
+  #node makedata.js
+  #node covid19fast.mjs
+  #deno run -A covid19forecast.deno.js
   sh update_covid19vaccine.sh
   sh update_fdma.sh
   deno run -A covid19japan2.js

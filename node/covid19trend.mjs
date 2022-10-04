@@ -5,33 +5,38 @@ const oneDayBefore = function (d) {
   return new Date(d.getTime() - (1000 * 60 * 60 * 24))
 }
 const makeTrendFromFast = async function () {
-  const DEBUG = false;
-  //const DEBUG = true;
-  const now = DEBUG ? oneDayBefore(new Date()) : new Date();
-  const yesterday = oneDayBefore(now)
-  const src1 = '../data/covid19fast/' + util.getYMD(yesterday) + '.json'
-  const src2 = '../data/covid19fast/' + util.getYMD(now) + '.json'
-  console.log(src1, src2);
-  const prev = JSON.parse(fs.readFileSync(src1))
-  const latest = JSON.parse(fs.readFileSync(src2))
-  console.log(latest)
-  const trend = []
-  for (const dc of latest) {
-    const dp = prev.find(i => i.name === dc.name)
-    if (!dp) { continue }
-    const div = dc.ncurrentpatients - dp.ncurrentpatients
-    // const ratio = dp.ncurrentpatients ? div / dp.ncurrentpatients : 0
-    const o = {
-      name: dc.name,
-      ncurrentpatients: dc.ncurrentpatients,
-      dcurrentpatients: div
-      // dpercent: parseFloat(ratio.toFixed(4)),
-      // prevcurrentpatients: dp.ncurrentpatients
+  try {
+    const DEBUG = false;
+    //const DEBUG = true;
+    const now = DEBUG ? oneDayBefore(new Date()) : new Date();
+    const yesterday = oneDayBefore(now)
+    const src1 = '../data/covid19fast/' + util.getYMD(yesterday) + '.json'
+    const src2 = '../data/covid19fast/' + util.getYMD(now) + '.json'
+    console.log(src1, src2);
+    const prev = JSON.parse(fs.readFileSync(src1))
+    const latest = JSON.parse(fs.readFileSync(src2))
+    console.log(latest)
+    const trend = []
+    for (const dc of latest) {
+      const dp = prev.find(i => i.name === dc.name)
+      if (!dp) { continue }
+      const div = dc.ncurrentpatients - dp.ncurrentpatients
+      // const ratio = dp.ncurrentpatients ? div / dp.ncurrentpatients : 0
+      const o = {
+        name: dc.name,
+        ncurrentpatients: dc.ncurrentpatients,
+        dcurrentpatients: div
+        // dpercent: parseFloat(ratio.toFixed(4)),
+        // prevcurrentpatients: dp.ncurrentpatients
+      }
+      trend.push(o)
     }
-    trend.push(o)
+    console.log(trend)
+    return trend
+  } catch (e) {
+    console.log(e);
+    return [];
   }
-  console.log(trend)
-  return trend
 }
 const makeTrendFromMHLW = async function () {
   const srcfn = '../data/covid19japan-all.json'
