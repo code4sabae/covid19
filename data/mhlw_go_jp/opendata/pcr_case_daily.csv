@@ -1,4 +1,4 @@
-日付,国立感染症研究所,検疫所,地方衛生研究所・保健所,民間検査会社（主に行政検査）,大学等,医療機関,小計,民間検査会社（主に自費検査）,計
+Date,National Institute of Infectious Diseases,Quarantine stations,Local public health institutes/public health centers,Private test companies (mainly Administrative inspection),"Universities, etc.",Medical institutions,subtotal,Private test companies (mainly Self-financed inspection),total
 2020/2/18,472,75,398,0,79,,1024,,1024
 2020/2/19,15,68,609,0,0,,692,,692
 2020/2/20,20,15,758,0,0,,793,,793
@@ -978,3 +978,4 @@
 2022/10/21,0,0,1243,28233,3786,32300,65562,,65562
 2022/10/22,0,0,723,25013,1526,17309,44571,,44571
 2022/10/23,0,0,665,7580,1293,8855,18393,,18393
+2022/10/24,0,0,653,9681,4437,41590,56361,,56361
