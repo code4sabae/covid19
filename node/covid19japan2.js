@@ -341,7 +341,7 @@ const recover = async () => {
     //"https://www.mhlw.go.jp/stf/newpage_27299.html",
     //"https://www.mhlw.go.jp/stf/newpage_27844.html",
     //"https://www.mhlw.go.jp/stf/newpage_28193.html", // 9.26 25
-    "https://www.mhlw.go.jp/stf/newpage_29102.html",
+    //"https://www.mhlw.go.jp/stf/newpage_29102.html", // 2022.11.10 変更
     //"https://www.mhlw.go.jp/stf/newpage_28078.html", // 9.27 26
     //"https://www.mhlw.go.jp/stf/newpage_28240.html", // 9.28 28? -> 24時ではなく0時表記に変わった
     //"https://www.mhlw.go.jp/stf/newpage_28193.html",
@@ -352,6 +352,6 @@ const recover = async () => {
   }
 };
 
-recover();
+//recover();
 
-//main();
+main();
