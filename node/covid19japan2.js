@@ -122,8 +122,8 @@ const parseLink = (data, title, baseurl) => {
 const parseURLCovid19Latest = async (urlweb) => {
   const html = await (await fetch(urlweb)).text();
   //const title = "新型コロナウイルス感染症の現在の状況と厚生労働省の対応について";
-  //const title = "新型コロナウイルス感染症の現在の状況について"; // 2022-09-27から変更 https://www.mhlw.go.jp/stf/newpage_28078.html
-  const title = "各都道府県の検査陽性者の状況（空港検疫、チャーター便案件を除く国内事例）"; // 2022-11-09から
+  const title = "新型コロナウイルス感染症の現在の状況について"; // 2022-09-27から変更 https://www.mhlw.go.jp/stf/newpage_28078.html
+  //const title = "各都道府県の検査陽性者の状況（空港検疫、チャーター便案件を除く国内事例）"; // 2022-11-09から
   let url = parseLink(html, title);
   return url.url;
 }
