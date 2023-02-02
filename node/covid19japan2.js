@@ -247,6 +247,9 @@ const main = async function () {
   const now = new Date();
   const urlweb7 = `https://www.mhlw.go.jp/stf/houdou/houdou_list_${now.getFullYear()}${fix0(now.getMonth() + 1, 2)}.html`;
   console.log(urlweb7);
+  // https://www.mhlw.go.jp/stf/houdou/houdou_list_202302.html
+  // https://www.mhlw.go.jp/stf/houdou/houdou_list_202301.html
+  //Deno.exit();
   const urlweb = await parseURLCovid19Latest(urlweb7);
   //const urlweb = "https://www.mhlw.go.jp/stf/newpage_22731.html";
   console.log(urlweb);
@@ -297,7 +300,6 @@ const recover2 = async (urlweb) => {
   const path = '../data/covid19japan/'
   const url = await parseURLCovid19(urlweb)
   console.log(url)
-  Deno.exit(1)
   if (!url) {
     throw new Error("not found url: " + url);
   }
@@ -346,6 +348,16 @@ const recover = async () => {
     //"https://www.mhlw.go.jp/stf/newpage_28240.html", // 9.28 28? -> 24時ではなく0時表記に変わった
     //"https://www.mhlw.go.jp/stf/newpage_28193.html",
     //"https://www.mhlw.go.jp/stf/newpage_28271.html", // 9.29 29
+    
+    /*
+    "https://www.mhlw.go.jp/stf/newpage_30734.html", // 2023.2,1
+    "https://www.mhlw.go.jp/stf/newpage_30688.html", // 1.31
+    "https://www.mhlw.go.jp/stf/newpage_30647.html", // 1.30
+    "https://www.mhlw.go.jp/stf/newpage_30617.html", // 1.29
+    "https://www.mhlw.go.jp/stf/newpage_30616.html", // 1.28
+    "https://www.mhlw.go.jp/stf/newpage_30595.html", // 1.27
+    "https://www.mhlw.go.jp/stf/newpage_30528.html", // 1.26
+    */
   ];
   for (const urlweb of urlwebs) {
     await recover2(urlweb);

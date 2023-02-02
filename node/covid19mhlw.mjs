@@ -65,7 +65,6 @@ const merge = async () => {
   ];
   const data = {};
   const normalizeDate = d => {
-    console.log(d);
     const num = d.match(/(\d+)\/(\d+)\/(\d+)/);
     if (!num || num.length < 4) {
       return null;
@@ -73,9 +72,8 @@ const merge = async () => {
     return `${num[1]}-${util.fix0(num[2], 2)}-${util.fix0(num[3], 2)}`;
   };
   for (const l of list2_daily) {
-    const url = l;
     const fn = l.substring(l.lastIndexOf("/") + 1, l.lastIndexOf("."));
-    console.log(fn);
+    //console.log(fn);
     const csv = util.readCSV(path + fn);
     const json = util.csv2json(csv);
     console.log(path + fn);
@@ -96,13 +94,16 @@ const merge = async () => {
       }
       d.日付 = dt;
       const a = data[dt];
-      if (a) {
-        Object.assign(a, d);
+      if (!a) {
+        const newd = {};
+        newd.日付 = dt;
+        Object.assign(newd, d);
+        data[dt] = newd;
       } else {
-        data[dt] = d;
+        Object.assign(a, d);
       }
     }
-    //console.log(data)
+    console.log(data)
     //break;
   }
   const data2 = Object.values(data);

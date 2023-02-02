@@ -8,7 +8,6 @@ const main = async (parent) => {
 
   const url = "./data/mhlw_go_jp/opendata/covid19_all.csv";
   const csv = await CSV.fetch(url);
-  console.log(csv);
 
   const datas = {};
   for (let i = 0; i < csv[0].length; i++) {
